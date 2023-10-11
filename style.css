@@ -1,0 +1,12 @@
+/**PRIVACY POLICY START **/
+.back-button {
+  object-fit: contain;
+}
+
+.privacy-policy-headline-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/**PRIVACY POLICY END **/
