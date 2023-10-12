@@ -1,0 +1,86 @@
+/* Desktop-Side-Bar Start */
+
+/* Delete */
+body {
+  margin: 0;
+}
+
+/* Desktop-Side-Bar Logo*/
+
+.desktop-sidebar {
+  width: 234px;
+  height: 100vh;
+  background-color: #2a3647;
+  position: fixed;
+  z-index: 1000;
+}
+.desktop-bar-content {
+  height: 100vh;
+  width: 234px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.desktop-join-logo {
+  width: 100px;
+  height: 122px;
+  margin-top: 64px;
+}
+
+/* Desktop-Side-Bar Navigation*/
+.desktop-navbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.desktop-a-img {
+  padding: 0 58px;
+}
+.desktop-a-img:hover {
+  background-color: #091931;
+}
+.desktop-a {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 16px;
+  font-family: "Inter", sans-serif !important;
+  text-decoration: none;
+  color: #ffffff;
+}
+.desktop-a img {
+  width: 30px;
+  height: 30px;
+  padding: 8px;
+}
+
+/* Desktop-Side-Bar Footer*/
+.desktop-footer {
+  width: 100%;
+  height: 317px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 64px;
+}
+.desktop-a-footer-bg {
+  padding: 8px 58px;
+}
+.desktop-a-footer {
+  font-family: "Inter", sans-serif !important;
+  text-decoration: none;
+  color: #a8a8a8;
+}
+.desktop-a-footer:hover {
+  font-weight: bold;
+  color: #28abe2;
+}
+
+/* Desktop-Side-Bar End */
+/* Desktop-Side-Bar Main Content Margin left */
+.main-content {
+    margin-left: 330px; /* 323px (width of sidebar) + a little extra for spacing */
+}
