@@ -6,6 +6,8 @@ body {
 /**PRIVACY POLICY START **/
 .back-button {
   object-fit: contain;
+  /*width: 37px;
+  height: 37px;*/
 }
 
 .privacy-policy-headline-container {
@@ -104,6 +106,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  z-index: 9;
 }
 
 .login-top-right-p {
@@ -119,14 +122,20 @@ body {
   background: #2a3647 !important;
   color: white !important;
   padding: 15px 16px 15px 16px !important;
-  border-radius: 8px;
   border-radius: 8px !important;
+  height: 48px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
 }
 
 .login-guest-button {
   color: #2a3647 !important;
   background-color: white;
-  border: solid 1px 1px 1px 1px #2a3647;
+  border: solid 1px 1px 1px 1px;
+  border-color: #2a3647 !important;
+  margin-left: 32px;
 }
 
 .login-headline {
@@ -179,4 +188,36 @@ body {
 .form-check {
   margin-left: 39px;
 }
+
+.login-footer-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 40vh);
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  width: 246px;
+  height: 35px;
+}
+
+.login-privacy-policy-box {
+  width: 121px !important;
+  height: 19px !important;
+}
+
+.login-footer-font {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19.2px;
+  color: rgba(168, 168, 168, 1);
+  text-decoration: none;
+}
+
+.login-footer-font:hover {
+  transform: scale(1.1);
+  color: #29abe2;
+  font-weight: 600;
+}
+
 /**LOG IN START END**/
