@@ -1,5 +1,5 @@
 body {
-  font-family: 'Inter', sans-serif !important;
+  font-family: "Inter", sans-serif !important;
   background-color: rgba(246, 247, 248, 1) !important;
 }
 
@@ -101,6 +101,10 @@ body {
   border-radius: 8px !important;
 }
 
+.login-button:hover {
+  background: #29abe2 !important;
+}
+
 .login-guest-button {
   color: #2a3647 !important;
   background-color: white;
@@ -169,4 +173,70 @@ body {
 .form-check {
   margin-left: 39px;
 }
+
+footer {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  text-align: center; 
+  padding: 10px 0; 
+}
+
+footer a {
+  text-decoration: none;
+  color: #29abe2;
+  margin: 0 20px; 
+}
+
+footer a:hover{
+  text-decoration: underline;
+  
+}
 /**LOG IN START END**/
+
+/**REGISTER**/
+
+.arrow-left-line {
+  position: absolute;
+  left: 55px;
+  top: 67px;
+  cursor: pointer;
+}
+
+.signUp-container {
+  display: flex;
+  justify-content: center;
+}
+
+.signUp-card {
+  padding: 48px, 88px, 48px, 88px;
+  gap: 16px;
+}
+
+.input-container {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.input-container img {
+  width: 24px;
+  height: 24px;
+  margin-left: 384px;
+  margin-top: 10px;
+  position: absolute;
+}
+
+.input-container input {
+  width: 422px;
+  height: 48px;
+  box-sizing: border-box;
+  border: 1px solid #d1d1d1;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-size: 21px;
+}
+
+.signUp-card a {
+  color: #29abe2;
+  text-decoration: none;
+}
