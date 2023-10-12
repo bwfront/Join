@@ -96,6 +96,11 @@ body {
   line-height: 19.2px !important;
 }
 
+.login-button:hover,
+.login-signup-button:hover {
+  background-color: #29abe2 !important;
+}
+
 .login-top-container {
   display: flex;
   justify-content: space-between;
@@ -128,6 +133,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 110px;
+  font-weight: 700 !important;
 }
 
 .login-guest-button {
@@ -136,6 +142,12 @@ body {
   border: solid 1px 1px 1px 1px;
   border-color: #2a3647 !important;
   margin-left: 32px;
+  font-weight: 700 !important;
+}
+
+.login-guest-button:hover {
+  color: #29abe2 !important;
+  border-color: #29abe2 !important;
 }
 
 .login-headline {
@@ -169,6 +181,12 @@ body {
 
 .mb-3 {
   padding: 12px 21px 12px 21px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-form-img {
+  margin: -30px;
 }
 
 .login-card {
@@ -220,4 +238,27 @@ body {
   font-weight: 600;
 }
 
-/**LOG IN START END**/
+.form-check-label {
+  color: black;
+}
+.form-check-input {
+  border-color: black;
+}
+
+/*TODO: Placeholder Logos margin/padding right*/
+/*#exampleInputEmail1 {
+  background: url(assets/img/login-mail.png) no-repeat right;
+}
+
+#exampleInputPassword1 {
+  background: url(assets/img/login-password.png) no-repeat right;
+}*/
+
+.form-control::placeholder {
+  color: rgba(209, 209, 209, 1) !important;
+}
+
+.form-check-input:checked {
+  background-color: #29abe2 !important;
+}
+/**LOG IN END**/
