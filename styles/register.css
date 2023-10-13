@@ -1,3 +1,5 @@
+/**SIGN UP DESKTOP START**/
+
 .join-logo {
   width: 100.03px;
   height: 121.97px;
@@ -5,13 +7,8 @@
   margin-left: 77px;
 }
 
-.signUp-container {
-  display: flex;
-  justify-content: center;
-}
-
 .signUp-card {
-  padding: 48px, 88px, 48px, 88px;
+  padding: 48px 88px 48px 88px;
   gap: 16px;
 }
 
@@ -50,4 +47,48 @@
   text-decoration: none;
 }
 
+/**SIGN UP DESKTOP END**/
 
+/**SIGN UP RESPONSIVE START**/
+
+@media (max-width: 575.98px) {
+  .join-logo {
+    width: 64px;
+    height: 78.03px;
+    margin-top: 37px;
+    margin-left: 38px;
+    gap: 10px;
+  }
+
+  .arrow-left-line {
+    left: 19px;
+    top: 50px;
+  }
+
+  .signUp-card {
+    margin-top: 18px;
+    height: 576px;
+    width: 353px;
+  }
+
+  .login-headline {
+    font-size: 47px;
+    margin-top: 32px;
+    width: 180px !important;
+  }
+
+  .input-container input {
+    font-size: 1rem;
+    width: 280px !important;
+  }
+
+  .input-container img {
+    margin-left: 244px;
+  }
+
+  .login-signup-button {
+    margin-top: 20px;
+  }
+}
+
+/**SIGN UP RESOPOSIVE END**/
