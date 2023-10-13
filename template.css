@@ -34,7 +34,7 @@ body {
 }
 
 /* Desktop-Side-Bar Navigation*/
-/* Implementen with JS Shows wich tab is active (ID) -> .desktop-a-img + .mobile-active*/
+/* Implementen with JS Shows wich tab is active (ID) -> .desktop-a-img + .desktop-active*/
 .desktop-active {
   background-color: #091931;
 }
