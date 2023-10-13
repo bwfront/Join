@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles/register.css" />
+  <link rel="stylesheet" href="styles/login.css" />
   <title>Join | Register</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,8 +17,28 @@
 
 <body>
 
+  <script>
+
+/*check if passwords match*/
+
+document.addEventListener("DOMContentLoaded", function(){
+const passwordField = document.getElementById("password");
+  const confirmPasswordField = document.getElementById("confirmPassword");
+  const passwordError = document.getElementById("passwordError");
+
+  passwordField.addEventListener("input", function () {
+    if (passwordField.value !== confirmPasswordField.value) {
+      passwordError.textContent = "Passwords do NOT match";
+    } else {
+      passwordError.textContent = "";
+    }
+  });
+})
+
+</script>
+
   <a href="index.html">
-    <div><img class="login-topleft-logo" src="assets/img/join-logo.png" alt=""></div>
+    <img class="join-logo" src="assets/img/join-logo.png" alt="">
   </a>
   </div>
 
@@ -30,7 +51,7 @@
       </a>
     </div>
 
-    <form class="mb-3 ">
+    <form>
       <div class="input-container">
         <input class="form-control" required type="text" placeholder="Name" />
         <img src="./assets/img/person.png" />
@@ -40,13 +61,14 @@
         <img src="./assets/img/mail.png" />
       </div>
       <div class="input-container">
-        <input class="form-control login-form-radius" required type="password" placeholder="Password" />
+        <input class="form-control login-form-radius" required type="password" placeholder="Password" id="password" />
         <img src="./assets/img/login-password.png" />
       </div>
       <div class="input-container">
-        <input class="form-control login-form-radius" required type="password" placeholder="Confirm Password" />
+        <input class="form-control login-form-radius" required type="password" placeholder="Confirm Password" id="confirmPassword" />
         <img src="./assets/img/login-password.png" />
       </div>
+      <div id="passwordError" style="color: red;"></div>
     </form>
     <div>
       <input required type="checkbox" />
@@ -57,10 +79,10 @@
   </div>
   </div>
 
-  <footer>
-    <a href="privacy_policy.html">Privacy Policy</a>
-    <a href="legal_notice.html">Legal Notice</a>
-  </footer>
+  <footer class="login-footer-container ">
+            <a class="login-privacy-policy-box login-footer-font" href="privacy_policy.html">Privacy Policy</a>
+            <a class="login-privacy-legal-notice login-footer-font" href="legal_notice.html">Legal notice</a>
+        </footer>
 
 </body>
 
