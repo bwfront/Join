@@ -1,8 +1,7 @@
 /* Desktop-Side-Bar Start */
 
-
 body {
-  margin: 0;
+  margin: 0 !important;
 }
 
 /* Desktop-Side-Bar Main Content Margin left */
@@ -36,7 +35,7 @@ body {
 
 /* Desktop-Side-Bar Navigation*/
 /* Implementen with JS Shows wich tab is active (ID) -> .desktop-a-img + .mobile-active*/
-.desktop-active{
+.desktop-active {
   background-color: #091931;
 }
 
@@ -62,7 +61,7 @@ body {
   color: #ffffff;
 }
 .desktop-a img {
-  width: 30px;
+  width: 30px !important;
   height: 30px;
   padding: 8px;
 }
@@ -92,14 +91,13 @@ body {
 
 /* Desktop-Side-Bar End */
 
-
 /*Mobile Navbar Start */
 /* Implementen with JS Shows wich tab is active (ID) -> .mobile-a-img + .mobile-active*/
-.mobile-active{
+.mobile-active {
   background-color: #091931;
 }
 
-.mobile-navbar{
+.mobile-navbar {
   display: none;
   height: 80px;
   width: 100vw;
@@ -107,16 +105,16 @@ body {
   z-index: 1000 !important;
   bottom: 0;
   position: fixed;
-  background-color: #2A3647;
+  background-color: #2a3647;
 }
 
-.mobile-navigation{
+.mobile-navigation {
   display: flex;
   justify-content: center;
   justify-content: space-around;
 }
 
-.mobile-a-img{
+.mobile-a-img {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,7 +124,7 @@ body {
   border-radius: 16px;
 }
 
-.mobile-a{
+.mobile-a {
   font-family: "Inter", sans-serif !important;
   color: #ffffff;
   font-size: 14px;
@@ -138,16 +136,31 @@ body {
   width: 24px;
   height: 24px;
 }
+.mobile-link{
+  position: absolute;
+  height: 78px;
+  width: 80px;
+}
 
 /* Responsive */
 @media screen and (max-width: 428px) {
   .desktop-sidebar {
     display: none;
   }
-  .main-content{
-    margin: 20px;
+  /* 100px Margin-Bottom Because the Mobile-Navigaton would hide the content*/
+  .main-content {
+    margin: 20px 20px 100px 20px;
   }
-  .mobile-navbar{
+  .mobile-navbar {
     display: unset;
+  }
+  /* Hide scrollbars */
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 }
