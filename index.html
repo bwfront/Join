@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join | Log In</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/login.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="icon" href="assets/img/join-logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,14 +42,16 @@
                     </span>
                     <form>
                         <div class="mb-3">
-                            <input placeholder="Email" type="email" class="form-control login-form-radius"
+                            <input required placeholder="Email" type="email" class="form-control login-form-radius"
                                 id="exampleInputEmail1" aria-describedby="emailHelp">
                             <img class="login-form-img " src="assets/img/login-mail.png" alt="">
                         </div>
                         <div class="mb-3">
-                            <input placeholder="Password" type="password" class="form-control login-form-radius"
-                                id="exampleInputPassword1">
-                            <img class="login-form-img " src="assets/img/login-password.png" alt="">
+                            <input required placeholder="Password" type="password"
+                                class="form-control login-form-radius" id="exampleInputPassword1">
+                            <img onclick="showClearPassword()" class="login-form-img "
+                                src="assets/img/login-password.png" alt="">
+                            <!--JS => create function Password visibility-->
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
