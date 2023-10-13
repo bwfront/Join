@@ -1,0 +1,53 @@
+.join-logo {
+  width: 100.03px;
+  height: 121.97px;
+  margin-top: 80px;
+  margin-left: 77px;
+}
+
+.signUp-container {
+  display: flex;
+  justify-content: center;
+}
+
+.signUp-card {
+  padding: 48px, 88px, 48px, 88px;
+  gap: 16px;
+}
+
+.arrow-left-line {
+  position: absolute;
+  left: 55px;
+  top: 67px;
+  cursor: pointer;
+}
+
+.input-container {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.input-container img {
+  width: 24px;
+  height: 24px;
+  margin-left: 384px;
+  margin-top: 10px;
+  position: absolute;
+}
+
+.input-container input {
+  width: 422px;
+  height: 48px;
+  box-sizing: border-box;
+  border: 1px solid #d1d1d1;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-size: 21px;
+}
+
+.signUp-card a {
+  color: #29abe2;
+  text-decoration: none;
+}
+
+
