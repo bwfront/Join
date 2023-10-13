@@ -20,9 +20,6 @@ body {
   text-align: center;
 }
 
-.greeting-user-container {
-}
-
 .urgency-greeting-container {
   display: flex;
   align-items: center;
@@ -243,9 +240,6 @@ body {
   animation-fill-mode: forwards;
 }
 
-.pencil-done-logo {
-}
-
 /**ANIMATION-BUTTON**/
 
 @keyframes hovereffectbackground {
@@ -261,3 +255,16 @@ body {
 }
 
 /**TODO: HOVER ANIMATION**/
+
+.main-content {
+  animation: fadein 225ms;
+  animation-fill-mode: forwards;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
