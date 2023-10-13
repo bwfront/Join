@@ -3,11 +3,21 @@ body {
   background-color: rgba(246, 247, 248, 1) !important;
 }
 
+/* Heading Imprint and Privacy */
+.imprint-privacy-heading{
+  font-size: 61px;
+}
+
 /**PRIVACY POLICY START **/
 .back-button {
   object-fit: contain;
   /*width: 37px;
   height: 37px;*/
+}
+.back-button:hover{
+  background-color: rgb(228, 228, 228);
+  border-radius: 20px;
+  padding: 1px;
 }
 
 .privacy-policy-headline-container {
