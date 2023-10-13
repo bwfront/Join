@@ -126,6 +126,7 @@ body {
   border-color: #2a3647 !important;
   margin-left: 32px;
   font-weight: 700 !important;
+  height: 48px;
 }
 
 .login-guest-button:hover {

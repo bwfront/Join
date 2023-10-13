@@ -1,0 +1,263 @@
+body {
+  background-color: rgba(246, 247, 248, 1) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.number {
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 76.8px;
+  /*width: 31px;
+  height: 77px;*/
+}
+
+/**STYLE FOR TEXT: TODO, DONE, TASKS IN BOARD, TASKS IN PROGRESS, AWAITING FEEDBACK**/
+.text-style1 {
+  font-size: 20px;
+  color: rgba(42, 54, 71, 1);
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+}
+
+.greeting-user-container {
+}
+
+.urgency-greeting-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80vh;
+}
+
+.goodmorning-style {
+  font-size: 47px;
+  font-weight: 500;
+  line-height: 56.4px;
+  color: #2a3647;
+}
+
+.user-greeting-name {
+  color: #29abe2;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 76.8px;
+}
+
+.summary-main-container {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  margin-top: 150px; /**BEISPIEL**/
+}
+
+.summary-headline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 61px;
+  line-height: 73.2px;
+  font-weight: 700;
+}
+
+.summary-headline-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 32.4px;
+}
+
+.summary-headline-container {
+  width: 625px;
+  height: 73px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-headline-right-border {
+  height: 59px;
+  border-style: solid;
+  border-right-width: 3px;
+  border-radius: 4px;
+  border-color: rgba(41, 171, 226, 1);
+}
+
+.summary-icon-container {
+  display: flex;
+  flex-direction: column;
+  width: 560px;
+  height: 562px;
+}
+
+.summary-todo-done-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dot-number-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.width {
+  width: 264px;
+}
+
+.top-number-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary-todo-done-card-layout {
+  width: 264px;
+  height: 170px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px !important;
+  box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.04) !important;
+  border: none !important;
+}
+
+.urgency-card-layout {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 560px;
+  height: 170px !important;
+  border-radius: 30px !important;
+  box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.04) !important;
+  border: none !important;
+  flex-direction: row !important;
+}
+
+.border-ugency-container {
+  height: 102px;
+  border-style: solid;
+  border-right-width: 2px;
+  border-radius: 4px;
+  border-color: rgba(209, 209, 209, 1);
+}
+
+.today-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 264px;
+  margin-left: 32px;
+}
+
+.date-style {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.upcoming-deadline {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  margin-top: 13px;
+}
+
+.urgency-card-layout:hover {
+  animation: hovereffectbackground 80ms;
+  animation-fill-mode: forwards;
+}
+
+.summary-task-bottom-container {
+  width: 560px;
+  height: 170px !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-bottom-card {
+  width: 168px !important;
+  height: 169px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px !important;
+  box-shadow: 0 0 14px 3px rgba(0, 0, 0, 0.04) !important;
+  border: none !important;
+}
+
+.summary-bottom-card:hover {
+  animation: hovereffectbackground 80ms;
+  animation-fill-mode: forwards;
+}
+
+.dot-todo {
+  width: 69px;
+  height: 69px;
+  background-color: rgba(42, 54, 71, 1) !important;
+  /*background: url(/assets/img/pencil.png);*/
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  margin-right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot-done {
+  width: 69px;
+  height: 69px;
+  background-color: rgba(42, 54, 71, 1) !important;
+  background: url(/assets/img/done.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  margin-right: 18px;
+}
+
+.dot-urgent {
+  width: 69px;
+  height: 69px;
+  background-image: url(/assets/img/urgent.png);
+  background-repeat: no-repeat;
+  background-color: rgba(255, 61, 0, 1);
+  background-position: center;
+  border-radius: 50%;
+  margin-right: 18px;
+}
+
+.summary-todo-done-card-layout:hover {
+  animation: hovereffectbackground 80ms;
+  animation-fill-mode: forwards;
+}
+
+.pencil-done-logo {
+}
+
+/**ANIMATION-BUTTON**/
+
+@keyframes hovereffectbackground {
+  from {
+    background-color: rgba(42, 54, 71, 0);
+  }
+  to {
+    transition: ease-out;
+    background-color: rgba(42, 54, 71, 1);
+    color: white;
+    transform: scale(1.1);
+  }
+}
+
+/**TODO: HOVER ANIMATION**/
