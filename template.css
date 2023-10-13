@@ -1,8 +1,14 @@
 /* Desktop-Side-Bar Start */
 
-/* Delete */
+
 body {
   margin: 0;
+}
+
+/* Desktop-Side-Bar Main Content Margin left */
+.main-content {
+  margin-left: 284px; /* 234px (width of sidebar) + a little extra for spacing */
+  margin-right: 50px;
 }
 
 /* Desktop-Side-Bar Logo*/
@@ -29,6 +35,11 @@ body {
 }
 
 /* Desktop-Side-Bar Navigation*/
+/* Implementen with JS Shows wich tab is active (ID) -> .desktop-a-img + .mobile-active*/
+.desktop-active{
+  background-color: #091931;
+}
+
 .desktop-navbar {
   display: flex;
   flex-direction: column;
@@ -80,7 +91,63 @@ body {
 }
 
 /* Desktop-Side-Bar End */
-/* Desktop-Side-Bar Main Content Margin left */
-.main-content {
-    margin-left: 330px; /* 323px (width of sidebar) + a little extra for spacing */
+
+
+/*Mobile Navbar Start */
+/* Implementen with JS Shows wich tab is active (ID) -> .mobile-a-img + .mobile-active*/
+.mobile-active{
+  background-color: #091931;
+}
+
+.mobile-navbar{
+  display: none;
+  height: 80px;
+  width: 100vw;
+  /*width: 428px;*/
+  z-index: 1000 !important;
+  bottom: 0;
+  position: fixed;
+  background-color: #2A3647;
+}
+
+.mobile-navigation{
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+}
+
+.mobile-a-img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 78px;
+  width: 80px;
+  border-radius: 16px;
+}
+
+.mobile-a{
+  font-family: "Inter", sans-serif !important;
+  color: #ffffff;
+  font-size: 14px;
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.mobile-a img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive */
+@media screen and (max-width: 428px) {
+  .desktop-sidebar {
+    display: none;
+  }
+  .main-content{
+    margin: 20px;
+  }
+  .mobile-navbar{
+    display: unset;
+  }
 }
