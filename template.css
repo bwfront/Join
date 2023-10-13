@@ -142,7 +142,7 @@ body {
   width: 80px;
 }
 
-/* Desktop-Header */
+/* Desktop-Header start*/
 .desktop-header {
   position: fixed;
   width: 100vw;
@@ -150,22 +150,67 @@ body {
   display: flex;
   align-items: center;
   background-color: #ffffff;
-  box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, 0.1);
 }
 .desktop-header-content {
   margin-left: 284px;
   font-size: 20px;
   font-family: "Inter", sans-serif !important;
 }
-.desktop-header-margin{
-   width: 100vh; 
-   top: 0; 
-   height: 100px;
+.desktop-header-margin {
+  width: 100vh;
+  top: 0;
+  height: 150px;
+}
+/* Desktop-Header end*/
+
+/* Mobile-Header Start*/
+.mobile-header {
+  display: none;
+  height: 80px;
+  width: 100vw;
+  position: fixed;
+  align-items: center;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, 0.1);
+}
+.mobile-header-content{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+.mobile-header-profile{
+  height: 40px;
+  width: 40px;
+  background-image: url("./assets/img/mobile-profile-elipse.png");
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mobile-profile-text{
+  color: #29ABE2;
+  font-size: 16px;
+  font-weight: bold;
+}
+/* Mobile - Header Top Margin */
+.mobile-header-margin {
+  display: none;
+  width: 100vw;
+  top: 0;
+  height: 65px;
 }
 
 /* Responsive */
 @media screen and (max-width: 900px) {
   .desktop-sidebar {
+    display: none;
+  }
+  .desktop-header {
+    display: none;
+  }
+  .desktop-header-margin {
     display: none;
   }
   /* 100px Margin-Bottom Because the Mobile-Navigaton would hide the content*/
@@ -174,6 +219,12 @@ body {
   }
   .mobile-navbar {
     display: unset;
+  }
+  .mobile-header-margin{
+    display: block;
+  }
+  .mobile-header{
+    display: flex;
   }
   /* Hide scrollbars */
   body::-webkit-scrollbar {
