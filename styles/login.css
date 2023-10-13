@@ -64,16 +64,12 @@ body {
 /**Animation END**/
 
 .login-topleft-logo {
-  /*width: 100px;
-    height: 120px;*/
   width: 274px;
   height: 334px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /*top: 80px;
-    left: 77px;*/
 }
 
 .login-signup-button {
@@ -90,7 +86,8 @@ body {
 .login-top-container {
   display: flex;
   justify-content: space-between;
-  margin: 80px;
+  margin-top: 80px;
+  margin-right: 80px;
 }
 
 .login-top-right-container {
@@ -263,9 +260,139 @@ body {
   padding-left: 21px;
 }
 
-/**LOG IN END**/
+.login-animation-responsive {
+  display: none;
+}
 
-/**TODO: 
-  1.wrong Password border
-  
-  **/
+/**LOG IN DESKTOP END**/
+
+/**LOG IN RESPONSIVE START**/
+
+@media (max-width: 575.98px) {
+  .login-animation-background {
+    background-color: rgba(42, 54, 71, 1);
+  }
+
+  .login-animation-responsive {
+    display: block;
+    animation: logo ease-in-out 500ms;
+    animation-fill-mode: forwards;
+    animation-delay: 200ms;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+    width: 100px;
+    height: 121px;
+  }
+
+  @keyframes logo {
+    from {
+      opacity: 1;
+      width: 100px;
+      height: 121px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    to {
+      opacity: 0;
+      z-index: 5;
+      width: 64px;
+      height: 78px;
+      position: absolute;
+      top: 37px;
+      left: 38px;
+      transform: none;
+    }
+  }
+
+  .login-animation-logo {
+    animation: transformtopleft ease-in-out 500ms;
+    animation-fill-mode: forwards;
+    animation-delay: 200ms;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    width: 100px;
+    height: 121px;
+  }
+
+  @keyframes transformtopleft {
+    from {
+      opacity: 0;
+      width: 100px;
+      height: 121px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9;
+    }
+    to {
+      opacity: 1;
+      z-index: 5;
+      width: 64px;
+      height: 78px;
+      position: absolute;
+      top: 37px;
+      left: 38px;
+      transform: none;
+    }
+  }
+
+  .login-top-right-container {
+    position: absolute;
+    left: 10%;
+    transform: translate(0, 73vh);
+    right: 10%;
+  }
+
+  .login-top-right-p {
+    margin-right: 16px !important;
+  }
+
+  .login-headline {
+    font-size: 47px;
+  }
+
+  .login-form-radius {
+    width: 90% !important;
+  }
+
+  .login-form-img {
+    margin: 0 !important;
+    margin-left: -30px !important;
+  }
+
+  .login-card {
+    padding: 0 !important;
+  }
+
+  .login-button-box {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-guest-button {
+    margin: 21px 0 20px 0;
+  }
+
+  .login-footer-container {
+    transform: translate(-50%, 44vh);
+  }
+}
+@media (max-width: 767.98px) {
+}
+@media (max-width: 991.98px) {
+}
+@media (max-width: 1199.98px) {
+}
+@media (max-width: 1399.98px) {
+}
+
+/**LOG IN RESPONSIVE END**/
