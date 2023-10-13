@@ -29,7 +29,7 @@
             <div><img class="login-topleft-logo d-none" src="assets/img/join-logo.png" alt=""></div>
             <div class="login-top-right-container">
                 <p class="login-top-right-p">Not a Join user?</p>
-                <a href="register.html">
+                <a class="text-decoration-none" href="register.html">
                     <button class="btn login-button login-signup-button">Sign up</button>
                 </a>
             </div>
@@ -48,13 +48,19 @@
                                 id="exampleInputEmail1" aria-describedby="emailHelp">
                             <img class="login-form-img " src="assets/img/mail.png" alt="">
                         </div>
-                        <div class="mb-3">
-                            <input required placeholder="Password" type="password"
-                                class="form-control login-form-radius" id="exampleInputPassword1">
-                            <img onclick="showClearPassword()" class="login-form-img "
-                                src="assets/img/login-password.png" alt="">
-                            <!--JS => create function Password visibility-->
+
+                        <div>
+                            <div class="password-box">
+                                <input required placeholder="Password" type="password"
+                                    class="form-control login-form-radius" id="exampleInputPassword1">
+                                <img onclick="showClearPassword()" class="login-form-img "
+                                    src="assets/img/login-password.png" alt="">
+                                <!--JS => create function Password visibility-->
+                            </div>
+                            <p class="login-wrong-password d-none">Wrong password Ups! Try again.</p>
+                            <!--JS => remove-d-none if password false-->
                         </div>
+
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Remember me</label>
