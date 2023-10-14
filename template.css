@@ -60,7 +60,7 @@ body {
   text-decoration: none;
   color: #ffffff;
 }
-.desktop-img{
+.desktop-img {
   width: 30px;
   height: 30px;
   padding: 8px;
@@ -174,13 +174,13 @@ body {
   background-color: #ffffff;
   box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, 0.1);
 }
-.mobile-header-content{
+.mobile-header-content {
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 20px;
 }
-.mobile-header-profile{
+.mobile-header-profile {
   height: 40px;
   width: 40px;
   background-image: url("./assets/img/mobile-profile-elipse.png");
@@ -188,11 +188,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
-.mobile-profile-text{
+.mobile-profile-text {
   font-family: "Inter", sans-serif !important;
-
-  color: #29ABE2;
+  color: #29abe2;
   font-size: 16px;
   font-weight: bold;
 }
@@ -203,6 +203,61 @@ body {
   top: 0;
   height: 65px;
 }
+/* Mobile Header Slide Menu start*/
+.mobile-subheader {
+  right: -300px;
+  top: 60px;
+  width: 150px;
+  height: 158px;
+  position: fixed;
+  z-index: 10001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #2a3647;
+  border-radius: 20px 0 20px 20px;
+  animation-duration: 0.6s;
+}
+.slidein {
+  animation-name: slidein;
+  animation-fill-mode: forwards;
+}
+
+.slideout {
+  animation-name: slideout;
+  animation-fill-mode: forwards;
+}
+@keyframes slidein {
+  from {
+    right: -300px;
+  }
+  to {
+    right: 10px;
+  }
+}
+@keyframes slideout {
+  from {
+    right: 10px;
+  }
+  to {
+    right: -300px;
+  }
+}
+.mobile-subheader a {
+  text-decoration: none;
+}
+.mobile-subheader-text {
+  width: 130px;
+  padding: 12px 16px;
+  margin-right: -26px !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 16px;
+  color: #cdcdcd;
+  box-sizing: unset;
+}
+
+/* Mobile Header Slide Menu end*/
 
 /* Responsive */
 @media screen and (max-width: 900px) {
@@ -222,10 +277,10 @@ body {
   .mobile-navbar {
     display: unset;
   }
-  .mobile-header-margin{
+  .mobile-header-margin {
     display: block;
   }
-  .mobile-header{
+  .mobile-header {
     display: flex;
   }
   /* Hide scrollbars */
