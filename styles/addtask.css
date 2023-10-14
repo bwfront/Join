@@ -1,0 +1,128 @@
+/* ADD TASK DESKTOP START*/
+body {
+  background-color: #f6f7f8;
+  font-family: "Inter", sans-serif !important;
+}
+.add-task-main-content {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 328px;
+}
+
+.add-task-left-side {
+  display: flex;
+  flex-direction: column;
+  height: 376px;
+  width: 440px;
+}
+
+.add-task-right-side {
+  display: flex;
+  flex-direction: column;
+  height: 416px;
+  width: 440px;
+}
+
+.add-task-title h1 {
+  font-weight: 700 !important;
+  font-size: 61px;
+  top: 206px;
+  margin-left: 328px;
+}
+
+.add-task-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 81px;
+  gap: 8px;
+}
+
+.middle-border {
+  border-left: solid 3px #d1d1d1;
+  height: 424px;
+  position: relative;
+  top: 81px;
+}
+
+.form-control {
+  padding: 9px 16px 6px 16px;
+}
+
+.btn {
+  background-color: white;
+  color: black;
+  width: 136px;
+  margin-right: 7px;
+}
+
+#bootstrap-datepicker {
+  position: absolute;
+  right: 2px;
+  top: 40px;
+}
+#subtask-icon {
+  position: absolute;
+  position: absolute;
+  right: 2px;
+  top: 321px;
+}
+
+.required-field::before {
+  content: "*";
+  color: red;
+}
+.form-control option.d-none {
+  display: none !important;
+}
+
+.add-task-bottom-container {
+  margin-top: 307px;
+}
+
+.btn-bottom {
+  margin-top: 273px;
+  margin-left: 149px;
+}
+.btn {
+  font-weight: 700;
+}
+
+.btn-clear {
+  background-color: transparent;
+}
+
+/* ADD TASK DESKTOP ENDS*/
+
+/* ADD TASK RESPONSIVE STARTS */
+
+@media (max-width: 1280px) {
+  .add-task-main-content {
+    flex-direction: column;
+    align-items: center;
+    min-height: 110vh;
+    margin-top: -225px;
+  }
+  .add-task-right-side{
+    margin-top: -154px;
+  }
+
+  .middle-border {
+    display: none;
+  }
+
+  .btn-clear {
+    display: none;
+  }
+  .add-task-bottom-container,
+  .btn-bottom {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    bottom: 20px;
+    z-index: 99;
+    background-color: white;
+  }
+}
+
+/* ADD TASK RESPONSIVE ENDS */
