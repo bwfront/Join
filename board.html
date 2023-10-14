@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="template.css">
+    <link rel="stylesheet" href="./styles/board.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -19,8 +21,24 @@
     <div w3-include-html="./assets/img/templates/desktop_template.html"></div>
     <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
     <div class="main-content">
-        <!-- Main content goes here -->
-        <!-- Because the Fixed Side Bar -->
+        <div class="desktop-board-head-content">
+            <h1 class="imprint-privacy-heading">Board</h1>
+            <div class="desktop-board-heading-right">
+                <div class="desktop-search-bar">
+                    <input class="desktop-search-bar-input" type="text" placeholder="Find Task">
+                    <div class="desktop-search-button">
+                        <img src="./assets/img/search-spacing.png" alt="search">
+                        <img class="search" src="./assets/img/search.png" alt="search">
+                    </div>
+                </div>
+                <div class="desktop-add-task-con">
+                    Add Task 
+                    <div class="desktop-add-task-img">
+                        <img src="./assets/img/board-add.png" alt="plus">
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </body>

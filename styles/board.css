@@ -1,0 +1,67 @@
+.desktop-board-heading-right{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+.desktop-board-head-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.desktop-search-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 50px;
+    width: 312px;
+    height: 48px;
+    background-color: #ffffff;
+    border: solid #A8A8A8;
+    border-radius: 10px;
+}
+.desktop-search-bar-input{
+    width: 210px;
+}
+.desktop-search-bar-input, .desktop-search-button {
+    border: 0;
+    margin: 0 10px;
+    outline: none;
+}
+.search{
+    height: 32px;
+    width: 32px;
+    border-radius: 16px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.search:hover{
+  background-color: #eaeaea;
+}
+.desktop-add-task-con{
+    width: 140px;
+    height: 48px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #2A3647;
+    border-radius: 10px;
+    color: #ffffff;
+    font: 23px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.desktop-add-task-img{
+    display: flex;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    margin-right: -12px;
+}
+.desktop-add-task-img img{
+    width: 19px;
+    height: 19px;
+}
+.desktop-add-task-con:hover{
+    background-color: #28abe2;
+}
