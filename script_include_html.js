@@ -21,7 +21,7 @@ async function includeHTML(site) {
       element.innerHTML = "Page not found";
     }
   }
-  navigationHighlight(site);
+  navigationCheck(site);
 }
 
 /**
@@ -41,7 +41,16 @@ function navigationCheck(site) {
     navigationHighlight("privacypolicy");
   } else if (site == "legalnotice") {
     navigationHighlight("legalnotice");
+  }else if (site == "help"){
+    disabelHelp();
   }
+}
+
+/**
+ * Disable Help Icon if Help is the open Site
+ */
+function disabelHelp(){
+  document.getElementById('help-icon').style.display = 'none'
 }
 
 /**
