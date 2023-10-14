@@ -182,8 +182,8 @@ body {
   color: #29abe2;
   font-size: 20px;
   font-weight: bold;
-  padding: 9px;
-  border-radius: 28px;
+  padding: 8px;
+  border-radius: 30px;
 }
 .desktop-profile-text:hover{
   background-color: #eaeaea;
