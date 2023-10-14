@@ -1,6 +1,7 @@
 async function init(site) {
   await includeHTML(site);
-  attachSubheaderEvents(); // Attach the event after the HTML is loaded
+  desktopAttachSubheaderEvents(); // Attach the event after the HTML is loaded
+  mobileAttachSubheaderEvents();
 }
 
 /**
@@ -59,20 +60,44 @@ function navigationHighlight(site) {
 }
 
 /**
+ * Attaches click events to the desktop header profile element.
+ * Toggles the subheader's visibility by using the display: none / display: flex.
+ */
+function desktopAttachSubheaderEvents() {
+  let headerStatus = "out";
+  let subHeader = document.getElementById("desktop-subheader");
+  let desktopHeaderProfile = document.querySelector(".desktop-header-profile");
+
+  if (desktopHeaderProfile) {
+    desktopHeaderProfile.addEventListener("click", subheaderCheck);
+  }
+
+  /**
+   * Checks the current status of the subheader.
+   * Triggers the display setting based on the current state.
+   */
+  function subheaderCheck() {
+    if (headerStatus === "out") {
+      subHeader.style.display = "flex";
+      headerStatus = "in";
+    } else {
+      subHeader.style.display = "none";
+      headerStatus = "out";
+    }
+  }
+}
+
+/**
  * Attaches click events to the mobile header profile element.
  * Toggles the subheader's visibility by using the slide-in and slide-out animations.
  */
-function attachSubheaderEvents() {
+function mobileAttachSubheaderEvents() {
   let headerStatus = "out";
-  let subHeader = document.getElementById("subheader");
+  let subHeader = document.getElementById("mobile-subheader");
   let mobileHeaderProfile = document.querySelector(".mobile-header-profile");
 
   if (mobileHeaderProfile) {
     mobileHeaderProfile.addEventListener("click", subheaderCheck);
-  } else {
-    console.error(
-      "Element with class .mobile-header-profile not found after HTML injection!"
-    );
   }
 
   /**
