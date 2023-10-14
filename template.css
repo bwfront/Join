@@ -60,12 +60,12 @@ body {
   text-decoration: none;
   color: #ffffff;
 }
-.desktop-a img {
-  width: 30px !important;
+.desktop-img{
+  width: 30px;
   height: 30px;
   padding: 8px;
+  box-sizing: unset;
 }
-
 /* Desktop-Side-Bar Footer*/
 .desktop-footer {
   width: 100%;
@@ -190,6 +190,8 @@ body {
   justify-content: center;
 }
 .mobile-profile-text{
+  font-family: "Inter", sans-serif !important;
+
   color: #29ABE2;
   font-size: 16px;
   font-weight: bold;
