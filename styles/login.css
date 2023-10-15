@@ -117,7 +117,7 @@ body {
   justify-content: center;
   width: 110px;
   font-weight: 700 !important;
-  font-size: 21px;
+  font-size: 21px !important;
 }
 
 .login-guest-button {
