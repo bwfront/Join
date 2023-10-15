@@ -1,0 +1,16 @@
+/**ANIMATION FOR THE MAIN CONTENT START**/
+.main-content-animation {
+  animation: fadein 225ms;
+  animation-fill-mode: forwards;
+}
+@keyframes fadein {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/**ANIMATION FOR THE MAIN CONTENT END**/

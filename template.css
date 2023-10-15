@@ -56,7 +56,7 @@ body {
   align-items: center;
   margin: 8px 0;
   font-size: 16px;
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   text-decoration: none !important;
   color: #ffffff !important;
 }
@@ -80,7 +80,7 @@ body {
   padding: 8px 58px;
 }
 .desktop-a-footer {
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   text-decoration: none;
   color: #a8a8a8;
 }
@@ -125,7 +125,7 @@ body {
 }
 
 .mobile-a {
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   color: #ffffff;
   font-size: 14px;
   text-decoration: none;
@@ -158,21 +158,21 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-left: 284px;
-  margin-right: 50px ;
+  margin-right: 50px;
   font-size: 20px;
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
 }
 .desktop-header-margin {
   width: 100vh;
   top: 0;
   height: 150px;
 }
-.desktop-header-right{
+.desktop-header-right {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.desktop-help-con{
+.desktop-help-con {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -180,18 +180,18 @@ body {
   height: 32px;
   margin: 20px;
 }
-.desktop-help-icon{
+.desktop-help-icon {
   width: 20px;
-  height: 20px; 
+  height: 20px;
 }
-.desktop-help-icon:hover{
+.desktop-help-icon:hover {
   width: 23px;
-  height: 23px; 
+  height: 23px;
 }
 .desktop-header-profile {
   height: 56px;
   width: 56px;
-  background-image: url("./assets/img/mobile-profile-elipse.png");
+  background-image: url('./assets/img/mobile-profile-elipse.png');
   background-size: cover;
   display: flex;
   align-items: center;
@@ -199,14 +199,14 @@ body {
   cursor: pointer;
 }
 .desktop-profile-text {
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   color: #29abe2;
   font-size: 20px;
   font-weight: bold;
   padding: 8px;
   border-radius: 30px;
 }
-.desktop-profile-text:hover{
+.desktop-profile-text:hover {
   background-color: #eaeaea;
 }
 .desktop-subheader {
@@ -231,12 +231,12 @@ body {
   width: 130px;
   padding: 12px 16px;
   margin-right: -26px !important;
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   font-size: 16px;
   color: #cdcdcd;
   box-sizing: unset;
 }
-.desktop-subheader-text:hover{
+.desktop-subheader-text:hover {
   color: #28abe2;
 }
 /* Desktop-Header end*/
@@ -250,6 +250,7 @@ body {
   align-items: center;
   background-color: #ffffff;
   box-shadow: 0px 0px 5px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000 !important;
 }
 .mobile-header-content {
   width: 100%;
@@ -260,7 +261,7 @@ body {
 .mobile-header-profile {
   height: 40px;
   width: 40px;
-  background-image: url("./assets/img/mobile-profile-elipse.png");
+  background-image: url('./assets/img/mobile-profile-elipse.png');
   background-size: cover;
   display: flex;
   align-items: center;
@@ -268,7 +269,7 @@ body {
   cursor: pointer;
 }
 .mobile-profile-text {
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   color: #29abe2;
   font-size: 16px;
   font-weight: bold;
@@ -328,7 +329,7 @@ body {
   width: 130px;
   padding: 12px 16px;
   margin-right: -26px !important;
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   font-size: 16px;
   color: #cdcdcd;
   box-sizing: unset;
@@ -347,7 +348,7 @@ body {
   .desktop-header-margin {
     display: none;
   }
-  .desktop-subheader{
+  .desktop-subheader {
     display: none !important;
   }
   /* 100px Margin-Bottom Because the Mobile-Navigaton would hide the content*/
@@ -363,7 +364,7 @@ body {
   .mobile-header {
     display: flex;
   }
-  .mobile-subheader{
+  .mobile-subheader {
     display: flex;
   }
   /* Hide scrollbars */

@@ -1,7 +1,25 @@
 /* ADD TASK DESKTOP START*/
+
+/**ANIMATION FOR THE MAIN CONTENT START**/
+.main-content-animation {
+  animation: fadein 225ms;
+  animation-fill-mode: forwards;
+}
+@keyframes fadein {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/**ANIMATION FOR THE MAIN CONTENT END**/
+
 body {
   background-color: #f6f7f8;
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
 }
 .add-task-main-content {
   display: flex;
@@ -69,7 +87,7 @@ body {
 }
 
 .required-field::before {
-  content: "*";
+  content: '*';
   color: red;
 }
 .form-control option.d-none {
@@ -103,7 +121,7 @@ body {
     min-height: 110vh;
     margin-top: -225px;
   }
-  .add-task-right-side{
+  .add-task-right-side {
     margin-top: -154px;
     justify-content: space-between;
   }
@@ -126,11 +144,9 @@ body {
     width: 100%;
   }
 
-  .btn_and_request_field{
+  .btn_and_request_field {
     margin: 0;
   }
 }
 
 /* ADD TASK RESPONSIVE ENDS */
-
-
