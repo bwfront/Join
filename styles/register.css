@@ -1,5 +1,25 @@
 /**SIGN UP DESKTOP START**/
 
+/**ANIMATION FOR THE MAIN CONTENT START**/
+.main-content-animation {
+  animation: fadein 225ms;
+  animation-fill-mode: forwards;
+}
+@keyframes fadein {
+  from {
+    top: -100%;
+    opacity: 0;
+  }
+  to {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+/**ANIMATION FOR THE MAIN CONTENT END**/
+
 .join-logo {
   width: 100.03px;
   height: 121.97px;
@@ -111,19 +131,18 @@
   .login-signup-button {
     margin-top: 20px;
   }
-   .login-footer-container {
+  .login-footer-container {
     transform: translate(-50%, 42vh) !important;
   }
 }
 
-@media(max-width: 550px){
+@media (max-width: 550px) {
   .signUp-card {
     margin-top: 18px;
     height: 576px;
     width: 353px;
     gap: 7px;
   }
-
 }
 
 /**SIGN UP RESOPOSIVE END**/
