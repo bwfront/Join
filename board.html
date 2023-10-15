@@ -14,10 +14,11 @@
         rel="stylesheet">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="script_include_html.js"></script>
+    <script src="script.js"></script>
     <title>Join | Board</title>
 </head>
 
-<body onload="init('board')">
+<body onload="init('board'); setBoard();">
     <div w3-include-html="./assets/img/templates/desktop_template.html"></div>
     <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
     <div class="main-content">
@@ -32,14 +33,48 @@
                     </div>
                 </div>
                 <div class="desktop-add-task-con">
-                    Add Task 
+                    Add Task
                     <div class="desktop-add-task-img">
                         <img src="./assets/img/board-add.png" alt="plus">
                     </div>
                 </div>
             </div>
         </div>
+        <div class="desktop-board-container">
+            <div class="desktop-board-todo">
+                <div class="todo-head">
+                    <div class="board-head-text">To do</div>
+                    <div class="board-plus">+</div>
+                </div>
+                <div class="desktop-todo" id="desktop-todo">
 
+                </div>
+            </div>
+            <div class="desktop-board-inprogress">
+                <div class="todo-head">
+                    <div class="board-head-text">Await feedback</div>
+                    <div class="board-plus">+</div>
+                </div>
+                <div class="desktop-todo" id="desktop-todo">
+                </div>
+            </div>
+            <div class="desktop-board-awaitfeedback">
+                <div class="todo-head">
+                    <div class="board-head-text">In progress</div>
+                    <div class="board-plus">+</div>
+                </div>
+                <div class="desktop-todo" id="desktop-awaitfeedback">
+
+                </div>
+            </div>
+            <div class="desktop-board-done">
+                <div class="todo-head">
+                    <div class="board-head-text">Done</div>
+                </div>
+                <div class="desktop-todo" id="desktop-done">
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
