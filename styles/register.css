@@ -47,11 +47,33 @@
   text-decoration: none;
 }
 
+.login-footer-font {
+  color: rgba(168, 168, 168, 1) !important;
+}
+
+.login-footer-font:hover {
+  color: #29abe2 !important;
+}
+
+.login-footer-container {
+  transform: translate(-50%, 40vh) !important;
+}
+
 /**SIGN UP DESKTOP END**/
 
 /**SIGN UP RESPONSIVE START**/
 
-@media (max-width: 575.98px) {
+@media (max-width: 1190px) {
+  .join-logo {
+    width: 64px;
+    height: 78.03px;
+    margin-top: 37px;
+    margin-left: 38px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 770px) {
   .join-logo {
     width: 64px;
     height: 78.03px;
@@ -67,8 +89,8 @@
 
   .signUp-card {
     margin-top: 18px;
-    height: 576px;
-    width: 353px;
+    height: 676px;
+    width: 453px;
   }
 
   .login-headline {
@@ -89,7 +111,19 @@
   .login-signup-button {
     margin-top: 20px;
   }
+   .login-footer-container {
+    transform: translate(-50%, 42vh) !important;
+  }
 }
 
+@media(max-width: 550px){
+  .signUp-card {
+    margin-top: 18px;
+    height: 576px;
+    width: 353px;
+    gap: 7px;
+  }
+
+}
 
 /**SIGN UP RESOPOSIVE END**/
