@@ -43,7 +43,7 @@
                     <span class="login-headline">
                         <p class="login-border-bottom">Log in</p>
                     </span>
-                    <form>
+                    <form onsubmit="login()">
                         <div class="mb-3">
                             <input required placeholder="Email" type="email" class="form-control login-form-radius"
                                 id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -68,7 +68,8 @@
                         </div>
                         <div class="login-button-box">
                             <button type="submit" class="btn login-button">Log in</button>
-                            <a href="summary.html"> <button class="btn login-guest-button">Guest Log in</button></a>
+                            <a href="summary.html"> <button type="button" class="btn login-guest-button">Guest Log
+                                    in</button></a>
                         </div>
                     </form>
                 </div>
