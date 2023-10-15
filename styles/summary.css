@@ -202,7 +202,7 @@ body {
 .dot-todo {
   width: 69px;
   height: 69px;
-  background-color: rgba(42, 54, 71, 1) !important;
+  background-color: rgba(42, 54, 71, 1);
   /*background: url(/assets/img/pencil.png);*/
   background-repeat: no-repeat;
   background-position: center;
@@ -216,12 +216,15 @@ body {
 .dot-done {
   width: 69px;
   height: 69px;
-  background-color: rgba(42, 54, 71, 1) !important;
-  background: url(/assets/img/done.png);
+  background-color: rgba(42, 54, 71, 1);
+  /*background: url(/assets/img/done.png);*/
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50%;
   margin-right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .dot-urgent {
@@ -235,12 +238,59 @@ body {
   margin-right: 18px;
 }
 
+/**ANIMATION-BUTTON**/
+
+/**TODO + DONE CARD START**/
+
 .summary-todo-done-card-layout:hover {
-  animation: hovereffectbackground 80ms;
-  animation-fill-mode: forwards;
+  animation: hovereffectbackground forwards 80ms;
+  .dot-todo,
+  .dot-done {
+    animation: transformBackgroundToWhite forwards 80ms;
+  }
+  .text-style1 {
+    animation: transformFontToWhite forwards 80ms;
+  }
+  .dot-number-container img {
+    filter: invert(1);
+  }
+}
+/**TODO + DONE CARD END**/
+
+/**URGENCY CARD START**/
+
+.urgency-card-layout:hover {
+  .text-style1 {
+    animation: transformFontToWhite forwards 80ms;
+  }
 }
 
-/**ANIMATION-BUTTON**/
+/**URGENCY CARD END**/
+
+/**SUMMARY BOTTOM CARD START**/
+.summary-bottom-card:hover {
+  .text-style1 {
+    animation: transformFontToWhite forwards 80ms;
+  }
+}
+
+/**SUMMARY BOTTOM CARD END**/
+
+@keyframes transformBackgroundToWhite {
+  from {
+  }
+  to {
+    background-color: white;
+  }
+}
+
+@keyframes transformFontToWhite {
+  from {
+  }
+  to {
+    color: white;
+  }
+}
 
 @keyframes hovereffectbackground {
   from {
@@ -254,8 +304,7 @@ body {
   }
 }
 
-/**TODO: HOVER ANIMATION**/
-
+/**ANIMATION FOR THE MAIN CONTENT**/
 .main-content {
   animation: fadein 225ms;
   animation-fill-mode: forwards;
