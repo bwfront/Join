@@ -105,6 +105,7 @@ body {
   }
   .add-task-right-side{
     margin-top: -154px;
+    justify-content: space-between;
   }
 
   .middle-border {
@@ -122,6 +123,11 @@ body {
     bottom: 20px;
     z-index: 99;
     background-color: white;
+    width: 100%;
+  }
+
+  .btn_and_request_field{
+    margin: 0;
   }
 }
 
