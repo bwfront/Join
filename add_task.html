@@ -49,10 +49,10 @@
             <option value="" disabled selected class="form-control option d-none">
               Select contacts to assign
             </option>
-            <option value="">contact 1</option>
-            <option value="">contact 2</option>
-            <option value="">contact 3</option>
-            <option value="">contact 4</option>
+            <option value="contact1">contact 1</option>
+            <option value="contact2">contact 2</option>
+            <option value="contact3">contact 3</option>
+            <option value="contact4">contact 4</option>
           </select>
         </div>
       </div>
@@ -77,17 +77,17 @@
         <div class="form-group">
           <label for="prio">Prio</label>
           <div>
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" onclick="getPrio('urgent')">
               Urgent
-              <img src="./assets/img/Prio alta.png" />
+              <img src="./assets/img/priourgent.png" />
             </button>
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" onclick="getPrio('medium')">
               Medium
-              <img src="./assets/img/Prio media.png" />
+              <img src="./assets/img/priomedium.png" />
             </button>
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" onclick="getPrio('low')">
               Low
-              <img src="./assets/img/Prio baja.png" />
+              <img src="./assets/img/priolow.png" />
             </button>
           </div>
         </div>
@@ -95,14 +95,14 @@
           <label for="category">Category
             <span class="required-field"></span>
           </label>
-          <select required class="form-control" style="color: black; font-weight: 400">
+          <select required class="form-control" style="color: black; font-weight: 400" id="task-category-input">
             <option value="" disabled selected class="form-control option d-none">
               Select task category
             </option>
-            <option value="">category 1</option>
-            <option value="">category 2</option>
-            <option value="">category 3</option>
-            <option value="">category 4</option>
+            <option value="category1">category 1</option>
+            <option value="category2">category 2</option>
+            <option value="category3">category 3</option>
+            <option value="category4">category 4</option>
           </select>
         </div>
         <div class="form-group">
@@ -111,9 +111,6 @@
           <img id="subtask-icon" src="./assets/img/Subtasks icons11.png" />
         </div>
       </div>
-
-
-
       <div class="btn-bottom">
         <button class="btn btn-secondary btn-clear" style="width: 110px">
           Clear
