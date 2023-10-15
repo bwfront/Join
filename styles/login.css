@@ -117,6 +117,7 @@ body {
   justify-content: center;
   width: 110px;
   font-weight: 700 !important;
+  font-size: 21px;
 }
 
 .login-guest-button {
@@ -127,6 +128,7 @@ body {
   margin-left: 32px;
   font-weight: 700 !important;
   height: 48px;
+  font-size: 21px !important;
 }
 
 .login-guest-button:hover {
