@@ -99,7 +99,7 @@
               <span class="required-field"></span>
             </label>
             <input
-              class="form-control "
+              class="form-control"
               type="date"
               id="date-input"
               placeholder="dd/mm/yyyy"
@@ -109,15 +109,15 @@
           <div class="form-group">
             <label for="prio">Prio</label>
             <div>
-              <button class="btn btn-secondary">
+              <button class="btn btn-secondary" onclick="getPrio('urgent')">
                 Urgent
                 <img src="./assets/img/priourgent.png" />
               </button>
-              <button class="btn btn-secondary">
+              <button class="btn btn-secondary" onclick="getPrio('medium')">
                 Medium
                 <img src="./assets/img/priomedium.png" />
               </button>
-              <button class="btn btn-secondary">
+              <button class="btn btn-secondary" onclick="getPrio('low')">
                 Low
                 <img src="./assets/img/priolow.png" />
               </button>
@@ -159,13 +159,14 @@
         </div>
 
         <div class="btn-bottom">
-          <button class="btn btn-secondary btn-clear " style="width: 110px">
+          <button class="btn btn-secondary btn-clear" style="width: 110px">
             Clear
             <img src="./assets/img/iconoir_cancel.png" />
           </button>
           <button
-            class="btn btn-primary btn-create "
-            style="background-color: #2a3647; color: white; width: 153px" type="submit"
+            class="btn btn-primary btn-create"
+            style="background-color: #2a3647; color: white; width: 153px"
+            type="submit"
           >
             Create Task
             <img src="./assets/img/check.png" />
@@ -173,7 +174,5 @@
         </div>
       </div>
     </form>
-
-    
   </body>
 </html>

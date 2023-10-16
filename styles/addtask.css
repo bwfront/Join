@@ -164,15 +164,58 @@ body {
   }
 
   @media (max-width: 470px) {
-
-    .add-task-right-side{
-      position: fixed;
-      margin-top: 20px;
+    .add-task-main-content {
+      flex-direction: column;
+      margin-top: -200px;
+      margin-left: 2px;
     }
-    
+  
+
+
+    .add-task-title h1 {
+      font-size: 47px;
+      margin-left: 20px;
+      margin-top: 30px;
+    }
+
+    .add-task-main-content .add-task-left-side,
+    .add-task-main-content .add-task-right-side {
+      width: 90%;
+    }
+
     .add-task-right-side {
-      position: fixed;
-      margin-top: 90px;
+      margin-top: -91px;
+    }
+
+    
+    .add-task-card {
+      width: 100%;
+      top: 130px;
+    }
+
+    .form-control {
+      width: 100%;
+    }
+
+    .add-task-left-side textarea {
+      width: 100% !important;
+    }
+
+    .btn-bottom {
+      padding-left: 53px;
+      bottom: 87px;
+      right: 12px;
+      width: 20%;
+    }
+
+    .add-task-bottom-container {
+      bottom: 76px;
+      height: 59px;
+      z-index: 999;
+    }
+
+    #subtask-icon {
+      top: 359px;
     }
   }
 }
