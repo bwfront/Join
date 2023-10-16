@@ -64,10 +64,11 @@ async function setItem(key, value) {
 async function setBoard() {
   const tasks = await getItem("tasks");
   if (tasks && tasks.length > 0) {
-    for (let task of tasks) {
+    for await (let task of tasks) {
       setBoardHTML(task.category, task.title, task.description, task.priority);
     }
   }
+  dragLoader();
 }
 
 /**
@@ -114,19 +115,79 @@ function getPrio(prio) {
  * @param {string} description - The description of the task.
  * @param {string} prio - The priority level of the task.
  */
+let indexTask = 0;
 function setBoardHTML(category, title, description, prio) {
   const todo = document.getElementById("desktop-todo");
   todo.innerHTML += `
-    <div class="task" id="task">
-        <span id="category">${category}</span>
-        <div id="task-heading">${title}</div>
-        <div id="task-description">${description}</div>
-        <div id="task-footer">
-            <div id="task-profile">
-                <div id="profile">US</div>
-            </div>
-            <div id="task-important"><img src="./assets/img/prio${prio}.png" alt="important"></div>
-        </div>
-    </div>
-    `;
+  <div class="task" id="task${indexTask}" draggable="true">
+  <span class="category" id="category${indexTask}">${category}</span>
+  <div class="task-heading" id="task-heading${indexTask}">${title}</div>
+  <div class="task-description" id="task-description${indexTask}">${description}</div>
+  <div class="task-footer" id="task-footer${indexTask}">
+      <div class="task-profile" id="task-profile">
+          <div class="profile" id="profile${indexTask}">US</div>
+      </div>
+      <div id="task-important"><img src="./assets/img/prio${prio}.png" alt="important"></div>
+  </div>
+</div>
+`;
+    indexTask++;
 }
+
+
+
+
+
+/**DRAG object */
+function dragLoader() {
+  const dragTasks = document.querySelectorAll(".task");
+  const todoContainer = document.getElementById("desktop-todo");
+  const awaitContainer = document.getElementById("desktop-awaitfeedback");
+  const progressContainer = document.getElementById("desktop-inprogress");
+  const doneContainer = document.getElementById("desktop-done");
+  const containers = [
+    todoContainer,
+    awaitContainer,
+    progressContainer,
+    doneContainer,
+  ];
+  dragDropFun(dragTasks, containers);
+}
+
+function dragDropFun(dragTasks, containers) {
+  dragTasks.forEach((dragTask) => {
+    dragTask.addEventListener("dragstart", () => {
+      dragTask.classList.add("dragging");
+    });
+    dragTask.addEventListener("dragend", () => {
+      dragTask.classList.remove("dragging");
+    });
+  });
+  containers.forEach((container) => {
+    container.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      const afterElement = getDragAfterElement(container, e.clientY);
+      const dragTask = document.querySelector(".dragging");
+      if(afterElement == null){
+        container.appendChild(dragTask);
+      } else{
+        container.insertBefore(dragTask, afterElement)
+      }
+    });
+  });
+}
+
+function getDragAfterElement(container, y) {
+  const draggableElements = [
+    ...container.querySelectorAll(".task:not(.dragging)"),
+  ];
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect()
+    const offset = y - box.top - box.height / 2
+    if (offset < 0 && offset > closest.offset) {
+      return { offset: offset, element: child }
+    } else {
+      return closest
+    }
+  }, { offset: Number.NEGATIVE_INFINITY }).element
+  }
