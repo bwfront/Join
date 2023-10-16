@@ -64,10 +64,11 @@ async function setItem(key, value) {
 async function setBoard() {
   const tasks = await getItem("tasks");
   if (tasks && tasks.length > 0) {
-    for (let task of tasks) {
+    for await (let task of tasks) {
       setBoardHTML(task.category, task.title, task.description, task.priority);
     }
   }
+  dragLoader();
 }
 
 /**
@@ -117,7 +118,7 @@ function getPrio(prio) {
 function setBoardHTML(category, title, description, prio) {
   const todo = document.getElementById("desktop-todo");
   todo.innerHTML += `
-    <div class="task" id="task">
+    <div class="task" id="task" draggable="true">
         <span id="category">${category}</span>
         <div id="task-heading">${title}</div>
         <div id="task-description">${description}</div>
@@ -129,4 +130,35 @@ function setBoardHTML(category, title, description, prio) {
         </div>
     </div>
     `;
+}
+
+/**DRAG object */
+
+function dragLoader() {
+  const dragTasks = document.querySelectorAll(".task");
+  const todoContainer = document.getElementById("desktop-todo");
+  const awaitContainer = document.getElementById("desktop-awaitfeedback");
+  const progressContainer = document.getElementById("desktop-inprogress");
+  const doneContainer = document.getElementById("desktop-done");
+  const containers = [
+    todoContainer,
+    awaitContainer,
+    progressContainer,
+    doneContainer,
+  ];
+  dragTasks.forEach((dragTask) => {
+    dragTask.addEventListener("dragstart", () => {
+      dragTask.classList.add("dragging");
+    });
+    dragTask.addEventListener("dragend", () => {
+      dragTask.classList.remove("dragging");
+    });
+  });
+  containers.forEach((container) => {
+    container.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      const dragTask = document.querySelector(".dragging");
+      container.appendChild(dragTask);
+    });
+  });
 }

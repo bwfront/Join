@@ -175,3 +175,8 @@
   background-color: #0a9d00;
   border-radius: 16px;
 }
+/* Dragging */
+
+.task.dragging{
+  opacity: 0.6;
+}
