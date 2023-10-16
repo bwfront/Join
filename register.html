@@ -20,23 +20,23 @@
 
   <script>
 
-/*check if passwords match*/
+    /*check if passwords match*/
 
-document.addEventListener("DOMContentLoaded", function(){
-const passwordField = document.getElementById("password");
-  const confirmPasswordField = document.getElementById("confirmPassword");
-  const passwordError = document.getElementById("passwordError");
+    document.addEventListener("DOMContentLoaded", function () {
+      const passwordField = document.getElementById("password");
+      const confirmPasswordField = document.getElementById("confirmPassword");
+      const passwordError = document.getElementById("passwordError");
 
-  passwordField.addEventListener("input", function () {
-    if (passwordField.value !== confirmPasswordField.value) {
-      passwordError.textContent = "Passwords do NOT match";
-    } else {
-      passwordError.textContent = "";
-    }
-  });
-})
+      passwordField.addEventListener("input", function () {
+        if (passwordField.value !== confirmPasswordField.value) {
+          passwordError.textContent = "Passwords do NOT match";
+        } else {
+          passwordError.textContent = "";
+        }
+      });
+    })
 
-</script>
+  </script>
 
   <a href="index.html">
     <img class="join-logo" src="assets/img/join-logo.png" alt="">
@@ -44,7 +44,7 @@ const passwordField = document.getElementById("password");
   </div>
 
   <form class="signUp-container">
-    <div class="login-card signUp-card">
+    <div class="login-card signUp-card main-content-animation">
       <h1 class="login-headline login-border-bottom">Sign up</h1>
       <a href="index.html">
         <div class="arrow-left-line">
@@ -66,7 +66,8 @@ const passwordField = document.getElementById("password");
         <img src="./assets/img/login-password.png" />
       </div>
       <div class="input-container">
-        <input class="form-control login-form-radius" required type="password" placeholder="Confirm Password" id="confirmPassword" />
+        <input class="form-control login-form-radius" required type="password" placeholder="Confirm Password"
+          id="confirmPassword" />
         <img src="./assets/img/login-password.png" />
       </div>
       <div id="passwordError" style="color: red;"></div>
@@ -78,12 +79,12 @@ const passwordField = document.getElementById("password");
     </div>
     <button type="submit" class="btn login-button login-signup-button" style="cursor: pointer;">Sign Up</button>
   </form>
-  
+
 
   <footer class="login-footer-container ">
-            <a class="login-privacy-policy-box login-footer-font" href="privacy_policy_logout.html">Privacy Policy</a>
-            <a class="login-privacy-legal-notice login-footer-font" href="legal_notice_logout.html">Legal notice</a>
-        </footer>
+    <a class="login-privacy-policy-box login-footer-font" href="privacy_policy_logout.html">Privacy Policy</a>
+    <a class="login-privacy-legal-notice login-footer-font" href="legal_notice_logout.html">Legal notice</a>
+  </footer>
 
 </body>
 

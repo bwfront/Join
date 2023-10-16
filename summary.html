@@ -12,11 +12,13 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
+    <link rel="icon" href="assets/img/join-logo.png">
     <script src="script_include_html.js"></script>
+    <script src="js/summary.js"></script>
     <title>Join | Summary</title>
 </head>
 
-<body onload="init('summary')">
+<body onload="init('summary'), initSummary()">
     <div w3-include-html="./assets/img/templates/desktop_template.html"></div>
     <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
 
@@ -24,7 +26,7 @@
         <!-- Main content goes here -->
         <!-- Because the Fixed Side Bar -->
         <div>
-            <div class="summary-main-container ms-5">
+            <div class="summary-main-container margin-left">
                 <div class="summary-headline-container mb-5">
                     <div class="summary-headline">Join 360</div>
                     <div class="summary-headline-right-border"></div>
@@ -34,17 +36,18 @@
                     <div class="summary-todo-done-container mb-4">
                         <div class="card summary-todo-done-card-layout">
                             <div class="dot-number-container">
-                                <div class="dot-todo"><img class="pencil-done-logo" src="assets/img/pencil.png" alt="">
+                                <div class="dot-todo"><img src="assets/img/pencil.png" alt="">
                                 </div>
                                 <div class="top-number-container">
-                                    <div class="number ">1</div>
+                                    <div id="tasks-todo" class="number ">1</div>
                                     <div class="text-style1">To-do</div>
                                 </div>
                             </div>
                         </div>
                         <div class="card summary-todo-done-card-layout">
                             <div class="dot-number-container">
-                                <div class="dot-done"></div>
+                                <div class="dot-done"><img src="assets/img/done.png" alt="">
+                                </div>
                                 <div class="top-number-container">
                                     <div class="number">1</div>
                                     <div class="text-style1">Done</div>
@@ -58,7 +61,7 @@
                             <div class="dot-number-container width">
                                 <div class="dot-urgent"></div>
                                 <div class="top-number-container">
-                                    <div class="number">1
+                                    <div id="urgent-task-counter" class="number">
                                     </div>
                                     <div class="text-style1">Urgent</div>
                                 </div>
@@ -69,8 +72,8 @@
                             </div>
                         </div>
                         <div class="greeting-user-container">
-                            <p class="goodmorning-style">Good morning,</p><!--remove , when guest-login-->
-                            <p class="user-greeting-name">User</p><!--add d-none when guest-login-->
+                            <p class="goodmorning-style">Good morning,</p>
+                            <p class="user-greeting-name">Guest</p><!--add Username if no guest-login-->
                         </div>
                     </div>
                     <div class="summary-task-bottom-container">

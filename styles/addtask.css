@@ -1,8 +1,25 @@
 /* ADD TASK DESKTOP START*/
+
+/**ANIMATION FOR THE MAIN CONTENT START**/
+.main-content-animation {
+  animation: fadein 225ms;
+  animation-fill-mode: forwards;
+}
+@keyframes fadein {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/**ANIMATION FOR THE MAIN CONTENT END**/
+
 body {
   background-color: #f6f7f8;
   font-family: "Inter", sans-serif !important;
-  overflow-x: hidden;
 }
 .add-task-main-content {
   display: flex;
@@ -70,7 +87,7 @@ body {
 }
 
 .required-field::before {
-  content: "*";
+  content: '*';
   color: red;
 }
 .form-control option.d-none {
@@ -138,43 +155,15 @@ body {
     background-color: #f6f7f8;
     height: 38px;
     z-index: 99;
+    background-color: white;
+    width: 100%;
   }
 
-  @media (max-width: 900px) {
-    .mobile-header {
-      z-index: 9;
-    }
-    .add-task-main-content {
-      margin-left: 20px;
-    }
-
-    .add-task-title h1 {
-      font-size: 47px;
-      margin-left: 20px;
-      margin-top: 30px;
-    }
-
-    .btn-bottom {
-      bottom: 90px;
-    }
-
-    .add-task-bottom-container {
-      bottom: 90px;
-    }
-  }
-
-  @media (max-width: 470px) {
-
-    .add-task-right-side{
-      position: fixed;
-      margin-top: 20px;
-    }
-    
-    .add-task-right-side {
-      position: fixed;
-      margin-top: 90px;
-    }
+  .btn_and_request_field{
+    margin: 0;
   }
 }
 
 /* ADD TASK RESPONSIVE ENDS */
+
+

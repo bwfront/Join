@@ -1,159 +1,177 @@
-.desktop-board-heading-right{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
+/**ANIMATION FOR THE MAIN CONTENT START**/
+.main-content-animation {
+  animation: fadein 225ms;
+  animation-fill-mode: forwards;
 }
-.desktop-board-head-content{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+@keyframes fadein {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
-.desktop-search-bar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 50px;
-    width: 312px;
-    height: 48px;
-    background-color: #ffffff;
-    border: solid #A8A8A8;
-    border-radius: 10px;
+/**ANIMATION FOR THE MAIN CONTENT END**/
+
+.desktop-board-heading-right {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
 }
-.desktop-search-bar-input{
-    width: 210px;
+.desktop-board-head-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.desktop-search-bar-input, .desktop-search-button {
-    border: 0;
-    margin: 0 10px;
-    outline: none;
+.desktop-search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 50px;
+  width: 312px;
+  height: 48px;
+  background-color: #ffffff;
+  border: solid #a8a8a8;
+  border-radius: 10px;
 }
-.search{
-    height: 32px;
-    width: 32px;
-    border-radius: 16px;
-    margin-left: 10px;
-    cursor: pointer;
+.desktop-search-bar-input {
+  width: 210px;
 }
-.search:hover{
+.desktop-search-bar-input,
+.desktop-search-button {
+  border: 0;
+  margin: 0 10px;
+  outline: none;
+}
+.search {
+  height: 32px;
+  width: 32px;
+  border-radius: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.search:hover {
   background-color: #eaeaea;
 }
-.desktop-add-task-con{
-    width: 140px;
-    height: 48px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #2A3647;
-    border-radius: 10px;
-    color: #ffffff;
-    font: 23px;
-    font-weight: bold;
-    cursor: pointer;
+.desktop-add-task-con {
+  width: 140px;
+  height: 48px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #2a3647;
+  border-radius: 10px;
+  color: #ffffff;
+  font: 23px;
+  font-weight: bold;
+  cursor: pointer;
 }
-.desktop-add-task-img{
-    display: flex;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    margin-right: -12px;
+.desktop-add-task-img {
+  display: flex;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  margin-right: -12px;
 }
-.desktop-add-task-img img{
-    width: 19px;
-    height: 19px;
+.desktop-add-task-img img {
+  width: 19px;
+  height: 19px;
 }
-.desktop-add-task-con:hover{
-    background-color: #28abe2;
-}
-
-.desktop-board-container{
-    display: flex;
-    justify-content: space-between;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 50px;
-}
-.todo-head{
-    width: 246px;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: space-between;
-}
-.board-plus{
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: solid 2px;
-    border-radius: 8px;
-    font-weight: 400;
-    box-sizing: unset !important;
-}
-.board-plus:hover{
-    color: #28abe2;
-    border: solid 2px #28abe2;
-}
-.desktop-board-todo{
-    width: 252px;
-    gap: 25px;
+.desktop-add-task-con:hover {
+  background-color: #28abe2;
 }
 
-.desktop-board-inprogress{
-    width: 252px;
+.desktop-board-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+.todo-head {
+  width: 246px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.board-plus {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 2px;
+  border-radius: 8px;
+  font-weight: 400;
+  box-sizing: unset !important;
+}
+.board-plus:hover {
+  color: #28abe2;
+  border: solid 2px #28abe2;
+}
+.desktop-board-todo {
+  width: 252px;
+  gap: 25px;
 }
 
-.desktop-board-awaitfeedback{
-    width: 252px;
+.desktop-board-inprogress {
+  width: 252px;
 }
 
-.desktop-board-done{
-    width: 252px;
+.desktop-board-awaitfeedback {
+  width: 252px;
+}
+
+.desktop-board-done {
+  width: 252px;
 }
 
 /* Task Template */
-.task{
-    box-sizing: unset !important;
-    width: 220px;
-    padding: 16px;
-    background-color: #ffffff;
-    border-radius: 24px;
-    box-shadow: 0px 0px 5px 4px rgba(157, 157, 157, 0.1);
-    margin-bottom: 15px;
+.task {
+  box-sizing: unset !important;
+  width: 220px;
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0px 0px 5px 4px rgba(157, 157, 157, 0.1);
+  margin-bottom: 15px;
 }
-#category{
-    padding: 4px 16px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 400;
-    background-color: #3b57f3;
-    color: #ffffff;
+#category {
+  padding: 4px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: #3b57f3;
+  color: #ffffff;
 }
-#task-heading{
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 20px;
+#task-heading {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
 }
-#task-description{
-    font-size: 16px;
-    font-weight: 400;
-    color: #A8A8A8;
+#task-description {
+  font-size: 16px;
+  font-weight: 400;
+  color: #a8a8a8;
 }
-#task-footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
+#task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
 }
-#profile{
-    width: 32px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 12px;
-    font-weight: 400;
-    color: #ffffff;
-    background-color: #0a9d00;
-    border-radius: 16px;
+#profile {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: #0a9d00;
+  border-radius: 16px;
 }
