@@ -147,8 +147,6 @@
   box-shadow: 0px 0px 5px 4px rgba(157, 157, 157, 0.1);
   margin-bottom: 15px;
   margin-right: 10px;
-
-  
 }
 .category {
   padding: 4px 16px;
@@ -186,10 +184,10 @@
   background-color: #0a9d00;
   border-radius: 16px;
 }
-.mobile-head-content{
+.mobile-head-content {
   display: none;
 }
-.mobile-add-task-img:hover{
+.mobile-add-task-img:hover {
   cursor: pointer;
   background-color: #28abe2;
 }
@@ -199,26 +197,26 @@
 }
 
 /* Responsive */
-@media (max-width: 1015px){
-  .mobile-head-content{
+@media (max-width: 1015px) {
+  .mobile-head-content {
     display: unset;
   }
-  .desktop-board-heading-right{
+  .desktop-board-heading-right {
     display: none;
   }
-  .desktop-search-bar{
+  .desktop-search-bar {
     width: 100%;
     margin: 0;
     margin-top: 50px;
     margin-bottom: -10px;
     font-size: 20px;
   }
-  .desktop-board-head-content{
+  .desktop-board-head-content {
     justify-content: space-between;
     align-items: center;
     margin-bottom: -30px !important;
   }
-  .mobile-add-task-img{
+  .mobile-add-task-img {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -227,14 +225,13 @@
     height: 40px;
     border-radius: 10px;
   }
-  .desktop-search-bar-input{
+  .desktop-search-bar-input {
     width: 85%;
     margin-right: -40px;
   }
-
 }
 @media (max-width: 800px) {
-  .desktop-board-head-content{
+  .desktop-board-head-content {
     margin-top: 40px !important;
   }
   .desktop-board-done,
@@ -244,32 +241,32 @@
     width: 95vw !important;
     margin: 0 0 40px 0 !important;
   }
-  .todo-head{
+  .todo-head {
     max-width: 100vw;
     min-width: 100vw;
     margin-bottom: 10px;
   }
-  .board-plus{
+  .board-plus {
     cursor: pointer;
     margin-right: 45px !important;
   }
   .desktop-todo {
     padding-top: 7px;
     padding-left: 7px;
-    overflow:auto;
+    overflow: auto;
     min-height: 50px;
     display: flex;
   }
-  .board-head-text{
+  .board-head-text {
     font-size: 27px;
   }
   .board-plus {
     width: 30px;
     height: 30px;
     font-size: 24px;
-}
-.imprint-privacy-heading{
-  font-size: 47px !important;
-  font-weight: 700;
-}
+  }
+  .imprint-privacy-heading {
+    font-size: 47px !important;
+    font-weight: 700;
+  }
 }
