@@ -112,23 +112,28 @@
   color: #28abe2;
   border: solid 2px #28abe2;
 }
-.desktop-board-todo {
-  width: 252px;
-  gap: 25px;
-}
 
-.desktop-board-inprogress {
+.desktop-board-done, .desktop-board-awaitfeedback, .desktop-board-inprogress,.desktop-board-todo  {
   width: 252px;
+  margin: 0 20px 30px 20px !important;
 }
-
-.desktop-board-awaitfeedback {
-  width: 252px;
+.desktop-todo{
+  z-index: 100;
+  min-height: 300px;
 }
-
-.desktop-board-done {
-  width: 252px;
+.desktop-todo-empty{
+  width: 246px;
+  height: 48px;
+  background-color: #E7E7E7;
+  color: #A8A8A8;
+  border-radius: 10px;
+  border: 1px dashed;
+  font-size: 16px;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 /* Task Template */
 .task {
   box-sizing: unset !important;
@@ -175,8 +180,9 @@
   background-color: #0a9d00;
   border-radius: 16px;
 }
-/* Dragging */
 
+
+/* Dragging */
 .task.dragging{
   opacity: 0.6;
 }

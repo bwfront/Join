@@ -77,10 +77,29 @@ async function setBoard(id) {
     todo.forEach((task) => {
       setBoardHTML(task.category, task.title, task.description, task.priority, `desktop-${id}`, task.id);
     });
+  }else{
+    inputEmptyHTML(id);
   }
   dragLoader();
 }
 
+/**
+ * Give the Empty Container with the id the content and innner it in the Container
+ * @param {string} id - Identifier for the task board section (e.g. 'todo', 'inprogress').
+ */
+function inputEmptyHTML(id){
+  let container;
+  if(id == 'todo'){
+    container = 'To Do'
+  }else if(id == 'awaitfeedback'){
+    container = 'Await feedback'
+  }else if(id == 'inprogress'){
+    container = 'In progress'
+  }else if(id == 'done'){
+    container = 'Done'
+  }
+  document.getElementById(`desktop-${id}`).innerHTML = `<div class="desktop-todo-empty">No Task ${container}</div>`;
+}
 
 /**
  * Retrieves an item from the remote storage.
@@ -162,7 +181,8 @@ function startDragging(id){
 async function moveTo(con){
  let task = await getItem('tasks')
  task[startDragPosition].taskcon = con;
- await setItem('tasks', task)
+ await setItem('tasks', task);
+ setBoards();
 }
 
 
