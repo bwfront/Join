@@ -1,12 +1,6 @@
 /* Board Script // ADD TASK */
 
 /**
- * Delete All Tasks For now:
- * console:
- * setItem('tasks', []);
- */
-
-/**
  * The token used for accessing the remote storage.
  * @constant {string}
  */
@@ -23,29 +17,33 @@ const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
  */
 let priority = "unset";
 
+let startDragPosition;
+
 /**
  * Creates a task using input values from the DOM, then saves it to the remote storage.
  * @async
  * @returns {Promise<void>}
  */
 async function createTask() {
+  const tasks = (await getItem("tasks")) || [];
+  const id = tasks.length;
   const title = document.getElementById("task-title-input").value;
   const description = document.getElementById("task-description-input").value;
   const date = document.getElementById("task-date-input").value;
   const contact = document.getElementById("assigned_contact").value;
   const category = document.getElementById("task-category-input").value;
-  const task = { title, description, date, contact, category, priority };
-  const tasks = (await getItem("tasks")) || [];
+  let taskcon = 'todo';
+  const task = { id, title, description, date, contact, category, priority, taskcon };
   tasks.push(task);
   await setItem("tasks", tasks);
-  priority = "unset";
+  priority = "low";
 }
 
 /**
- * Sets an item in the remote storage.
+ * Saves an item to remote storage.
  * @async
- * @param {string} key - The key under which the item should be stored.
- * @param {*} value - The value to be stored.
+ * @param {string} key - Key to store the item under.
+ * @param {*} value - Value to store.
  * @returns {Promise<void>}
  */
 async function setItem(key, value) {
@@ -57,19 +55,32 @@ async function setItem(key, value) {
 }
 
 /**
- * Retrieves and renders tasks from the remote storage.
+ * Sets up the boards for task management.
+ */
+function setBoards(){
+  setBoard('todo');
+  setBoard('awaitfeedback');
+  setBoard('inprogress');
+  setBoard('done');
+}
+/**
+ * Retrieves and displays tasks from remote storage.
  * @async
+ * @param {string} id - Identifier for the task board section (e.g. 'todo', 'inprogress').
  * @returns {Promise<void>}
  */
-async function setBoard() {
+async function setBoard(id) {
   const tasks = await getItem("tasks");
-  if (tasks && tasks.length > 0) {
-    for await (let task of tasks) {
-      setBoardHTML(task.category, task.title, task.description, task.priority);
-    }
+  let todo = tasks.filter(t => t['taskcon'] == id);
+  document.getElementById(`desktop-${id}`).innerHTML = '';
+  if (todo && todo.length > 0) {
+    todo.forEach((task) => {
+      setBoardHTML(task.category, task.title, task.description, task.priority, `desktop-${id}`, task.id);
+    });
   }
   dragLoader();
 }
+
 
 /**
  * Retrieves an item from the remote storage.
@@ -109,36 +120,55 @@ function getPrio(prio) {
 }
 
 /**
- * Renders a task in the DOM.
- * @param {string} category - The category of the task.
- * @param {string} title - The title of the task.
- * @param {string} description - The description of the task.
- * @param {string} prio - The priority level of the task.
+ * Renders a task on the board.
+ * @param {string} category - Task category.
+ * @param {string} title - Task title.
+ * @param {string} description - Task description.
+ * @param {string} prio - Task priority.
+ * @param {string} idcon - DOM element ID for the container.
+ * @param {number} id - Task ID.
  */
-let indexTask = 0;
-function setBoardHTML(category, title, description, prio) {
-  const todo = document.getElementById("desktop-todo");
+function setBoardHTML(category, title, description, prio, idcon, id) {
+  const todo = document.getElementById(idcon);
   todo.innerHTML += `
-  <div class="task" id="task${indexTask}" draggable="true">
-  <span class="category" id="category${indexTask}">${category}</span>
-  <div class="task-heading" id="task-heading${indexTask}">${title}</div>
-  <div class="task-description" id="task-description${indexTask}">${description}</div>
-  <div class="task-footer" id="task-footer${indexTask}">
+  <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})">
+  <span class="category" id="category">${category}</span>
+  <div class="task-heading" id="task-heading">${title}</div>
+  <div class="task-description" id="task-description">${description}</div>
+  <div class="task-footer" id="task-footer">
       <div class="task-profile" id="task-profile">
-          <div class="profile" id="profile${indexTask}">US</div>
+          <div class="profile" id="profile">US</div>
       </div>
       <div id="task-important"><img src="./assets/img/prio${prio}.png" alt="important"></div>
   </div>
 </div>
 `;
-    indexTask++;
+}
+
+/**
+ * Sets the ID of the task being dragged.
+ * @param {number} id - Task ID.
+ */
+function startDragging(id){
+  startDragPosition = id;
+}
+
+/**
+ * Moves the task to a specified board container.
+ * @async
+ * @param {string} con - Target board container identifier.
+ * @returns {Promise<void>}
+ */
+async function moveTo(con){
+ let task = await getItem('tasks')
+ task[startDragPosition].taskcon = con;
+ await setItem('tasks', task)
 }
 
 
-
-
-
-/**DRAG object */
+/**
+ * Initializes drag-and-drop functionality for tasks on the board.
+ */
 function dragLoader() {
   const dragTasks = document.querySelectorAll(".task");
   const todoContainer = document.getElementById("desktop-todo");
@@ -154,6 +184,11 @@ function dragLoader() {
   dragDropFun(dragTasks, containers);
 }
 
+/**
+ * Sets up drag-and-drop behavior for tasks and their containers.
+ * @param {NodeList} dragTasks - List of draggable tasks.
+ * @param {Array} containers - Array of task board containers.
+ */
 function dragDropFun(dragTasks, containers) {
   dragTasks.forEach((dragTask) => {
     dragTask.addEventListener("dragstart", () => {
@@ -177,6 +212,12 @@ function dragDropFun(dragTasks, containers) {
   });
 }
 
+/**
+ * Determines the drag position relative to other tasks in the container.
+ * @param {Element} container - Board section containing tasks.
+ * @param {number} y - Current y-coordinate of the dragged task.
+ * @returns {Element|null} - The draggable task element immediately below the current y-coordinate.
+ */
 function getDragAfterElement(container, y) {
   const draggableElements = [
     ...container.querySelectorAll(".task:not(.dragging)"),

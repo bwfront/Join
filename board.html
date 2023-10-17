@@ -19,7 +19,7 @@
     <title>Join | Board</title>
 </head>
 
-<body onload="init('board'); setBoard();">
+<body onload="init('board'); setBoards();">
     <div w3-include-html="./assets/img/templates/desktop_template.html"></div>
     <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
     <div class="main-content main-content-animation">
@@ -47,7 +47,7 @@
                     <div class="board-head-text">To do</div>
                     <div class="board-plus">+</div>
                 </div>
-                <div class="desktop-todo" id="desktop-todo" style="height: 100vh;">
+                <div class="desktop-todo" id="desktop-todo" style="height: 100vh;" ondrop="moveTo('todo')">
 
                 </div>
             </div>
@@ -56,7 +56,7 @@
                     <div class="board-head-text">Await feedback</div>
                     <div class="board-plus">+</div>
                 </div>
-                <div class="desktop-todo" id="desktop-awaitfeedback" style="height: 100vh;">
+                <div class="desktop-todo" id="desktop-awaitfeedback" style="height: 100vh;" ondrop="moveTo('awaitfeedback')">
                 </div>
             </div>
             <div class="desktop-board-inprogress">
@@ -64,7 +64,7 @@
                     <div class="board-head-text">In progress</div>
                     <div class="board-plus">+</div>
                 </div>
-                <div class="desktop-todo" id="desktop-inprogress" style="height: 100vh;">
+                <div class="desktop-todo" id="desktop-inprogress" style="height: 100vh;" ondrop="moveTo('inprogress')">
 
                 </div>
             </div>
@@ -72,7 +72,7 @@
                 <div class="todo-head">
                     <div class="board-head-text">Done</div>
                 </div>
-                <div class="desktop-todo" id="desktop-done" style="height: 100vh;">
+                <div class="desktop-todo" id="desktop-done" style="height: 100vh;" ondrop="moveTo('done')">
                 </div>
             </div>
         </div>
