@@ -155,7 +155,8 @@ body {
     }
 
     .btn-bottom {
-      bottom: 90px;
+      bottom: 81px;
+      padding-bottom: 8px;
     }
 
     .add-task-bottom-container {
@@ -163,11 +164,18 @@ body {
     }
   }
 
-  @media (max-width: 470px) {
+  @media (max-width: 471px) {
+    .btn-bottom {
+      width: 20%;
+    }
+  }
+
+  @media (max-width: 393.33px) {
     .add-task-main-content {
       flex-direction: column;
       margin-top: -200px;
       margin-left: 2px;
+      margin-right: 10px;
     }
 
     .add-task-title h1 {
@@ -199,16 +207,17 @@ body {
     }
 
     .btn-bottom {
-      padding-left: 53px;
-      bottom: 87px;
+      padding-left: 34px;
+      bottom: 80px;
       right: 12px;
       width: 20%;
     }
 
     .add-task-bottom-container {
-      bottom: 76px;
+      bottom: 66px;
       height: 59px;
       z-index: 999;
+      padding-bottom: 21px;
     }
 
     #subtask-icon {

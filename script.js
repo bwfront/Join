@@ -32,8 +32,17 @@ async function createTask() {
   const date = document.getElementById("task-date-input").value;
   const contact = document.getElementById("assigned_contact").value;
   const category = document.getElementById("task-category-input").value;
-  let taskcon = 'todo';
-  const task = { id, title, description, date, contact, category, priority, taskcon };
+  let taskcon = "todo";
+  const task = {
+    id,
+    title,
+    description,
+    date,
+    contact,
+    category,
+    priority,
+    taskcon,
+  };
   tasks.push(task);
   await setItem("tasks", tasks);
   priority = "low";
@@ -57,11 +66,11 @@ async function setItem(key, value) {
 /**
  * Sets up the boards for task management.
  */
-function setBoards(){
-  setBoard('todo');
-  setBoard('awaitfeedback');
-  setBoard('inprogress');
-  setBoard('done');
+function setBoards() {
+  setBoard("todo");
+  setBoard("awaitfeedback");
+  setBoard("inprogress");
+  setBoard("done");
 }
 /**
  * Retrieves and displays tasks from remote storage.
@@ -71,13 +80,20 @@ function setBoards(){
  */
 async function setBoard(id) {
   const tasks = await getItem("tasks");
-  let todo = tasks.filter(t => t['taskcon'] == id);
-  document.getElementById(`desktop-${id}`).innerHTML = '';
+  let todo = tasks.filter((t) => t["taskcon"] == id);
+  document.getElementById(`desktop-${id}`).innerHTML = "";
   if (todo && todo.length > 0) {
     todo.forEach((task) => {
-      setBoardHTML(task.category, task.title, task.description, task.priority, `desktop-${id}`, task.id);
+      setBoardHTML(
+        task.category,
+        task.title,
+        task.description,
+        task.priority,
+        `desktop-${id}`,
+        task.id
+      );
     });
-  }else{
+  } else {
     inputEmptyHTML(id);
   }
   dragLoader();
@@ -87,18 +103,20 @@ async function setBoard(id) {
  * Give the Empty Container with the id the content and innner it in the Container
  * @param {string} id - Identifier for the task board section (e.g. 'todo', 'inprogress').
  */
-function inputEmptyHTML(id){
+function inputEmptyHTML(id) {
   let container;
-  if(id == 'todo'){
-    container = 'To Do'
-  }else if(id == 'awaitfeedback'){
-    container = 'Await feedback'
-  }else if(id == 'inprogress'){
-    container = 'In progress'
-  }else if(id == 'done'){
-    container = 'Done'
+  if (id == "todo") {
+    container = "To Do";
+  } else if (id == "awaitfeedback") {
+    container = "Await feedback";
+  } else if (id == "inprogress") {
+    container = "In progress";
+  } else if (id == "done") {
+    container = "Done";
   }
-  document.getElementById(`desktop-${id}`).innerHTML = `<div class="desktop-todo-empty">No Task ${container}</div>`;
+  document.getElementById(
+    `desktop-${id}`
+  ).innerHTML = `<div class="desktop-todo-empty">No Task ${container}</div>`;
 }
 
 /**
@@ -159,16 +177,32 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
           <div class="profile" id="profile">US</div>
       </div>
       <div id="task-important"><img src="./assets/img/prio${prio}.png" alt="important"></div>
+      <button onclick = "deleteTask(${id})">X</button>
   </div>
 </div>
 `;
 }
 
 /**
+ * Delete a task
+ */
+
+/**
+ * Delete a task
+ */
+
+async function deleteTask(id) {
+  const tasks = await getItem("tasks");
+  const updatedTasks = tasks.filter((task) => task.id !== id);
+  await setItem("tasks", updatedTasks);
+  setBoards();
+}
+
+/**
  * Sets the ID of the task being dragged.
  * @param {number} id - Task ID.
  */
-function startDragging(id){
+function startDragging(id) {
   startDragPosition = id;
 }
 
@@ -178,13 +212,33 @@ function startDragging(id){
  * @param {string} con - Target board container identifier.
  * @returns {Promise<void>}
  */
-async function moveTo(con){
- let task = await getItem('tasks')
- task[startDragPosition].taskcon = con;
- await setItem('tasks', task);
- setBoards();
+async function moveTo(con) {
+  let task = await getItem("tasks");
+  task[startDragPosition].taskcon = con;
+  await setItem("tasks", task);
+  setBoards();
 }
 
+/**
+ * Sets the ID of the task being dragged.
+ * @param {number} id - Task ID.
+ */
+function startDragging(id) {
+  startDragPosition = id;
+}
+
+/**
+ * Moves the task to a specified board container.
+ * @async
+ * @param {string} con - Target board container identifier.
+ * @returns {Promise<void>}
+ */
+async function moveTo(con) {
+  let task = await getItem("tasks");
+  task[startDragPosition].taskcon = con;
+  await setItem("tasks", task);
+  setBoards();
+}
 
 /**
  * Initializes drag-and-drop functionality for tasks on the board.
@@ -223,10 +277,10 @@ function dragDropFun(dragTasks, containers) {
       e.preventDefault();
       const afterElement = getDragAfterElement(container, e.clientY);
       const dragTask = document.querySelector(".dragging");
-      if(afterElement == null){
+      if (afterElement == null) {
         container.appendChild(dragTask);
-      } else{
-        container.insertBefore(dragTask, afterElement)
+      } else {
+        container.insertBefore(dragTask, afterElement);
       }
     });
   });
@@ -242,13 +296,16 @@ function getDragAfterElement(container, y) {
   const draggableElements = [
     ...container.querySelectorAll(".task:not(.dragging)"),
   ];
-  return draggableElements.reduce((closest, child) => {
-    const box = child.getBoundingClientRect()
-    const offset = y - box.top - box.height / 2
-    if (offset < 0 && offset > closest.offset) {
-      return { offset: offset, element: child }
-    } else {
-      return closest
-    }
-  }, { offset: Number.NEGATIVE_INFINITY }).element
-  }
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
+}
