@@ -145,14 +145,18 @@ async function getItem(key) {
  * @param {string} prio - The priority level string. Expected values: "urgent", "medium", "low".
  */
 function getPrio(prio) {
-  if (prio == "urgent") {
-    priority = "urgent";
-  } else if (prio == "medium") {
-    priority = "medium";
-  } else if (prio == "low") {
-    priority = "low";
-  } else {
-    priority = "low";
+  switch (prio) {
+    case "urgent":
+      priority = "urgent";
+      break;
+    case "medium":
+      priority = "medium";
+      break;
+    case "low":
+      priority = "low";
+      break;
+    default:
+      priority = "low";
   }
 }
 
@@ -186,17 +190,15 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
 /**
  * Delete a task
  */
-
-/**
- * Delete a task
- */
-
 async function deleteTask(id) {
   const tasks = await getItem("tasks");
   const updatedTasks = tasks.filter((task) => task.id !== id);
   await setItem("tasks", updatedTasks);
   setBoards();
 }
+/**
+ * Delete a task
+ */
 
 /**
  * Sets the ID of the task being dragged.
@@ -312,10 +314,65 @@ function getDragAfterElement(container, y) {
 
 /**
  * Get the data from to clicked Task
- * @param {number} id 
+ * @param {number} id
  */
-async function openTask(id){
-  let tasks = await getItem('tasks');
+async function openTask(id) {
+  let tasks = await getItem("tasks");
   let task = tasks[id];
-  console.log(task);
+  innerTaskPopUp(task);
+  openTaskPopUp();
+}
+
+/**
+ * Give getTaskPopUpHTMl the data and htmlid
+ * @param {Array} task
+ */
+function innerTaskPopUp(task) {
+  getTaskPopUpHTML("title", task.title);
+  getTaskPopUpHTML("date", task.date);
+  getTaskPopUpHTML("description", task.description);
+  getTaskPopUpPrioHTML("priority", task.priority);
+  //getTaskPopUpHTML('contact', task.contact);
+  //getTaskPopUpHTML('subtask', task.subtask);
+}
+
+/**
+ * Inner the data from the array in the PopUp
+ * @param {String} htmlid - The HTML id="htmlid" from the object
+ * @param {Array} task - The Array from the clicked Task
+ */
+function getTaskPopUpHTML(htmlid, task) {
+  document.getElementById(`popup-${htmlid}`).innerHTML = task;
+}
+
+/**
+ * Set Display to flex and add Slide In Animation class
+ */
+function openTaskPopUp() {
+  const popupbackground = document.getElementById(
+    "desktop-task-popup-container"
+  );
+  const popupconatiner = document.getElementById("desktop-task-popup");
+  popupbackground.style.display = "flex";
+  popupconatiner.classList.remove("popup-slideout");
+  popupconatiner.classList.add("popup-slidein");
+}
+function getTaskPopUpPrioHTML(htmlid, task){
+  document.getElementById(`popup-${htmlid}`).innerHTML = `${task} <img class="popup-prio-img" id="popup-prio-img" src="./assets/img/prio${task}.png"
+  alt="priority">`;
+}
+
+/**
+ * Set Display to none and add Slide Out Animation class
+ */
+function closeTaskPopUp() {
+  const popupbackground = document.getElementById(
+    "desktop-task-popup-container"
+  );
+  const popupconatiner = document.getElementById("desktop-task-popup");
+  popupconatiner.classList.remove("popup-slidein");
+  popupconatiner.classList.add("popup-slideout");
+  setTimeout(() => {
+    popupbackground.style.display = "none";
+  }, 300);
 }

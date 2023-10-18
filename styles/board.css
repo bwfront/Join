@@ -202,10 +202,10 @@
   width: 100%;
   top: 0;
   left: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
-  background-color: #00000071;
+  background-color: #0000003a;
 }
 .desktop-task-popup {
   width: 525px;
@@ -213,8 +213,7 @@
   border-radius: 30px;
   padding: 48px 40px;
   z-index: 1004;
-  right: -525px;
-  transform: translateX(calc(100% + 650px));
+  transform: translateX(calc(100% + 1500px));
   animation-duration: 0.6s;
 }
 .task-popup-head {
@@ -269,6 +268,9 @@
   width: 50%;
 
 }
+#popup-priority::first-letter{
+  text-transform: capitalize;
+}
 .task-popup-contact{
   margin-bottom: 10px;
 }
@@ -314,7 +316,7 @@
 }
 @keyframes popupslidein {
   from {
-    transform: translateX(calc(100% + 650px));
+    transform: translateX(calc(100% + 1500px));
   }
   to {
     transform: translateX(0);
@@ -326,7 +328,7 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(100% + 650px));
+    transform: translateX(calc(100% + 1500px));
   }
 }
 /* Dragging */
