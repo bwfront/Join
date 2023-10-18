@@ -187,10 +187,121 @@
 .mobile-head-content {
   display: none;
 }
+.mobile-add-task-img {
+  display: none;
+}
 .mobile-add-task-img:hover {
   cursor: pointer;
   background-color: #28abe2;
 }
+/* Task Pop Up */
+.desktop-task-popup-container {
+  z-index: 1003;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000071;
+}
+.desktop-task-popup {
+  width: 525px;
+  background-color: #ffffff;
+  border-radius: 30px;
+  padding: 48px 40px;
+  z-index: 1004;
+}
+.task-popup-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.task-popup-head-category {
+  height: 36px;
+  padding: 4px 24px;
+  background-color: #0038FF;
+  font-size: 23px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.task-popup-head-close {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 16px;
+}
+.task-popup-head-close:hover {
+  background-color: #eaeaea;
+}
+.task-popup-head-close img {
+  height: 24px;
+  width: 24px;
+}
+.task-popup-heading{
+  font-size: 61px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.task-popup-description{
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+.task-popup-date, .task-popup-priority{
+  font-size: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-bottom: 24px;
+  width: 50%;
+
+}
+.task-popup-contact{
+  margin-bottom: 10px;
+}
+.popup-profile{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+.task-popup-contact{
+  font-size: 20px;
+}
+.popup-contact-name{
+  font-size: 19px;
+  margin-left: 20px;
+}
+.popup-subtask{
+  font-size: 20px;
+  margin: 10px 0 20px 20px;
+
+}
+#popup-checkbox{
+  margin-left: 20px;
+  height: 16px;
+  width: 16px;
+}
+.task-popup-subtask{  
+  font-size: 20px;
+  margin-top: 24px;
+}
+.task-popup-subtasks{
+  display: flex;
+  align-items: center;
+}
+
+
 /* Dragging */
 .task.dragging {
   opacity: 0.6;
