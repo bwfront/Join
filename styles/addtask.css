@@ -93,6 +93,21 @@ body {
   background-color: transparent;
 }
 
+.subtask-list {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  text-transform: capitalize;
+}
+
+.subtask-list input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.subtask-list span {
+  font-size: 18px;
+}
+
 /* ADD TASK DESKTOP ENDS*/
 
 /* ADD TASK RESPONSIVE STARTS */

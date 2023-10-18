@@ -46,6 +46,8 @@ async function createTask() {
   tasks.push(task);
   await setItem("tasks", tasks);
   priority = "low";
+
+  document.getElementById("task-form").reset();
 }
 
 /**
@@ -189,16 +191,63 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
 
 /**
  * Delete a task
+ * * @param {number} id - Task ID.
  */
+
 async function deleteTask(id) {
   const tasks = await getItem("tasks");
   const updatedTasks = tasks.filter((task) => task.id !== id);
   await setItem("tasks", updatedTasks);
   setBoards();
 }
+
 /**
- * Delete a task
+ * this function adds a subtask
  */
+
+function addSubTask() {
+  let subTaskInput = document.getElementById("subtask-title-input").value;
+
+  if (subTaskInput.trim() !== "") {
+    const subTaskList = document.getElementById("subtask-container");
+
+    const subTaskItemHTML = `
+      <div class="subtask-list">
+        <input type="checkbox" />
+        <span>${subTaskInput}</span>
+      </div>
+    `;
+
+    subTaskList.innerHTML += subTaskItemHTML;
+
+    document.getElementById("subtask-title-input").value = "";
+  }
+}
+
+/*
+* this function clears the inputs
+*/
+
+function clearTask() {
+  const titleInput = document.getElementById("task-title-input");
+  const descriptionInput = document.getElementById("task-description-input");
+  const dateInput = document.getElementById("task-date-input");
+  const assignedContact = document.getElementById("assigned_contact");
+  const categoryInput = document.getElementById("task-category-input");
+  const subtaskTitleInput = document.getElementById("subtask-title-input");
+  const subtaskContainer = document.getElementById("subtask-container");
+
+  titleInput.value = "";
+  descriptionInput.value = "";
+  dateInput.value = "";
+  assignedContact.selectedIndex = 0;
+  categoryInput.selectedIndex = 0;
+  subtaskTitleInput.value = "";
+
+  subtaskContainer.innerHTML = "";
+}
+
+
 
 /**
  * Sets the ID of the task being dragged.
