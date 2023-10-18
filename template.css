@@ -296,7 +296,6 @@ body {
   flex-direction: column;
   background-color: #2a3647;
   border-radius: 20px 0 20px 20px;
-  animation-duration: 0.6s;
 }
 .slidein {
   animation-name: slidein;

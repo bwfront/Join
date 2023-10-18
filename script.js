@@ -170,7 +170,7 @@ function getPrio(prio) {
 function setBoardHTML(category, title, description, prio, idcon, id) {
   const todo = document.getElementById(idcon);
   todo.innerHTML += `
-  <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})">
+  <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})" onclick="openTask(${id})">
   <span class="category" id="category">${category}</span>
   <div class="task-heading" id="task-heading">${title}</div>
   <div class="task-description" id="task-description">${description}</div>
@@ -307,4 +307,14 @@ function getDragAfterElement(container, y) {
     },
     { offset: Number.NEGATIVE_INFINITY }
   ).element;
+}
+
+/**
+ * Get the data from to clicked Task
+ * @param {number} id 
+ */
+async function openTask(id){
+  let tasks = await getItem('tasks');
+  let task = tasks[id];
+  console.log(task);
 }
