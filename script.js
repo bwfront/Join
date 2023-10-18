@@ -183,7 +183,6 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
           <div class="profile" id="profile">US</div>
       </div>
       <div id="task-important"><img src="./assets/img/prio${prio}.png" alt="important"></div>
-      <button onclick = "deleteTask(${id})">X</button>
   </div>
 </div>
 `;
@@ -199,6 +198,7 @@ async function deleteTask(id) {
   const updatedTasks = tasks.filter((task) => task.id !== id);
   await setItem("tasks", updatedTasks);
   setBoards();
+  closeTaskPopUp();
 }
 
 /**
@@ -369,6 +369,7 @@ async function openTask(id) {
   let tasks = await getItem("tasks");
   let task = tasks[id];
   innerTaskPopUp(task);
+  innerPopUpFooter(id)
   openTaskPopUp();
 }
 
@@ -383,6 +384,13 @@ function innerTaskPopUp(task) {
   getTaskPopUpPrioHTML("priority", task.priority);
   //getTaskPopUpHTML('contact', task.contact);
   //getTaskPopUpHTML('subtask', task.subtask);
+}
+
+function innerPopUpFooter(id){
+  document.getElementById('popup-footer').innerHTML = ` 
+  <div class="popup-delete" onclick="deleteTask(${id})"><img class="popup-delete-img" src="./assets/img/deletepopup.png" alt="delete" onclick="deleteTask(${id})">Delete</div>
+  |
+  <div class="popup-edit" onclick="editTask(${id})"><img class="popup-edit-img" src="./assets/img/editpopup.png" alt="edit">Edit</div>`;
 }
 
 /**

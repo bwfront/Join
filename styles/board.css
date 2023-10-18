@@ -92,6 +92,9 @@
   margin-top: 50px;
   flex-wrap: wrap;
 }
+.maxwidthboard {
+  max-width: 1800px;
+}
 .todo-head {
   width: 246px;
   margin-bottom: 30px;
@@ -125,6 +128,8 @@
   min-height: 300px;
 }
 .desktop-todo-empty {
+  z-index: 0;
+  position: absolute;
   width: 246px;
   height: 48px;
   background-color: #e7e7e7;
@@ -139,6 +144,7 @@
 }
 /* Task Template */
 .task {
+  z-index: 1;
   box-sizing: unset !important;
   min-width: 220px;
   padding: 16px;
@@ -224,7 +230,7 @@
 .task-popup-head-category {
   height: 36px;
   padding: 4px 24px;
-  background-color: #0038FF;
+  background-color: #0038ff;
   font-size: 23px;
   color: #ffffff;
   display: flex;
@@ -248,17 +254,18 @@
   height: 24px;
   width: 24px;
 }
-.task-popup-heading{
+.task-popup-heading {
   font-size: 61px;
   font-weight: 700;
   margin-bottom: 18px;
 }
-.task-popup-description{
+.task-popup-description {
   font-size: 20px;
   font-weight: 400;
   margin-bottom: 24px;
 }
-.task-popup-date, .task-popup-priority{
+.task-popup-date,
+.task-popup-priority {
   font-size: 20px;
 
   display: flex;
@@ -266,42 +273,40 @@
   flex-direction: row;
   margin-bottom: 24px;
   width: 50%;
-
 }
-#popup-priority::first-letter{
+#popup-priority::first-letter {
   text-transform: capitalize;
 }
-.task-popup-contact{
+.task-popup-contact {
   margin-bottom: 10px;
 }
-.popup-profile{
+.popup-profile {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
   margin-left: 20px;
 }
-.task-popup-contact{
+.task-popup-contact {
   font-size: 20px;
 }
-.popup-contact-name{
+.popup-contact-name {
   font-size: 19px;
   margin-left: 20px;
 }
-.popup-subtask{
+.popup-subtask {
   font-size: 20px;
   margin: 10px 0 20px 20px;
-
 }
-#popup-checkbox{
+#popup-checkbox {
   margin-left: 20px;
   height: 16px;
   width: 16px;
 }
-.task-popup-subtask{  
+.task-popup-subtask {
   font-size: 20px;
   margin-top: 24px;
 }
-.task-popup-subtasks{
+.task-popup-subtasks {
   display: flex;
   align-items: center;
 }
@@ -309,7 +314,48 @@
   animation-name: popupslidein;
   animation-fill-mode: forwards;
 }
-
+.popup-footer {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: #a8a8a8;
+}
+.popup-delete-img,
+.popup-edit-img {
+  height: 24px;
+  width: 24px;
+  margin: 0 8px;
+}
+.popup-delete {
+  color: #000000;
+  cursor: pointer;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+.popup-edit {
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+.popup-delete:hover {
+  color: #1e2f44;
+  font-weight: 700;
+  padding: 1.4px;
+  filter: contrast(100%) invert(1) hue-rotate(185deg) saturate(10)
+    brightness(90%);
+}
+.popup-edit:hover {
+  color: #1e2f44;
+  filter: contrast(100%) invert(1) hue-rotate(185deg) saturate(10)
+    brightness(90%);
+  font-weight: 700;
+  padding: 1.4px;
+}
 .popup-slideout {
   animation-name: popupslideout;
   animation-fill-mode: forwards;
