@@ -15,6 +15,7 @@
         rel="stylesheet">
 
     <script src="script_include_html.js"></script>
+    <script src="js/login.js"></script>
 </head>
 
 <body>
@@ -43,17 +44,17 @@
                     <span class="login-headline">
                         <p class="login-border-bottom">Log in</p>
                     </span>
-                    <form onsubmit="login()">
+                    <form onsubmit="login(); return false;">
                         <div class="mb-3">
                             <input required placeholder="Email" type="email" class="form-control login-form-radius"
-                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                                id="email" aria-describedby="emailHelp">
                             <img class="login-form-img " src="assets/img/mail.png" alt="">
                         </div>
 
                         <div>
                             <div class="password-box">
                                 <input required placeholder="Password" type="password"
-                                    class="form-control login-form-radius" id="exampleInputPassword1">
+                                    class="form-control login-form-radius" id="password">
                                 <img onclick="showClearPassword()" class="login-form-img "
                                     src="assets/img/login-password.png" alt="">
                                 <!--JS => create function Password visibility-->
@@ -67,7 +68,7 @@
                             <label class="form-check-label" for="exampleCheck1">Remember me</label>
                         </div>
                         <div class="login-button-box">
-                            <button type="submit" class="btn login-button">Log in</button>
+                            <button type="submit" class="btn login-button" id="login-button">Log in</button>
                             <a href="summary.html"> <button type="button" class="btn login-guest-button">Guest Log
                                     in</button></a>
                         </div>
