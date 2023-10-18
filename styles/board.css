@@ -90,6 +90,7 @@
   font-size: 20px;
   font-weight: bold;
   margin-top: 50px;
+  flex-wrap: wrap;
 }
 .todo-head {
   width: 246px;
@@ -113,19 +114,21 @@
   border: solid 2px #28abe2;
 }
 
-.desktop-board-done, .desktop-board-awaitfeedback, .desktop-board-inprogress,.desktop-board-todo  {
+.desktop-board-done,
+.desktop-board-awaitfeedback,
+.desktop-board-inprogress,
+.desktop-board-todo {
   width: 252px;
-  margin: 0 20px 30px 20px !important;
+  margin: 0 0 40px 0;
 }
-.desktop-todo{
-  z-index: 100;
+.desktop-todo {
   min-height: 300px;
 }
-.desktop-todo-empty{
+.desktop-todo-empty {
   width: 246px;
   height: 48px;
-  background-color: #E7E7E7;
-  color: #A8A8A8;
+  background-color: #e7e7e7;
+  color: #a8a8a8;
   border-radius: 10px;
   border: 1px dashed;
   font-size: 16px;
@@ -137,12 +140,13 @@
 /* Task Template */
 .task {
   box-sizing: unset !important;
-  width: 220px;
+  min-width: 220px;
   padding: 16px;
   background-color: #ffffff;
   border-radius: 24px;
   box-shadow: 0px 0px 5px 4px rgba(157, 157, 157, 0.1);
   margin-bottom: 15px;
+  margin-right: 10px;
 }
 .category {
   padding: 4px 16px;
@@ -180,9 +184,89 @@
   background-color: #0a9d00;
   border-radius: 16px;
 }
-
-
+.mobile-head-content {
+  display: none;
+}
+.mobile-add-task-img:hover {
+  cursor: pointer;
+  background-color: #28abe2;
+}
 /* Dragging */
-.task.dragging{
+.task.dragging {
   opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 1015px) {
+  .mobile-head-content {
+    display: unset;
+  }
+  .desktop-board-heading-right {
+    display: none;
+  }
+  .desktop-search-bar {
+    width: 100%;
+    margin: 0;
+    margin-top: 50px;
+    margin-bottom: -10px;
+    font-size: 20px;
+  }
+  .desktop-board-head-content {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -30px !important;
+  }
+  .mobile-add-task-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2a3647;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+  .desktop-search-bar-input {
+    width: 85%;
+    margin-right: -40px;
+  }
+}
+@media (max-width: 800px) {
+  .desktop-board-head-content {
+    margin-top: 40px !important;
+  }
+  .desktop-board-done,
+  .desktop-board-awaitfeedback,
+  .desktop-board-inprogress,
+  .desktop-board-todo {
+    width: 95vw !important;
+    margin: 0 0 40px 0 !important;
+  }
+  .todo-head {
+    max-width: 100vw;
+    min-width: 100vw;
+    margin-bottom: 10px;
+  }
+  .board-plus {
+    cursor: pointer;
+    margin-right: 45px !important;
+  }
+  .desktop-todo {
+    padding-top: 7px;
+    padding-left: 7px;
+    overflow: auto;
+    min-height: 50px;
+    display: flex;
+  }
+  .board-head-text {
+    font-size: 27px;
+  }
+  .board-plus {
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+  }
+  .imprint-privacy-heading {
+    font-size: 47px !important;
+    font-weight: 700;
+  }
 }
