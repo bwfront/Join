@@ -198,6 +198,54 @@ async function deleteTask(id) {
 }
 
 /**
+ * this function adds a subtask
+ */
+
+function addSubTask() {
+  let subTaskInput = document.getElementById("subtask-title-input").value;
+
+  if (subTaskInput.trim() !== "") {
+    const subTaskList = document.getElementById("subtask-container");
+
+    const subTaskItemHTML = `
+      <div class="subtask-list">
+        <input type="checkbox" />
+        <span>${subTaskInput}</span>
+      </div>
+    `;
+
+    subTaskList.innerHTML += subTaskItemHTML;
+
+    document.getElementById("subtask-title-input").value = "";
+  }
+}
+
+/*
+* this function clears the inputs
+*/
+
+function clearTask() {
+  const titleInput = document.getElementById("task-title-input");
+  const descriptionInput = document.getElementById("task-description-input");
+  const dateInput = document.getElementById("task-date-input");
+  const assignedContact = document.getElementById("assigned_contact");
+  const categoryInput = document.getElementById("task-category-input");
+  const subtaskTitleInput = document.getElementById("subtask-title-input");
+  const subtaskContainer = document.getElementById("subtask-container");
+
+  titleInput.value = "";
+  descriptionInput.value = "";
+  dateInput.value = "";
+  assignedContact.selectedIndex = 0;
+  categoryInput.selectedIndex = 0;
+  subtaskTitleInput.value = "";
+
+  subtaskContainer.innerHTML = "";
+}
+
+
+
+/**
  * Sets the ID of the task being dragged.
  * @param {number} id - Task ID.
  */

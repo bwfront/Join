@@ -158,12 +158,22 @@
               placeholder="Add a new subtask"
               id="subtask-title-input"
             />
-            <img id="subtask-icon" src="./assets/img/Subtasks icons11.png" />
+            <img
+              id="subtask-icon"
+              onclick="addSubTask()"
+              style="cursor: pointer"
+              src="./assets/img/Subtasks icons11.png"
+            />
+            <div id="subtask-container"></div>
           </div>
         </div>
 
         <div class="btn-bottom">
-          <button class="btn btn-secondary btn-clear" style="width: 110px">
+          <button
+            onclick="clearTask()"
+            class="btn btn-secondary btn-clear"
+            style="width: 110px"
+          >
             Clear
             <img src="./assets/img/iconoir_cancel.png" />
           </button>
