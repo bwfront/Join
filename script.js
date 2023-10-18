@@ -46,6 +46,8 @@ async function createTask() {
   tasks.push(task);
   await setItem("tasks", tasks);
   priority = "low";
+
+  document.getElementById("task-form").reset();
 }
 
 /**
@@ -185,10 +187,7 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
 
 /**
  * Delete a task
- */
-
-/**
- * Delete a task
+ * * @param {number} id - Task ID.
  */
 
 async function deleteTask(id) {

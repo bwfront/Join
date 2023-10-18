@@ -34,7 +34,7 @@
       <h1>Add Task</h1>
     </div>
 
-    <div class="add-task-main-content">
+    <form class="add-task-main-content" onsubmit="createTask(); return false">
       <!-- LEFT SIDE -->
       <div class="add-task-left-side">
         <div class="add-task-card">
@@ -168,7 +168,6 @@
             <img src="./assets/img/iconoir_cancel.png" />
           </button>
           <button
-            onclick="createTask()"
             class="btn btn-primary btn-create"
             style="background-color: #2a3647; color: white; width: 153px"
             type="submit"
@@ -178,6 +177,6 @@
           </button>
         </div>
       </div>
-    </div>
+    </form>
   </body>
 </html>
