@@ -15,6 +15,11 @@
 }
 /**ANIMATION FOR THE MAIN CONTENT END**/
 
+.imprint-privacy-heading{
+  font-size: 61px;
+  font-weight: 700;
+}
+
 .desktop-board-heading-right {
   display: flex;
   justify-content: center;

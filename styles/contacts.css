@@ -15,17 +15,19 @@
 }
 /**ANIMATION FOR THE MAIN CONTENT END**/
 
-
-.primary_contact_btn{
-  display: flex;
+.loaded-teamplate-class{
+  z-index: 1999;
 }
-
-.primary_contact_btn img{
-  position: absolute;
- left: 200px;
+#contact_list{
+  background-color: transparent;
 }
-
-.main-content-contacts{
+.contact {
   
+  padding: 10px;
+  
+  margin: 10px;
+  
+ 
 
+  
 }

@@ -7,7 +7,7 @@ body {
 .add-task-main-content {
   display: flex;
   justify-content: space-evenly;
-  margin-left: 328px;
+  margin-left: 324px;
 }
 
 .add-task-left-side {
@@ -28,7 +28,7 @@ body {
   font-weight: 700 !important;
   font-size: 61px;
   top: 206px;
-  margin-left: 328px;
+  margin-left: 284px;
 }
 
 .add-task-card {

@@ -5,34 +5,36 @@ let contacts = [
   },
 ];
 
-function init() {
-  renterContacts();
+function initContacts() {
+  renderContacts();
 }
 
-function renterContacts() {
-  let contact_container = document.getElementById("contacts_container");
-  contact_container.innerHTML = "";
+function renderContacts() {
+  let contactList = document.getElementById("contact_list");
+  contactList.innerHTML = "";
 
   for (let i = 0; i < contacts.length; i++) {
-    contact = contacts[i];
-    contact_container.innerHTML += contactCreated(contact);
+    let contact = contacts[i];
+    contactList.innerHTML += generateContacts(contact);
   }
 }
 
-function contactCreated(contact) {
+function generateContacts(contact) {
   return `
-  <div class="main-content-contacts" >
-  <h2>${contact.name}<h2>
-  <span>${contact.email}</span>
-  <div>`;
+  <div class="contact">
+    <h2>${contact.name}</h2>
+    <h3>${contact.email}</h3>
+  </div>`;
 }
 
-function addNewContact() {
-  const newContact = {
-    name: "name of the person",
-    email: "mail of the person",
-  };
+function addContact() {
+  const newName = "New Contact";
+  const newEmail = "new.contact@example.com";
 
+  const newContact = {
+    name: newName,
+    email: newEmail,
+  };
   contacts.push(newContact);
-  renterContacts();
+  renderContacts();
 }
