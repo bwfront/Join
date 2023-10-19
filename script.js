@@ -145,8 +145,11 @@ async function getItem(key) {
 /**
  * Sets the priority level based on the provided string.
  * @param {string} prio - The priority level string. Expected values: "urgent", "medium", "low".
+ * @param {Element} clickedButton
  */
-function getPrio(prio) {
+function getPrio(prio, clickedButton) {
+  const buttons = document.querySelectorAll(".btn-prio");
+
   switch (prio) {
     case "urgent":
       priority = "urgent";
@@ -160,6 +163,12 @@ function getPrio(prio) {
     default:
       priority = "low";
   }
+
+  buttons.forEach((button) => {
+    button.classList.remove("selected");
+  });
+
+  clickedButton.classList.add("selected");
 }
 
 /**
@@ -225,8 +234,8 @@ function addSubTask() {
 }
 
 /*
-* this function clears the inputs
-*/
+ * this function clears the inputs
+ */
 
 function clearTask() {
   const titleInput = document.getElementById("task-title-input");
@@ -246,8 +255,6 @@ function clearTask() {
 
   subtaskContainer.innerHTML = "";
 }
-
-
 
 /**
  * Sets the ID of the task being dragged.
@@ -369,7 +376,7 @@ async function openTask(id) {
   let tasks = await getItem("tasks");
   let task = tasks[id];
   innerTaskPopUp(task);
-  innerPopUpFooter(id)
+  innerPopUpFooter(id);
   openTaskPopUp();
 }
 
@@ -386,8 +393,8 @@ function innerTaskPopUp(task) {
   //getTaskPopUpHTML('subtask', task.subtask);
 }
 
-function innerPopUpFooter(id){
-  document.getElementById('popup-footer').innerHTML = ` 
+function innerPopUpFooter(id) {
+  document.getElementById("popup-footer").innerHTML = ` 
   <div class="popup-delete" onclick="deleteTask(${id})"><img class="popup-delete-img" src="./assets/img/deletepopup.png" alt="delete" onclick="deleteTask(${id})">Delete</div>
   |
   <div class="popup-edit" onclick="editTask(${id})"><img class="popup-edit-img" src="./assets/img/editpopup.png" alt="edit">Edit</div>`;
@@ -414,8 +421,10 @@ function openTaskPopUp() {
   popupconatiner.classList.remove("popup-slideout");
   popupconatiner.classList.add("popup-slidein");
 }
-function getTaskPopUpPrioHTML(htmlid, task){
-  document.getElementById(`popup-${htmlid}`).innerHTML = `${task} <img class="popup-prio-img" id="popup-prio-img" src="./assets/img/prio${task}.png"
+function getTaskPopUpPrioHTML(htmlid, task) {
+  document.getElementById(
+    `popup-${htmlid}`
+  ).innerHTML = `${task} <img class="popup-prio-img" id="popup-prio-img" src="./assets/img/prio${task}.png"
   alt="priority">`;
 }
 

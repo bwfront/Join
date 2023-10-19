@@ -34,7 +34,7 @@
       <h1>Add Task</h1>
     </div>
 
-    <form class="add-task-main-content" onsubmit="createTask(); return false">
+    <form id = "task-form" class="add-task-main-content" onsubmit="createTask(); return false">
       <!-- LEFT SIDE -->
       <div class="add-task-left-side">
         <div class="add-task-card">
@@ -111,15 +111,24 @@
           <div class="form-group">
             <label for="prio">Prio</label>
             <div>
-              <button class="btn btn-secondary" onclick="getPrio('urgent')">
+              <button
+                class="btn btn-secondary btn-prio"
+                onclick="getPrio('urgent', this)"
+              >
                 Urgent
                 <img src="./assets/img/priourgent.png" />
               </button>
-              <button class="btn btn-secondary" onclick="getPrio('medium')">
+              <button
+                class="btn btn-secondary btn-prio"
+                onclick="getPrio('medium', this)"
+              >
                 Medium
                 <img src="./assets/img/priomedium.png" />
               </button>
-              <button class="btn btn-secondary" onclick="getPrio('low')">
+              <button
+                class="btn btn-secondary btn-prio"
+                onclick="getPrio('low', this)"
+              >
                 Low
                 <img src="./assets/img/priolow.png" />
               </button>
