@@ -16,9 +16,9 @@ const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
  */
 let priority = "low";
 
-let startDragPosition;
-
 let subtask = [];
+let subtaskready = [];
+let taskcon = "todo";
 
 /**
  * Creates a task using input values from the DOM, then saves it to the remote storage.
@@ -33,8 +33,6 @@ async function createTask() {
   const date = document.getElementById("task-date-input").value;
   const contact = document.getElementById("assigned_contact").value;
   const category = document.getElementById("task-category-input").value;
-  let taskcon = "todo";
-  let subtaskready = [];
   const task = {
     id,
     title,
@@ -112,10 +110,13 @@ async function setBoard(id) {
  * @param {Array} subtaskready - Subtask with the checked Subtasks
  */
 function setSubtasksHTML(subtask, subtaskready, id) {
-  if(subtask.length > 0){
+  if (subtask.length > 0) {
     document.getElementById(`task-subtasks${id}`).innerHTML = `
     <div class="subtasks-progress></div>
-    <div class="task-subtasks-text" id="task-subtasks-text">${getSharedSubtasksCount(subtask, subtaskready)}/${subtask.length} Subtasks</div>
+    <div class="task-subtasks-text" id="task-subtasks-text">${getSharedSubtasksCount(
+      subtask,
+      subtaskready
+    )}/${subtask.length} Subtasks</div>
     `;
   }
 }
@@ -124,10 +125,12 @@ function setSubtasksHTML(subtask, subtaskready, id) {
  * Filter subtaskArray to only include subtasks that are also in subtaskReadyArray
  * @param {Array} subtaskArray - Subtask Array
  * @param {Array} subtaskReadyArray - Subtask with the checked Subtasks
- * @returns 
+ * @returns
  */
 function getSharedSubtasksCount(subtaskArray, subtaskReadyArray) {
-  const sharedSubtasks = subtaskArray.filter(subtask => subtaskReadyArray.includes(subtask));
+  const sharedSubtasks = subtaskArray.filter((subtask) =>
+    subtaskReadyArray.includes(subtask)
+  );
   return sharedSubtasks.length;
 }
 
@@ -210,14 +213,7 @@ function getPrio(prio, clickedButton) {
  * @param {string} idcon - DOM element ID for the container.
  * @param {number} id - Task ID.
  */
-function setBoardHTML(
-  category,
-  title,
-  description,
-  prio,
-  idcon,
-  id,
-) {
+function setBoardHTML(category, title, description, prio, idcon, id) {
   const todo = document.getElementById(idcon);
   todo.innerHTML += `
   <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})" onclick="openTask(${id})">
@@ -234,19 +230,6 @@ function setBoardHTML(
   </div>
 </div>
 `;
-}
-
-/**
- * Delete a task
- * * @param {number} id - Task ID.
- */
-
-async function deleteTask(id) {
-  const tasks = await getItem("tasks");
-  const updatedTasks = tasks.filter((task) => task.id !== id);
-  await setItem("tasks", updatedTasks);
-  setBoards();
-  closeTaskPopUp();
 }
 
 /**
@@ -277,7 +260,6 @@ function addSubTask() {
 /*
  * this function clears the inputs
  */
-
 function clearTask() {
   const titleInput = document.getElementById("task-title-input");
   const descriptionInput = document.getElementById("task-description-input");
@@ -295,255 +277,3 @@ function clearTask() {
   subtaskTitleInput.value = "";
   subtaskContainer.innerHTML = "";
 }
-
-/**
- * Sets the ID of the task being dragged.
- * @param {number} id - Task ID.
- */
-function startDragging(id) {
-  startDragPosition = id;
-}
-
-/**
- * Moves the task to a specified board container.
- * @async
- * @param {string} con - Target board container identifier.
- * @returns {Promise<void>}
- */
-async function moveTo(con) {
-  let task = await getItem("tasks");
-  task[startDragPosition].taskcon = con;
-  await setItem("tasks", task);
-  setBoards();
-}
-
-/**
- * Sets the ID of the task being dragged.
- * @param {number} id - Task ID.
- */
-function startDragging(id) {
-  startDragPosition = id;
-}
-
-/**
- * Moves the task to a specified board container.
- * @async
- * @param {string} con - Target board container identifier.
- * @returns {Promise<void>}
- */
-async function moveTo(con) {
-  let task = await getItem("tasks");
-  task[startDragPosition].taskcon = con;
-  await setItem("tasks", task);
-  setBoards();
-}
-
-/**
- * Initializes drag-and-drop functionality for tasks on the board.
- */
-function dragLoader() {
-  const dragTasks = document.querySelectorAll(".task");
-  const todoContainer = document.getElementById("desktop-todo");
-  const awaitContainer = document.getElementById("desktop-awaitfeedback");
-  const progressContainer = document.getElementById("desktop-inprogress");
-  const doneContainer = document.getElementById("desktop-done");
-  const containers = [
-    todoContainer,
-    awaitContainer,
-    progressContainer,
-    doneContainer,
-  ];
-  dragDropFun(dragTasks, containers);
-}
-
-/**
- * Sets up drag-and-drop behavior for tasks and their containers.
- * @param {NodeList} dragTasks - List of draggable tasks.
- * @param {Array} containers - Array of task board containers.
- */
-function dragDropFun(dragTasks, containers) {
-  dragTasks.forEach((dragTask) => {
-    dragTask.addEventListener("dragstart", () => {
-      dragTask.classList.add("dragging");
-    });
-    dragTask.addEventListener("dragend", () => {
-      dragTask.classList.remove("dragging");
-    });
-  });
-  containers.forEach((container) => {
-    container.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      const afterElement = getDragAfterElement(container, e.clientY);
-      const dragTask = document.querySelector(".dragging");
-      if (afterElement == null) {
-        container.appendChild(dragTask);
-      } else {
-        container.insertBefore(dragTask, afterElement);
-      }
-    });
-  });
-}
-
-/**
- * Determines the drag position relative to other tasks in the container.
- * @param {Element} container - Board section containing tasks.
- * @param {number} y - Current y-coordinate of the dragged task.
- * @returns {Element|null} - The draggable task element immediately below the current y-coordinate.
- */
-function getDragAfterElement(container, y) {
-  const draggableElements = [
-    ...container.querySelectorAll(".task:not(.dragging)"),
-  ];
-  return draggableElements.reduce(
-    (closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    },
-    { offset: Number.NEGATIVE_INFINITY }
-  ).element;
-}
-
-/**
- * Get the data from to clicked Task
- * @param {number} id
- */
-async function openTask(id) {
-  let tasks = await getItem("tasks");
-  let task = tasks[id];
-  innerTaskPopUp(task);
-  innerPopUpFooter(id);
-  openTaskPopUp();
-}
-
-/**
- * Give getTaskPopUpHTMl the data and htmlid
- * @param {Array} task
- */
-function innerTaskPopUp(task) {
-  getTaskPopUpHTML("title", task.title);
-  getTaskPopUpHTML("date", task.date);
-  getTaskPopUpHTML("description", task.description);
-  getTaskPopUpPrioHTML("priority", task.priority);
-  getTaskPopUpSubtask(task.subtask, task.id);
-  //getTaskPopUpHTML('contact', task.contact);
-}
-
-/**
- * Render the Array in the PopUp
- * Checks if a Subtask is Already checked
- * @param {Array} subtaskArray - Array of Subtasks
- * @param {number} idTask - Index of the current Task
- */
-async function getTaskPopUpSubtask(subtaskArray, idTask) {
-  const subtakscon = document.getElementById("task-popup-subtasks");
-  let tasks = await getItem('tasks');
-  let currentTaskReadySubtasks = tasks[idTask].subtaskready;
-  if (subtaskArray.length > 0) {
-    subtakscon.innerHTML = ``;
-  }
-  for (let i = 0; i < subtaskArray.length; i++) {
-    const isChecked = currentTaskReadySubtasks.includes(subtaskArray[i]) ? 'checked' : ''; 
-    subtakscon.innerHTML += `<div><input id="popup-checkbox${i}" type="checkbox" ${isChecked} onclick="checkStatusSubtask(${i}, ${idTask})" placeholder="subtask"><label
-    class="popup-subtask" id="popup-subtask${i}" for="popup-checkbox">${subtaskArray[i]}</label></div>`;
-  }
-}
-
-
-/**
- * Check status + Register if a subtask is Ready ore not
- * @param {number} i - ID of the current Subtask
- */
-function checkStatusSubtask(i, idTask){
-  const checkbox = document.getElementById(`popup-checkbox${i}`);
-  const subtaskvalue = document.getElementById(`popup-subtask${i}`).innerHTML;
-  if(checkbox.checked){
-    updateCheckedSubtask(subtaskvalue, idTask, 'checked');
-  }else{
-    updateCheckedSubtask(subtaskvalue, idTask, 'unchecked');
-  }
-}
-
-/**
- * 
- * @param {string} subtaskvalue - Value from the checked Subtask
- * @param {number} idTask - Index from the current Task
- */
-async function updateCheckedSubtask(subtaskvalue, idTask, status){
-  let tasks = await getItem('tasks');
-  let currentTask = tasks[idTask].subtaskready;
-  if(status == 'checked'){
-    currentTask.push(subtaskvalue);
-  }
-  if(status == 'unchecked'){
-    const index = currentTask.indexOf(subtaskvalue);
-    if (index > -1) {
-      currentTask.splice(index, 1);
-    }
-  }
-  tasks[idTask].subtaskready = currentTask;
-  await setItem('tasks', tasks);
-  setBoards();
-}
-
-/**
- * Render the Footer including Delete and Edit buttons
- * @param {number} id - Of the current Task in the Array
- */
-function innerPopUpFooter(id) {
-  document.getElementById("popup-footer").innerHTML = ` 
-  <div class="popup-delete" onclick="deleteTask(${id})"><img class="popup-delete-img" src="./assets/img/deletepopup.png" alt="delete" onclick="deleteTask(${id})">Delete</div>
-  |
-  <div class="popup-edit" onclick="editTask(${id})"><img class="popup-edit-img" src="./assets/img/editpopup.png" alt="edit">Edit</div>`;
-}
-
-/**
- * Inner the data from the array in the PopUp
- * @param {String} htmlid - The HTML id="htmlid" from the object
- * @param {Array} task - The Array from the clicked Task
- */
-function getTaskPopUpHTML(htmlid, task) {
-  document.getElementById(`popup-${htmlid}`).innerHTML = task;
-}
-
-/**
- * Set Display to flex and add Slide In Animation class
- */
-function openTaskPopUp() {
-  const popupbackground = document.getElementById(
-    "desktop-task-popup-container"
-  );
-  const popupconatiner = document.getElementById("desktop-task-popup");
-  popupbackground.style.display = "flex";
-  popupconatiner.classList.remove("popup-slideout");
-  popupconatiner.classList.add("popup-slidein");
-}
-function getTaskPopUpPrioHTML(htmlid, task) {
-  document.getElementById(
-    `popup-${htmlid}`
-  ).innerHTML = `${task} <img class="popup-prio-img" id="popup-prio-img" src="./assets/img/prio${task}.png"
-  alt="priority">`;
-}
-
-/**
- * Set Display to none and add Slide Out Animation class
- */
-function closeTaskPopUp() {
-  setBoards();
-  const popupbackground = document.getElementById(
-    "desktop-task-popup-container"
-  );
-  const popupconatiner = document.getElementById("desktop-task-popup");
-  const subtakscon = document.getElementById("task-popup-subtasks");
-  subtakscon.innerHTML = '<div>There are no Subtaks</div>';
-  popupconatiner.classList.remove("popup-slidein");
-  popupconatiner.classList.add("popup-slideout");
-  setTimeout(() => {
-    popupbackground.style.display = "none";
-  }, 300);
-}
-
