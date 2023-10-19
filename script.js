@@ -98,7 +98,7 @@ async function setBoard(id) {
         `desktop-${id}`,
         task.id
       );
-      setSubtasksHTML(task.subtask, task.subtaskready.length);
+      setSubtasksHTML(task.subtask, task.subtaskready, task.id);
     });
   } else {
     inputEmptyHTML(id);
@@ -111,15 +111,25 @@ async function setBoard(id) {
  * @param {Array} subtask - Subtask Array
  * @param {Array} subtaskready - Subtask with the checked Subtasks
  */
-function setSubtasksHTML(subtask, subtaskready) {
+function setSubtasksHTML(subtask, subtaskready, id) {
   if(subtask.length > 0){
-    document.getElementById('task-subtasks').innerHTML = `
+    document.getElementById(`task-subtasks${id}`).innerHTML = `
     <div class="subtasks-progress></div>
-    <div class="task-subtasks-text" id="task-subtasks-text">${subtaskready}/${subtask.length} Subtasks</div>
+    <div class="task-subtasks-text" id="task-subtasks-text">${getSharedSubtasksCount(subtask, subtaskready)}/${subtask.length} Subtasks</div>
     `;
   }
 }
 
+/**
+ * Filter subtaskArray to only include subtasks that are also in subtaskReadyArray
+ * @param {Array} subtaskArray - Subtask Array
+ * @param {Array} subtaskReadyArray - Subtask with the checked Subtasks
+ * @returns 
+ */
+function getSharedSubtasksCount(subtaskArray, subtaskReadyArray) {
+  const sharedSubtasks = subtaskArray.filter(subtask => subtaskReadyArray.includes(subtask));
+  return sharedSubtasks.length;
+}
 
 /**
  * Give the Empty Container with the id the content and innner it in the Container
@@ -207,8 +217,6 @@ function setBoardHTML(
   prio,
   idcon,
   id,
-  subtask,
-  subtaskready
 ) {
   const todo = document.getElementById(idcon);
   todo.innerHTML += `
@@ -216,7 +224,7 @@ function setBoardHTML(
   <span class="category" id="category">${category}</span>
   <div class="task-heading" id="task-heading">${title}</div>
   <div class="task-description" id="task-description">${description}</div>
-  <div class="task-subtasks" id="task-subtasks">
+  <div class="task-subtasks" id="task-subtasks${id}">
   </div>
   <div class="task-footer" id="task-footer">
       <div class="task-profile" id="task-profile">
@@ -472,15 +480,15 @@ async function updateCheckedSubtask(subtaskvalue, idTask, status){
     currentTask.push(subtaskvalue);
   }
   if(status == 'unchecked'){
-    //Function that uncheck
+    const index = currentTask.indexOf(subtaskvalue);
+    if (index > -1) {
+      currentTask.splice(index, 1);
+    }
   }
   tasks[idTask].subtaskready = currentTask;
   await setItem('tasks', tasks);
-  console.log(currentTask)
+  setBoards();
 }
-
-
-
 
 /**
  * Render the Footer including Delete and Edit buttons
@@ -525,6 +533,7 @@ function getTaskPopUpPrioHTML(htmlid, task) {
  * Set Display to none and add Slide Out Animation class
  */
 function closeTaskPopUp() {
+  setBoards();
   const popupbackground = document.getElementById(
     "desktop-task-popup-container"
   );
