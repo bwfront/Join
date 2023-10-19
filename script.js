@@ -144,8 +144,11 @@ async function getItem(key) {
 /**
  * Sets the priority level based on the provided string.
  * @param {string} prio - The priority level string. Expected values: "urgent", "medium", "low".
+ * @param {Element} clickedButton
  */
-function getPrio(prio) {
+function getPrio(prio, clickedButton) {
+  const buttons = document.querySelectorAll(".btn-prio");
+
   switch (prio) {
     case "urgent":
       priority = "urgent";
@@ -159,6 +162,12 @@ function getPrio(prio) {
     default:
       priority = "low";
   }
+
+  buttons.forEach((button) => {
+    button.classList.remove("selected");
+  });
+
+  clickedButton.classList.add("selected");
 }
 
 /**

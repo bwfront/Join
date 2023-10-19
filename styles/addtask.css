@@ -57,6 +57,10 @@ body {
   margin-right: 7px;
 }
 
+.btn-prio.selected {
+  border: 3.5px solid rgb(41, 171, 226);
+}
+
 #bootstrap-datepicker {
   position: absolute;
   right: 2px;
