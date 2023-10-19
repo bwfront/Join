@@ -34,6 +34,9 @@ async function createTask() {
   const contact = document.getElementById("assigned_contact").value;
   const category = document.getElementById("task-category-input").value;
   let taskcon = "todo";
+  
+  
+
   const task = {
     id,
     title,
@@ -45,11 +48,17 @@ async function createTask() {
     taskcon,
     subtask,
   };
+
   tasks.push(task);
   await setItem("tasks", tasks);
   priority = "low";
-  subtask = [];
+
   document.getElementById("task-form").reset();
+
+  subtask = [];
+
+  const subTaskList = document.getElementById("subtask-container");
+  subTaskList.innerHTML = "";
 }
 
 /**
@@ -398,7 +407,7 @@ function innerTaskPopUp(task) {
 
 function getTaskPopUpSubtask(subtaskArray) {
   const subtakscon = document.getElementById("task-popup-subtasks");
-  if(subtaskArray.length > 0){
+  if (subtaskArray.length > 0) {
     subtakscon.innerHTML = ``;
   }
   for (let i = 0; i < subtaskArray.length; i++) {

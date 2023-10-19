@@ -34,7 +34,11 @@
       <h1>Add Task</h1>
     </div>
 
-    <form id = "task-form" class="add-task-main-content" onsubmit="createTask(); return false">
+    <form
+      id="task-form"
+      class="add-task-main-content"
+      onsubmit="createTask(); return false"
+    >
       <!-- LEFT SIDE -->
       <div class="add-task-left-side">
         <div class="add-task-card">
@@ -112,6 +116,7 @@
             <label for="prio">Prio</label>
             <div>
               <button
+                type="button"
                 class="btn btn-secondary btn-prio"
                 onclick="getPrio('urgent', this)"
               >
@@ -119,6 +124,7 @@
                 <img src="./assets/img/priourgent.png" />
               </button>
               <button
+                type="button"
                 class="btn btn-secondary btn-prio"
                 onclick="getPrio('medium', this)"
               >
@@ -126,6 +132,7 @@
                 <img src="./assets/img/priomedium.png" />
               </button>
               <button
+                type="button"
                 class="btn btn-secondary btn-prio"
                 onclick="getPrio('low', this)"
               >
