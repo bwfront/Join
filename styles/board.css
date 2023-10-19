@@ -103,6 +103,8 @@
   justify-content: space-between;
 }
 .board-plus {
+  cursor: pointer !important;
+  font-size: 24px;
   width: 24px;
   height: 24px;
   text-decoration: none;
@@ -442,10 +444,6 @@
     min-width: 100vw;
     margin-bottom: 10px;
   }
-  .board-plus {
-    cursor: pointer;
-    margin-right: 45px !important;
-  }
   .desktop-todo {
     padding-top: 7px;
     padding-left: 7px;
@@ -456,13 +454,11 @@
   .board-head-text {
     font-size: 27px;
   }
-  .board-plus {
-    width: 30px;
-    height: 30px;
-    font-size: 24px;
-  }
   .imprint-privacy-heading {
     font-size: 47px !important;
     font-weight: 700;
+  }
+  .board-plus{
+    margin-right: 45px !important;
   }
 }

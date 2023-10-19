@@ -4,10 +4,11 @@ body {
   font-family: "Inter", sans-serif !important;
   overflow-x: hidden;
 }
+
 .add-task-main-content {
   display: flex;
   justify-content: space-evenly;
-  margin-left: 328px;
+  margin-left: 240px;
 }
 
 .add-task-left-side {
@@ -189,11 +190,11 @@ body {
     }
   }
 
-  @media (max-width: 393.33px) {
+  @media (max-width: 460px) {
     .add-task-main-content {
       flex-direction: column;
       margin-top: -200px;
-      margin-left: 2px;
+      margin-left: 10px;
       margin-right: 10px;
     }
 
