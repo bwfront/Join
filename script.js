@@ -16,9 +16,9 @@ const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
  */
 let priority = "low";
 
-let startDragPosition;
-
 let subtask = [];
+let subtaskready = [];
+let taskcon = "todo";
 
 /**
  * Creates a task using input values from the DOM, then saves it to the remote storage.
@@ -33,9 +33,12 @@ async function createTask() {
   const date = document.getElementById("task-date-input").value;
   const contact = document.getElementById("assigned_contact").value;
   const category = document.getElementById("task-category-input").value;
+<<<<<<< HEAD
   let taskcon = "todo";
   let subtaskready = [];
 
+=======
+>>>>>>> 577560fed436d3c695a1ade72a193c96c91e6547
   const task = {
     id,
     title,
@@ -48,17 +51,11 @@ async function createTask() {
     subtask,
     subtaskready,
   };
-
   tasks.push(task);
   await setItem("tasks", tasks);
   priority = "low";
-
-  document.getElementById("task-form").reset();
-
   subtask = [];
-
-  const subTaskList = document.getElementById("subtask-container");
-  subTaskList.innerHTML = "";
+  document.getElementById("task-form").reset();
 }
 
 /**
@@ -242,19 +239,6 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
 }
 
 /**
- * Delete a task
- * * @param {number} id - Task ID.
- */
-
-async function deleteTask(id) {
-  const tasks = await getItem("tasks");
-  const updatedTasks = tasks.filter((task) => task.id !== id);
-  await setItem("tasks", updatedTasks);
-  setBoards();
-  closeTaskPopUp();
-}
-
-/**
  * this function adds a subtask
  */
 
@@ -282,7 +266,6 @@ function addSubTask() {
 /*
  * this function clears the inputs
  */
-
 function clearTask() {
   const titleInput = document.getElementById("task-title-input");
   const descriptionInput = document.getElementById("task-description-input");
@@ -299,6 +282,7 @@ function clearTask() {
   categoryInput.selectedIndex = 0;
   subtaskTitleInput.value = "";
   subtaskContainer.innerHTML = "";
+<<<<<<< HEAD
 }
 
 /**
@@ -552,3 +536,6 @@ function closeTaskPopUp() {
     popupbackground.style.display = "none";
   }, 300);
 }
+=======
+}
+>>>>>>> 577560fed436d3c695a1ade72a193c96c91e6547

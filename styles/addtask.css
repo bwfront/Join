@@ -70,7 +70,7 @@ body {
   position: absolute;
   position: absolute;
   right: 2px;
-  top: 325px;
+  top: 321px;
 }
 
 .required-field::before {
@@ -242,6 +242,11 @@ body {
     #subtask-icon {
       top: 359px;
     }
+  }
+}
+@media (max-width: 380px) {
+  .add-task-main-content {
+    min-height: 140vh;
   }
 }
 
