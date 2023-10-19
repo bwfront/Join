@@ -14,3 +14,18 @@
   }
 }
 /**ANIMATION FOR THE MAIN CONTENT END**/
+
+
+.primary_contact_btn{
+  display: flex;
+}
+
+.primary_contact_btn img{
+  position: absolute;
+ left: 200px;
+}
+
+.main-content-contacts{
+  
+
+}

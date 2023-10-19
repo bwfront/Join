@@ -13,16 +13,27 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="icon" href="assets/img/join-logo.png">
     <script src="script_include_html.js"></script>
+    <script src="js/contacts.js"></script>
+    <link rel="stylesheet" href="styles/contacts.css">
     <title>Join | Contacts</title>
 </head>
 
-<body onload="init('contacts')">
+<body onload="init()">
     <div w3-include-html="./assets/img/templates/desktop_template.html"></div>
     <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
 
-    <div class="main-content main-content-animation">
-        <!-- Main content goes here -->
-        <!-- Because the Fixed Side Bar -->
+    <div class="main-content-contacts">
+        
+            <div class = "primary_contact_btn">
+                <button class="btn btn-primary" onclick = "addNewContact()" style="background-color: #2a3647;">Add new contact</button>
+                <img src="./assets/img/person_add.png">
+
+            </div>
+
+            <article>
+                <div class="contact_list" id="contacts_container"></div>
+
+        </article>
 
     </div>
 </body>
