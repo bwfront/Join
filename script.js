@@ -14,9 +14,11 @@ const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
  * The priority level for the task. Default to 'unset'.
  * @type {string}
  */
-let priority = "unset";
+let priority = "low";
 
 let startDragPosition;
+
+let subtask = [];
 
 /**
  * Creates a task using input values from the DOM, then saves it to the remote storage.
@@ -41,11 +43,12 @@ async function createTask() {
     category,
     priority,
     taskcon,
+    subtask,
   };
   tasks.push(task);
   await setItem("tasks", tasks);
   priority = "low";
-
+  subtask = [];
   document.getElementById("task-form").reset();
 }
 
@@ -215,7 +218,9 @@ async function deleteTask(id) {
 
 function addSubTask() {
   let subTaskInput = document.getElementById("subtask-title-input").value;
-
+  if (subTaskInput !== "") {
+    subtask.push(subTaskInput);
+  }
   if (subTaskInput.trim() !== "") {
     const subTaskList = document.getElementById("subtask-container");
 
@@ -251,7 +256,6 @@ function clearTask() {
   assignedContact.selectedIndex = 0;
   categoryInput.selectedIndex = 0;
   subtaskTitleInput.value = "";
-
   subtaskContainer.innerHTML = "";
 }
 
@@ -388,8 +392,20 @@ function innerTaskPopUp(task) {
   getTaskPopUpHTML("date", task.date);
   getTaskPopUpHTML("description", task.description);
   getTaskPopUpPrioHTML("priority", task.priority);
+  getTaskPopUpSubtask(task.subtask);
   //getTaskPopUpHTML('contact', task.contact);
-  //getTaskPopUpHTML('subtask', task.subtask);
+}
+
+function getTaskPopUpSubtask(subtaskArray) {
+  const subtakscon = document.getElementById("task-popup-subtasks");
+  if(subtaskArray.length > 0){
+    subtakscon.innerHTML = ``;
+  }
+  for (let i = 0; i < subtaskArray.length; i++) {
+    //Function that mark them as Ready
+    subtakscon.innerHTML += `<div><input id="popup-checkbox" type="checkbox" placeholder="subtask"><label
+    class="popup-subtask" for="popup-checkbox"></label>${subtaskArray[i]}</label></div>`;
+  }
 }
 
 function innerPopUpFooter(id) {

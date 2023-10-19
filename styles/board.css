@@ -306,9 +306,9 @@
   font-size: 20px;
   margin-top: 24px;
 }
-.task-popup-subtasks {
+.task-popup-subtasks-content {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 .popup-slidein {
   animation-name: popupslidein;
