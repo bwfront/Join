@@ -34,6 +34,7 @@ async function createTask() {
   const contact = document.getElementById("assigned_contact").value;
   const category = document.getElementById("task-category-input").value;
   let taskcon = "todo";
+  let subtaskready = [];
   
   
 
@@ -47,6 +48,7 @@ async function createTask() {
     priority,
     taskcon,
     subtask,
+    subtaskready,
   };
 
   tasks.push(task);
@@ -105,11 +107,37 @@ async function setBoard(id) {
         `desktop-${id}`,
         task.id
       );
+      setSubtasksHTML(task.subtask, task.subtaskready, task.id);
     });
   } else {
     inputEmptyHTML(id);
   }
   dragLoader();
+}
+
+/**
+ * Checks if Subtask exist and Implement them
+ * @param {Array} subtask - Subtask Array
+ * @param {Array} subtaskready - Subtask with the checked Subtasks
+ */
+function setSubtasksHTML(subtask, subtaskready, id) {
+  if(subtask.length > 0){
+    document.getElementById(`task-subtasks${id}`).innerHTML = `
+    <div class="subtasks-progress></div>
+    <div class="task-subtasks-text" id="task-subtasks-text">${getSharedSubtasksCount(subtask, subtaskready)}/${subtask.length} Subtasks</div>
+    `;
+  }
+}
+
+/**
+ * Filter subtaskArray to only include subtasks that are also in subtaskReadyArray
+ * @param {Array} subtaskArray - Subtask Array
+ * @param {Array} subtaskReadyArray - Subtask with the checked Subtasks
+ * @returns 
+ */
+function getSharedSubtasksCount(subtaskArray, subtaskReadyArray) {
+  const sharedSubtasks = subtaskArray.filter(subtask => subtaskReadyArray.includes(subtask));
+  return sharedSubtasks.length;
 }
 
 /**
@@ -191,13 +219,22 @@ function getPrio(prio, clickedButton) {
  * @param {string} idcon - DOM element ID for the container.
  * @param {number} id - Task ID.
  */
-function setBoardHTML(category, title, description, prio, idcon, id) {
+function setBoardHTML(
+  category,
+  title,
+  description,
+  prio,
+  idcon,
+  id,
+) {
   const todo = document.getElementById(idcon);
   todo.innerHTML += `
   <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})" onclick="openTask(${id})">
   <span class="category" id="category">${category}</span>
   <div class="task-heading" id="task-heading">${title}</div>
   <div class="task-description" id="task-description">${description}</div>
+  <div class="task-subtasks" id="task-subtasks${id}">
+  </div>
   <div class="task-footer" id="task-footer">
       <div class="task-profile" id="task-profile">
           <div class="profile" id="profile">US</div>
@@ -401,22 +438,71 @@ function innerTaskPopUp(task) {
   getTaskPopUpHTML("date", task.date);
   getTaskPopUpHTML("description", task.description);
   getTaskPopUpPrioHTML("priority", task.priority);
-  getTaskPopUpSubtask(task.subtask);
+  getTaskPopUpSubtask(task.subtask, task.id);
   //getTaskPopUpHTML('contact', task.contact);
 }
 
-function getTaskPopUpSubtask(subtaskArray) {
+/**
+ * Render the Array in the PopUp
+ * Checks if a Subtask is Already checked
+ * @param {Array} subtaskArray - Array of Subtasks
+ * @param {number} idTask - Index of the current Task
+ */
+async function getTaskPopUpSubtask(subtaskArray, idTask) {
   const subtakscon = document.getElementById("task-popup-subtasks");
-  if (subtaskArray.length > 0) {
+  let tasks = await getItem('tasks');
+  let currentTaskReadySubtasks = tasks[idTask].subtaskready;
+  if  (subtaskArray.length > 0)  {
     subtakscon.innerHTML = ``;
   }
   for (let i = 0; i < subtaskArray.length; i++) {
-    //Function that mark them as Ready
-    subtakscon.innerHTML += `<div><input id="popup-checkbox" type="checkbox" placeholder="subtask"><label
-    class="popup-subtask" for="popup-checkbox"></label>${subtaskArray[i]}</label></div>`;
+    const isChecked = currentTaskReadySubtasks.includes(subtaskArray[i]) ? 'checked' : ''; 
+    subtakscon.innerHTML += `<div><input id="popup-checkbox${i}" type="checkbox" ${isChecked} onclick="checkStatusSubtask(${i}, ${idTask})" placeholder="subtask"><label
+    class="popup-subtask" id="popup-subtask${i}" for="popup-checkbox">${subtaskArray[i]}</label></div>`;
   }
 }
 
+
+/**
+ * Check status + Register if a subtask is Ready ore not
+ * @param {number} i - ID of the current Subtask
+ */
+function checkStatusSubtask(i, idTask){
+  const checkbox = document.getElementById(`popup-checkbox${i}`);
+  const subtaskvalue = document.getElementById(`popup-subtask${i}`).innerHTML;
+  if(checkbox.checked){
+    updateCheckedSubtask(subtaskvalue, idTask, 'checked');
+  }else{
+    updateCheckedSubtask(subtaskvalue, idTask, 'unchecked');
+  }
+}
+
+/**
+ * 
+ * @param {string} subtaskvalue - Value from the checked Subtask
+ * @param {number} idTask - Index from the current Task
+ */
+async function updateCheckedSubtask(subtaskvalue, idTask, status){
+  let tasks = await getItem('tasks');
+  let currentTask = tasks[idTask].subtaskready;
+  if(status == 'checked'){
+    currentTask.push(subtaskvalue);
+  }
+  if(status == 'unchecked'){
+    const index = currentTask.indexOf(subtaskvalue);
+    if (index > -1) {
+      currentTask.splice(index, 1);
+    }
+  }
+  tasks[idTask].subtaskready = currentTask;
+  await setItem('tasks', tasks);
+  setBoards();
+}
+
+/**
+ * Render the Footer including Delete and Edit buttons
+ * @param {number} id - Of the current Task in the Array
+ */
 function innerPopUpFooter(id) {
   document.getElementById("popup-footer").innerHTML = ` 
   <div class="popup-delete" onclick="deleteTask(${id})"><img class="popup-delete-img" src="./assets/img/deletepopup.png" alt="delete" onclick="deleteTask(${id})">Delete</div>
@@ -456,13 +542,17 @@ function getTaskPopUpPrioHTML(htmlid, task) {
  * Set Display to none and add Slide Out Animation class
  */
 function closeTaskPopUp() {
+  setBoards();
   const popupbackground = document.getElementById(
     "desktop-task-popup-container"
   );
   const popupconatiner = document.getElementById("desktop-task-popup");
+  const subtakscon = document.getElementById("task-popup-subtasks");
+  subtakscon.innerHTML = '<div>There are no Subtaks</div>';
   popupconatiner.classList.remove("popup-slidein");
   popupconatiner.classList.add("popup-slideout");
   setTimeout(() => {
     popupbackground.style.display = "none";
   }, 300);
 }
+
