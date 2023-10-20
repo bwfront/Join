@@ -14,7 +14,6 @@
   }
 }
 /**ANIMATION FOR THE MAIN CONTENT END**/
-
 .imprint-privacy-heading{
   font-size: 61px;
   font-weight: 700;
@@ -402,6 +401,7 @@
   border: solid #9e9e9e;
   font-size: 20px;
   resize: vertical;
+  min-height: 50px;
   max-height: 100px;
 }
 .form-control {
@@ -428,6 +428,11 @@
   background-color: white !important;
   color: black !important;
   width: 136px;
+}
+.btn:hover{
+  color: #ffffff !important;
+  background-color: #6a6a6a !important;
+  border: #eaeaea;
 }
 .btn-prio.selected {
   border: 3.5px solid rgb(41, 171, 226);
