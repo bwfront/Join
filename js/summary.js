@@ -24,10 +24,20 @@ let tasksInBoard;
 let tasksInProgress;
 let tasksInAwaitingFeedback;
 
+/**
+ * Initializes the summary by calling functions to fetch tasks and set counters.
+ */
+
 async function initSummary() {
   await getAllTasks('tasks');
   setTaskCounters();
 }
+
+/**
+ * Fetches tasks data from the server.
+ *
+ * @param {string} key - The key for the data to fetch.
+ */
 
 async function getAllTasks(key) {
   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
@@ -36,6 +46,9 @@ async function getAllTasks(key) {
   tasks = JSON.parse(json.data.value);
 }
 
+/**
+ * Sets counters for different task categories.
+ */
 function setTaskCounters() {
   setTodo();
   setTaskDone();
@@ -44,6 +57,10 @@ function setTaskCounters() {
   setTaskInProgress();
   setTaskAwaitingFeedback();
 }
+
+/**
+ * Sets the count of tasks in the 'todo' category and updates the DOM.
+ */
 
 function setTodo() {
   todo = 0;
@@ -56,6 +73,10 @@ function setTodo() {
 
   document.getElementById('tasks-todo').innerHTML = `${todo}`;
 }
+
+/**
+ * Checks and sets the count of urgent priority tasks, as well as upcoming deadlines.
+ */
 
 function checkAndSetPrio() {
   urgentTaskCounter = 0;
@@ -70,6 +91,10 @@ function checkAndSetPrio() {
   document.getElementById('urgent-task-counter').innerHTML = urgentTaskCounter;
 }
 
+/**
+ * Sets the count of tasks in the 'done' category and updates the DOM.
+ */
+
 function setTaskDone() {
   doneTasks = 0;
   for (let i = 0; i < tasks.length; i++) {
@@ -80,6 +105,10 @@ function setTaskDone() {
   }
   document.getElementById('done-task-counter').innerHTML = `${doneTasks}`;
 }
+
+/**
+ * Sets the upcoming deadline information based on the urgent tasks.
+ */
 
 function setUpcomingDeadline() {
   for (let i = 0; i < urgentTaskDate.length; i++) {
@@ -101,6 +130,10 @@ function setUpcomingDeadline() {
   }
 }
 
+/**
+ * Sets the count of tasks currently in the board and updates the DOM.
+ */
+
 function setTasksInBoard() {
   tasksInBoard = 0;
   for (let i = 0; i < tasks.length; i++) {
@@ -113,6 +146,10 @@ function setTasksInBoard() {
   document.getElementById('tasks-in-board').innerHTML = `${tasksInBoard}`;
 }
 
+/**
+ * Sets the count of tasks in progress and updates the DOM.
+ */
+
 function setTaskInProgress() {
   tasksInProgress = 0;
   for (let i = 0; i < tasks.length; i++) {
@@ -123,6 +160,10 @@ function setTaskInProgress() {
   }
   document.getElementById('tasks-in-progress').innerHTML = `${tasksInProgress}`;
 }
+
+/**
+ * Sets the count of tasks awaiting feedback and updates the DOM.
+ */
 
 function setTaskAwaitingFeedback() {
   tasksInAwaitingFeedback = 0;
