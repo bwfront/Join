@@ -13,13 +13,17 @@ const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
  * Global Variables for the different task counters
  *
  */
-
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 let tasks = [];
 let urgentTaskCounter;
+let urgentTaskDate = [];
+let deadline = [];
+let doneTasks;
 
 async function initSummary() {
   await getAllTasks('tasks');
   setTaskCounters();
+  setTaskDone();
 }
 
 async function getAllTasks(key) {
@@ -38,9 +42,38 @@ function checkAndSetPrio() {
   urgentTaskCounter = 0;
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
-    if (task['priority'] == 'urgent') {
+    if (task['priority'] == 'urgent' && task['taskcon'] != 'done') {
       urgentTaskCounter++;
+      urgentTaskDate.push(task['date']);
     }
   }
+  setUpcomingDeadline();
   document.getElementById('urgent-task-counter').innerHTML = urgentTaskCounter;
+}
+
+function setTaskDone() {
+  doneTasks = 0;
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i]['taskcon'];
+    if (task == ['done']) {
+      doneTasks++;
+    }
+  }
+  document.getElementById('done-task-counter').innerHTML = `${doneTasks}`;
+}
+
+function setUpcomingDeadline() {
+  //if (tasks[i]['priority'] != 'urgendt' || tasks[i]['taskcon'] != 'done')
+  for (let i = 0; i < urgentTaskDate.length; i++) {
+    const date = urgentTaskDate[i];
+    deadline.push(parseInt(date.replaceAll('-', '')));
+  }
+  let nextDeadlineAsString;
+  let nextDeadline = Math.min.apply(null, deadline);
+  nextDeadlineAsString = nextDeadline.toString();
+  let currentMonth = nextDeadlineAsString.substring(4, 6);
+  let monthNameAsString = MONTHS[currentMonth - 1];
+  let currentDay = nextDeadlineAsString.slice(-2);
+  let currentYear = nextDeadlineAsString.slice(0, 4);
+  document.getElementById('urgent-date-container').innerHTML = `${monthNameAsString} ${currentDay}, ${currentYear} `;
 }

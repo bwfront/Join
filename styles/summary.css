@@ -166,6 +166,13 @@ body {
   border-color: rgba(209, 209, 209, 1);
 }
 
+.string-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .today-container {
   display: flex;
   justify-content: center;
