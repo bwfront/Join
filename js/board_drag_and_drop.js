@@ -70,9 +70,15 @@ function dragDropFun(dragTasks, containers) {
   dragTasks.forEach((dragTask) => {
     dragTask.addEventListener("dragstart", () => {
       dragTask.classList.add("dragging");
+      containers.forEach(conatiner => {
+          conatiner.classList.add('container-bg')
+      });
     });
     dragTask.addEventListener("dragend", () => {
       dragTask.classList.remove("dragging");
+      containers.forEach(conatiner => {
+        conatiner.classList.remove('container-bg')
+    });
     });
   });
   containers.forEach((container) => {

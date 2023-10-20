@@ -15,12 +15,23 @@ async function openTask(id) {
  */
 function innerTaskPopUp(task) {
   getTaskPopUpHTML("title", task.title);
+  getTaskPopUpHTML("category", task.category);
+  categoryColorPopUp(task.category);
   getTaskPopUpHTML("date", task.date);
   getTaskPopUpHTML("description", task.description);
   getTaskPopUpPrioHTML("priority", task.priority);
   getTaskPopUpSubtask(task.subtask, task.id);
   //getTaskPopUpHTML('contact', task.contact);
 }
+
+/**
+ * Style the Task PopUp Category Color
+ * @param {String} category - The current Category
+ */
+function categoryColorPopUp(category){
+    document.getElementById(`popup-category`).style.backgroundColor = categoryColor(category);
+}
+
 /**
  * Inner the data from the array in the PopUp
  * @param {String} htmlid - The HTML id="htmlid" from the object
@@ -208,16 +219,26 @@ function openTaskPopUp() {
     "desktop-task-popup-container"
   );
   const popupconatiner = document.getElementById("desktop-task-popup");
+  const body = document.getElementById('body');
+  body.classList.add('no-scroll');
   popupbackground.style.display = "flex";
   popupconatiner.classList.remove("popup-slideout");
   popupconatiner.classList.add("popup-slidein");
+  
 }
+
+/**
+ * 
+ * @param {string} htmlid - The HTML ID
+ * @param {*} task - The Priority from the Task
+ */
 function getTaskPopUpPrioHTML(htmlid, task) {
   document.getElementById(
     `popup-${htmlid}`
   ).innerHTML = `${task} <img class="popup-prio-img" id="popup-prio-img" src="./assets/img/prio${task}.png"
     alt="priority">`;
 }
+
 /**
  * Set Display to none and add Slide Out Animation class
  */
@@ -234,11 +255,20 @@ function closeTaskPopUp() {
   setTimeout(() => {
     popupbackground.style.display = "none";
   }, 300);
-  const popup = document.getElementById("task-popup");
-  const editpopup = document.getElementById("edit-task-container");
-  popup.style.display = "unset";
-  editpopup.style.display = "none";
-  document.getElementById("prio-urgent").classList.remove("selected");
-  document.getElementById("prio-medium").classList.remove("selected");
-  document.getElementById("prio-low").classList.remove("selected");
+  closeTaskPopUpRemove();
+}
+
+/**
+ * Remove / Hide Elements
+ */
+function closeTaskPopUpRemove(){
+    const popup = document.getElementById("task-popup");
+    const editpopup = document.getElementById("edit-task-container");
+    popup.style.display = "unset";
+    editpopup.style.display = "none";
+    const body = document.getElementById('body');
+    body.classList.remove('no-scroll');
+    document.getElementById("prio-urgent").classList.remove("selected");
+    document.getElementById("prio-medium").classList.remove("selected");
+    document.getElementById("prio-low").classList.remove("selected");
 }

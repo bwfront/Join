@@ -203,7 +203,7 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
   const todo = document.getElementById(idcon);
   todo.innerHTML += `
   <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})" onclick="openTask(${id})">
-  <span class="category" id="category">${category}</span>
+  <span class="category" id="category" style="background-color: ${categoryColor(category)}">${category}</span>
   <div class="task-heading" id="task-heading">${title}</div>
   <div class="task-description" id="task-description">${description}</div>
   <div class="task-subtasks" id="task-subtasks${id}">
@@ -219,9 +219,26 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
 }
 
 /**
+ * Return the Color for each Category
+ * @param {String} category - Categeroy of the Task
+ * @returns - Return the HEX Color Code
+ */
+function categoryColor(category){
+  switch(category){
+    case "Sales":
+      return '#4B7CCC';
+    case "Media":
+      return '#858D99';
+    case "Marketing":
+      return '#FF8658';
+    case "Design":
+      return '#CC5948';
+  }
+}
+
+/**
  * this function adds a subtask
  */
-
 function addSubTask() {
   let subTaskInput = document.getElementById('subtask-title-input').value;
   if (subTaskInput !== '') {

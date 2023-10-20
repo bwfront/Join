@@ -21,7 +21,7 @@
     <title>Join | Board</title>
 </head>
 
-<body onload="init('board'); setBoards();">
+<body onload="init('board'); setBoards();" id="body">
     <div w3-include-html="./assets/img/templates/desktop_template.html"></div>
     <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
     <div class="main-content main-content-animation maxwidthboard">
@@ -93,14 +93,14 @@
         <div id="desktop-task-popup" class="desktop-task-popup">
             <div class="task-popup" id="task-popup">
                 <div class="task-popup-head">
-                    <div class="task-popup-head-category" id="popup-category">Design</div>
+                    <div class="task-popup-head-category" id="popup-category"></div>
                     <div class="task-popup-head-close" onclick="closeTaskPopUp()"><img src="./assets/img/closepopup.png"
                             alt="close"></div>
                 </div>
                 <div class="task-popup-content-conainer">
-                    <div class="task-popup-heading" id="popup-title">DAS IST EINE ÜBERSCHRIFFT</div>
+                    <div class="task-popup-heading" id="popup-title">not found</div>
                     <div class="task-popup-content">
-                        <div class="task-popup-description" id="popup-description">Das ist eine beschreibung der Task
+                        <div class="task-popup-description" id="popup-description">not found
                         </div>
                         <div class="task-popup-date-conatiner">
                             <div class="task-popup-date">Due Date:
