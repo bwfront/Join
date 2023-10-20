@@ -26,7 +26,7 @@ async function login() {
     email: email.value,
     password: password.value,
   });
-  checkAccount('user');
+  checkAccount('users');
 }
 
 async function checkAccount(key) {
