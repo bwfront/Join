@@ -19,11 +19,14 @@ let urgentTaskCounter;
 let urgentTaskDate = [];
 let deadline = [];
 let doneTasks;
+let todo;
+let tasksInBoard;
+let tasksInProgress;
+let tasksInAwaitingFeedback;
 
 async function initSummary() {
   await getAllTasks('tasks');
   setTaskCounters();
-  setTaskDone();
 }
 
 async function getAllTasks(key) {
@@ -34,8 +37,24 @@ async function getAllTasks(key) {
 }
 
 function setTaskCounters() {
+  setTodo();
+  setTaskDone();
   checkAndSetPrio();
-  document.getElementById('tasks-todo').innerHTML = tasks.length;
+  setTasksInBoard();
+  setTaskInProgress();
+  setTaskAwaitingFeedback();
+}
+
+function setTodo() {
+  todo = 0;
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    if (task['taskcon'] == 'todo') {
+      todo++;
+    }
+  }
+
+  document.getElementById('tasks-todo').innerHTML = `${todo}`;
 }
 
 function checkAndSetPrio() {
@@ -63,7 +82,6 @@ function setTaskDone() {
 }
 
 function setUpcomingDeadline() {
-  //if (tasks[i]['priority'] != 'urgendt' || tasks[i]['taskcon'] != 'done')
   for (let i = 0; i < urgentTaskDate.length; i++) {
     const date = urgentTaskDate[i];
     deadline.push(parseInt(date.replaceAll('-', '')));
@@ -75,5 +93,44 @@ function setUpcomingDeadline() {
   let monthNameAsString = MONTHS[currentMonth - 1];
   let currentDay = nextDeadlineAsString.slice(-2);
   let currentYear = nextDeadlineAsString.slice(0, 4);
-  document.getElementById('urgent-date-container').innerHTML = `${monthNameAsString} ${currentDay}, ${currentYear} `;
+  let container = document.getElementById('urgent-date-container');
+  if (monthNameAsString == undefined) {
+    container.innerHTML = ``;
+  } else {
+    container.innerHTML = `${monthNameAsString} ${currentDay}, ${currentYear} `;
+  }
+}
+
+function setTasksInBoard() {
+  tasksInBoard = 0;
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i]['taskcon'];
+    if (task == 'done') {
+    } else {
+      tasksInBoard++;
+    }
+  }
+  document.getElementById('tasks-in-board').innerHTML = `${tasksInBoard}`;
+}
+
+function setTaskInProgress() {
+  tasksInProgress = 0;
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i]['taskcon'];
+    if (task == 'inprogress') {
+      tasksInProgress++;
+    }
+  }
+  document.getElementById('tasks-in-progress').innerHTML = `${tasksInProgress}`;
+}
+
+function setTaskAwaitingFeedback() {
+  tasksInAwaitingFeedback = 0;
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i]['taskcon'];
+    if (task == 'awaitfeedback') {
+      tasksInAwaitingFeedback++;
+    }
+  }
+  document.getElementById('tasks-await-feedback').innerHTML = `${tasksInAwaitingFeedback}`;
 }
