@@ -59,7 +59,7 @@
             <div class="desktop-board-todo">
                 <div class="todo-head">
                     <div class="board-head-text">To do</div>
-                    <div class="board-plus" id="board-plus" onclick="changeInputContainer('todo')">+</div>
+                    <div class="board-plus" id="board" onclick="changeInputContainer('todo')">+</div>
                 </div>
                 <div class="desktop-todo" id="desktop-todo" ondrop="moveTo('todo')">
                 </div>
@@ -91,45 +91,120 @@
     </div>
     <div id="desktop-task-popup-container" class="desktop-task-popup-container">
         <div id="desktop-task-popup" class="desktop-task-popup">
-            <div class="task-popup-head">
-                <div class="task-popup-head-category" id="popup-category">Design</div>
-                <div class="task-popup-head-close" onclick="closeTaskPopUp()"><img src="./assets/img/closepopup.png"
-                        alt="close"></div>
+            <div class="task-popup" id="task-popup">
+                <div class="task-popup-head">
+                    <div class="task-popup-head-category" id="popup-category">Design</div>
+                    <div class="task-popup-head-close" onclick="closeTaskPopUp()"><img src="./assets/img/closepopup.png"
+                            alt="close"></div>
+                </div>
+                <div class="task-popup-content-conainer">
+                    <div class="task-popup-heading" id="popup-title">DAS IST EINE ÜBERSCHRIFFT</div>
+                    <div class="task-popup-content">
+                        <div class="task-popup-description" id="popup-description">Das ist eine beschreibung der Task
+                        </div>
+                        <div class="task-popup-date-conatiner">
+                            <div class="task-popup-date">Due Date:
+                                <div id="popup-date">10/05/2023</div>
+                            </div>
+                        </div>
+                        <div class="task-popup-priority-conatiner">
+                            <div class="task-popup-priority">Priority:
+                                <div id="popup-priority">Medium <img class="popup-prio-img" id="popup-prio-img" src=""
+                                        alt="priority"></div>
+                            </div>
+                        </div>
+                        <div class="task-popup-contact-conatiner">
+                            <div class="task-popup-contact">Assigned To:</div>
+                            <div class="popup-profile" id="task-profile">
+                                <div class="profile" id="popup-profile">BW</div>
+                                <div class="popup-contact-name">Bennet Witczak</div>
+                            </div>
+                            <div class="popup-profile" id="task-profile">
+                                <div class="profile" id="popup-profile">MM</div>
+                                <div class="popup-contact-name">Max Mustermann</div>
+                            </div>
+                        </div>
+                        <div class="task-popup-subtask-conatiner">
+                            <div class="task-popup-subtask">Subtasks:</div>
+                            <div class="task-popup-subtasks-content" id="task-popup-subtasks">
+                                <div>There are no Subtaks</div>
+                            </div>
+                        </div>
+                        <div class="popup-footer" id="popup-footer">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="task-popup-content-conainer">
-                <div class="task-popup-heading" id="popup-title">DAS IST EINE ÜBERSCHRIFFT</div>
-                <div class="task-popup-content">
-                    <div class="task-popup-description" id="popup-description">Das ist eine beschreibung der Task</div>
-                    <div class="task-popup-date-conatiner">
-                        <div class="task-popup-date">Due Date:
-                            <div id="popup-date">10/05/2023</div>
-                        </div>
+            <div class="edit-task-container" id="edit-task-container">
+                <div class="task-popup-head">
+                    <div></div>
+                    <div class="task-popup-head-close" onclick="closeTaskPopUp()"><img src="./assets/img/closepopup.png"
+                            alt="close"></div>
+                </div>
+                <div class="edit-title">
+                    <div class="edit-text">Title</div>
+                    <input class="edit-input" placeholder="Enter a title" required></input>
+                </div>
+                <div class="edit-title">
+                    <div class="edit-text">Description</div>
+                    <textarea class="edit-input" placeholder="Enter a Description" required></textarea>
+                </div>
+                <div class="edit-title">
+                    <div class="edit-text">Due Date //current date</div>
+                    <input class="form-control" type="date" id="task-date-input" placeholder="dd/mm/yyyy"
+                        min="2023-01-01" max="2025-12-31" required />
+                </div>
+                <div class="edit-title">
+                    <div class="edit-text">Priority //Curent Prio</div>
+                    <div class="prio-button">
+                        <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('urgent', this)">
+                            Urgent
+                            <img src="./assets/img/priourgent.png" />
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('medium', this)">
+                            Medium
+                            <img src="./assets/img/priomedium.png" />
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('low', this)">
+                            Low
+                            <img src="./assets/img/priolow.png" />
+                        </button>
                     </div>
-                    <div class="task-popup-priority-conatiner">
-                        <div class="task-popup-priority">Priority:
-                            <div id="popup-priority">Medium <img class="popup-prio-img" id="popup-prio-img" src=""
-                                    alt="priority"></div>
-                        </div>
+                </div>
+                <div class="edit-title">
+                    <div class="edit-text">Category</div>
+                    <select required class="form-control" style="color: black; font-weight: 400"
+                        id="task-category-input">
+                        <option value="" disabled selected class="form-control option d-none" id="edit-category">
+                            Current Value
+                        </option>
+                        <option value="Sales">Sales</option>
+                        <option value="Media">Media</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Design">Design</option>
+                    </select>
+                </div>
+                <div class="edit-title">
+                    <div class="edit-text">Contact</div>
+                    <select class="form-control" id="assigned_contact" style="color: black; font-weight: 400">
+                        <option value="" disabled selected class="form-control option d-none" id="edit-contact">
+                            Current Contact
+                        </option>
+                        <option value="contact1">contact 1</option>
+                        <option value="contact2">contact 2</option>
+                        <option value="contact3">contact 3</option>
+                        <option value="contact4">contact 4</option>
+                    </select>
+                </div>
+                <div class="edit-title">
+                    <div class="edit-text">Subtasks</div>
+                    <div class="edit-subtask">
+                        <input class="form-control" type="text" placeholder="Add a new subtask"
+                            id="subtask-title-input" />
+                        <img id="subtask-icon" onclick="addSubTask()" style="cursor: pointer"
+                            src="./assets/img/Subtasks icons11.png" />
                     </div>
-                    <div class="task-popup-contact-conatiner">
-                        <div class="task-popup-contact">Assigned To:</div>
-                        <div class="popup-profile" id="task-profile">
-                            <div class="profile" id="popup-profile">BW</div>
-                            <div class="popup-contact-name">Bennet Witczak</div>
-                        </div>
-                        <div class="popup-profile" id="task-profile">
-                            <div class="profile" id="popup-profile">MM</div>
-                            <div class="popup-contact-name">Max Mustermann</div>
-                        </div>
-                    </div>
-                    <div class="task-popup-subtask-conatiner">
-                        <div class="task-popup-subtask">Subtasks:</div>
-                        <div class="task-popup-subtasks-content" id="task-popup-subtasks">
-                            <div>There are no Subtaks</div>
-                        </div>
-                    </div>
-                    <div class="popup-footer" id="popup-footer">
-                    </div>
+                    <div id="edit-subtask-container">Current Subtasks</div>
                 </div>
             </div>
         </div>
