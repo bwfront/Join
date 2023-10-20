@@ -277,6 +277,6 @@ function clearTask() {
   dateInput.value = '';
   assignedContact.selectedIndex = 0;
   categoryInput.selectedIndex = 0;
-  subtaskTitleInput.value = "";
-  subtaskContainer.innerHTML = "";
+  subtaskTitleInput.value = '';
+  subtaskContainer.innerHTML = '';
 }

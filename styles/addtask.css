@@ -1,7 +1,22 @@
 /* ADD TASK DESKTOP START*/
+.main-content-animation {
+  animation: fadein 225ms;
+  animation-fill-mode: forwards;
+}
+@keyframes fadein {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 body {
   background-color: #f6f7f8;
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   overflow-x: hidden;
 }
 .add-task-main-content {
@@ -74,7 +89,7 @@ body {
 }
 
 .required-field::before {
-  content: "*";
+  content: '*';
   color: red;
 }
 .form-control option.d-none {
@@ -104,7 +119,7 @@ body {
   text-transform: capitalize;
 }
 
-.subtask-list input[type="checkbox"] {
+.subtask-list input[type='checkbox'] {
   margin-right: 5px;
 }
 
