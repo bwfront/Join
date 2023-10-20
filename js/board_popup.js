@@ -132,6 +132,30 @@ async function deleteTask(id) {
   }
 
 /**
+ * Edit a task
+ * * @param {number} id - Task ID.
+ */
+async function editTask(id) {
+    const popup = document.getElementById('task-popup');
+    const editpopup = document.getElementById('edit-task-container');
+    popup.style.display = 'none';
+    editpopup.style.display = 'unset';
+
+
+
+    const tasks = await getItem("tasks");
+    const selectTask = tasks[id];
+    console.log(tasks);
+
+    
+    
+    
+    
+    //await setItem("tasks", updatedTasks);
+
+  }
+
+/**
  * Set Display to flex and add Slide In Animation class
  */
 function openTaskPopUp() {
@@ -165,4 +189,8 @@ function closeTaskPopUp() {
   setTimeout(() => {
     popupbackground.style.display = "none";
   }, 300);
+  const popup = document.getElementById('task-popup');
+  const editpopup = document.getElementById('edit-task-container');
+  popup.style.display = 'unset';
+  editpopup.style.display = 'none';
 }

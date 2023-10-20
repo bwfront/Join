@@ -28,11 +28,22 @@ let taskcon = 'todo';
 async function createTask() {
   const tasks = (await getItem('tasks')) || [];
   const id = tasks.length;
+<<<<<<< HEAD
   const title = document.getElementById('task-title-input').value;
   const description = document.getElementById('task-description-input').value;
   const date = document.getElementById('task-date-input').value;
   const contact = document.getElementById('assigned_contact').value;
   const category = document.getElementById('task-category-input').value;
+=======
+  const title = document.getElementById("task-title-input").value;
+  const description = document.getElementById("task-description-input").value;
+  const date = document.getElementById("task-date-input").value;
+  const contact = document.getElementById("assigned_contact").value;
+  const category = document.getElementById("task-category-input").value;
+  let taskcon = "todo";
+  let subtaskready = [];
+
+>>>>>>> 5f1d8ac4d8c1885e5b1eb23dc5ae9b34665f4e54
   const task = {
     id,
     title,
@@ -260,6 +271,11 @@ function clearTask() {
   dateInput.value = '';
   assignedContact.selectedIndex = 0;
   categoryInput.selectedIndex = 0;
+<<<<<<< HEAD
   subtaskTitleInput.value = '';
   subtaskContainer.innerHTML = '';
+=======
+  subtaskTitleInput.value = "";
+  subtaskContainer.innerHTML = "";
+>>>>>>> 5f1d8ac4d8c1885e5b1eb23dc5ae9b34665f4e54
 }
