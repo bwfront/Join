@@ -33,9 +33,6 @@ async function createTask() {
   const date = document.getElementById('task-date-input').value;
   const contact = document.getElementById('assigned_contact').value;
   const category = document.getElementById('task-category-input').value;
-  let taskcon = 'todo';
-  let subtaskready = [];
-
   const task = {
     id,
     title,

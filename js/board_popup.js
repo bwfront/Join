@@ -124,36 +124,81 @@ function innerPopUpFooter(id) {
  * * @param {number} id - Task ID.
  */
 async function deleteTask(id) {
-    const tasks = await getItem("tasks");
-    const updatedTasks = tasks.filter((task) => task.id !== id);
-    await setItem("tasks", updatedTasks);
-    setBoards();
-    closeTaskPopUp();
-  }
+  const tasks = await getItem("tasks");
+  const updatedTasks = tasks.filter((task) => task.id !== id);
+  await setItem("tasks", updatedTasks);
+  setBoards();
+  closeTaskPopUp();
+}
 
 /**
- * Edit a task
+ * Inital Edit task
  * * @param {number} id - Task ID.
  */
-async function editTask(id) {
-    const popup = document.getElementById('task-popup');
-    const editpopup = document.getElementById('edit-task-container');
-    popup.style.display = 'none';
-    editpopup.style.display = 'unset';
+function editTask(id) {
+  const popup = document.getElementById("task-popup");
+  const editpopup = document.getElementById("edit-task-container");
+  popup.style.display = "none";
+  editpopup.style.display = "unset";
+  getEditValues(id);
+}
 
+/**
+ * Load the Task array and get the Elements ID
+ * @param {Number} id
+ */
+async function getEditValues(id) {
+  const tasks = await getItem("tasks");
+  const selectTask = tasks[id];
+  console.log(selectTask);
+  const title = document.getElementById("edit-title");
+  const description = document.getElementById("edit-description");
+  const date = document.getElementById("task-date-input");
+  const prio = document.getElementById(`prio-${selectTask.priority}`);
+  const category = document.getElementById("edit-category");
+  const categoryselected = document.getElementById("task-category-input");
+  const contact = document.getElementById("edit-contact");
+  const contactselected = document.getElementById("assigned_contact");
+  const subtasks = document.getElementById("edit-subtask-container");
+  const elementid = {
+    title,
+    description,
+    date,
+    prio,
+    category,
+    categoryselected,
+    contact,
+    contactselected,
+    subtasks,
+  };
+  innerEditValues(elementid, selectTask);
+}
 
-
-    const tasks = await getItem("tasks");
-    const selectTask = tasks[id];
-    console.log(tasks);
-
-    
-    
-    
-    
-    //await setItem("tasks", updatedTasks);
-
+/**
+ * Inner the Data from getEditValues
+ * @param {Object} elementid - The Element ID in the HTML Code
+ * @param {Array} selectTask - The Array from the current Selected Task
+ */
+function innerEditValues(elementid, selectTask) {
+  elementid.title.value = selectTask.title;
+  elementid.description.innerHTML = selectTask.description;
+  elementid.date.value = selectTask.date;
+  elementid.prio.classList.add("selected");
+  elementid.category.innerHTML = selectTask.category;
+  elementid.categoryselected.value = selectTask.category;
+  elementid.contact.innerHTML = selectTask.contact;
+  elementid.contactselected.value = selectTask.contact;
+  if (selectTask.subtask) {
+    elementid.subtasks.innerHTML = ``;
+    selectTask.subtask.forEach((element) => {
+      elementid.subtasks.innerHTML += `<li>${element}</li>`;
+    });
+  } else {
+    elementid.subtasks.innerHTML += `There are no Subtaks`;
   }
+}
+
+async function setEditValue() {}
 
 /**
  * Set Display to flex and add Slide In Animation class
@@ -189,8 +234,11 @@ function closeTaskPopUp() {
   setTimeout(() => {
     popupbackground.style.display = "none";
   }, 300);
-  const popup = document.getElementById('task-popup');
-  const editpopup = document.getElementById('edit-task-container');
-  popup.style.display = 'unset';
-  editpopup.style.display = 'none';
+  const popup = document.getElementById("task-popup");
+  const editpopup = document.getElementById("edit-task-container");
+  popup.style.display = "unset";
+  editpopup.style.display = "none";
+  document.getElementById("prio-urgent").classList.remove("selected");
+  document.getElementById("prio-medium").classList.remove("selected");
+  document.getElementById("prio-low").classList.remove("selected");
 }

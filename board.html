@@ -143,29 +143,29 @@
                 </div>
                 <div class="edit-title">
                     <div class="edit-text">Title</div>
-                    <input class="edit-input" placeholder="Enter a title" required></input>
+                    <input class="edit-input" id="edit-title" placeholder="Enter a title" required></input>
                 </div>
                 <div class="edit-title">
                     <div class="edit-text">Description</div>
-                    <textarea class="edit-input" placeholder="Enter a Description" required></textarea>
+                    <textarea class="edit-input" placeholder="Enter a Description" required id="edit-description"></textarea>
                 </div>
                 <div class="edit-title">
-                    <div class="edit-text">Due Date //current date</div>
+                    <div class="edit-text">Due Date</div>
                     <input class="form-control" type="date" id="task-date-input" placeholder="dd/mm/yyyy"
                         min="2023-01-01" max="2025-12-31" required />
                 </div>
                 <div class="edit-title">
-                    <div class="edit-text">Priority //Curent Prio</div>
+                    <div class="edit-text">Priority</div>
                     <div class="prio-button">
-                        <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('urgent', this)">
+                        <button type="button" class="btn btn-secondary btn-prio" id="prio-urgent" onclick="getPrio('urgent', this)">
                             Urgent
                             <img src="./assets/img/priourgent.png" />
                         </button>
-                        <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('medium', this)">
+                        <button type="button" class="btn btn-secondary btn-prio" id="prio-medium" onclick="getPrio('medium', this)">
                             Medium
                             <img src="./assets/img/priomedium.png" />
                         </button>
-                        <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('low', this)">
+                        <button type="button" class="btn btn-secondary btn-prio" id="prio-low" onclick="getPrio('low', this)">
                             Low
                             <img src="./assets/img/priolow.png" />
                         </button>
@@ -204,7 +204,7 @@
                         <img id="subtask-icon" onclick="addSubTask()" style="cursor: pointer"
                             src="./assets/img/Subtasks icons11.png" />
                     </div>
-                    <div id="edit-subtask-container">Current Subtasks</div>
+                    <div id="edit-subtask-container"></div>
                 </div>
             </div>
         </div>
