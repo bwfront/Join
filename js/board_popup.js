@@ -7,6 +7,8 @@ let currentTaskEdit;
  */
 let elementid = {};
 
+let prioEdit;
+let currenttaskcon;
 /**
  * current subtasksEdit array
  */
@@ -210,6 +212,8 @@ async function getEditValues(id) {
  * @param {Array} selectTask - The Array from the current Selected Task
  */
 function innerEditValues(elementid, selectTask) {
+  prioEdit = selectTask.priority;
+  currenttaskcon = selectTask.taskcon;
   elementid.title.value = selectTask.title;
   elementid.description.innerHTML = selectTask.description;
   elementid.date.value = selectTask.date;
@@ -229,17 +233,17 @@ function innerEditValues(elementid, selectTask) {
 }
 
 async function setEditValue() {
-  let subtask = [];
-  let subtaskready = [];
-
   let selecttasks = await getItem("tasks");
-
   let title = elementid.title.value;
   let description = elementid.description.value;
   let date = elementid.date.value;
-
   let id = currentTaskEdit;
-  let priority = "low";
+  let priority = prioEdit;
+  let taskcon = currenttaskcon;
+
+  //Implement TODO
+  let subtask = [];
+  let subtaskready = [];
   let contact = elementid.contact.innerHTML;
   let category = elementid.category.innerHTML;
 
@@ -256,7 +260,7 @@ async function setEditValue() {
     subtaskready,
   };
 
-  let taskIndex = selecttasks.findIndex(task => task.id === currentTaskEdit);
+  let taskIndex = selecttasks.findIndex((task) => task.id === currentTaskEdit);
   selecttasks[taskIndex] = currentEditValues;
   setItem("tasks", selecttasks);
   closeTaskPopUp();

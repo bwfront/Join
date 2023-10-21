@@ -204,12 +204,15 @@ function getPrio(prio, clickedButton) {
   switch (prio) {
     case "urgent":
       priority = "urgent";
+      prioEdit = "urgent";
       break;
     case "medium":
       priority = "medium";
+      prioEdit = "medium";
       break;
     case "low":
       priority = "low";
+      prioEdit = "low";
       break;
     default:
       priority = "low";
