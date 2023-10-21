@@ -181,7 +181,7 @@ function setTaskAwaitingFeedback() {
 
 async function getUserNameForGreeting() {
   let currentUserEmail = localStorage.getItem('email');
-  await getItem('users');
+  await getData('users');
   //console.log(currentUserEmail);
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
@@ -192,7 +192,7 @@ async function getUserNameForGreeting() {
   }
 }
 
-async function getItem(key) {
+async function getData(key) {
   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
   let response = await fetch(url);
   let json = await response.json();

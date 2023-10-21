@@ -4,7 +4,7 @@ body {
 }
 
 /* Heading Imprint and Privacy */
-.imprint-privacy-heading{
+.imprint-privacy-heading {
   font-size: 61px;
 }
 
@@ -17,7 +17,7 @@ body {
   /*width: 37px;
   height: 37px;*/
 }
-.back-button:hover{
+.back-button:hover {
   background-color: rgb(228, 228, 228);
   border-radius: 20px;
   padding: 1px;
@@ -30,3 +30,21 @@ body {
 }
 
 /**PRIVACY POLICY END **/
+
+/**HELP START**/
+.main-content-animation {
+  animation: fadein 225ms;
+  animation-fill-mode: forwards;
+}
+@keyframes fadein {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/**HELP END**/
