@@ -29,7 +29,8 @@ function setUserInitials() {
   let name = localStorage.getItem('name');
   let initials = name.slice(0, 2);
   let uppercaseInitials = initials.toUpperCase();
-  document.querySelector("[id='initials-user']").innerHTML = `${uppercaseInitials}`;
+  document.querySelector("[id='initials-user']").innerHTML = `${uppercaseInitials}`; // Dekstop Navbar
+  document.querySelector("[id='initial-user-mobile']").innerHTML = `${uppercaseInitials}`; // Mobile Navbar
   //document.getElementById('initials-user').innerHTML = `${uppercaseInitials}`;
 }
 

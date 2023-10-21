@@ -380,3 +380,4 @@ function closeTaskPopUpRemove() {
   elementid = {};
   subtaskEdit = [];
 }
+
