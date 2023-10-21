@@ -18,14 +18,14 @@ const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
  * KEY = 'user' for fetching users
  * JUST FOR TEST
  */
-let account = []; // current login input onsubmit = email + password // This need to be checked
+let currentLogin; // current login input onsubmit = email + password // This need to be checked
 let allUsers = [];
 
 async function login() {
-  account.push({
+  currentLogin = {
     email: email.value,
     password: password.value,
-  });
+  };
   checkAccount('users');
 }
 
@@ -33,10 +33,18 @@ async function checkAccount(key) {
   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
   const response = await fetch(url);
   let json = await response.json();
-  allUsers = json.data.value;
+  allUsers = JSON.parse(json.data.value);
+  checkAccountExists();
 }
 
-/*async function setItem(key, value) {
-  const payload = { key, value, token: STORAGE_TOKEN };
-  return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) }).then((res) => res.json());
-}*/
+function checkAccountExists() {
+  for (let i = 0; i < allUsers.length; i++) {
+    const user = allUsers[i];
+
+    if (currentLogin.password == user['password'] && user['email'] == currentLogin.email) {
+      location.href = 'summary.html';
+    }
+  }
+  alert('Account not found, please try again.');
+  console.log('Account not found');
+}
