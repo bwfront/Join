@@ -24,6 +24,8 @@ let tasksInBoard;
 let tasksInProgress;
 let tasksInAwaitingFeedback;
 let users = [];
+let today = new Date();
+let hour = today.getHours();
 
 /**
  * Initializes the summary by calling functions to fetch tasks and set counters.
@@ -34,6 +36,7 @@ async function initSummary() {
   await setTaskCounters();
   await getUserNameForGreeting();
   setUserInitials();
+  setGreetFormula();
 }
 
 /**
@@ -199,9 +202,15 @@ async function getData(key) {
   users = JSON.parse(json.data.value);
 }
 
-/*async function setUserInitials() {
-  let name = localStorage.getItem('name');
-  let initials = name.slice(0, 2);
-  let uppercaseInitials = initials.toUpperCase();
-  document.querySelector("[id='initials-user']").innerHTML = `${uppercaseInitials}`;
-}*/
+function setGreetFormula() {
+  let container = document.getElementById('greeting-formula');
+  if (hour >= 18 && hour >= 0) {
+    container.innerHTML = 'Good evening,';
+  } else if (hour >= 12 && hour <= 18) {
+    container.innerHTML = 'Good afternoon,';
+  } else if (hour >= 6 && hour <= 12) {
+    container.innerHTML = 'Good morning,';
+  } else if (hour >= 0 && hour <= 6) {
+    container.innerHTML = 'Good night,';
+  }
+}
