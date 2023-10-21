@@ -14,32 +14,11 @@ function startDragging(id) {
  * @param {string} con - Target board container identifier.
  * @returns {Promise<void>}
  */
-
 async function moveTo(con) {
-  let task = await getItem("tasks");
-  task[startDragPosition].taskcon = con;
-  await setItem("tasks", task);
-  setBoards();
-}
-
-/**
- * Sets the ID of the task being dragged.
- * @param {number} id - Task ID.
- */
-function startDragging(id) {
-  startDragPosition = id;
-}
-
-/**
- * Moves the task to a specified board container.
- * @async
- * @param {string} con - Target board container identifier.
- * @returns {Promise<void>}
- */
-async function moveTo(con) {
-  let task = await getItem("tasks");
-  task[startDragPosition].taskcon = con;
-  await setItem("tasks", task);
+  let selecttasks = await getItem("tasks");
+  let currentTask = selecttasks.findIndex(task => task.id === startDragPosition);
+  selecttasks[currentTask].taskcon = con;
+  await setItem("tasks", selecttasks);
   setBoards();
 }
 
