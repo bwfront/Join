@@ -47,13 +47,13 @@ async function createTask() {
   };
   tasks.push(task);
   await setItem("tasks", tasks);
-  setTaskcon('todo');
+  setTaskcon("todo");
   priority = "low";
   subtask = [];
   document.getElementById("task-form").reset();
 }
 
-/** 
+/**
  * Get taskcon out the local Storage
  * @returns - the selected taskcon out the localStorage
  */
@@ -61,7 +61,7 @@ function getTaskon() {
   return localStorage.getItem("selctTaskCon");
 }
 
-/** 
+/**
  * @param {String} con - The Selected Container
  * Save the selected taskcon in the localStorage
  */
@@ -135,7 +135,8 @@ function setSubtasksHTML(subtask, subtaskready, id, category) {
     )}; width: ${calculatePercentagSubtask(
       getSharedSubtasksCount(subtask, subtaskready),
       subtask.length
-    )}% !important"></div>
+    )}% !important">
+    </div>
     </div>
     <div class="task-subtasks-text" id="task-subtasks-text">${getSharedSubtasksCount(
       subtask,
@@ -254,18 +255,37 @@ function getPrio(prio, clickedButton) {
 function setBoardHTML(category, title, description, prio, idcon, id) {
   const todo = document.getElementById(idcon);
   todo.innerHTML += `
-  <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})" onclick="openTask(${id})">
-  <span class="category" id="category" style="background-color: ${categoryColor(
-    category
-  )}">${category}</span>
-  <div class="task-heading" id="task-heading">${title}</div>
-  <div class="task-description" id="task-description">${description}</div>
-  <div class="task-subtasks" id="task-subtasks${id}"></div>
-  <div class="task-footer" id="task-footer">
-      <div class="task-profile" id="task-profile">
-          <div class="profile" id="profile">US</div>
-      </div>
-      <div id="task-important"><img src="./assets/img/prio${prio}.png" alt="important"></div>
+  <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})">
+  <div class="task-heading-con">
+      <span class="category" id="category" style="background-color: ${categoryColor(
+        category
+      )}">${category}</span>
+    <a class="dropdown-task" onclick="mobileDropDownTask(${id})" id="dropdown-task${id}"><</a>
+    <div class="mobile-droptaskcon" id="mobile-droptaskcon${id}">
+        <a>
+                <div class="mobile-droptaskcon-text">ToDo</div>
+        </a>
+        <a>
+                <div class="mobile-droptaskcon-text">Await feedback</div>
+        </a>
+        <a>
+                <div class="mobile-droptaskcon-text">In Progress</div>
+        </a>
+        <a>
+                <div class="mobile-droptaskcon-text">Done</div>
+        </a>
+  </div>
+  </div>
+  <div onclick="openTask(${id})">
+    <div class="task-heading" id="task-heading">${title}</div>
+    <div class="task-description" id="task-description">${description}</div>
+    <div class="task-subtasks" id="task-subtasks${id}"></div>
+    <div class="task-footer" id="task-footer">
+        <div class="task-profile" id="task-profile">
+            <div class="profile" id="profile">US</div>
+        </div>
+        <div id="task-important"><img src="./assets/img/prio${prio}.png" alt="important"></div>
+    </div>
   </div>
 </div>
 `;
@@ -405,4 +425,14 @@ function renderFilteredTasksOnBoards(filteredTasks) {
     );
     setSubtasksHTML(task.subtask, task.subtaskready, task.id, task.category);
   });
+}
+
+
+//dropdown
+
+function mobileDropDownTask(id){
+  const droptaskdown = document.getElementById(`mobile-droptaskcon${id}`);
+  droptaskdown.style.display ='unset';
+  const dropdowntaskbtn = document.getElementById(`dropdown-task${id}`);
+  dropdowntaskbtn.style.color ='#ffffff';
 }
