@@ -150,8 +150,10 @@ body {
 
 .sidebar-contacts h3 {
   font-size: 16px;
-  color: #007cee;
+  color: #29abe2;
 }
+
+/* MODAL*/
 
 .contact-modal-details {
   display: none;
@@ -165,18 +167,25 @@ body {
   justify-content: center;
   align-items: center;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 40%;
+  left: 35.7%;
+
+  width: 30%;
   background-color: #fff;
   border: 2px solid rgba(0, 0, 0, 0.2);
+
   border-radius: 10px;
   z-index: 9;
+}
+.modal-splitter {
+  border-left: 2px solid rgb(42, 54, 71, 0.8);
+  border-top: 80px solid transparent;
+  border-bottom: 80px solid transparent;
 }
 
 .modal-contacts-head-img {
   display: flex;
-margin-top: 30px;
+
+  margin-left: 50px;
   align-items: center;
   gap: 50px;
 }
@@ -185,14 +194,16 @@ margin-top: 30px;
   color: rgb(89, 97, 103);
   cursor: pointer;
   font-size: 21px;
-  position: absolute;
   border-bottom: 1px solid;
   border-left: 3px solid;
   border-right: 1px solid;
   border-radius: 6px;
-  top: 21px;
-  left: 20px;
-  padding: 5px;
+  padding: 8px;
+  margin-top: 20px;
+}
+
+.modal-contacts-head-img a {
+  text-decoration: none;
 }
 
 .modal-contacts-head-img span:hover {
@@ -213,11 +224,19 @@ margin-top: 30px;
 .modal-contacts-head-edit {
   display: flex;
   align-items: center;
+  flex-direction: row;
   gap: 20px;
+  margin-bottom: 10px;
 }
 .modal-contacts-head-edit img {
   width: 20px;
   height: 20px;
+}
+.modal-contacts-head-edit img:hover,
+.modal-contacts-head-edit p:hover {
+  height: 22px;
+  filter: contrast(100%) invert(1) hue-rotate(185deg) saturate(10)
+    brightness(90%);
 }
 
 .modal-contacts-head-edit span {
@@ -225,10 +244,55 @@ margin-top: 30px;
   font-size: 16px;
 }
 
-.modal-contacts-body {
-  margin-top: 40px;
+.modal-contacts-body-task {
 }
 
-.modal-contacts-body span{
+.modal-contacts-body {
+  margin-top: 40px;
+  margin-left: 50px;
+}
+
+.modal-contacts-body span {
   font-weight: 800;
+  font-size: 22px;
+}
+
+.modal-contacts-head-edit {
+  cursor: pointer;
+}
+
+.modal-contacts-body-email {
+  font-size: 22px;
+  margin-top: 30px;
+}
+
+.modal-contacts-body-email h3 {
+  color: #29abe2;
+  margin-left: 20px;
+}
+
+.close-modal-contacts {
+  position: absolute;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 16px;
+  top: 27px;
+  left: 90%;
+}
+.close-modal-contacts:hover {
+  background-color: #eaeaea;
+}
+.close-modal-contacts img {
+  height: 24px;
+  width: 24px;
+}
+
+#contactEmail:hover,
+#contactPhone:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }

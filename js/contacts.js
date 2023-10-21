@@ -134,7 +134,28 @@ function openContactModal(contact) {
   }
 }
 
+/**
+ * closes the modal
+ */
+
 function closeModalContacts() {
   const modal = document.getElementById("contact_modal_details");
   modal.style.display = "none";
+}
+
+/**
+ * edits the modal
+ */
+
+function editContact(){
+
+}
+
+/**
+ * deletes the modal
+ */
+
+function deleteContanct(){
+  
+
 }
