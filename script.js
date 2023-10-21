@@ -3,22 +3,22 @@
  * The token used for accessing the remote storage.
  * @constant {string}
  */
-const STORAGE_TOKEN = '0BPXH9KOB3KK14LPEUWH02NBW7QT7YIO3LQDS7R4';
+const STORAGE_TOKEN = "0BPXH9KOB3KK14LPEUWH02NBW7QT7YIO3LQDS7R4";
 /**
  * The URL used for accessing the remote storage API
  * @constant {String}
  */
-const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
+const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
 /**
  * The priority level for the task. Default to 'unset'.
  * @type {string}
  */
-let priority = 'low';
+let priority = "low";
 
 let subtask = [];
 let subtaskready = [];
-let taskcon = 'todo';
+let taskcon = "todo";
 
 /**
  * Creates a task using input values from the DOM, then saves it to the remote storage.
@@ -26,13 +26,13 @@ let taskcon = 'todo';
  * @returns {Promise<void>}
  */
 async function createTask() {
-  const tasks = (await getItem('tasks')) || [];
+  const tasks = (await getItem("tasks")) || [];
   const id = Date.now();
-  const title = document.getElementById('task-title-input').value;
-  const description = document.getElementById('task-description-input').value;
-  const date = document.getElementById('task-date-input').value;
-  const contact = document.getElementById('assigned_contact').value;
-  const category = document.getElementById('task-category-input').value;
+  const title = document.getElementById("task-title-input").value;
+  const description = document.getElementById("task-description-input").value;
+  const date = document.getElementById("task-date-input").value;
+  const contact = document.getElementById("assigned_contact").value;
+  const category = document.getElementById("task-category-input").value;
   const task = {
     id,
     title,
@@ -46,10 +46,10 @@ async function createTask() {
     subtaskready,
   };
   tasks.push(task);
-  await setItem('tasks', tasks);
-  priority = 'low';
+  await setItem("tasks", tasks);
+  priority = "low";
   subtask = [];
-  document.getElementById('task-form').reset();
+  document.getElementById("task-form").reset();
 }
 
 /**
@@ -62,7 +62,7 @@ async function createTask() {
 async function setItem(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
   await fetch(STORAGE_URL, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify(payload),
   }).then((res) => res.json());
 }
@@ -71,10 +71,10 @@ async function setItem(key, value) {
  * Sets up the boards for task management.
  */
 function setBoards() {
-  setBoard('todo');
-  setBoard('awaitfeedback');
-  setBoard('inprogress');
-  setBoard('done');
+  setBoard("todo");
+  setBoard("awaitfeedback");
+  setBoard("inprogress");
+  setBoard("done");
 }
 /**
  * Retrieves and displays tasks from remote storage.
@@ -83,13 +83,20 @@ function setBoards() {
  * @returns {Promise<void>}
  */
 async function setBoard(id) {
-  const tasks = await getItem('tasks');
-  let todo = tasks.filter((t) => t['taskcon'] == id);
-  document.getElementById(`desktop-${id}`).innerHTML = '';
+  const tasks = await getItem("tasks");
+  let todo = tasks.filter((t) => t["taskcon"] == id);
+  document.getElementById(`desktop-${id}`).innerHTML = "";
   if (todo && todo.length > 0) {
     todo.forEach((task) => {
-      setBoardHTML(task.category, task.title, task.description, task.priority, `desktop-${id}`, task.id);
-      setSubtasksHTML(task.subtask, task.subtaskready, task.id);
+      setBoardHTML(
+        task.category,
+        task.title,
+        task.description,
+        task.priority,
+        `desktop-${id}`,
+        task.id
+      );
+      setSubtasksHTML(task.subtask, task.subtaskready, task.id, task.category);
     });
   } else {
     inputEmptyHTML(id);
@@ -102,12 +109,33 @@ async function setBoard(id) {
  * @param {Array} subtask - Subtask Array
  * @param {Array} subtaskready - Subtask with the checked Subtasks
  */
-function setSubtasksHTML(subtask, subtaskready, id) {
+function setSubtasksHTML(subtask, subtaskready, id, category) {
   if (subtask.length > 0) {
     document.getElementById(`task-subtasks${id}`).innerHTML = `
-    <div class="subtasks-progress></div>
-    <div class="task-subtasks-text" id="task-subtasks-text">${getSharedSubtasksCount(subtask, subtaskready)}/${subtask.length} Subtasks</div>
+    <div class="subtasks-progress-container">
+      <div class="subtasks-progress" id="subtasks-progress${id}" style="background-color: ${categoryColor(
+      category
+    )}; width: ${calculatePercentagSubtask(
+      getSharedSubtasksCount(subtask, subtaskready),
+      subtask.length
+    )}% !important"></div>
+    </div>
+    <div class="task-subtasks-text" id="task-subtasks-text">${getSharedSubtasksCount(
+      subtask,
+      subtaskready
+    )}/${subtask.length} Subtasks</div>
     `;
+  }
+}
+
+/**
+ * @param {number} subtask - The ammount of the Subtasks
+ * @param {number} subtaskready - The ammount of the Ready Subtasks
+ * @returns
+ */
+function calculatePercentagSubtask(subtaskready, subtask) {
+  if (subtask > 0) {
+    return (subtaskready / subtask) * 100;
   }
 }
 
@@ -118,7 +146,9 @@ function setSubtasksHTML(subtask, subtaskready, id) {
  * @returns
  */
 function getSharedSubtasksCount(subtaskArray, subtaskReadyArray) {
-  const sharedSubtasks = subtaskArray.filter((subtask) => subtaskReadyArray.includes(subtask));
+  const sharedSubtasks = subtaskArray.filter((subtask) =>
+    subtaskReadyArray.includes(subtask)
+  );
   return sharedSubtasks.length;
 }
 
@@ -128,16 +158,18 @@ function getSharedSubtasksCount(subtaskArray, subtaskReadyArray) {
  */
 function inputEmptyHTML(id) {
   let container;
-  if (id == 'todo') {
-    container = 'To Do';
-  } else if (id == 'awaitfeedback') {
-    container = 'Await feedback';
-  } else if (id == 'inprogress') {
-    container = 'In progress';
-  } else if (id == 'done') {
-    container = 'Done';
+  if (id == "todo") {
+    container = "To Do";
+  } else if (id == "awaitfeedback") {
+    container = "Await feedback";
+  } else if (id == "inprogress") {
+    container = "In progress";
+  } else if (id == "done") {
+    container = "Done";
   }
-  document.getElementById(`desktop-${id}`).innerHTML = `<div class="desktop-todo-empty">No Task ${container}</div>`;
+  document.getElementById(
+    `desktop-${id}`
+  ).innerHTML = `<div class="desktop-todo-empty">No Task ${container}</div>`;
 }
 
 /**
@@ -167,27 +199,27 @@ async function getItem(key) {
  * @param {Element} clickedButton
  */
 function getPrio(prio, clickedButton) {
-  const buttons = document.querySelectorAll('.btn-prio');
+  const buttons = document.querySelectorAll(".btn-prio");
 
   switch (prio) {
-    case 'urgent':
-      priority = 'urgent';
+    case "urgent":
+      priority = "urgent";
       break;
-    case 'medium':
-      priority = 'medium';
+    case "medium":
+      priority = "medium";
       break;
-    case 'low':
-      priority = 'low';
+    case "low":
+      priority = "low";
       break;
     default:
-      priority = 'low';
+      priority = "low";
   }
 
   buttons.forEach((button) => {
-    button.classList.remove('selected');
+    button.classList.remove("selected");
   });
 
-  clickedButton.classList.add('selected');
+  clickedButton.classList.add("selected");
 }
 
 /**
@@ -203,11 +235,12 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
   const todo = document.getElementById(idcon);
   todo.innerHTML += `
   <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})" onclick="openTask(${id})">
-  <span class="category" id="category" style="background-color: ${categoryColor(category)}">${category}</span>
+  <span class="category" id="category" style="background-color: ${categoryColor(
+    category
+  )}">${category}</span>
   <div class="task-heading" id="task-heading">${title}</div>
   <div class="task-description" id="task-description">${description}</div>
-  <div class="task-subtasks" id="task-subtasks${id}">
-  </div>
+  <div class="task-subtasks" id="task-subtasks${id}"></div>
   <div class="task-footer" id="task-footer">
       <div class="task-profile" id="task-profile">
           <div class="profile" id="profile">US</div>
@@ -223,16 +256,16 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
  * @param {String} category - Categeroy of the Task
  * @returns - Return the HEX Color Code
  */
-function categoryColor(category){
-  switch(category){
+function categoryColor(category) {
+  switch (category) {
     case "Sales":
-      return '#4B7CCC';
+      return "#4B7CCC";
     case "Media":
-      return '#858D99';
+      return "#858D99";
     case "Marketing":
-      return '#FF8658';
+      return "#FF8658";
     case "Design":
-      return '#CC5948';
+      return "#CC5948";
   }
 }
 
@@ -240,12 +273,12 @@ function categoryColor(category){
  * this function adds a subtask
  */
 function addSubTask() {
-  let subTaskInput = document.getElementById('subtask-title-input').value;
-  if (subTaskInput !== '') {
+  let subTaskInput = document.getElementById("subtask-title-input").value;
+  if (subTaskInput !== "") {
     subtask.push(subTaskInput);
   }
-  if (subTaskInput.trim() !== '') {
-    const subTaskList = document.getElementById('subtask-container');
+  if (subTaskInput.trim() !== "") {
+    const subTaskList = document.getElementById("subtask-container");
 
     const subTaskItemHTML = `
       <div class="subtask-list">
@@ -256,7 +289,7 @@ function addSubTask() {
 
     subTaskList.innerHTML += subTaskItemHTML;
 
-    document.getElementById('subtask-title-input').value = '';
+    document.getElementById("subtask-title-input").value = "";
   }
 }
 
@@ -264,19 +297,19 @@ function addSubTask() {
  * this function clears the inputs
  */
 function clearTask() {
-  const titleInput = document.getElementById('task-title-input');
-  const descriptionInput = document.getElementById('task-description-input');
-  const dateInput = document.getElementById('task-date-input');
-  const assignedContact = document.getElementById('assigned_contact');
-  const categoryInput = document.getElementById('task-category-input');
-  const subtaskTitleInput = document.getElementById('subtask-title-input');
-  const subtaskContainer = document.getElementById('subtask-container');
+  const titleInput = document.getElementById("task-title-input");
+  const descriptionInput = document.getElementById("task-description-input");
+  const dateInput = document.getElementById("task-date-input");
+  const assignedContact = document.getElementById("assigned_contact");
+  const categoryInput = document.getElementById("task-category-input");
+  const subtaskTitleInput = document.getElementById("subtask-title-input");
+  const subtaskContainer = document.getElementById("subtask-container");
 
-  titleInput.value = '';
-  descriptionInput.value = '';
-  dateInput.value = '';
+  titleInput.value = "";
+  descriptionInput.value = "";
+  dateInput.value = "";
   assignedContact.selectedIndex = 0;
   categoryInput.selectedIndex = 0;
-  subtaskTitleInput.value = '';
-  subtaskContainer.innerHTML = '';
+  subtaskTitleInput.value = "";
+  subtaskContainer.innerHTML = "";
 }

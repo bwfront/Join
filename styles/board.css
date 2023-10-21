@@ -207,6 +207,20 @@
   background-color: #0a9d00;
   border-radius: 16px;
 }
+.subtasks-progress-container{
+  width: 60%;
+  border-radius: 8px;
+  height: 10px;
+  -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.564);
+  -moz-box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.453);
+  box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.43);
+}
+.subtasks-progress{
+  max-width: 100%;
+  width: 0;
+  height: 100%;
+  border-radius: 8px;
+}
 .mobile-head-content {
   display: none;
 }
@@ -218,6 +232,9 @@
   background-color: #28abe2;
 }
 .task-subtasks{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 10px;
 }
 #task-subtasks-text{
