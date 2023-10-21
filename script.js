@@ -176,7 +176,7 @@ function getSharedSubtasksCount(subtaskArray, subtaskReadyArray) {
 function inputEmptyHTML(id) {
   let container;
   if (id == "todo") {
-    container = "To Do";
+    container = "todo";
   } else if (id == "awaitfeedback") {
     container = "Await feedback";
   } else if (id == "inprogress") {

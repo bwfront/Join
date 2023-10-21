@@ -553,10 +553,28 @@
 
 /* Responsive */
 @media (max-width: 1015px) {
+  .desktop-board-heading-right{
+    margin-top: -40px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
   .mobile-head-content {
     display: unset;
   }
-  .desktop-board-heading-right {
+  .mobile-heading-board{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .desktop-board-head-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .desktop-add-task-con{
     display: none;
   }
   .desktop-search-bar {
