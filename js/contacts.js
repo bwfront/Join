@@ -1,69 +1,68 @@
 let allContacts = [
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
 
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },{
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
-
+  {
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
+  },
 ];
 
-let user = []
-
+let user = [];
 
 /**
  * initialize script for contacts.html
@@ -87,10 +86,10 @@ function renderContacts() {
 }
 
 /**
- * 
+ *
  * generates the contact list
- * @param {*} contact 
- * @returns 
+ * @param {*} contact
+ * @returns
  */
 
 function generateContacts(contact) {
@@ -105,8 +104,6 @@ function generateContacts(contact) {
     </div>
   </div>`;
 }
-
-
 
 function addContact() {
   const newName = 'New Contact';

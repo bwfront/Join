@@ -199,9 +199,9 @@ async function getData(key) {
   users = JSON.parse(json.data.value);
 }
 
-async function setUserInitials() {
+/*async function setUserInitials() {
   let name = localStorage.getItem('name');
   let initials = name.slice(0, 2);
   let uppercaseInitials = initials.toUpperCase();
   document.querySelector("[id='initials-user']").innerHTML = `${uppercaseInitials}`;
-}
+}*/
