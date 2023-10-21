@@ -7,12 +7,24 @@ let currentTaskEdit;
  */
 let elementid = {};
 
-let prioEdit;
-let currenttaskcon;
 /**
- * current subtasksEdit array
+ * Changed Prio in Edit
  */
+let prioEdit;
 
+/**
+ * Current Container e.g ToDo, In progress etc.
+ */
+let currenttaskcon;
+
+/**
+ * Stores the subtask in Edit
+ */
+let subtaskEdit = [];
+/**
+ * current ready subtasks in Edit array
+ */
+let subtaskEditReady = [];
 /**
  * Get the data from the clicked Task
  * @param {number} id
@@ -214,6 +226,7 @@ async function getEditValues(id) {
 function innerEditValues(elementid, selectTask) {
   prioEdit = selectTask.priority;
   currenttaskcon = selectTask.taskcon;
+  subtaskEditReady = selectTask.subtaskready;
   elementid.title.value = selectTask.title;
   elementid.description.innerHTML = selectTask.description;
   elementid.date.value = selectTask.date;
@@ -222,13 +235,52 @@ function innerEditValues(elementid, selectTask) {
   elementid.categoryselected.value = selectTask.category;
   elementid.contact.innerHTML = selectTask.contact;
   elementid.contactselected.value = selectTask.contact;
-  if (selectTask.subtask) {
-    elementid.subtasks.innerHTML = ``;
-    selectTask.subtask.forEach((element) => {
-      elementid.subtasks.innerHTML += `<li>${element}</li>`;
-    });
+  editSubtasksStore(elementid, selectTask);
+}
+
+/**
+ * Check if Subtaks there and Store them in a diffrent Array
+ * if not import there are no subtasks
+ * @param {Object} elementid
+ * @param {Array} selectTask
+ */
+function editSubtasksStore(elementid, selectTask) {
+  elementid.subtasks.innerHTML = ``;
+  if (selectTask.subtask != 0) {
+    console.log(subtaskEdit);
+    subtaskEdit = [...selectTask.subtask];
+    renderEditSubtasks();
   } else {
     elementid.subtasks.innerHTML += `There are no Subtaks`;
+  }
+}
+
+/**
+ * Add a Subtask to the Task
+ */
+function addEditSubtask() {
+  const subtaskValue = document.getElementById("subtask-title-input");
+  subtaskEdit.push(subtaskValue.value);
+  subtaskValue.value = "";
+  elementid.subtasks.innerHTML = "";
+  renderEditSubtasks();
+}
+/**
+ * Delete the Subtask with the Index
+ * @param {Number} id - The Index from the delete Subtask
+ */
+function deleteEditSubtask(id) {
+  subtaskEdit.splice(id, 1);
+  elementid.subtasks.innerHTML = "";
+  renderEditSubtasks();
+}
+
+/**
+ * Render the Subtasks
+ */
+function renderEditSubtasks() {
+  for (let i = 0; i < subtaskEdit.length; i++) {
+    elementid.subtasks.innerHTML += `<div class="edit-subtask-con"><li>${subtaskEdit[i]}</li><img src="./assets/img/deletepopup.png" alt="delete" onclick="deleteEditSubtask(${i})"></div>`;
   }
 }
 
@@ -240,12 +292,12 @@ async function setEditValue() {
   let id = currentTaskEdit;
   let priority = prioEdit;
   let taskcon = currenttaskcon;
+  let category = elementid.categoryselected.value;
+  let contact = elementid.contactselected.value;
 
   //Implement TODO
-  let subtask = [];
-  let subtaskready = [];
-  let contact = elementid.contact.innerHTML;
-  let category = elementid.category.innerHTML;
+  let subtask = subtaskEdit;
+  let subtaskready = subtaskEditReady;
 
   let currentEditValues = {
     id,
@@ -326,4 +378,5 @@ function closeTaskPopUpRemove() {
   document.getElementById("prio-medium").classList.remove("selected");
   document.getElementById("prio-low").classList.remove("selected");
   elementid = {};
+  subtaskEdit = [];
 }

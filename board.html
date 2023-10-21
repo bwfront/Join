@@ -26,13 +26,16 @@
     <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
     <div class="main-content main-content-animation maxwidthboard">
         <div class="desktop-board-head-content">
-            <h1 class="imprint-privacy-heading">Board</h1>
-            <a class="mobile-add-task-img" href="add_task.html">
-                <img src="./assets/img/board-add.png" alt="plus">
-            </a>
+            <div class="mobile-heading-board">
+                <h1 class="imprint-privacy-heading">Board</h1>
+                <a class="mobile-add-task-img" href="add_task.html">
+                    <img src="./assets/img/board-add.png" alt="plus">
+                </a>
+            </div>
             <div class="desktop-board-heading-right">
                 <div class="desktop-search-bar">
-                    <input class="desktop-search-bar-input" type="text" placeholder="Find Task">
+                    <input class="desktop-search-bar-input" id="desktop-search-bar-input" type="text"
+                        placeholder="Find Task" oninput="searchTasks()">
                     <div class="desktop-search-button">
                         <img src="./assets/img/search-spacing.png" alt="search">
                         <img class="search" src="./assets/img/search.png" alt="search">
@@ -46,20 +49,11 @@
                 </a>
             </div>
         </div>
-        <div class="mobile-head-content">
-            <div class="desktop-search-bar">
-                <input class="desktop-search-bar-input" type="text" placeholder="Find Task">
-                <div class="desktop-search-button">
-                    <img src="./assets/img/search-spacing.png" alt="search">
-                    <img class="search" src="./assets/img/search.png" alt="search">
-                </div>
-            </div>
-        </div>
         <div class="desktop-board-container">
             <div class="desktop-board-todo">
                 <div class="todo-head">
                     <div class="board-head-text">To do</div>
-                    <div class="board-plus" id="board" onclick="changeInputContainer('todo')">+</div>
+                    <div class="board-plus" id="board" onclick="setTaskcon('todo')" href="add_task.html">+</div>
                 </div>
                 <div class="desktop-todo" id="desktop-todo" ondrop="moveTo('todo')">
                 </div>
@@ -67,7 +61,7 @@
             <div class="desktop-board-awaitfeedback">
                 <div class="todo-head">
                     <div class="board-head-text">Await feedback</div>
-                    <a class="board-plus" onclick="changeInputContainer('awaitfeedback')">+</a>
+                    <a class="board-plus" onclick="setTaskcon('awaitfeedback')" href="add_task.html">+</a>
                 </div>
                 <div class="desktop-todo" id="desktop-awaitfeedback" ondrop="moveTo('awaitfeedback')">
                 </div>
@@ -75,7 +69,7 @@
             <div class="desktop-board-inprogress">
                 <div class="todo-head">
                     <div class="board-head-text">In progress</div>
-                    <a class="board-plus" onclick="changeInputContainer('inprogress')">+</a>
+                    <a class="board-plus" onclick="setTaskcon('inprogress')" href="add_task.html">+</a>
                 </div>
                 <div class="desktop-todo" id="desktop-inprogress" ondrop="moveTo('inprogress')">
                 </div>
@@ -147,7 +141,8 @@
                 </div>
                 <div class="edit-title">
                     <div class="edit-text">Description</div>
-                    <textarea class="edit-input" placeholder="Enter a Description" required id="edit-description"></textarea>
+                    <textarea class="edit-input" placeholder="Enter a Description" required
+                        id="edit-description"></textarea>
                 </div>
                 <div class="edit-title">
                     <div class="edit-text">Due Date</div>
@@ -157,15 +152,18 @@
                 <div class="edit-title">
                     <div class="edit-text">Priority</div>
                     <div class="prio-button">
-                        <button type="button" class="btn btn-secondary btn-prio" id="prio-urgent" onclick="getPrio('urgent', this)">
+                        <button type="button" class="btn btn-secondary btn-prio" id="prio-urgent"
+                            onclick="getPrio('urgent', this)">
                             Urgent
                             <img src="./assets/img/priourgent.png" />
                         </button>
-                        <button type="button" class="btn btn-secondary btn-prio" id="prio-medium" onclick="getPrio('medium', this)">
+                        <button type="button" class="btn btn-secondary btn-prio" id="prio-medium"
+                            onclick="getPrio('medium', this)">
                             Medium
                             <img src="./assets/img/priomedium.png" />
                         </button>
-                        <button type="button" class="btn btn-secondary btn-prio" id="prio-low" onclick="getPrio('low', this)">
+                        <button type="button" class="btn btn-secondary btn-prio" id="prio-low"
+                            onclick="getPrio('low', this)">
                             Low
                             <img src="./assets/img/priolow.png" />
                         </button>
@@ -201,7 +199,7 @@
                     <div class="edit-subtask">
                         <input class="form-control" type="text" placeholder="Add a new subtask"
                             id="subtask-title-input" />
-                        <img id="subtask-icon" onclick="addSubTaskPopUp()" style="cursor: pointer"
+                        <img id="subtask-icon" onclick="addEditSubtask()" style="cursor: pointer"
                             src="./assets/img/Subtasks icons11.png" />
                     </div>
                     <div id="edit-subtask-container"></div>

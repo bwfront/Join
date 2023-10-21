@@ -1,62 +1,61 @@
 let allContacts = [
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
 
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
+  },
+  {
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
+  },
+  {
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
+  },
+  {
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
+  },
+  {
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
   {
     name: "Axel Baum",
     email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
+  },{
     name: "Axel Baum",
     email: "axel.baum@gmail.com",
   },

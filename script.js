@@ -18,7 +18,7 @@ let priority = "low";
 
 let subtask = [];
 let subtaskready = [];
-let taskcon = "todo";
+let taskcon = getTaskon();
 
 /**
  * Creates a task using input values from the DOM, then saves it to the remote storage.
@@ -47,9 +47,26 @@ async function createTask() {
   };
   tasks.push(task);
   await setItem("tasks", tasks);
+  setTaskcon('todo');
   priority = "low";
   subtask = [];
   document.getElementById("task-form").reset();
+}
+
+/** 
+ * Get taskcon out the local Storage
+ * @returns - the selected taskcon out the localStorage
+ */
+function getTaskon() {
+  return localStorage.getItem("selctTaskCon");
+}
+
+/** 
+ * @param {String} con - The Selected Container
+ * Save the selected taskcon in the localStorage
+ */
+function setTaskcon(con) {
+  localStorage.setItem("selctTaskCon", con);
 }
 
 /**
@@ -159,7 +176,7 @@ function getSharedSubtasksCount(subtaskArray, subtaskReadyArray) {
 function inputEmptyHTML(id) {
   let container;
   if (id == "todo") {
-    container = "To Do";
+    container = "todo";
   } else if (id == "awaitfeedback") {
     container = "Await feedback";
   } else if (id == "inprogress") {
@@ -315,4 +332,77 @@ function clearTask() {
   categoryInput.selectedIndex = 0;
   subtaskTitleInput.value = "";
   subtaskContainer.innerHTML = "";
+}
+
+/**
+ * Handles the search functionality for tasks.
+ * It fetches tasks, filters them based on the search query, and then renders the filtered tasks on their respective boards.
+ * @async
+ */
+async function searchTasks() {
+  const result = await fetchTasksAndHandleEmptyQuery();
+  if (!result) return;
+  const filteredTasks = filterTasksByQuery(result.tasks, result.query);
+  clearAllBoards();
+  renderFilteredTasksOnBoards(filteredTasks);
+}
+
+/**
+ * Fetch tasks from storage and handle empty search query scenarios.
+ * @async
+ * @returns {Object|null} Returns an object with tasks and the query or null if the query is empty.
+ */
+async function fetchTasksAndHandleEmptyQuery() {
+  const searchQuery = document
+    .getElementById("desktop-search-bar-input")
+    .value.toLowerCase();
+  if (!searchQuery.trim()) {
+    setBoards();
+    return null;
+  }
+  return {
+    tasks: await getItem("tasks"),
+    query: searchQuery,
+  };
+}
+
+/**
+ * Filters tasks based on the given search query.
+ * @param {Array} tasks - The array of task objects to filter.
+ * @param {string} query - The search query string.
+ * @returns {Array} Returns an array of filtered task objects.
+ */
+function filterTasksByQuery(tasks, query) {
+  return tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(query) ||
+      task.description.toLowerCase().includes(query)
+  );
+}
+
+/**
+ * Clears the content of all task boards.
+ */
+function clearAllBoards() {
+  ["todo", "awaitfeedback", "inprogress", "done"].forEach((id) => {
+    document.getElementById(`desktop-${id}`).innerHTML = "";
+  });
+}
+
+/**
+ * Renders the provided filtered tasks on their respective boards.
+ * @param {Array<Object>} filteredTasks - The array of filtered task objects to render.
+ */
+function renderFilteredTasksOnBoards(filteredTasks) {
+  filteredTasks.forEach((task) => {
+    setBoardHTML(
+      task.category,
+      task.title,
+      task.description,
+      task.priority,
+      `desktop-${task.taskcon}`,
+      task.id
+    );
+    setSubtasksHTML(task.subtask, task.subtaskready, task.id, task.category);
+  });
 }
