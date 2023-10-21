@@ -18,7 +18,7 @@ let priority = "low";
 
 let subtask = [];
 let subtaskready = [];
-let taskcon = "todo";
+let taskcon = getTaskon();
 
 /**
  * Creates a task using input values from the DOM, then saves it to the remote storage.
@@ -47,9 +47,26 @@ async function createTask() {
   };
   tasks.push(task);
   await setItem("tasks", tasks);
+  setTaskcon('todo');
   priority = "low";
   subtask = [];
   document.getElementById("task-form").reset();
+}
+
+/** 
+ * Get taskcon out the local Storage
+ * @returns - the selected taskcon out the localStorage
+ */
+function getTaskon() {
+  return localStorage.getItem("selctTaskCon");
+}
+
+/** 
+ * @param {String} con - The Selected Container
+ * Save the selected taskcon in the localStorage
+ */
+function setTaskcon(con) {
+  localStorage.setItem("selctTaskCon", con);
 }
 
 /**
@@ -336,14 +353,16 @@ async function searchTasks() {
  * @returns {Object|null} Returns an object with tasks and the query or null if the query is empty.
  */
 async function fetchTasksAndHandleEmptyQuery() {
-  const searchQuery = document.getElementById("desktop-search-bar-input").value.toLowerCase();
+  const searchQuery = document
+    .getElementById("desktop-search-bar-input")
+    .value.toLowerCase();
   if (!searchQuery.trim()) {
-      setBoards();
-      return null;
+    setBoards();
+    return null;
   }
   return {
-      tasks: await getItem("tasks"),
-      query: searchQuery
+    tasks: await getItem("tasks"),
+    query: searchQuery,
   };
 }
 
@@ -354,8 +373,9 @@ async function fetchTasksAndHandleEmptyQuery() {
  * @returns {Array} Returns an array of filtered task objects.
  */
 function filterTasksByQuery(tasks, query) {
-  return tasks.filter(task => 
-      task.title.toLowerCase().includes(query) || 
+  return tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(query) ||
       task.description.toLowerCase().includes(query)
   );
 }
@@ -364,8 +384,8 @@ function filterTasksByQuery(tasks, query) {
  * Clears the content of all task boards.
  */
 function clearAllBoards() {
-  ['todo', 'awaitfeedback', 'inprogress', 'done'].forEach(id => {
-      document.getElementById(`desktop-${id}`).innerHTML = "";
+  ["todo", "awaitfeedback", "inprogress", "done"].forEach((id) => {
+    document.getElementById(`desktop-${id}`).innerHTML = "";
   });
 }
 
@@ -374,15 +394,15 @@ function clearAllBoards() {
  * @param {Array<Object>} filteredTasks - The array of filtered task objects to render.
  */
 function renderFilteredTasksOnBoards(filteredTasks) {
-  filteredTasks.forEach(task => {
-      setBoardHTML(
-          task.category,
-          task.title,
-          task.description,
-          task.priority,
-          `desktop-${task.taskcon}`,
-          task.id
-      );
-      setSubtasksHTML(task.subtask, task.subtaskready, task.id, task.category);
+  filteredTasks.forEach((task) => {
+    setBoardHTML(
+      task.category,
+      task.title,
+      task.description,
+      task.priority,
+      `desktop-${task.taskcon}`,
+      task.id
+    );
+    setSubtasksHTML(task.subtask, task.subtaskready, task.id, task.category);
   });
 }

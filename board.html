@@ -59,7 +59,7 @@
             <div class="desktop-board-todo">
                 <div class="todo-head">
                     <div class="board-head-text">To do</div>
-                    <div class="board-plus" id="board" onclick="changeInputContainer('todo')">+</div>
+                    <div class="board-plus" id="board" onclick="setTaskcon('todo')" href="add_task.html">+</div>
                 </div>
                 <div class="desktop-todo" id="desktop-todo" ondrop="moveTo('todo')">
                 </div>
@@ -67,7 +67,7 @@
             <div class="desktop-board-awaitfeedback">
                 <div class="todo-head">
                     <div class="board-head-text">Await feedback</div>
-                    <a class="board-plus" onclick="changeInputContainer('awaitfeedback')">+</a>
+                    <a class="board-plus" onclick="setTaskcon('awaitfeedback')" href="add_task.html">+</a>
                 </div>
                 <div class="desktop-todo" id="desktop-awaitfeedback" ondrop="moveTo('awaitfeedback')">
                 </div>
@@ -75,7 +75,7 @@
             <div class="desktop-board-inprogress">
                 <div class="todo-head">
                     <div class="board-head-text">In progress</div>
-                    <a class="board-plus" onclick="changeInputContainer('inprogress')">+</a>
+                    <a class="board-plus" onclick="setTaskcon('inprogress')" href="add_task.html">+</a>
                 </div>
                 <div class="desktop-todo" id="desktop-inprogress" ondrop="moveTo('inprogress')">
                 </div>
