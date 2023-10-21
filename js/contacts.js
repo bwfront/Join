@@ -1,7 +1,7 @@
 let contacts = [
   {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
+    name: 'Axel Baum',
+    email: 'axel.baum@gmail.com',
   },
 ];
 
@@ -10,8 +10,8 @@ function initContacts() {
 }
 
 function renderContacts() {
-  let contactList = document.getElementById("contact_list");
-  contactList.innerHTML = "";
+  let contactList = document.getElementById('contact_list');
+  contactList.innerHTML = '';
 
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
@@ -28,8 +28,8 @@ function generateContacts(contact) {
 }
 
 function addContact() {
-  const newName = "New Contact";
-  const newEmail = "new.contact@example.com";
+  const newName = 'New Contact';
+  const newEmail = 'new.contact@example.com';
 
   const newContact = {
     name: newName,

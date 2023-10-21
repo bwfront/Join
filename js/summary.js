@@ -23,6 +23,7 @@ let todo;
 let tasksInBoard;
 let tasksInProgress;
 let tasksInAwaitingFeedback;
+let users = [];
 
 /**
  * Initializes the summary by calling functions to fetch tasks and set counters.
@@ -31,6 +32,8 @@ let tasksInAwaitingFeedback;
 async function initSummary() {
   await getAllTasks('tasks');
   setTaskCounters();
+  getUserNameForGreeting();
+  setUserInitials();
 }
 
 /**
@@ -174,4 +177,31 @@ function setTaskAwaitingFeedback() {
     }
   }
   document.getElementById('tasks-await-feedback').innerHTML = `${tasksInAwaitingFeedback}`;
+}
+
+async function getUserNameForGreeting() {
+  let currentUserEmail = localStorage.getItem('email');
+  await getItem('users');
+  //console.log(currentUserEmail);
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    if (currentUserEmail === user['email']) {
+      document.getElementById('greeting-name').innerHTML = user['name'];
+      localStorage.setItem('name', user['name']);
+    }
+  }
+}
+
+async function getItem(key) {
+  const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+  let response = await fetch(url);
+  let json = await response.json();
+  users = JSON.parse(json.data.value);
+}
+
+async function setUserInitials() {
+  let name = localStorage.getItem('name');
+  let initials = name.slice(0, 2);
+  let uppercaseInitials = initials.toUpperCase();
+  document.querySelector("[id='initials-user']").innerHTML = `${uppercaseInitials}`;
 }

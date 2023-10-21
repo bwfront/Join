@@ -37,14 +37,12 @@ async function checkAccount(key) {
   checkAccountExists();
 }
 
-function checkAccountExists() {
+async function checkAccountExists() {
   for (let i = 0; i < allUsers.length; i++) {
     const user = allUsers[i];
-
     if (currentLogin.password == user['password'] && user['email'] == currentLogin.email) {
       location.href = 'summary.html';
+      localStorage.setItem('email', currentLogin.email); // Get Email from LocalStorage in Summary to Display Hello "NAME" - clear LocalStorage afterwards;
     }
   }
-  alert('Account not found, please try again.');
-  console.log('Account not found');
 }
