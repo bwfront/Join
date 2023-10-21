@@ -1,6 +1,6 @@
 body {
   background-color: #f6f7f8;
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   overflow-x: hidden;
   overflow-y: hidden;
 }
@@ -40,7 +40,7 @@ body {
 }
 
 .contact-list-container::-webkit-scrollbar-button {
-  background-image: url("../assets/img/scroll_up.png");
+  background-image: url('../assets/img/scroll_up.png');
   background-size: cover;
   width: 20px;
 }
@@ -85,9 +85,7 @@ body {
   flex-direction: column;
   align-items: baseline;
   gap: 35px;
-  
 }
-
 
 .head-contact-details {
   display: flex;
@@ -122,12 +120,11 @@ body {
   padding: 20px;
   margin-left: 52px;
 }
-.sidebar-contacts:hover{
+.sidebar-contacts:hover {
   background-color: #2a3647;
   color: white;
   border-radius: 10px;
   cursor: pointer;
-
 }
 .sidebar-contacts img {
   width: 42px;

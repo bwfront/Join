@@ -31,8 +31,8 @@ let users = [];
 
 async function initSummary() {
   await getAllTasks('tasks');
-  setTaskCounters();
-  getUserNameForGreeting();
+  await setTaskCounters();
+  await getUserNameForGreeting();
   setUserInitials();
 }
 

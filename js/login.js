@@ -41,8 +41,13 @@ async function checkAccountExists() {
   for (let i = 0; i < allUsers.length; i++) {
     const user = allUsers[i];
     if (currentLogin.password == user['password'] && user['email'] == currentLogin.email) {
-      location.href = 'summary.html';
       localStorage.setItem('email', currentLogin.email); // Get Email from LocalStorage in Summary to Display Hello "NAME" - clear LocalStorage afterwards;
+      location.href = 'summary.html';
     }
   }
+}
+
+function guestLogIn() {
+  localStorage.removeItem('email');
+  localStorage.setItem('name', 'Guest');
 }
