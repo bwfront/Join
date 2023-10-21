@@ -27,7 +27,7 @@ let taskcon = 'todo';
  */
 async function createTask() {
   const tasks = (await getItem('tasks')) || [];
-  const id = tasks.length;
+  const id = Date.now();
   const title = document.getElementById('task-title-input').value;
   const description = document.getElementById('task-description-input').value;
   const date = document.getElementById('task-date-input').value;

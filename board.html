@@ -201,10 +201,16 @@
                     <div class="edit-subtask">
                         <input class="form-control" type="text" placeholder="Add a new subtask"
                             id="subtask-title-input" />
-                        <img id="subtask-icon" onclick="addSubTask()" style="cursor: pointer"
+                        <img id="subtask-icon" onclick="addSubTaskPopUp()" style="cursor: pointer"
                             src="./assets/img/Subtasks icons11.png" />
                     </div>
                     <div id="edit-subtask-container"></div>
+                </div>
+                <div class="save-edit-task-conatiner">
+                    <div class="save-edit-task" onclick="setEditValue()">
+                        <div>Ok</div>
+                        <img src="./assets/img/done.png" alt="save">
+                    </div>
                 </div>
             </div>
         </div>

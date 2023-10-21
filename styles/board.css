@@ -458,6 +458,36 @@
   margin-left: 25px;
   margin-top: 10px;
   font-size: 18px;
+
+}
+.save-edit-task-conatiner{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 450px;
+  height: 80px;
+  bottom: -50px;
+  position: sticky;
+  background-color: #ffffff;
+}
+.save-edit-task{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: #1e2f44;
+  font-size: 22px;
+  color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 10px;
+}
+.save-edit-task:hover{
+  background-color: #28abe2;
+  filter: drop-shadow(0px 3px rgba(0, 0, 0, 0.235));
+}
+.save-edit-task img{
+  height: 14px;
+  width: 14px;
+  margin-left: 5px;
 }
 @keyframes popupslidein {
   from {

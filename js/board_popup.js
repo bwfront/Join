@@ -1,10 +1,23 @@
 /**
- * Get the data from to clicked Task
+ * Index of the Task
+ */
+let currentTaskEdit;
+/**
+ * Values of the current Task in Edit
+ */
+let elementid = {};
+
+/**
+ * current subtasksEdit array
+ */
+
+/**
+ * Get the data from the clicked Task
  * @param {number} id
  */
 async function openTask(id) {
   let tasks = await getItem("tasks");
-  let task = tasks[id];
+  let task = tasks.find((task) => task.id === id);
   innerTaskPopUp(task);
   innerPopUpFooter(id);
   openTaskPopUp();
@@ -28,8 +41,9 @@ function innerTaskPopUp(task) {
  * Style the Task PopUp Category Color
  * @param {String} category - The current Category
  */
-function categoryColorPopUp(category){
-    document.getElementById(`popup-category`).style.backgroundColor = categoryColor(category);
+function categoryColorPopUp(category) {
+  document.getElementById(`popup-category`).style.backgroundColor =
+    categoryColor(category);
 }
 
 /**
@@ -60,7 +74,10 @@ function checkStatusSubtask(i, idTask) {
  */
 async function updateCheckedSubtask(subtaskvalue, idTask, status) {
   let tasks = await getItem("tasks");
-  let currentTask = tasks[idTask].subtaskready;
+
+  let current = tasks.find((task) => task.id === idTask);
+  let currentTask = current.subtaskready;
+
   if (status == "checked") {
     currentTask.push(subtaskvalue);
   }
@@ -70,7 +87,7 @@ async function updateCheckedSubtask(subtaskvalue, idTask, status) {
       currentTask.splice(index, 1);
     }
   }
-  tasks[idTask].subtaskready = currentTask;
+  current.subtaskready = currentTask;
   await setItem("tasks", tasks);
   setBoards();
 }
@@ -83,7 +100,9 @@ async function updateCheckedSubtask(subtaskvalue, idTask, status) {
 async function getTaskPopUpSubtask(subtaskArray, idTask) {
   const subtakscon = document.getElementById("task-popup-subtasks");
   let tasks = await getItem("tasks");
-  let currentTaskReadySubtasks = tasks[idTask].subtaskready;
+
+  let currentTask = tasks.find((task) => task.id === idTask);
+  let currentTaskReadySubtasks = currentTask.subtaskready;
   if (subtaskArray.length > 0) {
     subtakscon.innerHTML = ``;
   }
@@ -151,6 +170,7 @@ function editTask(id) {
   const editpopup = document.getElementById("edit-task-container");
   popup.style.display = "none";
   editpopup.style.display = "unset";
+  currentTaskEdit = id;
   getEditValues(id);
 }
 
@@ -160,8 +180,7 @@ function editTask(id) {
  */
 async function getEditValues(id) {
   const tasks = await getItem("tasks");
-  const selectTask = tasks[id];
-  console.log(selectTask);
+  let selectTask = tasks.find((task) => task.id === id);
   const title = document.getElementById("edit-title");
   const description = document.getElementById("edit-description");
   const date = document.getElementById("task-date-input");
@@ -171,7 +190,7 @@ async function getEditValues(id) {
   const contact = document.getElementById("edit-contact");
   const contactselected = document.getElementById("assigned_contact");
   const subtasks = document.getElementById("edit-subtask-container");
-  const elementid = {
+  elementid = {
     title,
     description,
     date,
@@ -209,7 +228,39 @@ function innerEditValues(elementid, selectTask) {
   }
 }
 
-async function setEditValue() {}
+async function setEditValue() {
+  let subtask = [];
+  let subtaskready = [];
+
+  let selecttasks = await getItem("tasks");
+
+  let title = elementid.title.value;
+  let description = elementid.description.value;
+  let date = elementid.date.value;
+
+  let id = currentTaskEdit;
+  let priority = "low";
+  let contact = elementid.contact.innerHTML;
+  let category = elementid.category.innerHTML;
+
+  let currentEditValues = {
+    id,
+    title,
+    description,
+    date,
+    contact,
+    category,
+    priority,
+    taskcon,
+    subtask,
+    subtaskready,
+  };
+
+  let taskIndex = selecttasks.findIndex(task => task.id === currentTaskEdit);
+  selecttasks[taskIndex] = currentEditValues;
+  setItem("tasks", selecttasks);
+  closeTaskPopUp();
+}
 
 /**
  * Set Display to flex and add Slide In Animation class
@@ -219,16 +270,15 @@ function openTaskPopUp() {
     "desktop-task-popup-container"
   );
   const popupconatiner = document.getElementById("desktop-task-popup");
-  const body = document.getElementById('body');
-  body.classList.add('no-scroll');
+  const body = document.getElementById("body");
+  body.classList.add("no-scroll");
   popupbackground.style.display = "flex";
   popupconatiner.classList.remove("popup-slideout");
   popupconatiner.classList.add("popup-slidein");
-  
 }
 
 /**
- * 
+ *
  * @param {string} htmlid - The HTML ID
  * @param {*} task - The Priority from the Task
  */
@@ -261,14 +311,15 @@ function closeTaskPopUp() {
 /**
  * Remove / Hide Elements
  */
-function closeTaskPopUpRemove(){
-    const popup = document.getElementById("task-popup");
-    const editpopup = document.getElementById("edit-task-container");
-    popup.style.display = "unset";
-    editpopup.style.display = "none";
-    const body = document.getElementById('body');
-    body.classList.remove('no-scroll');
-    document.getElementById("prio-urgent").classList.remove("selected");
-    document.getElementById("prio-medium").classList.remove("selected");
-    document.getElementById("prio-low").classList.remove("selected");
+function closeTaskPopUpRemove() {
+  const popup = document.getElementById("task-popup");
+  const editpopup = document.getElementById("edit-task-container");
+  popup.style.display = "unset";
+  editpopup.style.display = "none";
+  const body = document.getElementById("body");
+  body.classList.remove("no-scroll");
+  document.getElementById("prio-urgent").classList.remove("selected");
+  document.getElementById("prio-medium").classList.remove("selected");
+  document.getElementById("prio-low").classList.remove("selected");
+  elementid = {};
 }
