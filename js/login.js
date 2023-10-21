@@ -14,10 +14,6 @@ const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
  *
  */
 
-/*
- * KEY = 'user' for fetching users
- * JUST FOR TEST
- */
 let currentLogin; // current login input onsubmit = email + password // This need to be checked
 let allUsers = [];
 
@@ -50,4 +46,13 @@ async function checkAccountExists() {
 function guestLogIn() {
   localStorage.removeItem('email');
   localStorage.setItem('name', 'Guest');
+}
+
+function showClearPassword() {
+  let inputField = document.getElementById('password');
+  if (inputField.type == 'password') {
+    inputField.type = 'text';
+  } else {
+    inputField.type = 'password';
+  }
 }
