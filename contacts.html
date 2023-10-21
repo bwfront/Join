@@ -46,15 +46,40 @@
 
         <div class="contact-details-container">
           <div class="head-contact-details">
-          <div class="contact-details-title">
-            <span>Contacts</span>
-          </div>
-          <div class="contact-details-border"></div>
-          <div class="contact-details-text">
-            <span>Better with a team</span>
+            <div class="contact-details-title">
+              <span>Contacts</span>
+            </div>
+            <div class="contact-details-border"></div>
+            <div class="contact-details-text">
+              <span>Better with a team</span>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+
+    <div id="contact_modal_details" class="contact-modal-details">
+      <div class="modal-content">
+        <div class = "modal-contacts-head-img">
+          <img src="./assets/img/profile_badge.png" />
+          <div>
+            <h2 id="contactName"></h2>
+            <div class="modal-contacts-head-edit">
+              <p><img src="./assets/img/editpopup.png">Edit</p>
+              <p><img src="./assets/img/deletepopup.png">Delete</p>
+            </div>
+            <span>+ Add Task</span>
+          </div>
+        </div>
+        <div class="modal-contacts-body">
+          <div>
+        <span>Contact informations</span>
+        </div>
+        <div class="modal-contacts-body-email">
+        <p>Email:</p>
+        <h3 id="contactEmail"></h3>
+        </div>
+        <button onclick="closeModalContacts()" id="closeModal">X</button>
       </div>
     </div>
   </body>
