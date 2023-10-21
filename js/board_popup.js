@@ -7,12 +7,24 @@ let currentTaskEdit;
  */
 let elementid = {};
 
-let prioEdit;
-let currenttaskcon;
 /**
- * current subtasksEdit array
+ * Changed Prio in Edit
  */
+let prioEdit;
 
+/**
+ * Current Container e.g ToDo, In progress etc.
+ */
+let currenttaskcon;
+
+/**
+ * Stores the subtask in Edit
+ */
+let subtaskEdit = [];
+/**
+ * current ready subtasks in Edit array
+ */
+let subtaskEditReady = [];
 /**
  * Get the data from the clicked Task
  * @param {number} id
@@ -214,6 +226,7 @@ async function getEditValues(id) {
 function innerEditValues(elementid, selectTask) {
   prioEdit = selectTask.priority;
   currenttaskcon = selectTask.taskcon;
+  subtaskEditReady = selectTask.subtaskready;
   elementid.title.value = selectTask.title;
   elementid.description.innerHTML = selectTask.description;
   elementid.date.value = selectTask.date;
@@ -222,14 +235,32 @@ function innerEditValues(elementid, selectTask) {
   elementid.categoryselected.value = selectTask.category;
   elementid.contact.innerHTML = selectTask.contact;
   elementid.contactselected.value = selectTask.contact;
-  if (selectTask.subtask) {
+  editSubtasksStore(elementid, selectTask);
+}
+
+function editSubtasksStore(elementid, selectTask) {
     elementid.subtasks.innerHTML = ``;
-    selectTask.subtask.forEach((element) => {
-      elementid.subtasks.innerHTML += `<li>${element}</li>`;
-    });
+  if (selectTask.subtask != 0) {
+    console.log(subtaskEdit)
+    subtaskEdit = [...selectTask.subtask];
+      renderEditSubtasks(elementid);
   } else {
     elementid.subtasks.innerHTML += `There are no Subtaks`;
   }
+}
+
+function addEditSubtask(){
+    const subtaskValue = document.getElementById('subtask-title-input');
+    subtaskEdit.push(subtaskValue.value);
+    subtaskValue.value = '';
+    elementid.subtasks.innerHTML = '';
+    renderEditSubtasks(elementid);
+}
+
+function renderEditSubtasks() {
+  subtaskEdit.forEach((element) => {
+    elementid.subtasks.innerHTML += `<li>${element}</li>`;
+  });
 }
 
 async function setEditValue() {
@@ -240,12 +271,12 @@ async function setEditValue() {
   let id = currentTaskEdit;
   let priority = prioEdit;
   let taskcon = currenttaskcon;
+  let category = elementid.categoryselected.value;
+  let contact = elementid.contactselected.value;
 
   //Implement TODO
-  let subtask = [];
-  let subtaskready = [];
-  let contact = elementid.contact.innerHTML;
-  let category = elementid.category.innerHTML;
+  let subtask = subtaskEdit;
+  let subtaskready = subtaskEditReady;
 
   let currentEditValues = {
     id,
@@ -326,4 +357,5 @@ function closeTaskPopUpRemove() {
   document.getElementById("prio-medium").classList.remove("selected");
   document.getElementById("prio-low").classList.remove("selected");
   elementid = {};
+  subtaskEdit = [];
 }
