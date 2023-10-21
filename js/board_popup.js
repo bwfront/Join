@@ -238,29 +238,50 @@ function innerEditValues(elementid, selectTask) {
   editSubtasksStore(elementid, selectTask);
 }
 
+/**
+ * Check if Subtaks there and Store them in a diffrent Array
+ * if not import there are no subtasks
+ * @param {Object} elementid
+ * @param {Array} selectTask
+ */
 function editSubtasksStore(elementid, selectTask) {
-    elementid.subtasks.innerHTML = ``;
+  elementid.subtasks.innerHTML = ``;
   if (selectTask.subtask != 0) {
-    console.log(subtaskEdit)
+    console.log(subtaskEdit);
     subtaskEdit = [...selectTask.subtask];
-      renderEditSubtasks(elementid);
+    renderEditSubtasks();
   } else {
     elementid.subtasks.innerHTML += `There are no Subtaks`;
   }
 }
 
-function addEditSubtask(){
-    const subtaskValue = document.getElementById('subtask-title-input');
-    subtaskEdit.push(subtaskValue.value);
-    subtaskValue.value = '';
-    elementid.subtasks.innerHTML = '';
-    renderEditSubtasks(elementid);
+/**
+ * Add a Subtask to the Task
+ */
+function addEditSubtask() {
+  const subtaskValue = document.getElementById("subtask-title-input");
+  subtaskEdit.push(subtaskValue.value);
+  subtaskValue.value = "";
+  elementid.subtasks.innerHTML = "";
+  renderEditSubtasks();
+}
+/**
+ * Delete the Subtask with the Index
+ * @param {Number} id - The Index from the delete Subtask
+ */
+function deleteEditSubtask(id) {
+  subtaskEdit.splice(id, 1);
+  elementid.subtasks.innerHTML = "";
+  renderEditSubtasks();
 }
 
+/**
+ * Render the Subtasks
+ */
 function renderEditSubtasks() {
-  subtaskEdit.forEach((element) => {
-    elementid.subtasks.innerHTML += `<li>${element}</li>`;
-  });
+  for (let i = 0; i < subtaskEdit.length; i++) {
+    elementid.subtasks.innerHTML += `<div class="edit-subtask-con"><li>${subtaskEdit[i]}</li><img src="./assets/img/deletepopup.png" alt="delete" onclick="deleteEditSubtask(${i})"></div>`;
+  }
 }
 
 async function setEditValue() {

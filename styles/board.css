@@ -477,6 +477,24 @@
   font-size: 18px;
 
 }
+.edit-subtask-con{
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 10px;
+  border-radius: 8px;
+}
+.edit-subtask-con:hover{
+  background-color: #e7e7e7;
+}
+.edit-subtask-con img {
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.4s; 
+}
+
+.edit-subtask-con:hover img {
+  opacity: 1;
+}
 .save-edit-task-conatiner{
   display: flex;
   align-items: flex-start;
