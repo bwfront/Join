@@ -655,12 +655,11 @@
   .desktop-board-awaitfeedback,
   .desktop-board-inprogress,
   .desktop-board-todo {
-    width: 95vw !important;
+    width: 100%;
     margin: 0 0 40px 0 !important;
   }
   .todo-head {
-    max-width: 100vw;
-    min-width: 100vw;
+    width: 100%;
     margin-bottom: 10px;
   }
   .desktop-todo {
@@ -678,7 +677,7 @@
     font-weight: 700;
   }
   .board-plus {
-    margin-right: 45px !important;
+    margin-right: 5px !important;
   }
 }
 @media (max-width: 600px) {
