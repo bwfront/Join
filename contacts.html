@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,7 +21,7 @@
     <script src="script_include_html.js"></script>
     <link rel="stylesheet" href="template.css" />
     <link rel="stylesheet" href="./styles/contacts.css" />
-    
+
     <script src="./js/contacts.js"></script>
     <script src="./js/contacts_popup.js"></script>
 
@@ -59,44 +58,12 @@
         </div>
       </div>
     </div>
-     
-    <div id="contact_modal_details" class="contact-modal-details">
-      <div class="modal-content">
-        <div class="modal-splitter">
-        <div class = "modal-contacts-head-img">
-          <img src="./assets/img/profile_badge.png" />
-          <div>
-            <h2 id="contactName"></h2>
-            <div class="modal-contacts-head-edit">
-              <p onclick="editContact()"><img src="./assets/img/editpopup.png">Edit</p>
-              <p>|</p>
-              <p onclick="deleteContact()"><img src="./assets/img/deletepopup.png">Delete</p>
-            </div>
-            <a href="add_task.html"><span>+ Assign a task</span></a>
-          </div>
-        </div>
 
-   
-
-        <div class="modal-contacts-body">
-          <div>
-        <span>Contact informations</span>
-        </div>
-        <div class="modal-contacts-body-email">
-          <p>Email:</p>
-          <h3 id="contactEmail"></h3>
-        </div>
-        <div class="modal-contacts-body-email">
-          <p>Phone number:</p>
-          <h3 id="contactPhone">0151 272 832</h3>
-        </div>
-        <div class="modal-contacts-body-email">
-          <p>Tasks assigned:</p>
-          <h3 id="tasksAssigned">none</h3>
-        </div>
-        <img src="./assets/img/closepopup.png " onclick="closeModalContacts()" class= "close-modal-contacts" id="closeModal">
-      </div>
-      </div>
+    <div class="contact-modal-details" id="contact_modal_details">
+      <div class="modal-content" id="modal_content"></div>
     </div>
+
+    <div id="contactPopUp"></div>
+    <div class="contact-modal-background" id="contact_modal_background"></div>
   </body>
 </html>

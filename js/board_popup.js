@@ -355,6 +355,7 @@ function closeTaskPopUp() {
   );
   const popupconatiner = document.getElementById("desktop-task-popup");
   const subtakscon = document.getElementById("task-popup-subtasks");
+  
   subtakscon.innerHTML = "<div>There are no Subtaks</div>";
   popupconatiner.classList.remove("popup-slidein");
   popupconatiner.classList.add("popup-slideout");
@@ -380,4 +381,3 @@ function closeTaskPopUpRemove() {
   elementid = {};
   subtaskEdit = [];
 }
-
