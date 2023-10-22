@@ -436,8 +436,10 @@ function mobileDropDownTask(id) {
   if (droptaskdown.style.opacity === "0" || droptaskdown.style.opacity === "") {
     droptaskdown.style.opacity = "1";
     droptaskdown.style.transform = "translateY(0)";
+    droptaskdown.style.pointerEvents = "all";
     dropdowntaskbtn.style.color = "#ffffff";
   } else {
+    droptaskdown.style.pointerEvents = "none";
     droptaskdown.style.opacity = "0";
     droptaskdown.style.transform = "translateY(-100px)";
     dropdowntaskbtn.style.color = "#2a3647";

@@ -583,6 +583,7 @@
   opacity: 0;
   transform: translateY(-100px);
   transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  pointer-events: none;
 }
 .mobile-droptaskcon-text{
   margin: 5px 0;
