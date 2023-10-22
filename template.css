@@ -101,7 +101,6 @@ body {
   display: none;
   height: 80px;
   width: 100vw;
-  /*width: 428px;*/
   z-index: 1000 !important;
   bottom: 0;
   position: fixed;

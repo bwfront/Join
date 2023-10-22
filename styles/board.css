@@ -13,6 +13,7 @@
     opacity: 1;
   }
 }
+
 /**ANIMATION FOR THE MAIN CONTENT END**/
 .no-scroll {
   overflow: hidden;
@@ -592,7 +593,7 @@
   color: #28abe2;
 }
 /* Responsive */
-@media (max-width: 1015px) {
+@media (max-width: 1030px) {
   .dropdown-task{
     display: unset;
   }
