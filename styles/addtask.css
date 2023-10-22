@@ -16,7 +16,7 @@
 
 body {
   background-color: #f6f7f8;
-  font-family: 'Inter', sans-serif !important;
+  font-family: "Inter", sans-serif !important;
   overflow-x: hidden;
 }
 .add-task-main-content {
@@ -89,7 +89,7 @@ body {
 }
 
 .required-field::before {
-  content: '*';
+  content: "*";
   color: red;
 }
 .form-control option.d-none {
@@ -119,14 +119,20 @@ body {
   text-transform: capitalize;
 }
 
-.subtask-list input[type='checkbox'] {
+.subtask-list input[type="checkbox"] {
   margin-right: 5px;
 }
 
 .subtask-list span {
   font-size: 18px;
 }
-
+.mobile-req {
+  display: none !important;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  border-radius: 8px;
+  height: 10px;
+}
 /* ADD TASK DESKTOP ENDS*/
 
 /* ADD TASK RESPONSIVE STARTS */
@@ -175,6 +181,16 @@ body {
   }
 
   @media (max-width: 900px) {
+    .btn-bottom {
+      position: sticky;
+      display: flex;
+      justify-content: center;
+      z-index: 99;
+      width: 100% !important;
+      margin-left: 0;;
+      padding: 0;
+      background-color: unset;
+    }
     .mobile-header {
       z-index: 9;
     }
@@ -199,8 +215,34 @@ body {
   }
 
   @media (max-width: 471px) {
+    .btn-bottom{
+     padding: 0;
+    }
+    .add-task-bottom-container {
+      display: none;
+    }
     .btn-bottom {
       width: 20%;
+    }
+    .add-task-card {
+      width: 100%;
+      padding: 0 10px 0 20px;
+      top: 130px;
+      gap: 0;
+    }
+    .add-task-right-side, .add-task-left-side, #task-description-input{
+      width: 100% !important;
+    }
+    .add-task-main-content{
+      margin-top: -185px !important;
+    }
+    .subtask-title-input{
+      display: flex;
+      align-items: center;
+    }
+    #subtask-icon{
+      margin-top: -23px;
+      margin-right: 10px;
     }
   }
 
@@ -220,7 +262,7 @@ body {
 
     .add-task-main-content .add-task-left-side,
     .add-task-main-content .add-task-right-side {
-      width: 90%;
+      width: 100%;
     }
 
     .add-task-right-side {
@@ -240,19 +282,6 @@ body {
       width: 100% !important;
     }
 
-    .btn-bottom {
-      padding-left: 34px;
-      bottom: 80px;
-      right: 12px;
-      width: 20%;
-    }
-
-    .add-task-bottom-container {
-      bottom: 66px;
-      height: 59px;
-      z-index: 999;
-      padding-bottom: 21px;
-    }
 
     #subtask-icon {
       top: 359px;
@@ -261,7 +290,7 @@ body {
 }
 @media (max-width: 380px) {
   .add-task-main-content {
-    min-height: 140vh;
+    width: 100%;
   }
 }
 
