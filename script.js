@@ -19,6 +19,7 @@ let priority = "low";
 let subtask = [];
 let subtaskready = [];
 let taskcon = getTaskon();
+let statusPopUp = "open";
 
 /**
  * Creates a task using input values from the DOM, then saves it to the remote storage.
@@ -263,16 +264,16 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
     <a class="dropdown-task" onclick="mobileDropDownTask(${id})" id="dropdown-task${id}"><</a>
     <div class="mobile-droptaskcon" id="mobile-droptaskcon${id}">
         <a>
-                <div class="mobile-droptaskcon-text">ToDo</div>
+                <div class="mobile-droptaskcon-text" onclick="mobileChangeCon(${id}, 'todo')">ToDo</div>
         </a>
         <a>
-                <div class="mobile-droptaskcon-text">Await feedback</div>
+                <div class="mobile-droptaskcon-text" onclick="mobileChangeCon(${id}, 'awaitfeedback')">Await feedback</div>
         </a>
         <a>
-                <div class="mobile-droptaskcon-text">In Progress</div>
+                <div class="mobile-droptaskcon-text" onclick="mobileChangeCon(${id}, 'inprogress')">In Progress</div>
         </a>
         <a>
-                <div class="mobile-droptaskcon-text">Done</div>
+                <div class="mobile-droptaskcon-text" onclick="mobileChangeCon(${id}, 'done')">Done</div>
         </a>
   </div>
   </div>
@@ -427,12 +428,36 @@ function renderFilteredTasksOnBoards(filteredTasks) {
   });
 }
 
-
 //dropdown
-
-function mobileDropDownTask(id){
+function mobileDropDownTask(id) {
   const droptaskdown = document.getElementById(`mobile-droptaskcon${id}`);
-  droptaskdown.style.display ='unset';
   const dropdowntaskbtn = document.getElementById(`dropdown-task${id}`);
-  dropdowntaskbtn.style.color ='#ffffff';
+
+  if (droptaskdown.style.opacity === "0" || droptaskdown.style.opacity === "") {
+    droptaskdown.style.opacity = "1";
+    droptaskdown.style.transform = "translateY(0)";
+    dropdowntaskbtn.style.color = "#ffffff";
+  } else {
+    droptaskdown.style.opacity = "0";
+    droptaskdown.style.transform = "translateY(-100px)";
+    dropdowntaskbtn.style.color = "#2a3647";
+  }
+}
+
+/**
+ * Change the Taskcon from the task
+ * @param {Number} id
+ * @param {String} con
+ */
+async function mobileChangeCon(id, con) {
+  const tasks = await getItem("tasks");
+  const updatedTasks = tasks.map((task) => {
+    if (task.id == id) {
+      return { ...task, taskcon: con };
+    }
+    return task;
+  });
+  await setItem("tasks", updatedTasks);
+  setBoards();
+  statusPopUp = "open";
 }
