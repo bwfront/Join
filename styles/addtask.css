@@ -264,25 +264,19 @@ body {
     .add-task-main-content .add-task-right-side {
       width: 100%;
     }
-
     .add-task-right-side {
       margin-top: -91px;
     }
-
     .add-task-card {
       width: 100%;
       top: 130px;
     }
-
     .form-control {
       width: 100%;
     }
-
     .add-task-left-side textarea {
       width: 100% !important;
     }
-
-
     #subtask-icon {
       top: 359px;
     }
