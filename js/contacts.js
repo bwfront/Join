@@ -78,12 +78,7 @@ function generateContacts(contact, index) {
       </div>`;
 }
 
-
 function addContact() {
-  
-}
-
-function anojfnofqf(){
   const newName = "New Contact";
   const newEmail = "new.contact@example.com";
 
@@ -94,12 +89,4 @@ function anojfnofqf(){
   allContacts.push(newContact);
   renderContacts();
 }
-/**
- * edits the modal
- */
-function editContact() {}
 
-/**
- * deletes the modal
- */
-function deleteContact() {}

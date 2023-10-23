@@ -1,35 +1,16 @@
-/**
- * function to open the modal window and to show details about the contact
- */
-function openContactModal(contactIndex) {
-  const contactDetails = document.getElementById("contactPopUp");
-  const contactBackground = document.getElementById("contact_modal_background");
+let statusPopUpWindow = "close";
 
-  if (contactDetails.style.display === "block") {
-    contactBackground.style.display = "none";
+function openPopUp() {
+  if (statusPopUpWindow === "close") {
+    document.getElementById("contactPopUp").style.display = "block";
+    statusPopUpWindow = "open";
   } else {
-    const contact = allContacts[contactIndex];
-    const popupContainer = document.getElementById("contact_modal_details");
-
-    contactBackground.style.display = "block";
-    popupContainer.classList.remove("popup-slideout");
-    popupContainer.classList.add("popup-slidein");
-
-    contactDetails.innerHTML = generatePopUpContact(contact);
+    document.getElementById("contactPopUp").style.display = "none";
+    statusPopUpWindow = "close";
   }
 }
-function closeModalContacts() {
-  const contactDetails = document.getElementById("contactPopUp");
-  const contactBackground = document.getElementById("contact_modal_background");
-  const popupContainer = document.getElementById("contact_modal_details");
 
-
-  popupContainer.classList.add("popup-slideout");
-  popupContainer.classList.remove("popup-slidein");
-
-  setTimeout(() => {
-    contactDetails.style.display = "none";
-    contactBackground.style.display = "none";
-  }, 600); 
+function closeWindow() {
+  document.getElementById("contactPopUp").style.display = "none";
+  statusPopUpWindow = "close";
 }
-

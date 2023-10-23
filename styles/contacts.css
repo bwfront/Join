@@ -7,12 +7,14 @@ body {
 
 .contacts-main-container {
   display: flex;
+  justify-self: center;
+  width: 100%;
+  gap: 30px;
 }
 
 .contact-list-container {
-  position: absolute;
-  top: 95px;
-  left: 234px;
+  margin-top: -54px;
+  margin-left: 234px;
   padding: 20px;
   border: 1px solid #ddd;
   max-height: 928px;
@@ -152,27 +154,7 @@ body {
   color: #29abe2;
 }
 
-/* MODAL*/
-#contactPopUp {
-
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-}
-
-.contact-modal-background {
-  display: none;
-  z-index: 98;
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
+/* Modal content */
 
 .contact-modal-details {
   display: none;
@@ -195,170 +177,66 @@ body {
   height: 596px;
 }
 
-.popup-slidein {
-  animation-name: popup-slidein;
-  animation-duration: 0.6s;
-}
-
-.popup-slideout {
-  animation-name: popup-slideout;
-  animation-duration: 0.6s;
-}
-
-@keyframes popup-slidein {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes popup-slideout {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
-.modal-contacts-head-img {
-  display: flex;
-
-  margin-left: 50px;
-  align-items: center;
-  gap: 50px;
-}
-
-.modal-contacts-head-img span {
-  color: rgb(89, 97, 103);
-  cursor: pointer;
-  font-size: 21px;
-  border-bottom: 1px solid;
-  border-left: 3px solid;
-  border-right: 1px solid;
-  border-radius: 6px;
-  padding: 8px;
-  margin-top: 20px;
-}
-
-.modal-contacts-head-img a {
-  text-decoration: none;
-  position: absolute;
-  top: 611px;
-  right: 3%;
-}
-
-.modal-contacts-head-img span:hover {
-  border-bottom: 4px solid;
-  border-right: 4px solid;
-}
-
-.modal-contacts-head-img img {
-  width: 60px;
-  height: 60px;
-}
-
-.modal-contacts-head img {
-  width: 50px;
-  height: 50px;
-}
-
-.modal-contacts-head-edit {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  gap: 20px;
-  margin-bottom: 10px;
-}
-.modal-contacts-head-edit img {
-  width: 20px;
-  height: 20px;
-}
-.modal-contacts-head-edit img:hover,
-.modal-contacts-head-edit p:hover {
-  height: 22px;
-  filter: contrast(100%) invert(1) hue-rotate(185deg) saturate(10)
-    brightness(90%);
-}
-
-.modal-contacts-head-edit span {
-  color: black;
-  font-size: 16px;
-}
-
-.modal-contacts-body {
-  margin-top: 40px;
-  margin-left: 50px;
-}
-
-.modal-contacts-body span {
-  font-weight: 800;
-  font-size: 22px;
-}
-
-.modal-contacts-head-edit {
-  cursor: pointer;
-}
-
-.modal-contacts-body-email {
-  font-size: 22px;
-  margin-top: 30px;
-}
-
-.modal-contacts-body-email h3 {
-  color: #29abe2;
-  margin-left: 20px;
-}
-
-.close-modal-contacts {
-  position: absolute;
-  height: 32px;
-  width: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 16px;
-  top: 27px;
-  left: 90%;
-}
-.close-modal-contacts:hover {
-  background-color: #eaeaea;
-}
-.close-modal-contacts img {
-  height: 24px;
-  width: 24px;
-}
-
-#contactEmail:hover,
-#contactPhone:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
 /* Contact Popup right */
 .contact-popup-title {
-  width: 500px !important;
+  width: 650px !important;
   height: 100%;
   background-color: #2a3647;
   border-radius: 30px 0 0 30px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+#contactPopUp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+}
+
+.contact-popup-title-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.contact-popup-title-logo img {
+  width: 54px;
+  height: 66px;
+  margin-bottom: 28px;
+}
+
+.contact-popup-title-logo span {
+  font-size: 61px;
+  font-weight: 700;
+  color: white;
+}
+
+.highlight {
+  border-bottom: 3px solid #29abe2;
+  display: inline;
+  width: 93px;
 }
 
 /* Contact Popup left */
-.contact-input{
+.contact-input {
   width: 380px;
   border-radius: 8px;
   padding: 8px 16px;
   margin-left: -40px;
 }
-.contact-input-img{
+.contact-input-img {
   width: 24px;
   height: 24px;
   margin-left: -40px;
 }
-.contact-input-container{
+.contact-input-container {
   width: 422px;
   height: 215px;
   display: flex;
@@ -366,19 +244,28 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-.contact-close-btn{
+
+.contact-close-btn {
   height: 96px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
 }
-.contact-close-btn img{
-width: 24px;
-height: 24px;
-margin-right: 48px;
+
+.contact-close-btn img {
+  width: 24px;
+  height: 24px;
+  margin-right: 48px;
 }
-.contact-button-container{
+
+.contact-close-btn img:hover {
+  background-color: #eaeaea;
+  border-radius: 16px;
+}
+
+.contact-button-container {
   margin: 20px 0 0 10px;
   font-size: 21px;
   display: flex;
@@ -386,8 +273,7 @@ margin-right: 48px;
   width: 100%;
   gap: 20px;
 }
-.contact-button
-{
+.contact-button {
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -397,7 +283,17 @@ margin-right: 48px;
   border: 1px solid #2a3647;
   padding: 24px 15px;
 }
-.contact-profile-container{
+
+.contact-button:hover {
+  cursor: pointer;
+  background-color: #29abe2;
+}
+.contact-button-white {
+  background-color: white;
+  color: black;
+}
+
+.contact-profile-container {
   font-size: 47px;
   font-weight: 500;
   display: flex;
@@ -409,16 +305,17 @@ margin-right: 48px;
   border-radius: 70px;
   background-color: orange;
 }
-.contact-popup-infos{
+.contact-popup-infos {
   width: 100%;
 }
 
-.contact-content-container{
+.contact-content-container {
   height: 100%;
-  width: 70%;
-  margin-top: -96px;
+  width: 95%;
+  gap: 40px;
   position: absolute;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
+  border-radius: 100px;
 }
