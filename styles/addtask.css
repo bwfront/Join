@@ -293,5 +293,10 @@ body {
     width: 100%;
   }
 }
+@media (max-height: 750px) {
+  .add-task-main-content {
+    height: 900px;
+  }
+}
 
 /* ADD TASK RESPONSIVE ENDS */

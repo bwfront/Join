@@ -102,6 +102,7 @@
 }
 .maxwidthboard {
   max-width: 1800px;
+  overflow-x: hidden;
 }
 .todo-head {
   width: 246px;
