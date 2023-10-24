@@ -154,7 +154,10 @@ function innerEditContactPopUp(id) {
   id.background.style.display = 'unset';
 }
 
-
+/**
+ * Set the Values in the Input field
+ * @param {Object} contact 
+ */
 function innerEditContactValues(contact){
   const inputs = getContactInputs();
   inputs.name.value = contact.name;
