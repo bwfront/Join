@@ -53,16 +53,18 @@ function closeWindow() {
 function contactCheck(con) {
   const nameInput = document.getElementById("contact-input-name").value;
   const emailInput = document.getElementById("contact-input-email").value;
-  if (nameInput == '' || emailInput == '') {
-    return;
+  if (nameInput == '' || !emailInput.includes('@')) {
+    return false;
   } else {
     if(con == 'addContact'){
       addContact();
     }else if(con = 'editContact'){
       editContact();
     }
+    return true;
   }
 }
+
 /**
  * 
  * @returns - The Contact Input ID HTML

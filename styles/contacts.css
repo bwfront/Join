@@ -100,8 +100,7 @@ body {
   align-items: baseline;
   gap: 35px;
   overflow-y: auto;
-  max-height: 90vh;
-  scroll-behavior: smooth;
+  max-height: 75vh;
 }
 
 .head-contact-details {

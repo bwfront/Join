@@ -65,7 +65,7 @@ async function getContactInfo(id) {
 }
 
 /**
- * 
+ *
  * @param {Object} contact - The Filtert Object
  * @returns - The HTML Code
  */
@@ -76,8 +76,12 @@ function showContactHTML(contact) {
     <div class="contact-show-btn-name-container">
       <div class="contact-show-name">${contact.name}</div>
       <div class="show-btn-conatiner">
-        <div class="contact-show-btn" onclick="editContact(${contact.id})"><img src="./assets/img/editpopup.png" alt="edit">Edit</div>
-        <div class="contact-show-btn"><img src="./assets/img/deletepopup.png" alt="delte" onclick="deleteContact(${contact.id})">Delete</div>
+        <div class="contact-show-btn" onclick="editContact(${
+          contact.id
+        })"><img src="./assets/img/editpopup.png" alt="edit">Edit</div>
+        <div class="contact-show-btn" onclick="deleteContact(${
+          contact.id
+        })"><img src="./assets/img/deletepopup.png" alt="delte">Delete</div>
       </div>
     </div>
   </div>
@@ -100,10 +104,22 @@ function showContactHTML(contact) {
  * @param {String} number - The Telephone Number
  * @returns - The String that get in to the HTML
  */
-function checkNumber(number){
-  if(number == ''){
-    return 'No number assigned'
-  }else{
+function checkNumber(number) {
+  if (number == "") {
+    return "No number assigned";
+  } else {
     return number;
   }
+}
+
+/**
+ * Delete the Contact and Render
+ */
+async function deleteContact(id) {
+  const contacts = await getItem("contacts");
+  const updatedcontacts = contacts.filter((contact) => contact.id !== id);
+  await setItem("contacts", updatedcontacts);
+  initContacts();
+  const showcon = document.getElementById("contact-show-container");
+  showcon.style.display = "none";
 }
