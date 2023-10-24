@@ -38,6 +38,7 @@ function getPopUpId() {
  */
 function closeWindow() {
   document.getElementById("contactPopUp").style.display = "none";
+  initContacts();
 }
 
 /**
@@ -80,13 +81,26 @@ async function addContact() {
   const contacts = await getItem("contacts");
   contacts.push(newcontact);
   await setItem("contacts", contacts);
+  closeWindow();
 }
 
+/**
+ *
+ * @returns - Return the Contact Values within the Input and clear it
+ */
 function getValuesInputContact() {
   const id = Date.now();
-  const name = document.getElementById("contact-input-name").value;
-  const email = document.getElementById("contact-input-email").value;
-  const number = document.getElementById("contact-input-number").value;
+  const nameInput = document.getElementById("contact-input-name");
+  const emailInput = document.getElementById("contact-input-email");
+  const numberInput = document.getElementById("contact-input-number");
+  const name = nameInput.value;
+  const email = emailInput.value;
+  const number = numberInput.value;
   const newcontact = { id, name, email, number };
+  nameInput.value = "";
+  emailInput.value = "";
+  numberInput.value = "";
   return newcontact;
 }
+
+function openContact() {}

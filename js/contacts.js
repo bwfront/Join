@@ -1,61 +1,24 @@
-let allContacts = [
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-];
-
-let user = [];
-
 /**
  * initialize script for contacts.html
  */
 function initContacts() {
-  renderContacts();
+  getContacts();
+}
+
+async function getContacts() {
+  const contacts = await getItem("contacts");
+  renderContacts(contacts);
 }
 
 /**
  * renders the contacts
  */
-function renderContacts() {
+function renderContacts(contacts) {
   let contactList = document.getElementById("contact_list");
   contactList.innerHTML = "";
 
-  for (let i = 0; i < allContacts.length; i++) {
-    let contact = allContacts[i];
-    contactList.innerHTML += generateContacts(contact, i);
+  for (let i = 0; i < contacts.length; i++) {
+    contactList.innerHTML += innerContacts(contacts[i]);
   }
 }
 
@@ -65,9 +28,9 @@ function renderContacts() {
  * @param {*} index - index of the contact
  * @returns
  */
-function generateContacts(contact, index) {
+function innerContacts(contact) {
   return `
-      <div class="sidebar-contacts" onclick="openContactModal(${index})">
+      <div class="sidebar-contacts" onclick="openContact(${contact.id})">
         <div>
           <img src="../assets/img/profile_badge.png">
         </div>
@@ -77,16 +40,3 @@ function generateContacts(contact, index) {
         </div>
       </div>`;
 }
-
-function addContact() {
-  const newName = "New Contact";
-  const newEmail = "new.contact@example.com";
-
-  const newContact = {
-    name: newName,
-    email: newEmail,
-  };
-  allContacts.push(newContact);
-  renderContacts();
-}
-
