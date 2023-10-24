@@ -43,7 +43,7 @@
       <div class="contacts-main-container">
         <div class="contact-list-container">
           <div class="contact-list-button-section">
-            <button class="btn btn-primary" onclick="addContact()">
+            <button class="btn btn-primary" onclick="openPopUpCopntact('add')">
               Add new contact <img src="./assets/img/person_add.png" />
             </button>
           </div>
@@ -62,11 +62,6 @@
           </div>
         </div>
       </div>
-      
-
-
-
-
     <div class="contact-modal-details" id="contact_modal_details">
       <div class="modal-content" id="modal_content"></div>
     </div>
@@ -74,12 +69,14 @@
     <div id="contactPopUp" >
       <div class="modal-content">
         <div class="contact-popup-title">
-          <div class="contact-popup-title-logo">
+          <div class="contact-popup-title-logo" id="contact-popup-title-logo">
             <img src="./assets/img/join-logo-white.png" />
-            <span>Edit contact</span>
+            <span id="popup-title-span"></span>
+            <div id="popup-title-span-underline">Tasks are better with a team!</div>
             <div class="highlight"></div>
           </div>
         </div>
+        
         <div class="contact-popup-infos">
           <div id="closeWindow" class="contact-close-btn" onclick="closeWindow()">
           <img src="./assets/img/closepopup.png" alt="close" />
@@ -125,9 +122,9 @@
                 </div>
               </div>
               <div class="contact-button-container">
-                <div class="contact-button contact-button-white">Delete</div>
-                <div class="contact-button">
-                  Save<img src="./assets/img/check.png" alt="check" />
+                <div class="contact-button contact-button-white" id="contact-delete-btn">
+                </div>
+                <div class="contact-button" id="contact-save-btn">
                 </div>
               </div>
             </div>

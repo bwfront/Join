@@ -185,11 +185,13 @@ body {
   border-radius: 30px 0 0 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
   
 }
 
 #contactPopUp {
-  display: flex;
+  z-index: 100;
+  display: none;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -199,6 +201,12 @@ body {
   width: 100%;
 }
 
+#popup-title-span-underline{
+  display: none;
+  margin-top: -20px;
+  color: #ffffff;
+  font-size: 27px;
+}
 .contact-popup-title-logo {
   display: flex;
   flex-direction: column;
@@ -283,16 +291,27 @@ body {
   border: 1px solid #2a3647;
   padding: 24px 15px;
 }
-
+.contact-button img{
+  margin-left: 5px;
+}
 .contact-button:hover {
   cursor: pointer;
   background-color: #29abe2;
+}
+.contact-button-white:hover{
+  color: #ffffff !important;
+  border: 1px solid #1f84af;
 }
 .contact-button-white {
   background-color: white;
   color: black;
 }
-
+.contact-button-white img{
+  margin-left: 0px;
+}
+.contact-button-white:hover img{
+  display: unset;
+}
 .contact-profile-container {
   font-size: 47px;
   font-weight: 500;
