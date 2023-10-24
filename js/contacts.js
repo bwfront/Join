@@ -46,8 +46,9 @@ function innerContacts(contact) {
  * @param {String} id - The ID of the Contact
  */
 async function openContact(id) {
-  const contact = await getContactInfo(id);
   const showcon = document.getElementById("contact-show-container");
+  showcon.style.display = "none";
+  const contact = await getContactInfo(id);
   showcon.style.display = "unset";
   showcon.innerHTML = showContactHTML(contact);
 }
@@ -75,8 +76,8 @@ function showContactHTML(contact) {
     <div class="contact-show-btn-name-container">
       <div class="contact-show-name">${contact.name}</div>
       <div class="show-btn-conatiner">
-        <div class="contact-show-btn"><img src="./assets/img/editpopup.png" alt="edit">Edit</div>
-        <div class="contact-show-btn"><img src="./assets/img/deletepopup.png" alt="delte">Delete</div>
+        <div class="contact-show-btn" onclick="editContact(${contact.id})"><img src="./assets/img/editpopup.png" alt="edit">Edit</div>
+        <div class="contact-show-btn"><img src="./assets/img/deletepopup.png" alt="delte" onclick="deleteContact(${contact.id})">Delete</div>
       </div>
     </div>
   </div>

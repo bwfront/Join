@@ -403,12 +403,13 @@ body {
 .contact-show-btn:hover img {
   color: #1e2f44;
   filter: contrast(100%) invert(1) hue-rotate(185deg) saturate(10)
-  brightness(90%);
+    brightness(90%);
   font-weight: 700;
 }
 .contact-show-btn:hover {
   color: #29abe2;
   font-weight: 700;
+  padding: 0;
 }
 .contact-show-information {
   display: flex;
@@ -430,6 +431,6 @@ body {
 .show-phone-text {
   font-size: 16px;
 }
-.contact-show-phone{
+.contact-show-phone {
   margin-top: 10px;
 }
