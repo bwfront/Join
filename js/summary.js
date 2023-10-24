@@ -144,8 +144,7 @@ function setTasksInBoard() {
   tasksInBoard = 0;
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i]['taskcon'];
-    if (task == 'done') {
-    } else {
+    if (task != 'done' || task) {
       tasksInBoard++;
     }
   }

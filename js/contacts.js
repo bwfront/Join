@@ -6,7 +6,7 @@ function initContacts() {
 }
 
 async function getContacts() {
-  const contacts = await getItem("contacts");
+  const contacts = await getItem('contacts');
   renderContacts(contacts);
 }
 
@@ -14,8 +14,8 @@ async function getContacts() {
  * renders the contacts
  */
 function renderContacts(contacts) {
-  let contactList = document.getElementById("contact_list");
-  contactList.innerHTML = "";
+  let contactList = document.getElementById('contact_list');
+  contactList.innerHTML = '';
 
   for (let i = 0; i < contacts.length; i++) {
     contactList.innerHTML += innerContacts(contacts[i]);
@@ -47,8 +47,8 @@ function innerContacts(contact) {
  */
 async function openContact(id) {
   const contact = await getContactInfo(id);
-  const showcon = document.getElementById("contact-show-container");
-  showcon.style.display = "unset";
+  const showcon = document.getElementById('contact-show-container');
+  showcon.style.display = 'unset';
   showcon.innerHTML = showContactHTML(contact);
 }
 
@@ -58,13 +58,13 @@ async function openContact(id) {
  * @returns - The filtered Object
  */
 async function getContactInfo(id) {
-  const contacts = await getItem("contacts");
+  const contacts = await getItem('contacts');
   const contact = contacts.find((contact) => contact.id === id);
   return contact;
 }
 
 /**
- * 
+ *
  * @param {Object} contact - The Filtert Object
  * @returns - The HTML Code
  */
@@ -99,10 +99,10 @@ function showContactHTML(contact) {
  * @param {String} number - The Telephone Number
  * @returns - The String that get in to the HTML
  */
-function checkNumber(number){
-  if(number == ''){
-    return 'No number assigned'
-  }else{
+function checkNumber(number) {
+  if (number == '') {
+    return 'No number assigned';
+  } else {
     return number;
   }
 }
