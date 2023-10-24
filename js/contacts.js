@@ -1,61 +1,24 @@
-let allContacts = [
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-  {
-    name: "Axel Baum",
-    email: "axel.baum@gmail.com",
-  },
-];
-
-let user = [];
-
 /**
  * initialize script for contacts.html
  */
 function initContacts() {
-  renderContacts();
+  getContacts();
+}
+
+async function getContacts() {
+  const contacts = await getItem("contacts");
+  renderContacts(contacts);
 }
 
 /**
  * renders the contacts
  */
-function renderContacts() {
+function renderContacts(contacts) {
   let contactList = document.getElementById("contact_list");
   contactList.innerHTML = "";
 
-  for (let i = 0; i < allContacts.length; i++) {
-    let contact = allContacts[i];
-    contactList.innerHTML += generateContacts(contact, i);
+  for (let i = 0; i < contacts.length; i++) {
+    contactList.innerHTML += innerContacts(contacts[i]);
   }
 }
 
@@ -65,9 +28,9 @@ function renderContacts() {
  * @param {*} index - index of the contact
  * @returns
  */
-function generateContacts(contact, index) {
+function innerContacts(contact) {
   return `
-      <div class="sidebar-contacts" onclick="openContactModal(${index})">
+      <div class="sidebar-contacts" onclick="openContact(${contact.id})">
         <div>
           <img src="../assets/img/profile_badge.png">
         </div>
@@ -78,15 +41,85 @@ function generateContacts(contact, index) {
       </div>`;
 }
 
-function addContact() {
-  const newName = "New Contact";
-  const newEmail = "new.contact@example.com";
-
-  const newContact = {
-    name: newName,
-    email: newEmail,
-  };
-  allContacts.push(newContact);
-  renderContacts();
+/**
+ * The Init Function for the Contact 'Show'
+ * @param {String} id - The ID of the Contact
+ */
+async function openContact(id) {
+  const showcon = document.getElementById("contact-show-container");
+  showcon.style.display = "none";
+  const contact = await getContactInfo(id);
+  showcon.style.display = "unset";
+  showcon.innerHTML = showContactHTML(contact);
 }
 
+/**
+ * Fetch the Information and filter it with the ID
+ * @param {String} id - The ID of the Contact
+ * @returns - The filtered Object
+ */
+async function getContactInfo(id) {
+  const contacts = await getItem("contacts");
+  const contact = contacts.find((contact) => contact.id === id);
+  return contact;
+}
+
+/**
+ *
+ * @param {Object} contact - The Filtert Object
+ * @returns - The HTML Code
+ */
+function showContactHTML(contact) {
+  return `
+  <div class="contact-show-head">
+    <div class="contact-profile-container">US</div>
+    <div class="contact-show-btn-name-container">
+      <div class="contact-show-name">${contact.name}</div>
+      <div class="show-btn-conatiner">
+        <div class="contact-show-btn" onclick="editContact(${
+          contact.id
+        })"><img src="./assets/img/editpopup.png" alt="edit">Edit</div>
+        <div class="contact-show-btn" onclick="deleteContact(${
+          contact.id
+        })"><img src="./assets/img/deletepopup.png" alt="delte">Delete</div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-show-information">
+    <div class="contact-show-info-text">Contact Information</div>
+    <div class="contact-show-email">
+      <div class="show-heading">Email</div>
+      <div class="show-email-text">${contact.email}</div>
+    </div>
+    <div class="contact-show-phone">
+      <div class="show-heading">Phone</div>
+      <div class="show-phone-text">${checkNumber(contact.number)}</div>
+    </div>
+  </div>
+  `;
+}
+
+/**
+ * Check if a Telephone Number was Set and Return
+ * @param {String} number - The Telephone Number
+ * @returns - The String that get in to the HTML
+ */
+function checkNumber(number) {
+  if (number == "") {
+    return "No number assigned";
+  } else {
+    return number;
+  }
+}
+
+/**
+ * Delete the Contact and Render
+ */
+async function deleteContact(id) {
+  const contacts = await getItem("contacts");
+  const updatedcontacts = contacts.filter((contact) => contact.id !== id);
+  await setItem("contacts", updatedcontacts);
+  initContacts();
+  const showcon = document.getElementById("contact-show-container");
+  showcon.style.display = "none";
+}

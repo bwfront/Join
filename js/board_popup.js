@@ -294,11 +294,8 @@ async function setEditValue() {
   let taskcon = currenttaskcon;
   let category = elementid.categoryselected.value;
   let contact = elementid.contactselected.value;
-
-  //Implement TODO
   let subtask = subtaskEdit;
   let subtaskready = subtaskEditReady;
-
   let currentEditValues = {
     id,
     title,
