@@ -2,7 +2,7 @@
  * Check wich PopUp should open
  * @param {String} value - The Value of the PopUp that should be open
  */
-function openPopUpCopntact(value) {
+function openPopUpContact(value) {
   if (value == "edit") {
     innerEditContactPopUp(getPopUpId());
   } else if (value == "add") {
@@ -53,16 +53,33 @@ function closeWindow() {
 function contactCheck(con) {
   const nameInput = document.getElementById("contact-input-name").value;
   const emailInput = document.getElementById("contact-input-email").value;
-  if (nameInput == '' || emailInput == '') {
-    return;
+  if (nameInput == '' || !emailInput.includes('@')) {
+    return false;
   } else {
     if(con == 'addContact'){
       addContact();
-    }
-    if(con = 'editContact'){
+    }else if(con = 'editContact'){
       editContact();
     }
+    return true;
   }
+}
+
+/**
+ * 
+ * @returns - The Contact Input ID HTML
+ */
+function getContactInputs(){
+  const name = document.getElementById("contact-input-name");
+  const email = document.getElementById("contact-input-email");
+  const number = document.getElementById("contact-input-number");
+  return {name, email, number};
+}
+function clearInputs(){
+  const inputs = getContactInputs();
+  inputs.name.value = "";
+  inputs.email.value = "";
+  inputs.number.value = "";
 }
 
 /**
@@ -71,16 +88,10 @@ function contactCheck(con) {
  */
 function getValuesInputContact() {
   const id = Date.now();
-  const nameInput = document.getElementById("contact-input-name");
-  const emailInput = document.getElementById("contact-input-email");
-  const numberInput = document.getElementById("contact-input-number");
-  const name = nameInput.value;
-  const email = emailInput.value;
-  const number = numberInput.value;
+  const name = inputs.name.value;
+  const email = inputs.email.value;
+  const number = inputs.number.value;
   const newcontact = { id, name, email, number };
-  nameInput.value = "";
-  emailInput.value = "";
-  numberInput.value = "";
   return newcontact;
 }
 
@@ -90,6 +101,7 @@ function getValuesInputContact() {
  * @param {Object} id - The HTML ID's
  */
 function innerAddContactPopUp(id) {
+clearInputs();
   id.popup.style.display = "flex";
   id.titlecon.style.marginTop = "-30px";
   id.btncancel.innerHTML = "Cancel";
@@ -120,11 +132,19 @@ async function addContact() {
 
 /* EDIT CONTACT */
 
+async function editContact(id){
+  const contact = await getContactInfo(id);
+  console.log(contact)
+  openPopUpContact('edit');
+  innerEditContactValues(contact);
+}
+
 /**
  * Inner the Values in the HTML for Edit Contact Popup
  * @param {Object} id - The HTML ID's
  */
 function innerEditContactPopUp(id) {
+clearInputs();
   id.popup.style.display = "flex";
   id.titlecon.style.marginTop = "0px";
   id.btncancel.innerHTML = "Delete";
@@ -133,12 +153,20 @@ function innerEditContactPopUp(id) {
   };
   id.btncreate.innerHTML = `Save <img src="./assets/img/check.png" alt="check" />`;
   id.btncreate.onclick = function(){
-    contactCheck('editContact');
+    contactCheck('addContact');
   }
   id.title.innerHTML = "Edit contact";
   id.titleunder.style.display = "none";
   id.background.style.display = 'unset';
 }
 
-
-function editContact(){}
+/**
+ * Set the Values in the Input field
+ * @param {Object} contact 
+ */
+function innerEditContactValues(contact){
+  const inputs = getContactInputs();
+  inputs.name.value = contact.name;
+  inputs.email.value = contact.email;
+  inputs.number.value = contact.number;
+}

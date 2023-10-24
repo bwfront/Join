@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
     rel="stylesheet" />
-  <link rel="icon" href="assets/img/join-logo.png">
+  <link rel="icon" href="assets/img/join-logo.png" />
   <script src="script_include_html.js"></script>
   <link rel="stylesheet" href="template.css" />
   <link rel="stylesheet" href="./styles/addtask.css" />
@@ -19,7 +19,7 @@
   <title>Join | Add Task</title>
 </head>
 
-<body onload="init('addtask'), setContactsToAssign()">
+<body onload="init('addtask')">
   <div w3-include-html="./assets/img/templates/desktop_template.html"></div>
   <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
 
@@ -29,6 +29,7 @@
 
     <form id="task-form" class="add-task-main-content main-content-animation" onsubmit="createTask(); return false">
       <!-- LEFT SIDE -->
+
       <div class="add-task-left-side">
         <div class="add-task-card">
           <div class="form-group">
@@ -43,18 +44,18 @@
             <textarea id="task-description-input" class="form-control" cols="30" rows="10"
               placeholder="Enter a Description" style="width: 440px; height: 120px"></textarea>
           </div>
-          <div class="form-group" id="as-con">
+          <div class="form-group">
             <label for="contacts">Assigned to</label>
             <select class="form-control" id="assigned_contact" style="color: black; font-weight: 400">
               <option value="" disabled selected class="form-control option d-none">
                 Select contacts to assign
               </option>
+              <option value="contact1">contact 1</option>
+              <option value="contact2">contact 2</option>
+              <option value="contact3">contact 3</option>
+              <option value="contact4">contact 4</option>
             </select>
           </div>
-        </div>
-        <div class="add-task-bottom-container">
-          <span class="required-field"></span>
-          <span>This field is required</span>
         </div>
       </div>
 
@@ -67,8 +68,8 @@
             <label for="bootstrap-datepicker">Due date
               <span class="required-field"></span>
             </label>
-            <input class="form-control" type="date" id="task-date-input" placeholder="dd/mm/yyyy" min="2023-01-01"
-              max="2025-12-31" required />
+            <input class="form-control add-task-inputs" type="date" id="task-date-input" placeholder="dd/mm/yyyy"
+              min="2023-01-01" max="2025-12-31" required />
           </div>
           <div class="form-group">
             <label for="prio">Prio</label>
@@ -91,8 +92,9 @@
             <label for="category">Category
               <span class="required-field"></span>
             </label>
-            <select required class="form-control" style="color: black; font-weight: 400" id="task-category-input">
-              <option value="" disabled selected class="form-control option d-none">
+            <select required class="form-control add-task-inputs" style="color: black; font-weight: 400"
+              id="task-category-input">
+              <option value="" disabled selected class="form-control option d-none add-task-inputs">
                 Select task category
               </option>
               <option value="Sales">Sales</option>
@@ -103,13 +105,22 @@
           </div>
           <div class="form-group">
             <label for="subtask">Subtasks</label>
-            <input class="form-control" type="text" placeholder="Add a new subtask" id="subtask-title-input" />
-            <img id="subtask-icon" onclick="addSubTask()" style="cursor: pointer"
-              src="./assets/img/Subtasks icons11.png" />
+            <div class="subtask-container-input">
+              <input class="form-control" type="text" placeholder="Add a new subtask" id="subtask-title-input" />
+              <img id="subtask-icon" onclick="addSubTask()" style="cursor: pointer"
+                src="./assets/img/Subtasks icons11.png" />
+            </div>
             <div id="subtask-container"></div>
           </div>
         </div>
-        <div class="btn-bottom">
+      </div>
+
+      <div class="btn-bottom">
+        <div class="add-task-reqired-field">
+          <span class="required-field"></span>
+          <span>This field is required</span>
+        </div>
+        <div>
           <button onclick="clearTask()" class="btn btn-secondary btn-clear" style="width: 110px" type="button">
             Clear
             <img src="./assets/img/iconoir_cancel.png" />
@@ -121,6 +132,7 @@
           </button>
         </div>
       </div>
+
     </form>
   </div>
 </body>
