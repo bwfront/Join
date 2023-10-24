@@ -1,3 +1,18 @@
+.main-content-animation {
+  animation: fadein 225ms;
+  animation-fill-mode: forwards;
+}
+@keyframes fadein {
+  from {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 body {
   background-color: #f6f7f8;
   font-family: "Inter", sans-serif !important;
@@ -185,7 +200,6 @@ body {
   border-radius: 30px 0 0 30px;
   display: flex;
   justify-content: center;
-  
 }
 
 #contactPopUp {
@@ -282,6 +296,7 @@ body {
   background-color: #2a3647;
   border: 1px solid #2a3647;
   padding: 24px 15px;
+  gap: 8px;
 }
 
 .contact-button:hover {
