@@ -40,3 +40,50 @@ function innerContacts(contact) {
         </div>
       </div>`;
 }
+
+async function openContact(id) {
+  const contact = await getContactInfo(id);
+  const showcon = document.getElementById("contact-show-container");
+  showcon.style.display = "unset";
+  showcon.innerHTML = showContactHTML(contact);
+}
+
+async function getContactInfo(id) {
+  const contacts = await getItem("contacts");
+  const contact = contacts.find((contact) => contact.id === id);
+  return contact;
+}
+
+function showContactHTML(contact) {
+  return `
+  <div class="contact-show-head">
+    <div class="contact-profile-container">US</div>
+    <div class="contact-show-btn-name-container">
+      <div class="contact-show-name">${contact.name}</div>
+      <div class="show-btn-conatiner">
+        <div class="contact-show-btn"><img src="./assets/img/editpopup.png" alt="edit">Edit</div>
+        <div class="contact-show-btn"><img src="./assets/img/deletepopup.png" alt="delte">Delete</div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-show-information">
+    <div class="contact-show-info-text">Contact Information</div>
+    <div class="contact-show-email">
+      <div class="show-heading">Email</div>
+      <div class="show-email-text">${contact.email}</div>
+    </div>
+    <div class="contact-show-phone">
+      <div class="show-heading">Phone</div>
+      <div class="show-phone-text">${checkNumber(contact.number)}</div>
+    </div>
+  </div>
+  `;
+}
+
+function checkNumber(number){
+  if(number == ''){
+    return 'No number assigned'
+  }else{
+    return number;
+  }
+}

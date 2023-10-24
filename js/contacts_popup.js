@@ -140,6 +140,5 @@ function innerEditContactPopUp(id) {
   id.background.style.display = 'unset';
 }
 
-function openContact(){}
 
 function editContact(){}

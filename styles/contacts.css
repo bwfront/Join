@@ -353,7 +353,25 @@ body {
 
 .contact-show-container {
   margin: 30px 0 0 0;
+  display: none;
 }
+
+@keyframes slideFromRight {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0;
+  }
+}
+.slide-in {
+  position: relative;
+  animation-name: slideFromRight;
+  animation-duration: 0.4s;
+  animation-timing-function: ease;
+  right: 0;
+}
+
 .contact-show-head {
   display: flex;
   align-items: center;
