@@ -2,7 +2,7 @@
  * Check wich PopUp should open
  * @param {String} value - The Value of the PopUp that should be open
  */
-function openPopUpCopntact(value) {
+function openPopUpContact(value) {
   if (value == "edit") {
     innerEditContactPopUp(getPopUpId());
   } else if (value == "add") {
@@ -75,6 +75,12 @@ function getContactInputs(){
   const number = document.getElementById("contact-input-number");
   return {name, email, number};
 }
+function clearInputs(){
+  const inputs = getContactInputs();
+  inputs.name.value = "";
+  inputs.email.value = "";
+  inputs.number.value = "";
+}
 
 /**
  *
@@ -82,14 +88,10 @@ function getContactInputs(){
  */
 function getValuesInputContact() {
   const id = Date.now();
-  const inputs = getContactInputs();
   const name = inputs.name.value;
   const email = inputs.email.value;
   const number = inputs.number.value;
   const newcontact = { id, name, email, number };
-  inputs.name.value = "";
-  inputs.email.value = "";
-  inputs.number.value = "";
   return newcontact;
 }
 
@@ -99,6 +101,7 @@ function getValuesInputContact() {
  * @param {Object} id - The HTML ID's
  */
 function innerAddContactPopUp(id) {
+clearInputs();
   id.popup.style.display = "flex";
   id.titlecon.style.marginTop = "-30px";
   id.btncancel.innerHTML = "Cancel";
@@ -132,7 +135,7 @@ async function addContact() {
 async function editContact(id){
   const contact = await getContactInfo(id);
   console.log(contact)
-  openPopUpCopntact('edit');
+  openPopUpContact('edit');
   innerEditContactValues(contact);
 }
 
@@ -141,6 +144,7 @@ async function editContact(id){
  * @param {Object} id - The HTML ID's
  */
 function innerEditContactPopUp(id) {
+clearInputs();
   id.popup.style.display = "flex";
   id.titlecon.style.marginTop = "0px";
   id.btncancel.innerHTML = "Delete";
