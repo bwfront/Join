@@ -41,6 +41,10 @@ function innerContacts(contact) {
       </div>`;
 }
 
+/**
+ * The Init Function for the Contact 'Show'
+ * @param {String} id - The ID of the Contact
+ */
 async function openContact(id) {
   const contact = await getContactInfo(id);
   const showcon = document.getElementById("contact-show-container");
@@ -48,12 +52,22 @@ async function openContact(id) {
   showcon.innerHTML = showContactHTML(contact);
 }
 
+/**
+ * Fetch the Information and filter it with the ID
+ * @param {String} id - The ID of the Contact
+ * @returns - The filtered Object
+ */
 async function getContactInfo(id) {
   const contacts = await getItem("contacts");
   const contact = contacts.find((contact) => contact.id === id);
   return contact;
 }
 
+/**
+ * 
+ * @param {Object} contact - The Filtert Object
+ * @returns - The HTML Code
+ */
 function showContactHTML(contact) {
   return `
   <div class="contact-show-head">
@@ -80,6 +94,11 @@ function showContactHTML(contact) {
   `;
 }
 
+/**
+ * Check if a Telephone Number was Set and Return
+ * @param {String} number - The Telephone Number
+ * @returns - The String that get in to the HTML
+ */
 function checkNumber(number){
   if(number == ''){
     return 'No number assigned'
