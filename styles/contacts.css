@@ -151,6 +151,7 @@ body {
   width: 352px;
   padding: 20px;
   margin-left: 52px;
+  border-bottom: 1px solid #d1d1d1;
 }
 .sidebar-contacts:hover {
   background-color: #2a3647;
@@ -342,6 +343,7 @@ body {
   border-radius: 70px;
   background-color: orange;
   flex-shrink: 0;
+  border: 6px solid white;
 }
 .contact-popup-infos {
   width: 100%;
