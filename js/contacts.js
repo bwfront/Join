@@ -32,7 +32,7 @@ function innerContacts(contact) {
   return `
       <div class="sidebar-contacts" onclick="openContact(${contact.id})">
         <div>
-          <img src="../assets/img/profile_badge.png">
+          <div class="contacts-small-profile" style="background-color: ${contact.color}">${getInitials(contact.name)}</div>
         </div>
         <div>
           <h2>${contact.name}</h2>
@@ -72,7 +72,7 @@ async function getContactInfo(id) {
 function showContactHTML(contact) {
   return `
   <div class="contact-show-head">
-    <div class="contact-profile-container">US</div>
+    <div class="contact-profile-container" style="background-color: ${contact.color}">${getInitials(contact.name)}</div>
     <div class="contact-show-btn-name-container">
       <div class="contact-show-name">${contact.name}</div>
       <div class="show-btn-conatiner">
@@ -118,4 +118,16 @@ async function deleteContact(id) {
   initContacts();
   const showcon = document.getElementById('contact-show-container');
   showcon.style.display = 'none';
+}
+
+function randomColor(){
+  const colors = ['#916953', '#783618', '#78021a','#239b11', '#3cbea5', '#d80978'];
+  const pickedcolor = colors[Math.floor(Math.random() * colors.length)];
+  return pickedcolor;
+}
+
+function getInitials(name) {
+  const words = name.split(' ').slice(0, 2);
+  const initials = words.map(word => word[0]).join('');
+  return initials.toUpperCase();
 }

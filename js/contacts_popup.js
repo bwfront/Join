@@ -1,3 +1,4 @@
+let currentContactId;
 /**
  * Check wich PopUp should open
  * @param {String} value - The Value of the PopUp that should be open
@@ -21,7 +22,7 @@ function getPopUpId() {
   const btncancel = document.getElementById("contact-delete-btn");
   const btncreate = document.getElementById("contact-save-btn");
   const titlecon = document.getElementById("contact-popup-title-logo");
-  const background = document.getElementById('contact_modal_background');
+  const background = document.getElementById("contact_modal_background");
   const contactconid = {
     popup,
     title,
@@ -30,7 +31,7 @@ function getPopUpId() {
     btncreate,
     titlecon,
     titleunder,
-    background
+    background,
   };
   return contactconid;
 }
@@ -41,41 +42,47 @@ function getPopUpId() {
 function closeWindow() {
   document.getElementById("contactPopUp").style.display = "none";
   initContacts();
-  const background = document.getElementById('contact_modal_background');
-  background.style.display = 'none';
+  const background = document.getElementById("contact_modal_background");
+  background.style.display = "none";
+  const profile = document.getElementById("contact-profile-container");
+  profile.innerHTML = `<img src="./assets/img/profile.png" alt="profile"></img>`;
 }
 
 /**
  * Check if the Inputs are not empty If not then go to the next Function
  * @param {String} con - The PopUp Name
- * @returns 
+ * @returns
  */
 function contactCheck(con) {
   const nameInput = document.getElementById("contact-input-name").value;
   const emailInput = document.getElementById("contact-input-email").value;
-  if (nameInput == '' || !emailInput.includes('@')) {
+  if (nameInput == "" || !emailInput.includes("@")) {
     return false;
   } else {
-    if(con == 'addContact'){
+    if (con == "addContact") {
       addContact();
-    }else if(con = 'editContact'){
-      editContact();
+    } else if ((con = "editContact")) {
+      saveEditContact();
     }
     return true;
   }
 }
 
 /**
- * 
+ *
  * @returns - The Contact Input ID HTML
  */
-function getContactInputs(){
+function getContactInputs() {
   const name = document.getElementById("contact-input-name");
   const email = document.getElementById("contact-input-email");
   const number = document.getElementById("contact-input-number");
-  return {name, email, number};
+  return { name, email, number };
 }
-function clearInputs(){
+
+/**
+ * Clear the Inputs
+ */
+function clearInputs() {
   const inputs = getContactInputs();
   inputs.name.value = "";
   inputs.email.value = "";
@@ -88,10 +95,12 @@ function clearInputs(){
  */
 function getValuesInputContact() {
   const id = Date.now();
+  const color = randomColor();
+  const inputs = getContactInputs();
   const name = inputs.name.value;
   const email = inputs.email.value;
   const number = inputs.number.value;
-  const newcontact = { id, name, email, number };
+  const newcontact = { id, name, email, number, color };
   return newcontact;
 }
 
@@ -101,7 +110,7 @@ function getValuesInputContact() {
  * @param {Object} id - The HTML ID's
  */
 function innerAddContactPopUp(id) {
-clearInputs();
+  clearInputs();
   id.popup.style.display = "flex";
   id.titlecon.style.marginTop = "-30px";
   id.btncancel.innerHTML = "Cancel";
@@ -110,11 +119,11 @@ clearInputs();
   };
   id.btncreate.innerHTML = `Create Contact <img src="./assets/img/check.png" alt="check" />`;
   id.btncreate.onclick = function () {
-    contactCheck('addContact');
+    contactCheck("addContact");
   };
   id.title.innerHTML = "Add contact";
   id.titleunder.style.display = "unset";
-  id.background.style.display = 'unset';
+  id.background.style.display = "unset";
 }
 
 /**
@@ -132,11 +141,14 @@ async function addContact() {
 
 /* EDIT CONTACT */
 
-async function editContact(id){
+/**
+ * Contact Init
+ */
+async function editContact(id) {
   const contact = await getContactInfo(id);
-  console.log(contact)
-  openPopUpContact('edit');
+  openPopUpContact("edit");
   innerEditContactValues(contact);
+  currentContactId = id;
 }
 
 /**
@@ -144,7 +156,7 @@ async function editContact(id){
  * @param {Object} id - The HTML ID's
  */
 function innerEditContactPopUp(id) {
-clearInputs();
+  clearInputs();
   id.popup.style.display = "flex";
   id.titlecon.style.marginTop = "0px";
   id.btncancel.innerHTML = "Delete";
@@ -152,21 +164,45 @@ clearInputs();
     deleteContact();
   };
   id.btncreate.innerHTML = `Save <img src="./assets/img/check.png" alt="check" />`;
-  id.btncreate.onclick = function(){
-    contactCheck('addContact');
-  }
+  id.btncreate.onclick = function () {
+    contactCheck("editContact");
+  };
   id.title.innerHTML = "Edit contact";
   id.titleunder.style.display = "none";
-  id.background.style.display = 'unset';
+  id.background.style.display = "unset";
 }
 
 /**
  * Set the Values in the Input field
- * @param {Object} contact 
+ * @param {Object} contact
  */
-function innerEditContactValues(contact){
+function innerEditContactValues(contact) {
+  const profile = document.getElementById("contact-profile-container");
+  profile.innerHTML = `<div class="contact-profile-container" style="background-color: ${
+    contact.color
+  }">${getInitials(contact.name)}</div>`;
   const inputs = getContactInputs();
   inputs.name.value = contact.name;
   inputs.email.value = contact.email;
   inputs.number.value = contact.number;
+}
+
+/**
+ * Saves The Edit Contact
+ */
+async function saveEditContact() {
+  const inputs = getContactInputs();
+  const contacts = await getItem("contacts");
+  const updatedcontacts = contacts.map((contact) => {
+    if (contact.id == currentContactId) {
+      contact.name = inputs.name.value;
+      contact.email = inputs.email.value;
+      contact.number = inputs.number.value;
+    }
+    return contact;
+  });
+  await setItem("contacts", updatedcontacts);
+  closeWindow();
+  openContact(currentContactId);
+  currentContactId;
 }
