@@ -482,3 +482,108 @@ body {
   margin-left: 40px;
   font-size: 22px;
 }
+
+.x-responsive {
+  display: none;
+}
+.add-person-resonsive {
+  display: none;
+}
+
+/* Responsive */
+
+@media (max-width: 1364px) {
+  .contact-details-container {
+    /*asdasd*/
+  }
+
+  .contact-show-container {
+  margin: 30px 0 0 0 !important;
+  display: none;
+}
+
+@keyframes slideFromRight {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0;
+  }
+}
+.slide-in {
+  position: relative;
+  animation-name: slideFromRight;
+  animation-duration: 0.4s;
+  animation-timing-function: ease;
+  right: 0;
+}
+  .modal-content {
+    flex-direction: column;
+    width: 503px;
+    height: 60%;
+  }
+
+  .contact-popup-title {
+    width: 100% !important;
+    height: 36%;
+    border-radius: 30px 30px 0px 0px;
+  }
+
+  .contact-content-container {
+    flex-direction: column;
+    height: 89%;
+    margin-left: 23px;
+    align-items: center;
+  }
+
+  .contact-popup-title-logo img {
+    display: none;
+  }
+
+  #contact-form {
+    align-items: center;
+  }
+
+  .contact-button-container {
+    margin-top: 30px;
+    margin-left: 0px;
+    justify-content: center;
+  }
+
+  .contact-popup-infos {
+    z-index: 99;
+  }
+  #closeWindow {
+    display: none;
+  }
+  .x-responsive {
+    display: block;
+    margin-left: 446px;
+    margin-top: -228px;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact-list-button-section {
+    display: none;
+  }
+
+  .contact-list-container {
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .add-person-resonsive {
+    position: absolute;
+    display: flex;
+    top: 1000px;
+    right: 100px;
+    cursor: pointer;
+  }
+  .add-person-resonsive img {
+    width: 69px;
+    height: 69px;
+  }
+}
