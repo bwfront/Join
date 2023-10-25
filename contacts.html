@@ -69,17 +69,17 @@
         </div>
       </div>
       <div class="contact-popup-infos">
-        <div id="closeWindow" class="contact-close-btn" onclick="closeWindow()">
-          <img src="./assets/img/closepopup.png" alt="close" />
+        <div id="closeWindow" class="contact-close-btn">
+          <img src="./assets/img/closepopup.png" alt="close" onclick="closeWindow()"/>
         </div>
           <div class="x-responsive contact-close-btn" onclick="closeWindow()">
           <img src="./assets/img/close_white.png" alt="close" />
         </div>
       </div>
       <div class="contact-content-container">
-        <div class="contact-profile-container">US</div>
+        <div class="contact-profile-container" id="contact-profile-container"><img src="./assets/img/profile.png" alt="profile"></div>
         <div class="contact-right-inputs">
-          <form id="contact-form">
+          <form id="contact-form" onsubmit="return false">
             <div class="contact-input-container">
               <div>
                 <input id="contact-input-name" type="text" class="contact-input" placeholder="Name*" required />
