@@ -12,6 +12,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
     rel="stylesheet" />
   <script src="script_include_html.js"></script>
+  <link rel="icon" href="assets/img/join-logo.png" />
   <link rel="stylesheet" href="template.css" />
   <link rel="stylesheet" href="./styles/contacts.css" />
   <script src="script.js"></script>
@@ -35,7 +36,12 @@
           Add new contact <img src="./assets/img/person_add.png" />
         </button>
       </div>
-      <div class="contact-list" id="contact_list"></div>
+      <div class="contact-list" id="contact_list">
+        <div class="contact-list-letter-con">
+          <div class="contact-list-letter">A</div>
+        </div>
+      </div>
+
     </div>
 
     <div class="contact-details-container">
@@ -67,20 +73,23 @@
       </div>
       <div class="contact-popup-infos">
         <div id="closeWindow" class="contact-close-btn">
-          <img src="./assets/img/closepopup.png" alt="close" onclick="closeWindow()"/>
+          <img src="./assets/img/closepopup.png" alt="close" onclick="closeWindow()" />
         </div>
       </div>
       <div class="contact-content-container">
-        <div class="contact-profile-container" id="contact-profile-container"><img src="./assets/img/profile.png" alt="profile"></div>
+        <div class="contact-profile-container" id="contact-profile-container"><img src="./assets/img/profile.png"
+            alt="profile"></div>
         <div class="contact-right-inputs">
           <form id="contact-form" onsubmit="return false">
             <div class="contact-input-container">
               <div>
-                <input id="contact-input-name" type="text" class="contact-input" placeholder="Name*" required />
+                <input id="contact-input-name" type="text" class="contact-input" pattern="[A-Za-z\s]+"
+                  placeholder="Name*" required />
                 <img src="./assets/img/person.png" alt="" class="contact-input-img" />
               </div>
               <div>
-                <input id="contact-input-email" type="email" class="contact-input" placeholder="Email*" required />
+                <input id="contact-input-email" type="email" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+                  class="contact-input" placeholder="Email*" required />
                 <img src="./assets/img/mail.png" alt="" class="contact-input-img" />
               </div>
               <div>

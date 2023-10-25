@@ -48,24 +48,35 @@ function closeWindow() {
   profile.innerHTML = `<img src="./assets/img/profile.png" alt="profile"></img>`;
 }
 
+/** Check if a Valid Email
+ */
+function isValidEmail(email) {
+  const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return re.test(String(email).toLowerCase());
+}
+
 /**
- * Check if the Inputs are not empty If not then go to the next Function
- * @param {String} con - The PopUp Name
- * @returns
+ * Check the From Validation
+ * @param {String} con - Current PopUp
+ * @returns 
  */
 function contactCheck(con) {
   const nameInput = document.getElementById("contact-input-name").value;
   const emailInput = document.getElementById("contact-input-email").value;
-  if (nameInput == "" || !emailInput.includes("@")) {
-    return false;
-  } else {
-    if (con == "addContact") {
-      addContact();
-    } else if ((con = "editContact")) {
-      saveEditContact();
-    }
-    return true;
+  const trimmedName = nameInput.trim();
+  const isValidName = /^[A-Za-z\s]+$/.test(trimmedName);
+  if (!isValidName || trimmedName === "") {
+      return false;
   }
+  if (!isValidEmail(emailInput)) {
+    return false;
+  }
+  if (con === "addContact") {
+    addContact();
+  } else if (con === "editContact") {
+    saveEditContact();
+  }
+  return true;
 }
 
 /**
