@@ -391,6 +391,11 @@ async function setContactsToAssign() {
   }
 }
 
+/**
+ *
+ * @param {Number} - The Index from the Task
+ * Sets the name of the assigned contact in the Pop Up Card
+ */
 function setContactNameInPopUp(id) {
   let taskId = id;
   for (let i = 0; i < TASKS.length; i++) {
@@ -402,6 +407,12 @@ function setContactNameInPopUp(id) {
     }
   }
 }
+
+/**
+ *
+ * @param {string} - The name of the contact we extract the first two initials.
+ * @returns - The extracted initials of the name.
+ */
 
 function setContactNameInitialsOpencard(name) {
   let initials = name.slice(0, 2);
