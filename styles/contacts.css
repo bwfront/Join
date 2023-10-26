@@ -276,13 +276,13 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
 }
 
 .contact-close-btn img {
   width: 24px;
   height: 24px;
   margin-right: 48px;
-  cursor: pointer;
 }
 
 .contact-close-btn img:hover {
@@ -341,7 +341,6 @@ body {
   width: 120px;
   border-radius: 70px;
   background-color: orange;
-  flex-shrink: 0;
   border: 6px solid white;
 }
 .contact-popup-infos {
@@ -458,4 +457,77 @@ body {
 .marg-tp {
   width: 100%;
   height: 30px;
+}
+.x-responsive {
+  display: none;
+}
+.add-person-resonsive{
+  display: none;
+}
+
+/* Responsive */
+
+@media (max-width: 1364px) {
+  .contact-details-container {
+    display: none;
+  }
+  .modal-content {
+    flex-direction: column;
+    width: 503px;
+    height: 60%;
+  }
+
+  .contact-popup-title {
+    width: 100% !important;
+    height: 36%;
+    border-radius: 30px 30px 0px 0px;
+  }
+
+  .contact-content-container {
+    flex-direction: column;
+    height: 89%;
+    margin-left: 23px;
+    align-items: center;
+  }
+
+  .contact-popup-title-logo img {
+    display: none;
+  }
+
+  
+
+  #contact-form {
+    align-items: center;
+  }
+
+  .contact-button-container {
+    margin-top: 30px;
+    margin-left: 0px;
+    justify-content: center;
+  }
+
+  .contact-popup-infos {
+    z-index: 99;
+  }
+  #closeWindow {
+    display: none;
+  }
+  .x-responsive {
+    display: block;
+    margin-left: 446px;
+    margin-top: -228px;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact-list-button-section{
+    display: none;
+  }
+
+  .contact-list-container{
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }
