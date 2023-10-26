@@ -277,13 +277,13 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
 }
 
 .contact-close-btn img {
   width: 24px;
   height: 24px;
   margin-right: 48px;
-  cursor: pointer;
 }
 
 .contact-close-btn img:hover {
@@ -342,7 +342,6 @@ body {
   width: 120px;
   border-radius: 70px;
   background-color: orange;
-  flex-shrink: 0;
   border: 6px solid white;
 }
 .contact-popup-infos {
