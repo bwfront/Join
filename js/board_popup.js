@@ -35,6 +35,7 @@ async function openTask(id) {
   innerTaskPopUp(task);
   innerPopUpFooter(id);
   openTaskPopUp();
+  setContactNameInPopUp(id);
 }
 /**
  * Give getTaskPopUpHTMl the data and htmlid
@@ -388,4 +389,22 @@ async function setContactsToAssign() {
     const contact = data[i]["name"];
     document.getElementById("assigned_contact").innerHTML += `<option value="${contact}">${contact}</option>`;
   }
+}
+
+function setContactNameInPopUp(id) {
+  let taskId = id;
+  for (let i = 0; i < TASKS.length; i++) {
+    const task = TASKS[i];
+    if (taskId === task["id"]) {
+      let contact = task["contact"];
+      document.getElementById("open-card-contact").innerHTML = contact;
+      document.getElementById("open-card-contact-initials").innerHTML = setContactNameInitialsOpencard(contact);
+    }
+  }
+}
+
+function setContactNameInitialsOpencard(name) {
+  let initials = name.slice(0, 2);
+  let uppercaseInitials = initials.toUpperCase();
+  return uppercaseInitials;
 }
