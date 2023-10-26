@@ -35,6 +35,7 @@ async function openTask(id) {
   innerTaskPopUp(task);
   innerPopUpFooter(id);
   openTaskPopUp();
+  setContactNameInPopUp(id);
 }
 /**
  * Give getTaskPopUpHTMl the data and htmlid
@@ -56,8 +57,7 @@ function innerTaskPopUp(task) {
  * @param {String} category - The current Category
  */
 function categoryColorPopUp(category) {
-  document.getElementById(`popup-category`).style.backgroundColor =
-    categoryColor(category);
+  document.getElementById(`popup-category`).style.backgroundColor = categoryColor(category);
 }
 
 /**
@@ -121,9 +121,7 @@ async function getTaskPopUpSubtask(subtaskArray, idTask) {
     subtakscon.innerHTML = ``;
   }
   for (let i = 0; i < subtaskArray.length; i++) {
-    const isChecked = currentTaskReadySubtasks.includes(subtaskArray[i])
-      ? "checked"
-      : "";
+    const isChecked = currentTaskReadySubtasks.includes(subtaskArray[i]) ? "checked" : "";
     subtakscon.innerHTML += `<div><input id="popup-checkbox${i}" type="checkbox" ${isChecked} onclick="checkStatusSubtask(${i}, ${idTask})" placeholder="subtask"><label
       class="popup-subtask" id="popup-subtask${i}" for="popup-checkbox">${subtaskArray[i]}</label></div>`;
   }
@@ -319,9 +317,7 @@ async function setEditValue() {
  * Set Display to flex and add Slide In Animation class
  */
 function openTaskPopUp() {
-  const popupbackground = document.getElementById(
-    "desktop-task-popup-container"
-  );
+  const popupbackground = document.getElementById("desktop-task-popup-container");
   const popupconatiner = document.getElementById("desktop-task-popup");
   const body = document.getElementById("body");
   body.classList.add("no-scroll");
@@ -336,9 +332,7 @@ function openTaskPopUp() {
  * @param {*} task - The Priority from the Task
  */
 function getTaskPopUpPrioHTML(htmlid, task) {
-  document.getElementById(
-    `popup-${htmlid}`
-  ).innerHTML = `${task} <img class="popup-prio-img" id="popup-prio-img" src="./assets/img/prio${task}.png"
+  document.getElementById(`popup-${htmlid}`).innerHTML = `${task} <img class="popup-prio-img" id="popup-prio-img" src="./assets/img/prio${task}.png"
     alt="priority">`;
 }
 
@@ -347,12 +341,10 @@ function getTaskPopUpPrioHTML(htmlid, task) {
  */
 function closeTaskPopUp() {
   setBoards();
-  const popupbackground = document.getElementById(
-    "desktop-task-popup-container"
-  );
+  const popupbackground = document.getElementById("desktop-task-popup-container");
   const popupconatiner = document.getElementById("desktop-task-popup");
   const subtakscon = document.getElementById("task-popup-subtasks");
-  
+
   subtakscon.innerHTML = "<div>There are no Subtaks</div>";
   popupconatiner.classList.remove("popup-slidein");
   popupconatiner.classList.add("popup-slideout");
@@ -377,4 +369,53 @@ function closeTaskPopUpRemove() {
   document.getElementById("prio-low").classList.remove("selected");
   elementid = {};
   subtaskEdit = [];
+}
+
+/**
+ * Get contacts which you can assign a task to - ADD TASK
+ *
+ */
+async function getContacts() {
+  let data = await getItem("contacts");
+  return data;
+}
+
+/**
+ * Render all contacts in "Select contacts to assign"
+ */
+async function setContactsToAssign() {
+  let data = await getContacts();
+  for (let i = 0; i < data.length; i++) {
+    const contact = data[i]["name"];
+    document.getElementById("assigned_contact").innerHTML += `<option value="${contact}">${contact}</option>`;
+  }
+}
+
+/**
+ *
+ * @param {Number} - The Index from the Task
+ * Sets the name of the assigned contact in the Pop Up Card
+ */
+function setContactNameInPopUp(id) {
+  let taskId = id;
+  for (let i = 0; i < TASKS.length; i++) {
+    const task = TASKS[i];
+    if (taskId === task["id"]) {
+      let contact = task["contact"];
+      document.getElementById("open-card-contact").innerHTML = contact;
+      document.getElementById("open-card-contact-initials").innerHTML = setContactNameInitialsOpencard(contact);
+    }
+  }
+}
+
+/**
+ *
+ * @param {string} - The name of the contact we extract the first two initials.
+ * @returns - The extracted initials of the name.
+ */
+
+function setContactNameInitialsOpencard(name) {
+  let initials = name.slice(0, 2);
+  let uppercaseInitials = initials.toUpperCase();
+  return uppercaseInitials;
 }

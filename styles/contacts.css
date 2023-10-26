@@ -116,6 +116,7 @@ body {
   gap: 35px;
   overflow-y: auto;
   max-height: 75vh;
+  overflow-x: hidden;
 }
 
 .head-contact-details {
@@ -458,10 +459,33 @@ body {
   width: 100%;
   height: 30px;
 }
+.contacts-small-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  width: 55px;
+  height: 55px;
+  background-color: #007cee;
+  border-radius: 27.5px;
+}
+.contact-list-letter-con {
+
+  margin-top: 20px;
+  margin-bottom: -20px;
+  border-bottom: solid #ddd;
+  width: 80%;
+}
+.contact-list-letter {
+  padding-bottom: 10px;
+  margin-left: 40px;
+  font-size: 22px;
+}
+
 .x-responsive {
   display: none;
 }
-.add-person-resonsive{
+.add-person-resonsive {
   display: none;
 }
 
@@ -469,8 +493,29 @@ body {
 
 @media (max-width: 1364px) {
   .contact-details-container {
-    display: none;
+    /*asdasd*/
   }
+
+  .contact-show-container {
+  margin: 30px 0 0 0 !important;
+  display: none;
+}
+
+@keyframes slideFromRight {
+  0% {
+    right: -100%;
+  }
+  100% {
+    right: 0;
+  }
+}
+.slide-in {
+  position: relative;
+  animation-name: slideFromRight;
+  animation-duration: 0.4s;
+  animation-timing-function: ease;
+  right: 0;
+}
   .modal-content {
     flex-direction: column;
     width: 503px;
@@ -493,8 +538,6 @@ body {
   .contact-popup-title-logo img {
     display: none;
   }
-
-  
 
   #contact-form {
     align-items: center;
@@ -520,14 +563,26 @@ body {
 }
 
 @media (max-width: 900px) {
-  .contact-list-button-section{
+  .contact-list-button-section {
     display: none;
   }
 
-  .contact-list-container{
+  .contact-list-container {
     margin: 0;
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+
+  .add-person-resonsive {
+    position: absolute;
+    display: flex;
+    top: 1000px;
+    right: 100px;
+    cursor: pointer;
+  }
+  .add-person-resonsive img {
+    width: 69px;
+    height: 69px;
   }
 }

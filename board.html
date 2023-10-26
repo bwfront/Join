@@ -21,7 +21,7 @@
     <title>Join | Board</title>
 </head>
 
-<body onload="init('board'); setBoards();" id="body">
+<body onload="init('board'); setBoards(), setContactsToAssign();" id="body">
     <div w3-include-html="./assets/img/templates/desktop_template.html"></div>
     <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
     <div class="main-content main-content-animation maxwidthboard">
@@ -110,13 +110,13 @@
                         <div class="task-popup-contact-conatiner">
                             <div class="task-popup-contact">Assigned To:</div>
                             <div class="popup-profile" id="task-profile">
-                                <div class="profile" id="popup-profile">BW</div>
-                                <div class="popup-contact-name">Bennet Witczak</div>
+                                <div id="open-card-contact-initials" class="profile" id="popup-profile">BW</div>
+                                <div id="open-card-contact" class="popup-contact-name">Bennet Witczak</div>
                             </div>
-                            <div class="popup-profile" id="task-profile">
+                            <!--<div class="popup-profile" id="task-profile">
                                 <div class="profile" id="popup-profile">MM</div>
                                 <div class="popup-contact-name">Max Mustermann</div>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="task-popup-subtask-conatiner">
                             <div class="task-popup-subtask">Subtasks:</div>
@@ -188,10 +188,10 @@
                         <option value="" disabled selected class="form-control option d-none" id="edit-contact">
                             Current Contact
                         </option>
-                        <option value="contact1">contact 1</option>
+                        <!--<option value="contact1">contact 1</option>
                         <option value="contact2">contact 2</option>
                         <option value="contact3">contact 3</option>
-                        <option value="contact4">contact 4</option>
+                        <option value="contact4">contact 4</option>-->
                     </select>
                 </div>
                 <div class="edit-title">

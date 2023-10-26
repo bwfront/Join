@@ -1,11 +1,7 @@
 /**
  * initialize script for contacts.html
  */
-function initContacts() {
-  getContacts();
-}
-
-async function getContacts() {
+async function initContacts() {
   const contacts = await getItem('contacts');
   renderContacts(contacts);
 }
@@ -15,7 +11,7 @@ async function getContacts() {
  */
 function renderContacts(contacts) {
   let contactList = document.getElementById('contact_list');
-  contactList.innerHTML = '';
+  //contactList.innerHTML = '';
 
   for (let i = 0; i < contacts.length; i++) {
     contactList.innerHTML += innerContacts(contacts[i]);
@@ -120,12 +116,21 @@ async function deleteContact(id) {
   showcon.style.display = 'none';
 }
 
+/**
+ * Generate a Random Color for the Profile
+ * @returns - Return a Random Color from an Array
+ */
 function randomColor(){
   const colors = ['#916953', '#783618', '#78021a','#239b11', '#3cbea5', '#d80978'];
   const pickedcolor = colors[Math.floor(Math.random() * colors.length)];
   return pickedcolor;
 }
 
+/**
+ * Get the Initals fpr the Profile
+ * @param {String} name 
+ * @returns - The Initals of the Name
+ */
 function getInitials(name) {
   const words = name.split(' ').slice(0, 2);
   const initials = words.map(word => word[0]).join('');
