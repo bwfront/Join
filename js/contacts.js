@@ -3,19 +3,50 @@
  */
 async function initContacts() {
   const contacts = await getItem('contacts');
-  renderContacts(contacts);
+  aplhabetUniqeFirstLetter(contacts);
 }
 
 /**
- * renders the contacts
+ * Get the First Letters of the Name and the contacts in Alphabet Structure
+ * @param {Object} contacts - The fetched data from server
+ */
+function aplhabetUniqeFirstLetter(contacts){
+  let contactLetters = [];
+  contacts.sort((a, b) => a.name.localeCompare(b.name));
+  contacts.forEach(contact => {
+    contactLetters.push(contact);
+  });
+  const uniqeLetters = [...new Set(contactLetters.map(contact => contact.name[0].toUpperCase()))];
+  renderContactCons(uniqeLetters);
+  renderContacts(contacts)
+}
+
+
+/**
+ * Inner the diffrent Containers
+ * @param {Array} uniqeLetters - Store all Uniqe First Letters in Alphabet structure
+ */
+function renderContactCons(uniqeLetters){
+  let contactList = document.getElementById('contact_list');
+  contactList.innerHTML = '';
+  for (let i = 0; i < uniqeLetters.length; i++) {
+    contactList.innerHTML += `        
+    <div class="contact-list-letter-con">
+      <div class="contact-list-letter">${uniqeLetters[i]}</div>
+    </div>
+    <div id='contact-${uniqeLetters[i]}'></div>`;
+  }
+}
+
+/**
+ * renders the contacts in the right container
  */
 function renderContacts(contacts) {
-  let contactList = document.getElementById('contact_list');
-  //contactList.innerHTML = '';
-
-  for (let i = 0; i < contacts.length; i++) {
-    contactList.innerHTML += innerContacts(contacts[i]);
-  }
+  contacts.forEach(contact => {
+    let firstLetter = contact.name[0].toUpperCase();
+    let contactList = document.getElementById(`contact-${firstLetter}`);
+    contactList.innerHTML += innerContacts(contact);
+  });
 }
 
 /**
