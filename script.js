@@ -3,23 +3,23 @@
  * The token used for accessing the remote storage.
  * @constant {string}
  */
-const STORAGE_TOKEN = '0BPXH9KOB3KK14LPEUWH02NBW7QT7YIO3LQDS7R4';
+const STORAGE_TOKEN = "0BPXH9KOB3KK14LPEUWH02NBW7QT7YIO3LQDS7R4";
 /**
  * The URL used for accessing the remote storage API
  * @constant {String}
  */
-const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
+const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
 /**
  * The priority level for the task. Default to 'unset'.
  * @type {string}
  */
-let priority = 'low';
-
+let priority = "low";
+let TASKS = [];
 let subtask = [];
 let subtaskready = [];
 let taskcon = getTaskon();
-let statusPopUp = 'open';
+let statusPopUp = "open";
 
 /**
  * Creates a task using input values from the DOM, then saves it to the remote storage.
@@ -27,13 +27,13 @@ let statusPopUp = 'open';
  * @returns {Promise<void>}
  */
 async function createTask() {
-  const tasks = (await getItem('tasks')) || [];
+  const tasks = (await getItem("tasks")) || [];
   const id = Date.now();
-  const title = document.getElementById('task-title-input').value;
-  const description = document.getElementById('task-description-input').value;
-  const date = document.getElementById('task-date-input').value;
-  const contact = document.getElementById('assigned_contact').value;
-  const category = document.getElementById('task-category-input').value;
+  const title = document.getElementById("task-title-input").value;
+  const description = document.getElementById("task-description-input").value;
+  const date = document.getElementById("task-date-input").value;
+  const contact = document.getElementById("assigned_contact").value;
+  const category = document.getElementById("task-category-input").value;
   const task = {
     id,
     title,
@@ -47,11 +47,11 @@ async function createTask() {
     subtaskready,
   };
   tasks.push(task);
-  await setItem('tasks', tasks);
-  setTaskcon('todo');
-  priority = 'low';
+  await setItem("tasks", tasks);
+  setTaskcon("todo");
+  priority = "low";
   subtask = [];
-  document.getElementById('task-form').reset();
+  document.getElementById("task-form").reset();
 }
 
 /**
@@ -59,7 +59,7 @@ async function createTask() {
  * @returns - the selected taskcon out the localStorage
  */
 function getTaskon() {
-  return localStorage.getItem('selctTaskCon');
+  return localStorage.getItem("selctTaskCon");
 }
 
 /**
@@ -67,7 +67,7 @@ function getTaskon() {
  * Save the selected taskcon in the localStorage
  */
 function setTaskcon(con) {
-  localStorage.setItem('selctTaskCon', con);
+  localStorage.setItem("selctTaskCon", con);
 }
 
 /**
@@ -80,7 +80,7 @@ function setTaskcon(con) {
 async function setItem(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
   await fetch(STORAGE_URL, {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify(payload),
   }).then((res) => res.json());
 }
@@ -89,10 +89,10 @@ async function setItem(key, value) {
  * Sets up the boards for task management.
  */
 function setBoards() {
-  setBoard('todo');
-  setBoard('awaitfeedback');
-  setBoard('inprogress');
-  setBoard('done');
+  setBoard("todo");
+  setBoard("awaitfeedback");
+  setBoard("inprogress");
+  setBoard("done");
 }
 /**
  * Retrieves and displays tasks from remote storage.
@@ -101,13 +101,11 @@ function setBoards() {
  * @returns {Promise<void>}
  */
 
-let TASKS = [];
-
 async function setBoard(id) {
-  const tasks = await getItem('tasks');
+  const tasks = await getItem("tasks");
   TASKS = tasks;
-  let todo = tasks.filter((t) => t['taskcon'] == id);
-  document.getElementById(`desktop-${id}`).innerHTML = '';
+  let todo = tasks.filter((t) => t["taskcon"] == id);
+  document.getElementById(`desktop-${id}`).innerHTML = "";
   if (todo && todo.length > 0) {
     todo.forEach((task) => {
       setBoardHTML(task.category, task.title, task.description, task.priority, `desktop-${id}`, task.id);
@@ -128,10 +126,9 @@ function setSubtasksHTML(subtask, subtaskready, id, category) {
   if (subtask.length > 0) {
     document.getElementById(`task-subtasks${id}`).innerHTML = `
     <div class="subtasks-progress-container">
-      <div class="subtasks-progress" id="subtasks-progress${id}" style="background-color: ${categoryColor(category)}; width: ${calculatePercentagSubtask(
-      getSharedSubtasksCount(subtask, subtaskready),
-      subtask.length
-    )}% !important">
+      <div class="subtasks-progress" id="subtasks-progress${id}" style="background-color: ${categoryColor(
+      category
+    )}; width: ${calculatePercentagSubtask(getSharedSubtasksCount(subtask, subtaskready), subtask.length)}% !important">
     </div>
     </div>
     <div class="task-subtasks-text" id="task-subtasks-text">${getSharedSubtasksCount(subtask, subtaskready)}/${subtask.length} Subtasks</div>
@@ -167,14 +164,14 @@ function getSharedSubtasksCount(subtaskArray, subtaskReadyArray) {
  */
 function inputEmptyHTML(id) {
   let container;
-  if (id == 'todo') {
-    container = 'todo';
-  } else if (id == 'awaitfeedback') {
-    container = 'Await feedback';
-  } else if (id == 'inprogress') {
-    container = 'In progress';
-  } else if (id == 'done') {
-    container = 'Done';
+  if (id == "todo") {
+    container = "todo";
+  } else if (id == "awaitfeedback") {
+    container = "Await feedback";
+  } else if (id == "inprogress") {
+    container = "In progress";
+  } else if (id == "done") {
+    container = "Done";
   }
   document.getElementById(`desktop-${id}`).innerHTML = `<div class="desktop-todo-empty">No Task ${container}</div>`;
 }
@@ -206,30 +203,30 @@ async function getItem(key) {
  * @param {Element} clickedButton
  */
 function getPrio(prio, clickedButton) {
-  const buttons = document.querySelectorAll('.btn-prio');
+  const buttons = document.querySelectorAll(".btn-prio");
 
   switch (prio) {
-    case 'urgent':
-      priority = 'urgent';
-      prioEdit = 'urgent';
+    case "urgent":
+      priority = "urgent";
+      prioEdit = "urgent";
       break;
-    case 'medium':
-      priority = 'medium';
-      prioEdit = 'medium';
+    case "medium":
+      priority = "medium";
+      prioEdit = "medium";
       break;
-    case 'low':
-      priority = 'low';
-      prioEdit = 'low';
+    case "low":
+      priority = "low";
+      prioEdit = "low";
       break;
     default:
-      priority = 'low';
+      priority = "low";
   }
 
   buttons.forEach((button) => {
-    button.classList.remove('selected');
+    button.classList.remove("selected");
   });
 
-  clickedButton.classList.add('selected');
+  clickedButton.classList.add("selected");
 }
 
 /**
@@ -285,14 +282,14 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
  */
 function categoryColor(category) {
   switch (category) {
-    case 'Sales':
-      return '#4B7CCC';
-    case 'Media':
-      return '#858D99';
-    case 'Marketing':
-      return '#FF8658';
-    case 'Design':
-      return '#CC5948';
+    case "Sales":
+      return "#4B7CCC";
+    case "Media":
+      return "#858D99";
+    case "Marketing":
+      return "#FF8658";
+    case "Design":
+      return "#CC5948";
   }
 }
 
@@ -300,12 +297,12 @@ function categoryColor(category) {
  * this function adds a subtask
  */
 function addSubTask() {
-  let subTaskInput = document.getElementById('subtask-title-input').value;
-  if (subTaskInput !== '') {
+  let subTaskInput = document.getElementById("subtask-title-input").value;
+  if (subTaskInput !== "") {
     subtask.push(subTaskInput);
   }
-  if (subTaskInput.trim() !== '') {
-    const subTaskList = document.getElementById('subtask-container');
+  if (subTaskInput.trim() !== "") {
+    const subTaskList = document.getElementById("subtask-container");
 
     const subTaskItemHTML = `
       <div class="subtask-list">
@@ -316,7 +313,7 @@ function addSubTask() {
 
     subTaskList.innerHTML += subTaskItemHTML;
 
-    document.getElementById('subtask-title-input').value = '';
+    document.getElementById("subtask-title-input").value = "";
   }
 }
 
@@ -324,21 +321,21 @@ function addSubTask() {
  * this function clears the inputs
  */
 function clearTask() {
-  const titleInput = document.getElementById('task-title-input');
-  const descriptionInput = document.getElementById('task-description-input');
-  const dateInput = document.getElementById('task-date-input');
-  const assignedContact = document.getElementById('assigned_contact');
-  const categoryInput = document.getElementById('task-category-input');
-  const subtaskTitleInput = document.getElementById('subtask-title-input');
-  const subtaskContainer = document.getElementById('subtask-container');
+  const titleInput = document.getElementById("task-title-input");
+  const descriptionInput = document.getElementById("task-description-input");
+  const dateInput = document.getElementById("task-date-input");
+  const assignedContact = document.getElementById("assigned_contact");
+  const categoryInput = document.getElementById("task-category-input");
+  const subtaskTitleInput = document.getElementById("subtask-title-input");
+  const subtaskContainer = document.getElementById("subtask-container");
 
-  titleInput.value = '';
-  descriptionInput.value = '';
-  dateInput.value = '';
+  titleInput.value = "";
+  descriptionInput.value = "";
+  dateInput.value = "";
   assignedContact.selectedIndex = 0;
   categoryInput.selectedIndex = 0;
-  subtaskTitleInput.value = '';
-  subtaskContainer.innerHTML = '';
+  subtaskTitleInput.value = "";
+  subtaskContainer.innerHTML = "";
 }
 
 /**
@@ -360,13 +357,13 @@ async function searchTasks() {
  * @returns {Object|null} Returns an object with tasks and the query or null if the query is empty.
  */
 async function fetchTasksAndHandleEmptyQuery() {
-  const searchQuery = document.getElementById('desktop-search-bar-input').value.toLowerCase();
+  const searchQuery = document.getElementById("desktop-search-bar-input").value.toLowerCase();
   if (!searchQuery.trim()) {
     setBoards();
     return null;
   }
   return {
-    tasks: await getItem('tasks'),
+    tasks: await getItem("tasks"),
     query: searchQuery,
   };
 }
@@ -385,8 +382,8 @@ function filterTasksByQuery(tasks, query) {
  * Clears the content of all task boards.
  */
 function clearAllBoards() {
-  ['todo', 'awaitfeedback', 'inprogress', 'done'].forEach((id) => {
-    document.getElementById(`desktop-${id}`).innerHTML = '';
+  ["todo", "awaitfeedback", "inprogress", "done"].forEach((id) => {
+    document.getElementById(`desktop-${id}`).innerHTML = "";
   });
 }
 
@@ -406,16 +403,16 @@ function mobileDropDownTask(id) {
   const droptaskdown = document.getElementById(`mobile-droptaskcon${id}`);
   const dropdowntaskbtn = document.getElementById(`dropdown-task${id}`);
 
-  if (droptaskdown.style.opacity === '0' || droptaskdown.style.opacity === '') {
-    droptaskdown.style.opacity = '1';
-    droptaskdown.style.transform = 'translateY(0)';
-    droptaskdown.style.pointerEvents = 'all';
-    dropdowntaskbtn.style.color = '#ffffff';
+  if (droptaskdown.style.opacity === "0" || droptaskdown.style.opacity === "") {
+    droptaskdown.style.opacity = "1";
+    droptaskdown.style.transform = "translateY(0)";
+    droptaskdown.style.pointerEvents = "all";
+    dropdowntaskbtn.style.color = "#ffffff";
   } else {
-    droptaskdown.style.pointerEvents = 'none';
-    droptaskdown.style.opacity = '0';
-    droptaskdown.style.transform = 'translateY(-100px)';
-    dropdowntaskbtn.style.color = '#2a3647';
+    droptaskdown.style.pointerEvents = "none";
+    droptaskdown.style.opacity = "0";
+    droptaskdown.style.transform = "translateY(-100px)";
+    dropdowntaskbtn.style.color = "#2a3647";
   }
 }
 
@@ -425,16 +422,16 @@ function mobileDropDownTask(id) {
  * @param {String} con
  */
 async function mobileChangeCon(id, con) {
-  const tasks = await getItem('tasks');
+  const tasks = await getItem("tasks");
   const updatedTasks = tasks.map((task) => {
     if (task.id == id) {
       return { ...task, taskcon: con };
     }
     return task;
   });
-  await setItem('tasks', updatedTasks);
+  await setItem("tasks", updatedTasks);
   setBoards();
-  statusPopUp = 'open';
+  statusPopUp = "open";
 }
 
 /**
@@ -442,7 +439,7 @@ async function mobileChangeCon(id, con) {
  *
  */
 async function getContacts() {
-  let data = await getItem('contacts');
+  let data = await getItem("contacts");
   return data;
 }
 
@@ -452,8 +449,8 @@ async function getContacts() {
 async function setContactsToAssign() {
   let data = await getContacts();
   for (let i = 0; i < data.length; i++) {
-    const contact = data[i]['name'];
-    document.getElementById('assigned_contact').innerHTML += `<option value="${contact}">${contact}</option>`;
+    const contact = data[i]["name"];
+    document.getElementById("assigned_contact").innerHTML += `<option value="${contact}">${contact}</option>`;
   }
 }
 
@@ -466,8 +463,8 @@ function setContactInitial(id) {
   let tasks = TASKS;
   for (i = 0; i < tasks.length; i++) {
     const task = tasks[i];
-    if (task['id'] === id) {
-      let contact = task['contact'];
+    if (task["id"] === id) {
+      let contact = task["contact"];
       let initials = contact.slice(0, 2);
       let uppercaseInitials = initials.toUpperCase();
       return uppercaseInitials;
