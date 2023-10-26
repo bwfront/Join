@@ -1,8 +1,9 @@
+let currentID;
 /**
  * initialize script for contacts.html
  */
 async function initContacts() {
-  const contacts = await getItem('contacts');
+  const contacts = await getItem("contacts");
   aplhabetUniqeFirstLetter(contacts);
 }
 
@@ -10,25 +11,26 @@ async function initContacts() {
  * Get the First Letters of the Name and the contacts in Alphabet Structure
  * @param {Object} contacts - The fetched data from server
  */
-function aplhabetUniqeFirstLetter(contacts){
+function aplhabetUniqeFirstLetter(contacts) {
   let contactLetters = [];
   contacts.sort((a, b) => a.name.localeCompare(b.name));
-  contacts.forEach(contact => {
+  contacts.forEach((contact) => {
     contactLetters.push(contact);
   });
-  const uniqeLetters = [...new Set(contactLetters.map(contact => contact.name[0].toUpperCase()))];
+  const uniqeLetters = [
+    ...new Set(contactLetters.map((contact) => contact.name[0].toUpperCase())),
+  ];
   renderContactCons(uniqeLetters);
-  renderContacts(contacts)
+  renderContacts(contacts);
 }
-
 
 /**
  * Inner the diffrent Containers
  * @param {Array} uniqeLetters - Store all Uniqe First Letters in Alphabet structure
  */
-function renderContactCons(uniqeLetters){
-  let contactList = document.getElementById('contact_list');
-  contactList.innerHTML = '';
+function renderContactCons(uniqeLetters) {
+  let contactList = document.getElementById("contact_list");
+  contactList.innerHTML = "";
   for (let i = 0; i < uniqeLetters.length; i++) {
     contactList.innerHTML += `        
     <div class="contact-list-letter-con">
@@ -42,7 +44,7 @@ function renderContactCons(uniqeLetters){
  * renders the contacts in the right container
  */
 function renderContacts(contacts) {
-  contacts.forEach(contact => {
+  contacts.forEach((contact) => {
     let firstLetter = contact.name[0].toUpperCase();
     let contactList = document.getElementById(`contact-${firstLetter}`);
     contactList.innerHTML += innerContacts(contact);
@@ -59,7 +61,9 @@ function innerContacts(contact) {
   return `
       <div class="sidebar-contacts" onclick="openContact(${contact.id})">
         <div>
-          <div class="contacts-small-profile" style="background-color: ${contact.color}">${getInitials(contact.name)}</div>
+          <div class="contacts-small-profile" style="background-color: ${
+            contact.color
+          }">${getInitials(contact.name)}</div>
         </div>
         <div>
           <h2>${contact.name}</h2>
@@ -73,11 +77,69 @@ function innerContacts(contact) {
  * @param {String} id - The ID of the Contact
  */
 async function openContact(id) {
-  const showcon = document.getElementById('contact-show-container');
-  showcon.style.display = 'none';
+  const showcon = document.getElementById("contact-show-container");
+  showcon.style.display = "none";
   const contact = await getContactInfo(id);
-  showcon.style.display = 'unset';
+  showcon.style.display = "unset";
   showcon.innerHTML = showContactHTML(contact);
+  mobileOpenContact();
+  currentID = id;
+}
+
+function mobileOpenContact() {
+  const containerInfo = document.getElementById(
+    "contact-details-container-mobile"
+  );
+  const containerbtn = document.getElementById("mobile-btn");
+  if ($(window).width() < 781) {
+    containerInfo.style.display = "block";
+    containerbtn.innerHTML = `
+    <div class="add-person-resonsive" onclick="openMobileMenu()">
+      <img src="./assets/img/more_vert.png">
+    </div>
+    `;
+  }
+}
+
+function closeContactMobile() {
+  closeMobileMenu();
+  const containerInfo = document.getElementById(
+    "contact-details-container-mobile"
+  );
+  const containerbtn = document.getElementById("mobile-btn");
+  containerInfo.style.display = "none";
+  containerbtn.innerHTML = `
+  <div class="add-person-resonsive" onclick="openMobileMenu()">
+    <img src="./assets/img/person_add.png">
+  </div>
+  `;
+}
+
+function openMobileMenu() {
+  const mobilecon = document.getElementById("mobile-container");
+  mobilecon.innerHTML = `
+  <div class="mobile-edit-delete" id="mobile-edit-delete">
+      <div class="contact-show-btn" onclick="editContact(${currentID})"><img src="./assets/img/editpopup.png" alt="edit">Edit</div>
+      <div class="contact-show-btn" onclick="deleteContact(${currentID})"><img src="./assets/img/deletepopup.png" alt="delte">Delete</div>
+    </div>
+  `;
+  const containerbtn = document.getElementById("mobile-btn");
+  containerbtn.innerHTML = `
+  <div class="add-person-resonsive" onclick="closeMobileMenu()">
+    <img src="./assets/img/more_vert.png">
+  </div>
+  `;
+}
+
+function closeMobileMenu() {
+  const mobilecon = document.getElementById("mobile-container");
+  mobilecon.innerHTML = '';
+  const containerbtn = document.getElementById("mobile-btn");
+  containerbtn.innerHTML = `
+  <div class="add-person-resonsive" onclick="openMobileMenu()">
+    <img src="./assets/img/more_vert.png">
+  </div>
+  `;
 }
 
 /**
@@ -86,10 +148,11 @@ async function openContact(id) {
  * @returns - The filtered Object
  */
 async function getContactInfo(id) {
-  const contacts = await getItem('contacts');
+  const contacts = await getItem("contacts");
   const contact = contacts.find((contact) => contact.id === id);
   return contact;
 }
+
 
 /**
  *
@@ -99,12 +162,18 @@ async function getContactInfo(id) {
 function showContactHTML(contact) {
   return `
   <div class="contact-show-head">
-    <div class="contact-profile-container" style="background-color: ${contact.color}">${getInitials(contact.name)}</div>
+    <div class="contact-profile-container" style="background-color: ${
+      contact.color
+    }">${getInitials(contact.name)}</div>
     <div class="contact-show-btn-name-container">
       <div class="contact-show-name">${contact.name}</div>
       <div class="show-btn-conatiner">
-        <div class="contact-show-btn" onclick="editContact(${contact.id})"><img src="./assets/img/editpopup.png" alt="edit">Edit</div>
-        <div class="contact-show-btn" onclick="deleteContact(${contact.id})"><img src="./assets/img/deletepopup.png" alt="delte">Delete</div>
+        <div class="contact-show-btn" onclick="editContact(${
+          contact.id
+        })"><img src="./assets/img/editpopup.png" alt="edit">Edit</div>
+        <div class="contact-show-btn" onclick="deleteContact(${
+          contact.id
+        })"><img src="./assets/img/deletepopup.png" alt="delte">Delete</div>
       </div>
     </div>
   </div>
@@ -128,8 +197,8 @@ function showContactHTML(contact) {
  * @returns - The String that get in to the HTML
  */
 function checkNumber(number) {
-  if (number == '') {
-    return 'No number assigned';
+  if (number == "") {
+    return "No number assigned";
   } else {
     return number;
   }
@@ -139,31 +208,53 @@ function checkNumber(number) {
  * Delete the Contact and Render
  */
 async function deleteContact(id) {
-  const contacts = await getItem('contacts');
+  const contacts = await getItem("contacts");
   const updatedcontacts = contacts.filter((contact) => contact.id !== id);
-  await setItem('contacts', updatedcontacts);
+  await setItem("contacts", updatedcontacts);
   initContacts();
-  const showcon = document.getElementById('contact-show-container');
-  showcon.style.display = 'none';
+  const showcon = document.getElementById("contact-show-container");
+  showcon.style.display = "none";
+  if ($(window).width() < 781) {
+    closeContactMobile();
+  }
 }
+
+/**
+ * Shows the Container Contact Details
+ */
+$(window).on('resize', function() {
+  if ($(window).width() > 781) {
+      document.getElementById('contact-details-container-mobile').style.display = 'block';
+    }else{
+      document.getElementById('contact-details-container-mobile').style.display = 'none';
+  }
+});
+
 
 /**
  * Generate a Random Color for the Profile
  * @returns - Return a Random Color from an Array
  */
-function randomColor(){
-  const colors = ['#916953', '#783618', '#78021a','#239b11', '#3cbea5', '#d80978'];
+function randomColor() {
+  const colors = [
+    "#916953",
+    "#783618",
+    "#78021a",
+    "#239b11",
+    "#3cbea5",
+    "#d80978",
+  ];
   const pickedcolor = colors[Math.floor(Math.random() * colors.length)];
   return pickedcolor;
 }
 
 /**
  * Get the Initals fpr the Profile
- * @param {String} name 
+ * @param {String} name
  * @returns - The Initals of the Name
  */
 function getInitials(name) {
-  const words = name.split(' ').slice(0, 2);
-  const initials = words.map(word => word[0]).join('');
+  const words = name.split(" ").slice(0, 2);
+  const initials = words.map((word) => word[0]).join("");
   return initials.toUpperCase();
 }

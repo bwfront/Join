@@ -40,30 +40,45 @@
       </div>
 
       <div class="contact-list" id="contact_list"></div>
-      <div class="add-person-resonsive" onclick="openPopUpContact('add')">
-        <img src="./assets/img/add_person_responsive.png">
+      <div class="mobile-btn" id="mobile-btn">
+        <div class="add-person-resonsive" onclick="openPopUpContact('add')">
+          <img src="./assets/img/person_add.png">
+        </div>
       </div>
     </div>
 
-    <div class="contact-details-container">
-      <div class="head-contact-details">
-        <div class="contact-details-title">
-          <span>Contacts</span>
-        </div>
-        <div class="contact-details-border"></div>
-        <div class="contact-details-text">
-          <span>Better with a team</span>
-        </div>
+    <div id="mobile-container"></div>
+
+    <div class="contact-details-container-mobile" id="contact-details-container-mobile">
+      <div class="back-button-contact-container">
+        <a onclick="closeContactMobile()"><img src="./assets/img/arrow-left-line.png" class="back-button-contact"
+            alt="back"></a>
       </div>
-      <div class="marg-tp"></div>
-      <div class="contact-show-container slide-in" id="contact-show-container"></div>
+
+      <div class="contact-details-container">
+        <div class="head-contact-details">
+          <div class="contact-details-title">
+            <span>Contacts</span>
+          </div>
+          <div class="contact-details-border"></div>
+          <div class="contact-details-text">
+            <span>Better with a team</span>
+          </div>
+        </div>
+        <div class="marg-tp"></div>
+        <div class="contact-show-container slide-in" id="contact-show-container"></div>
+      </div>
     </div>
+
   </div>
   <div class="contact-modal-details" id="contact_modal_details">
     <div class="modal-content" id="modal_content"></div>
   </div>
   <div id="contactPopUp">
     <div class="modal-content">
+      <div id="closeWindow-mobile" class="contact-close-btn-mobile">
+        <img src="./assets/img/closepopup.png" alt="close" onclick="closeWindow()" />
+      </div>
       <div class="contact-popup-title">
         <div class="contact-popup-title-logo" id="contact-popup-title-logo">
           <img src="./assets/img/join-logo-white.png" />
@@ -72,15 +87,13 @@
           <div class="highlight"></div>
         </div>
       </div>
-     
+
       <div class="contact-popup-infos">
         <div id="closeWindow" class="contact-close-btn">
-          <img src="./assets/img/closepopup.png" alt="close" onclick="closeWindow()"/>
+          <img src="./assets/img/closepopup.png" alt="close" onclick="closeWindow()" />
         </div>
-          <div class="x-responsive contact-close-btn" onclick="closeWindow()">
-          <img src="./assets/img/close_white.png" alt="close" />
-        </div>
-         
+
+
       </div>
       <div class="contact-content-container">
         <div class="contact-profile-container" id="contact-profile-container"><img src="./assets/img/profile.png"
@@ -113,7 +126,7 @@
       </div>
     </div>
 
-  
+
 </body>
 
 </html>
