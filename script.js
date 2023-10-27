@@ -52,6 +52,7 @@ async function createTask() {
   priority = "low";
   subtask = [];
   clearTask();
+  window.location = "./board.html";
 }
 
 /**
@@ -108,7 +109,14 @@ async function setBoard(id) {
   document.getElementById(`desktop-${id}`).innerHTML = "";
   if (todo && todo.length > 0) {
     todo.forEach((task) => {
-      setBoardHTML(task.category, task.title, task.description, task.priority, `desktop-${id}`, task.id);
+    setBoardHTML(
+        task.category,
+        task.title,
+        task.description,
+        task.priority,
+        `desktop-${id}`,
+        task.id
+      );
       setSubtasksHTML(task.subtask, task.subtaskready, task.id, task.category);
     });
   } else {
@@ -128,10 +136,16 @@ function setSubtasksHTML(subtask, subtaskready, id, category) {
     <div class="subtasks-progress-container">
       <div class="subtasks-progress" id="subtasks-progress${id}" style="background-color: ${categoryColor(
       category
-    )}; width: ${calculatePercentagSubtask(getSharedSubtasksCount(subtask, subtaskready), subtask.length)}% !important">
+    )}; width: ${calculatePercentagSubtask(
+      getSharedSubtasksCount(subtask, subtaskready),
+      subtask.length
+    )}% !important">
     </div>
     </div>
-    <div class="task-subtasks-text" id="task-subtasks-text">${getSharedSubtasksCount(subtask, subtaskready)}/${subtask.length} Subtasks</div>
+    <div class="task-subtasks-text" id="task-subtasks-text">${getSharedSubtasksCount(
+      subtask,
+      subtaskready
+    )}/${subtask.length} Subtasks</div>
     `;
   }
 }
@@ -154,7 +168,9 @@ function calculatePercentagSubtask(subtaskready, subtask) {
  * @returns
  */
 function getSharedSubtasksCount(subtaskArray, subtaskReadyArray) {
-  const sharedSubtasks = subtaskArray.filter((subtask) => subtaskReadyArray.includes(subtask));
+  const sharedSubtasks = subtaskArray.filter((subtask) =>
+    subtaskReadyArray.includes(subtask)
+  );
   return sharedSubtasks.length;
 }
 
@@ -173,7 +189,9 @@ function inputEmptyHTML(id) {
   } else if (id == "done") {
     container = "Done";
   }
-  document.getElementById(`desktop-${id}`).innerHTML = `<div class="desktop-todo-empty">No Task ${container}</div>`;
+  document.getElementById(
+    `desktop-${id}`
+  ).innerHTML = `<div class="desktop-todo-empty">No Task ${container}</div>`;
 }
 
 /**
@@ -238,12 +256,16 @@ function getPrio(prio, clickedButton) {
  * @param {string} idcon - DOM element ID for the container.
  * @param {number} id - Task ID.
  */
-function setBoardHTML(category, title, description, prio, idcon, id) {
+async function setBoardHTML(category, title, description, prio, idcon, id) {
   const todo = document.getElementById(idcon);
-  todo.innerHTML += `
+  let bgcolorcontact = await getContactColor(id);
+  if (todo) {
+    todo.innerHTML += `
   <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})">
   <div class="task-heading-con">
-      <span class="category" id="category" style="background-color: ${categoryColor(category)}">${category}</span>
+      <span class="category" id="category" style="background-color: ${categoryColor(
+        category
+      )}">${category}</span>
     <a class="dropdown-task" onclick="mobileDropDownTask(${id})" id="dropdown-task${id}"><</a>
     <div class="mobile-droptaskcon" id="mobile-droptaskcon${id}">
         <a>
@@ -266,13 +288,14 @@ function setBoardHTML(category, title, description, prio, idcon, id) {
     <div class="task-subtasks" id="task-subtasks${id}"></div>
     <div class="task-footer" id="task-footer">
         <div class="task-profile" id="task-profile">
-            <div class="profile" id="profile">${setContactInitial(id)}</div>
+            <div class="profile" id="profile" style="background-color: ${bgcolorcontact}">${setContactInitial(id)}</div>
         </div>
         <div id="task-important"><img src="./assets/img/prio${prio}.png" alt="important"></div>
     </div>
   </div>
 </div>
 `;
+  }
 }
 
 /**
@@ -344,11 +367,15 @@ function clearTask() {
  * @async
  */
 async function searchTasks() {
-  const result = await fetchTasksAndHandleEmptyQuery();
-  if (!result) return;
-  const filteredTasks = filterTasksByQuery(result.tasks, result.query);
-  clearAllBoards();
-  renderFilteredTasksOnBoards(filteredTasks);
+  try {
+    const result = await fetchTasksAndHandleEmptyQuery();
+    if (!result) return;
+    const filteredTasks = filterTasksByQuery(result.tasks, result.query);
+    clearAllBoards();
+    renderFilteredTasksOnBoards(filteredTasks);
+  } catch (error) {
+    console.error("Error in searchTasks:", error);
+  }
 }
 
 /**
@@ -357,7 +384,9 @@ async function searchTasks() {
  * @returns {Object|null} Returns an object with tasks and the query or null if the query is empty.
  */
 async function fetchTasksAndHandleEmptyQuery() {
-  const searchQuery = document.getElementById("desktop-search-bar-input").value.toLowerCase();
+  const searchQuery = document
+    .getElementById("desktop-search-bar-input")
+    .value.toLowerCase();
   if (!searchQuery.trim()) {
     setBoards();
     return null;
@@ -375,7 +404,11 @@ async function fetchTasksAndHandleEmptyQuery() {
  * @returns {Array} Returns an array of filtered task objects.
  */
 function filterTasksByQuery(tasks, query) {
-  return tasks.filter((task) => task.title.toLowerCase().includes(query) || task.description.toLowerCase().includes(query));
+  return tasks.filter(
+    (task) =>
+      task.title.toLowerCase().includes(query) ||
+      task.description.toLowerCase().includes(query)
+  );
 }
 
 /**
@@ -393,7 +426,14 @@ function clearAllBoards() {
  */
 function renderFilteredTasksOnBoards(filteredTasks) {
   filteredTasks.forEach((task) => {
-    setBoardHTML(task.category, task.title, task.description, task.priority, `desktop-${task.taskcon}`, task.id);
+    setBoardHTML(
+      task.category,
+      task.title,
+      task.description,
+      task.priority,
+      `desktop-${task.taskcon}`,
+      task.id
+    );
     setSubtasksHTML(task.subtask, task.subtaskready, task.id, task.category);
   });
 }
@@ -450,7 +490,20 @@ async function setContactsToAssign() {
   let data = await getContacts();
   for (let i = 0; i < data.length; i++) {
     const contact = data[i]["name"];
-    document.getElementById("assigned_contact").innerHTML += `<option value="${contact}">${contact}</option>`;
+    document.getElementById(
+      "assigned_contact"
+    ).innerHTML += `<option value="${contact}">${contact}</option>`;
+  }
+}
+
+function getCurrentContact(id){
+  let tasks = TASKS;
+  for (i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    if (task["id"] === id) {
+      let contact = task["contact"];
+      return contact;
+    }
   }
 }
 
@@ -460,14 +513,30 @@ async function setContactsToAssign() {
  * @returns {String} Returns the first to characters of the assigned contact.
  */
 function setContactInitial(id) {
-  let tasks = TASKS;
-  for (i = 0; i < tasks.length; i++) {
-    const task = tasks[i];
-    if (task["id"] === id) {
-      let contact = task["contact"];
+      let contact = getCurrentContact(id);
       let initials = contact.slice(0, 2);
       let uppercaseInitials = initials.toUpperCase();
       return uppercaseInitials;
+}
+
+
+
+async function getContactColor(id) {
+  let data = await getContacts();
+  let contact = getCurrentContact(id);
+
+  for (let cur of data) {
+    if (cur.name == contact) {
+      return cur.color;
     }
   }
 }
+
+/**
+ * Give the Date Picker the min Value
+ */
+document.addEventListener("DOMContentLoaded", function() {
+  const today = new Date();
+  const formattedDate = today.toISOString().split('T')[0];
+  document.getElementById("task-date-input").min = formattedDate;
+});

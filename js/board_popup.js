@@ -396,14 +396,16 @@ async function setContactsToAssign() {
  * @param {Number} - The Index from the Task
  * Sets the name of the assigned contact in the Pop Up Card
  */
-function setContactNameInPopUp(id) {
+async function setContactNameInPopUp(id) {
   let taskId = id;
   for (let i = 0; i < TASKS.length; i++) {
     const task = TASKS[i];
     if (taskId === task["id"]) {
       let contact = task["contact"];
       document.getElementById("open-card-contact").innerHTML = contact;
-      document.getElementById("open-card-contact-initials").innerHTML = setContactNameInitialsOpencard(contact);
+      const openCardProfile = document.getElementById("open-card-contact-initials");
+      openCardProfile.innerHTML = setContactNameInitialsOpencard(contact);
+      openCardProfile.style.backgroundColor = await getContactColor(id);
     }
   }
 }
