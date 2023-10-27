@@ -40,35 +40,37 @@ function getPopUpId() {
  * Close the PopUp
  */
 function closeWindow() {
-  document.getElementById("contactPopUp").style.display = "none";
-  initContacts();
-  const background = document.getElementById("contact_modal_background");
-  background.style.display = "none";
-  const profile = document.getElementById("contact-profile-container");
-  profile.innerHTML = `<img src="./assets/img/profile.png" alt="profile"></img>`;
-}
-
-/** Check if a Valid Email
- */
-function isValidEmail(email) {
-  const re = /^[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,4}$/;
-  return re.test(String(email).toLowerCase());
+  const popup = document.getElementById("contactPopUp");
+  popup.style.animation =
+    "slideInFromCenter 0.4s forwards";
+  setTimeout(() => {
+    popup.style.display = 'none';
+    initContacts();
+    const background = document.getElementById("contact_modal_background");
+    background.style.display = "none";
+    const profile = document.getElementById("contact-profile-container");
+    profile.innerHTML = `<img src="./assets/img/profile.png" alt="profile"></img>`;
+    popup.style.animation =
+    "slideInFromRight 0.4s forwards";
+  }, 400);
 }
 
 /**
  * Check the From Validation
  * @param {String} con - Current PopUp
- * @returns 
+ * @returns
  */
 function contactCheck(con) {
-  const nameInput = document.getElementById("contact-input-name").value;
-  const emailInput = document.getElementById("contact-input-email").value;
-  const trimmedName = nameInput.trim();
-  const isValidName = /^[A-Za-z\s]+$/.test(trimmedName);
-  if (!isValidName || trimmedName === "") {
-      return false;
+  const nameInput = document.getElementById("contact-input-name");
+  const emailInput = document.getElementById("contact-input-email");
+  const trimmedName = nameInput.value.trim();
+  if (!trimmedName || !/^[A-Za-z\s]+$/.test(trimmedName)) {
+    nameInput.setCustomValidity("Please enter a valid name.");
+    return false;
   }
-  if (!isValidEmail(emailInput)) {
+  const email = emailInput.value.trim();
+  if (!email || !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+    emailInput.setCustomValidity("Please enter a valid email address.");
     return false;
   }
   if (con === "addContact") {
