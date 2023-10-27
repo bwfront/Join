@@ -109,8 +109,8 @@ function closeContactMobile() {
   const containerbtn = document.getElementById("mobile-btn");
   containerInfo.style.display = "none";
   containerbtn.innerHTML = `
-  <div class="add-person-resonsive" onclick="openMobileMenu()">
-    <img src="./assets/img/person_add.png">
+  <div class="add-person-resonsive" onclick="openPopUpContact('add')">
+    <img src="./assets/img/person_add.png" id="add-responsive">
   </div>
   `;
 }
@@ -162,7 +162,7 @@ async function getContactInfo(id) {
 function showContactHTML(contact) {
   return `
   <div class="contact-show-head">
-    <div class="contact-profile-container" style="background-color: ${
+    <div class="contact-profile-container" id="contact-profile-container-info" style="background-color: ${
       contact.color
     }">${getInitials(contact.name)}</div>
     <div class="contact-show-btn-name-container">

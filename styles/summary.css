@@ -258,12 +258,14 @@ body {
 .dot-urgent {
   width: 69px;
   height: 69px;
-  background-image: url(/Join/assets/img/urgent.png);
   background-repeat: no-repeat;
   background-color: rgba(255, 61, 0, 1);
   background-position: center;
   border-radius: 50%;
   margin-right: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /**ANIMATION-BUTTON**/

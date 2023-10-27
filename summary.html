@@ -19,8 +19,8 @@
 </head>
 
 <body onload="init('summary'), initSummary()">
-    <div w3-include-html="./assets/img/templates/desktop_template.html"></div>
-    <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
+    <div w3-include-html="./assets/templates/desktop_template.html"></div>
+    <div w3-include-html="./assets/templates/mobile_template.html"></div>
 
     <div class="main-content">
         <!-- Main content goes here -->
@@ -36,7 +36,7 @@
                     <div class="summary-todo-done-container mb-4">
                         <div class="card summary-todo-done-card-layout">
                             <div class="dot-number-container">
-                                <div class="dot-todo"><img src="assets/img/pencil.png" alt="">
+                                <div class="dot-todo"><img src="./assets/img/pencil.png" alt="">
                                 </div>
                                 <div class="top-number-container">
                                     <div id="tasks-todo" class="number ">1</div><!--Todo Task Counter-->
@@ -46,7 +46,7 @@
                         </div>
                         <div class="card summary-todo-done-card-layout">
                             <div class="dot-number-container">
-                                <div class="dot-done"><img src="assets/img/done.png" alt="">
+                                <div class="dot-done"><img src="./assets/img/done.png" alt="">
                                 </div>
                                 <div class="top-number-container">
                                     <div id="done-task-counter" class="number">0</div><!--Done Task Counter-->
@@ -59,7 +59,7 @@
                         <div class="card urgency-card-layout mb-4">
 
                             <div class="dot-number-container width">
-                                <div class="dot-urgent"></div>
+                                <div class="dot-urgent"><img src="./assets/img/urgent.png" alt="urgent"></div>
                                 <div class="top-number-container">
                                     <div id="urgent-task-counter" class="number">0
                                     </div><!--Urgent Task Counter-->

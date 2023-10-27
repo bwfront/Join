@@ -24,8 +24,8 @@
 
 <body onload="init('contacts'), initContacts()">
   <div class="loaded-template-class">
-    <div w3-include-html="./assets/img/templates/desktop_template.html"></div>
-    <div w3-include-html="./assets/img/templates/mobile_template.html"></div>
+    <div w3-include-html="./assets/templates/desktop_template.html"></div>
+    <div w3-include-html="./assets/templates/mobile_template.html"></div>
   </div>
   <div class="contact-modal-background" id="contact_modal_background"></div>
 
@@ -33,7 +33,7 @@
     <div class="contact-list-container">
       <div class="contact-list-button-section">
         <button class="btn btn-primary" onclick="openPopUpContact('add')">
-          Add new contact <img src="./assets/img/person_add.png" />
+          Add new contact <img src="./assets/img/person_add.png" id="add-responsive" />
         </button>
       </div>
       <div class="contact-list" id="contact_list">
@@ -42,7 +42,7 @@
       <div class="contact-list" id="contact_list"></div>
       <div class="mobile-btn" id="mobile-btn">
         <div class="add-person-resonsive" onclick="openPopUpContact('add')">
-          <img src="./assets/img/person_add.png">
+          <img src="./assets/img/person_add.png" id="add-responsive">
         </div>
       </div>
     </div>
@@ -107,8 +107,7 @@
                 <img src="./assets/img/person.png" alt="" class="contact-input-img" />
               </div>
               <div>
-                <input id="contact-input-email" type="email" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
-                  class="contact-input" placeholder="Email*" required />
+                <input id="contact-input-email" type="email" class="contact-input" placeholder="Email*" required />
                 <img src="./assets/img/mail.png" alt="" class="contact-input-img" />
               </div>
               <div>

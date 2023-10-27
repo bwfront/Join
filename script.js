@@ -51,7 +51,7 @@ async function createTask() {
   setTaskcon("todo");
   priority = "low";
   subtask = [];
-  document.getElementById("task-form").reset();
+  clearTask();
 }
 
 /**

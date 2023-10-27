@@ -51,7 +51,7 @@ function closeWindow() {
 /** Check if a Valid Email
  */
 function isValidEmail(email) {
-  const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const re = /^[a-zA-Z0-9._\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,4}$/;
   return re.test(String(email).toLowerCase());
 }
 
