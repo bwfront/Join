@@ -278,7 +278,6 @@ body {
 /**LOG IN RESPONSIVE START**/
 
 @media (max-width: 575.98px) {
-
   .login-animation-background {
     background-color: rgba(42, 54, 71, 1);
   }
@@ -396,6 +395,7 @@ body {
     transform: translate(-50%, 44vh);
   }
 }
+
 @media (max-width: 767.98px) {
   .login-animation-background {
     background-color: rgba(42, 54, 71, 1);
@@ -517,12 +517,17 @@ body {
   }
 }
 
-@media (max-height: 690px){
-  .login-top-right-container, .login-footer-container  {
-    margin-top: 20px;
+@media (max-height: 690px) {
+  .login-top-right-container,
+  .login-footer-container {
+    margin-top: 60px;
   }
-  .login-footer-container  {
+  .login-footer-container {
     padding-bottom: 50px;
+  }
+
+  .login-card {
+    transform: translate(-50%, -43%);
   }
 }
 /**LOG IN RESPONSIVE END**/
