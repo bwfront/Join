@@ -208,25 +208,26 @@ body {
     width: 100% !important;
   }
   .btn-bottom {
-    top: 80%;
+    top: 60%;
     right: -27px;
     gap: 88px;
     justify-content: space-between;
     background-color: #f6f7f8;
     z-index: 999;
+    position: sticky;
+    bottom: 79px;
+    margin-left: 48px;
+    height: 63px;
+    gap: 20px;
   }
   .add-task-main-content{
     margin-bottom: 0;
   }
 }
 
-@media (max-width: 450px) {
-  .btn-bottom {
-    position: sticky;
-    bottom: 79px;
-    margin-left: 48px;
-    height: 63px;
-    gap: 20px;
+@media (max-width: 494px){
+  .prio-button-con{
+    display: flex;
   }
 }
 
