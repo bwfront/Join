@@ -51,51 +51,48 @@ function dragDropFun(dragTasks, containers) {
   dragTasks.forEach((dragTask) => {
     dragTask.addEventListener("dragstart", () => {
       dragTask.classList.add("dragging");
-      containers.forEach((conatiner) => {
-        conatiner.classList.add("container-bg");
+      containers.forEach((container) => {
+        container.classList.add("container-bg");
       });
     });
     dragTask.addEventListener("dragend", () => {
       dragTask.classList.remove("dragging");
-      containers.forEach((conatiner) => {
-        conatiner.classList.remove("container-bg");
+      containers.forEach((container) => {
+        container.classList.remove("container-bg");
       });
     });
   });
   containers.forEach((container) => {
     container.addEventListener("dragover", (e) => {
       e.preventDefault();
-      const afterElement = getDragAfterElement(container, e.clientY);
+    });
+    container.addEventListener("dragleave", (e) => {
+      e.preventDefault();
+      container.classList.remove("container-bg");
+    });
+    container.addEventListener("drop", (e) => {
+      e.preventDefault();
       const dragTask = document.querySelector(".dragging");
-      if (afterElement == null) {
+      if (dragTask) {
         container.appendChild(dragTask);
-      } else {
-        container.insertBefore(dragTask, afterElement);
       }
+      containers.forEach((cleanContainer) => {
+        cleanContainer.classList.remove("container-bg");
+      });
+    });
+  });
+  document.addEventListener("dragexit", () => {
+    containers.forEach((container) => {
+      container.classList.remove("container-bg");
+    });
+  });
+  document.addEventListener("dragend", () => {
+    containers.forEach((container) => {
+      container.classList.remove("container-bg");
     });
   });
 }
 
-/**
- * Determines the drag position relative to other tasks in the container.
- * @param {Element} container - Board section containing tasks.
- * @param {number} y - Current y-coordinate of the dragged task.
- * @returns {Element|null} - The draggable task element immediately below the current y-coordinate.
- */
-function getDragAfterElement(container, y) {
-  const draggableElements = [
-    ...container.querySelectorAll(".task:not(.dragging)"),
-  ];
-  return draggableElements.reduce(
-    (closest, child) => {
-      const box = child.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: child };
-      } else {
-        return closest;
-      }
-    },
-    { offset: Number.NEGATIVE_INFINITY }
-  ).element;
-}
+
+
+
