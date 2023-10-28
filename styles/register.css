@@ -25,6 +25,8 @@
   height: 121.97px;
   margin-top: 80px;
   margin-left: 77px;
+  z-index: 100;
+  position: absolute;
 }
 
 .signUp-card {
@@ -140,7 +142,7 @@
   .signUp-card {
     margin-top: 18px;
     height: 576px;
-    width: 353px;
+    width: 100%;
     gap: 7px;
   }
 }

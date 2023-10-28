@@ -115,7 +115,7 @@ body {
   display: flex !important;
   align-items: center;
   justify-content: center;
-  width: 110px;
+  width: 120px;
   font-weight: 700 !important;
   font-size: 21px !important;
 }
@@ -278,6 +278,7 @@ body {
 /**LOG IN RESPONSIVE START**/
 
 @media (max-width: 575.98px) {
+
   .login-animation-background {
     background-color: rgba(42, 54, 71, 1);
   }
@@ -370,7 +371,7 @@ body {
   }
 
   .login-form-radius {
-    width: 90% !important;
+    width: 280px !important;
   }
 
   .login-form-img {
@@ -516,4 +517,12 @@ body {
   }
 }
 
+@media (max-height: 690px){
+  .login-top-right-container, .login-footer-container  {
+    margin-top: 20px;
+  }
+  .login-footer-container  {
+    padding-bottom: 50px;
+  }
+}
 /**LOG IN RESPONSIVE END**/
