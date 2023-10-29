@@ -492,7 +492,7 @@ async function setContactsToAssign() {
     const contact = data[i]["name"];
     document.getElementById(
       "assigned_contact"
-    ).innerHTML += `<option value="${contact}">${contact}</option>`;
+    ).innerHTML += `<label><input type="checkbox" value="${contact}"> ${contact}</label>`;
   }
 }
 
@@ -531,3 +531,16 @@ async function getContactColor(id) {
     }
   }
 }
+
+/* Contacts Dropdown */
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("task-contact-input").addEventListener("click", function() {
+    const assignedContact = document.getElementById("assigned_contact");
+    if (assignedContact.style.display === "flex") {
+        assignedContact.style.display = "none";
+    } else {
+        assignedContact.style.display = "flex";
+    }
+  });
+});

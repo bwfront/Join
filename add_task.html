@@ -50,12 +50,14 @@
               ></textarea>
             </div>
             <div class="form-group">
-              <label for="contacts">Assigned to
+              <label for="contacts">Assigned to wijnepf
                 <span class="required-field"></span>
               </label>
-              <select required class="form-control" id="assigned_contact" style="color: black; font-weight: 400">
-                <option value="" disabled selected class="form-control option d-none">Select contacts to assign</option>
+              <select required class="form-control add-task-inputs" style="color: black; font-weight: 400" id="task-contact-input">
+                <option value="" disabled selected class="form-control option d-none">Select Contacts</option>
               </select>
+              <div class="dropdown-contacts" id="assigned_contact">
+              </div>
             </div>
           </div>
         </div>

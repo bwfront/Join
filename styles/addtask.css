@@ -232,3 +232,14 @@ body {
 }
 
 /* ADD TASK RESPONSIVE ENDS */
+
+.dropdown-contacts{
+  flex-direction: column;
+  background-color: #ffffff;
+  border: solid #d1d1d1;
+  padding: 10px 0 0 20px;
+  display: none;
+  z-index: 100;
+  position: absolute;
+  width: 100%;
+}
