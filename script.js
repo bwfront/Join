@@ -32,7 +32,7 @@ async function createTask() {
   const title = document.getElementById("task-title-input").value;
   const description = document.getElementById("task-description-input").value;
   const date = document.getElementById("task-date-input").value;
-  const contact = document.getElementById("assigned_contact").value;
+  const contact = getCheckedContacts();
   const category = document.getElementById("task-category-input").value;
   const task = {
     id,
@@ -532,15 +532,3 @@ async function getContactColor(id) {
   }
 }
 
-/* Contacts Dropdown */
-
-document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("task-contact-input").addEventListener("click", function() {
-    const assignedContact = document.getElementById("assigned_contact");
-    if (assignedContact.style.display === "flex") {
-        assignedContact.style.display = "none";
-    } else {
-        assignedContact.style.display = "flex";
-    }
-  });
-});
