@@ -109,7 +109,7 @@ async function setBoard(id) {
   document.getElementById(`desktop-${id}`).innerHTML = "";
   if (todo && todo.length > 0) {
     todo.forEach((task) => {
-    setBoardHTML(
+      setBoardHTML(
         task.category,
         task.title,
         task.description,
@@ -258,7 +258,6 @@ function getPrio(prio, clickedButton) {
  */
 async function setBoardHTML(category, title, description, prio, idcon, id) {
   const todo = document.getElementById(idcon);
-  let bgcolorcontact = await getContactColor(id);
   if (todo) {
     todo.innerHTML += `
   <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})">
@@ -287,8 +286,8 @@ async function setBoardHTML(category, title, description, prio, idcon, id) {
     <div class="task-description" id="task-description">${description}</div>
     <div class="task-subtasks" id="task-subtasks${id}"></div>
     <div class="task-footer" id="task-footer">
-        <div class="task-profile" id="task-profile">
-            <div class="profile" id="profile" style="background-color: ${bgcolorcontact}">${setContactInitial(id)}</div>
+        <div class="task-profile" id="task-profile-${id}">
+            
         </div>
         <div id="task-important"><img src="./assets/img/prio${prio}.png" alt="important"></div>
     </div>
@@ -296,6 +295,7 @@ async function setBoardHTML(category, title, description, prio, idcon, id) {
 </div>
 `;
   }
+  innerPopUpContact(id);
 }
 
 /**
@@ -496,39 +496,41 @@ async function setContactsToAssign() {
   }
 }
 
-function getCurrentContact(id){
-  let tasks = TASKS;
-  for (i = 0; i < tasks.length; i++) {
-    const task = tasks[i];
-    if (task["id"] === id) {
-      let contact = task["contact"];
-      return contact;
-    }
-  }
-}
-
 /**
- *
- * @param {Number} id
- * @returns {String} Returns the first to characters of the assigned contact.
+ * Get the Contacts Assigned to the Task
+ * @param {String} id - Of the Task
  */
-function setContactInitial(id) {
-      let contact = getCurrentContact(id);
-      let initials = contact.slice(0, 2);
-      let uppercaseInitials = initials.toUpperCase();
-      return uppercaseInitials;
+async function innerPopUpContact(id) {
+  let tasks = await getItem("tasks");
+  tasks.forEach((task) => {
+    if (task.id == id) {
+      innerPopUpContactHTML(task.contact, id);
+    }
+  });
 }
 
-
-
-async function getContactColor(id) {
-  let data = await getContacts();
-  let contact = getCurrentContact(id);
-
-  for (let cur of data) {
-    if (cur.name == contact) {
-      return cur.color;
-    }
+async function innerPopUpContactHTML(contacts, id) {
+  const container = document.getElementById(`task-profile-${id}`);
+  for (let contact of contacts) {
+    const bgColor = await contactBackgroundColor(contact);
+    container.innerHTML += `
+    <div class="profile" id="profile" style="background-color: ${bgColor}">${setContactInitial(
+      contact
+    )}</div>
+    `;
   }
 }
 
+async function contactBackgroundColor(currentcontact) {
+  const contacts = await getContacts();
+  const foundContact = contacts.find(contact => contact.name === currentcontact);
+  if (foundContact) {
+    return foundContact.color;
+  }
+}
+
+function setContactInitial(contact) {
+  let initials = contact.slice(0, 2);
+  let uppercaseInitials = initials.toUpperCase();
+  return uppercaseInitials;
+}
