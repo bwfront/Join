@@ -91,7 +91,15 @@ body {
   width: 24px;
   height: 24px;
 }
-
+#subtask-container{
+  display: none;
+  height: 80px;
+  overflow-y: scroll;
+  background-color: #ffffff;
+  border-radius: 0 0 10px 10px;
+  border: solid #d1d1d1;
+  
+}
 .required-field::before {
   content: '*';
   color: red;
@@ -135,6 +143,7 @@ body {
   padding: 4px 8px;
   border-radius: 8px;
   align-items: center;
+  margin: -7px 0;
 }
 .subtask-list-hover:hover{
   background-color: #d1d1d1;

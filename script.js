@@ -320,6 +320,7 @@ function categoryColor(category) {
  * this function adds a subtask
  */
 function addSubTask() {
+  document.getElementById('subtask-container').style.display = 'block';
   let subTaskInput = document.getElementById("subtask-title-input").value;
   if (subTaskInput !== "") {
     subtask.push(subTaskInput);
@@ -351,6 +352,9 @@ function removeSubtaskAddTask(subTaskInput) {
   if (subtaskItem) {
     subtask = subtask.filter((task) => task !== subTaskInput);
     subtaskItem.remove();
+  }
+  if(subtask.length == 0){
+    document.getElementById('subtask-container').style.display = 'none';
   }
 }
 
