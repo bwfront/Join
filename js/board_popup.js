@@ -49,7 +49,6 @@ function innerTaskPopUp(task) {
   getTaskPopUpHTML("description", task.description);
   getTaskPopUpPrioHTML("priority", task.priority);
   getTaskPopUpSubtask(task.subtask, task.id);
-  //getTaskPopUpHTML('contact', task.contact);
 }
 
 /**
@@ -57,7 +56,8 @@ function innerTaskPopUp(task) {
  * @param {String} category - The current Category
  */
 function categoryColorPopUp(category) {
-  document.getElementById(`popup-category`).style.backgroundColor = categoryColor(category);
+  document.getElementById(`popup-category`).style.backgroundColor =
+    categoryColor(category);
 }
 
 /**
@@ -121,7 +121,9 @@ async function getTaskPopUpSubtask(subtaskArray, idTask) {
     subtakscon.innerHTML = ``;
   }
   for (let i = 0; i < subtaskArray.length; i++) {
-    const isChecked = currentTaskReadySubtasks.includes(subtaskArray[i]) ? "checked" : "";
+    const isChecked = currentTaskReadySubtasks.includes(subtaskArray[i])
+      ? "checked"
+      : "";
     subtakscon.innerHTML += `<div><input id="popup-checkbox${i}" type="checkbox" ${isChecked} onclick="checkStatusSubtask(${i}, ${idTask})" placeholder="subtask"><label
       class="popup-subtask" id="popup-subtask${i}" for="popup-checkbox">${subtaskArray[i]}</label></div>`;
   }
@@ -231,8 +233,8 @@ function innerEditValues(elementid, selectTask) {
   elementid.prio.classList.add("selected");
   elementid.category.innerHTML = selectTask.category;
   elementid.categoryselected.value = selectTask.category;
-  elementid.contact.innerHTML = selectTask.contact;
   elementid.contactselected.value = selectTask.contact;
+  setContactCheckbox(selectTask);
   editSubtasksStore(elementid, selectTask);
 }
 
@@ -317,7 +319,9 @@ async function setEditValue() {
  * Set Display to flex and add Slide In Animation class
  */
 function openTaskPopUp() {
-  const popupbackground = document.getElementById("desktop-task-popup-container");
+  const popupbackground = document.getElementById(
+    "desktop-task-popup-container"
+  );
   const popupconatiner = document.getElementById("desktop-task-popup");
   const body = document.getElementById("body");
   body.classList.add("no-scroll");
@@ -332,7 +336,9 @@ function openTaskPopUp() {
  * @param {*} task - The Priority from the Task
  */
 function getTaskPopUpPrioHTML(htmlid, task) {
-  document.getElementById(`popup-${htmlid}`).innerHTML = `${task} <img class="popup-prio-img" id="popup-prio-img" src="./assets/img/prio${task}.png"
+  document.getElementById(
+    `popup-${htmlid}`
+  ).innerHTML = `${task} <img class="popup-prio-img" id="popup-prio-img" src="./assets/img/prio${task}.png"
     alt="priority">`;
 }
 
@@ -341,7 +347,9 @@ function getTaskPopUpPrioHTML(htmlid, task) {
  */
 function closeTaskPopUp() {
   setBoards();
-  const popupbackground = document.getElementById("desktop-task-popup-container");
+  const popupbackground = document.getElementById(
+    "desktop-task-popup-container"
+  );
   const popupconatiner = document.getElementById("desktop-task-popup");
   const subtakscon = document.getElementById("task-popup-subtasks");
 
@@ -391,19 +399,49 @@ async function setContactNameInPopUp(id) {
     const task = TASKS[i];
     if (taskId === task["id"]) {
       let contacts = task["contact"];
-      for (currentcontact of contacts){
+      for (currentcontact of contacts) {
         const bgColor = await contactBackgroundColor(currentcontact);
-        const container = document.getElementById('task-profile');
+        const container = document.getElementById("task-profile");
         container.innerHTML += `
         <div class="popup-contact-container">
           <div id="open-card-contact-initials" class="profile" id="popup-profile"style="background-color: ${bgColor}">${setContactInitial(
-          currentcontact)}
+          currentcontact
+        )}
           </div>
           <div id="open-card-contact" class="popup-contact-name">${currentcontact}</div>
         </div>`;
       }
-      
-      
     }
   }
+}
+
+/**
+ * Set the Checked Status to the Checkboxes if the Contact is Assgined
+ * @param {Object} selectTask 
+ */
+function setContactCheckbox(selectTask) {
+  const checkboxes = document.querySelectorAll(
+    "#assigned_contact input[type='checkbox']"
+  );
+  clearCheckboxes(checkboxes);
+  const contacts = selectTask.contact;
+  for (currentcontact of contacts) {
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.value == currentcontact) {
+        checkbox.checked = true;
+      }
+    });
+  }
+}
+
+/**
+ * Clear the Checkboxes
+ * @param {Element} checkboxes 
+ */
+function clearCheckboxes(checkboxes){
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.value == currentcontact) {
+      checkbox.checked = false;
+    }
+  });
 }

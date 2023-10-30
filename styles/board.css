@@ -778,7 +778,9 @@
   z-index: 100;
   position: absolute;
   width: 84.8%;
-  margin-top: 44px;
+  margin-top: 75px;
   border-radius: 0 0 8px 8px;
   box-shadow: 0px 0px 5px 4px rgba(157, 157, 157, 0.1);
+  flex-direction: center;
+  font-size: 20px;
 }
