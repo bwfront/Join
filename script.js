@@ -509,18 +509,6 @@ async function innerPopUpContact(id) {
   });
 }
 
-async function innerPopUpContactHTML(contacts, id) {
-  const container = document.getElementById(`task-profile-${id}`);
-  for (let contact of contacts) {
-    const bgColor = await contactBackgroundColor(contact);
-    container.innerHTML += `
-    <div class="profile" id="profile" style="background-color: ${bgColor}">${setContactInitial(
-      contact
-    )}</div>
-    `;
-  }
-}
-
 async function contactBackgroundColor(currentcontact) {
   const contacts = await getContacts();
   const foundContact = contacts.find(contact => contact.name === currentcontact);
@@ -534,3 +522,4 @@ function setContactInitial(contact) {
   let uppercaseInitials = initials.toUpperCase();
   return uppercaseInitials;
 }
+

@@ -291,7 +291,7 @@ async function setEditValue() {
   let priority = prioEdit;
   let taskcon = currenttaskcon;
   let category = elementid.categoryselected.value;
-  let contact = elementid.contactselected.value;
+  let contact = getCheckedContacts();
   let subtask = subtaskEdit;
   let subtaskready = subtaskEditReady;
   let currentEditValues = {
@@ -381,17 +381,6 @@ async function getContacts() {
 }
 
 /**
- * Render all contacts in "Select contacts to assign"
- */
-async function setContactsToAssign() {
-  let data = await getContacts();
-  for (let i = 0; i < data.length; i++) {
-    const contact = data[i]["name"];
-    document.getElementById("assigned_contact").innerHTML += `<option value="${contact}">${contact}</option>`;
-  }
-}
-
-/**
  *
  * @param {Number} - The Index from the Task
  * Sets the name of the assigned contact in the Pop Up Card
@@ -401,23 +390,20 @@ async function setContactNameInPopUp(id) {
   for (let i = 0; i < TASKS.length; i++) {
     const task = TASKS[i];
     if (taskId === task["id"]) {
-      let contact = task["contact"];
-      document.getElementById("open-card-contact").innerHTML = contact;
-      const openCardProfile = document.getElementById("open-card-contact-initials");
-      openCardProfile.innerHTML = setContactNameInitialsOpencard(contact);
-      openCardProfile.style.backgroundColor = await getContactColor(id);
+      let contacts = task["contact"];
+      for (currentcontact of contacts){
+        const bgColor = await contactBackgroundColor(currentcontact);
+        const container = document.getElementById('task-profile');
+        container.innerHTML += `
+        <div class="popup-contact-container">
+          <div id="open-card-contact-initials" class="profile" id="popup-profile"style="background-color: ${bgColor}">${setContactInitial(
+          currentcontact)}
+          </div>
+          <div id="open-card-contact" class="popup-contact-name">${currentcontact}</div>
+        </div>`;
+      }
+      
+      
     }
   }
-}
-
-/**
- *
- * @param {string} - The name of the contact we extract the first two initials.
- * @returns - The extracted initials of the name.
- */
-
-function setContactNameInitialsOpencard(name) {
-  let initials = name.slice(0, 2);
-  let uppercaseInitials = initials.toUpperCase();
-  return uppercaseInitials;
 }

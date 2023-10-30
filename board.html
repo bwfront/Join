@@ -18,6 +18,7 @@
     <script src="script.js"></script>
     <script src="./js/board_popup.js"></script>
     <script src="./js/board_drag_and_drop.js"></script>
+    <script src="./js/board_addtask_eventlistener_contact.js"></script>
     <title>Join | Board</title>
 </head>
 
@@ -98,25 +99,21 @@
                         </div>
                         <div class="task-popup-date-conatiner">
                             <div class="task-popup-date">Due Date:
-                                <div id="popup-date">10/05/2023</div>
+                                <div id="popup-date"></div>
                             </div>
                         </div>
                         <div class="task-popup-priority-conatiner">
                             <div class="task-popup-priority">Priority:
-                                <div id="popup-priority">Medium <img class="popup-prio-img" id="popup-prio-img" src=""
+                                <div id="popup-priority"><img class="popup-prio-img" id="popup-prio-img" src=""
                                         alt="priority"></div>
                             </div>
                         </div>
                         <div class="task-popup-contact-conatiner">
                             <div class="task-popup-contact">Assigned To:</div>
                             <div class="popup-profile" id="task-profile">
-                                <div id="open-card-contact-initials" class="profile" id="popup-profile">BW</div>
-                                <div id="open-card-contact" class="popup-contact-name">Bennet Witczak</div>
+
                             </div>
-                            <!--<div class="popup-profile" id="task-profile">
-                                <div class="profile" id="popup-profile">MM</div>
-                                <div class="popup-contact-name">Max Mustermann</div>
-                            </div>-->
+
                         </div>
                         <div class="task-popup-subtask-conatiner">
                             <div class="task-popup-subtask">Subtasks:</div>
@@ -183,16 +180,11 @@
                     </select>
                 </div>
                 <div class="edit-title">
-                    <div class="edit-text">Contact</div>
-                    <select class="form-control" id="assigned_contact" style="color: black; font-weight: 400">
-                        <option value="" disabled selected class="form-control option d-none" id="edit-contact">
-                            Current Contact
-                        </option>
-                        <!--<option value="contact1">contact 1</option>
-                        <option value="contact2">contact 2</option>
-                        <option value="contact3">contact 3</option>
-                        <option value="contact4">contact 4</option>-->
-                    </select>
+                    <select class="form-control" style="color: black; font-weight: 400" id="task-contact-input">
+                        <option value="" disabled selected class="form-control option d-none">Select Contacts</option>
+                      </select>
+                      <div class="dropdown-contacts" id="assigned_contact">
+                      </div>
                 </div>
                 <div class="edit-title">
                     <div class="edit-text">Subtasks</div>
