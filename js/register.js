@@ -105,11 +105,12 @@ function resetForm() {
 }
 
 function checkPasswordValidation() {
+  let errorContainer = document.getElementById('passwordError');
   if (document.getElementById('password').value == document.getElementById('confirmPassword').value) {
-    document.getElementById('passwordError').style.color = 'green';
-    document.getElementById('passwordError').innerHTML = 'Password matching';
+    errorContainer.style.color = 'green';
+    errorContainer.innerHTML = 'Password matching';
   } else {
-    document.getElementById('passwordError').style.color = 'red';
-    document.getElementById('passwordError').innerHTML = 'Passwords do <b>not</b> match!';
+    errorContainer.style.color = 'red';
+    errorContainer.innerHTML = 'Passwords do <b>not</b> match!';
   }
 }
