@@ -448,6 +448,7 @@ body {
 .contact-show-head {
   display: flex;
   align-items: center;
+  margin-bottom: -15px;
 }
 .contact-show-name {
   font-size: 47px;
@@ -509,7 +510,7 @@ body {
 }
 .marg-tp {
   width: 100%;
-  height: 30px;
+  height: 15px;
 }
 .contacts-small-profile {
   display: flex;
