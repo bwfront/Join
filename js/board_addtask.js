@@ -1,16 +1,20 @@
-/* Contacts Dropdown */
-
+/* Contacts Dropdown Open and Close*/
 document.addEventListener("DOMContentLoaded", function () {
-  document
-    .getElementById("task-contact-input")
-    .addEventListener("click", function () {
-      const assignedContact = document.getElementById("assigned_contact");
-      if (assignedContact.style.display === "flex") {
-        assignedContact.style.display = "none";
-      } else {
-        assignedContact.style.display = "flex";
-      }
-    });
+  const assignedContact = document.getElementById("assigned_contact");
+  const inputElement = document.getElementById("task-contact-input");
+  inputElement.addEventListener("click", function (event) {
+    event.stopPropagation();
+    if (assignedContact.style.display === "flex") {
+      assignedContact.style.display = "none";
+    } else {
+      assignedContact.style.display = "flex";
+    }
+  });
+  document.addEventListener("click", function (event) {
+    if (!assignedContact.contains(event.target) && event.target !== inputElement) {
+      assignedContact.style.display = "none";
+    }
+  });
 });
 
 /**
