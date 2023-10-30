@@ -237,12 +237,13 @@ $(window).on('resize', function() {
  */
 function randomColor() {
   const colors = [
-    "#916953",
-    "#783618",
-    "#78021a",
-    "#239b11",
-    "#3cbea5",
-    "#d80978",
+    "#93F6FA",
+    "#82FA91",
+    "#FFF06F",
+    "#FFB486",
+    "#F89B9C",
+    "#FE4553",
+    "#ACC1C6"
   ];
   const pickedcolor = colors[Math.floor(Math.random() * colors.length)];
   return pickedcolor;

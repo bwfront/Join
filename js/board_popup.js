@@ -399,17 +399,22 @@ async function setContactNameInPopUp(id) {
     const task = TASKS[i];
     if (taskId === task["id"]) {
       let contacts = task["contact"];
-      for (currentcontact of contacts) {
-        const bgColor = await contactBackgroundColor(currentcontact);
-        const container = document.getElementById("task-profile");
-        container.innerHTML += `
-        <div class="popup-contact-container">
-          <div id="open-card-contact-initials" class="profile" id="popup-profile"style="background-color: ${bgColor}">${setContactInitial(
-          currentcontact
-        )}
-          </div>
-          <div id="open-card-contact" class="popup-contact-name">${currentcontact}</div>
-        </div>`;
+      const container = document.getElementById("task-profile");
+      if (contacts.length > 0) {
+        for (currentcontact of contacts) {
+          const bgColor = await contactBackgroundColor(currentcontact);
+          container.innerHTML += `
+          <div class="popup-contact-container">
+            <div id="open-card-contact-initials" class="profile" id="popup-profile"style="background-color: ${bgColor}">${setContactInitial(
+            currentcontact
+          )}
+            </div>
+            <div id="open-card-contact" class="popup-contact-name">${currentcontact}</div>
+          </div>`;
+        }
+      } else {
+        console.log("assd");
+        container.innerHTML = "No contacts Assigned";
       }
     }
   }
