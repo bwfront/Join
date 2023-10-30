@@ -51,10 +51,10 @@ async function checkAccountExists() {
     if (currentLogin.password == user['password'] && user['email'] == currentLogin.email) {
       localStorage.setItem('email', currentLogin.email); // Get Email from LocalStorage in Summary to Display Hello "NAME" - clear LocalStorage afterwards;
       location.href = 'summary.html';
-    } else {
-      document.getElementById('info-box').classList.remove('d-none');
+      return true;
     }
   }
+  document.getElementById('info-box').classList.remove('d-none');
 }
 
 /**
