@@ -17,6 +17,21 @@ let users = [];
 /**
  * inits the register page and fetch userdata.
  */
+
+/*document.addEventListener('DOMContentLoaded', function () {
+  const passwordField = document.getElementById('password');
+  const confirmPasswordField = document.getElementById('confirmPassword');
+  const passwordError = document.getElementById('passwordError');
+
+  passwordField.addEventListener('input', function () {
+    if (passwordField.value !== confirmPasswordField.value) {
+      passwordError.textContent = 'Password do NOT match';
+    } else {
+      passwordError.textContent = '';
+    }
+  });
+});*/
+
 async function init() {
   await loadUsers();
 }
@@ -87,4 +102,14 @@ function resetForm() {
   document.getElementById('confirmPassword').value = '';
   location.href = 'index.html';
   //registerBtn.disabled = false;
+}
+
+function checkPasswordValidation() {
+  if (document.getElementById('password').value == document.getElementById('confirmPassword').value) {
+    document.getElementById('passwordError').style.color = 'green';
+    document.getElementById('passwordError').innerHTML = 'Password matching';
+  } else {
+    document.getElementById('passwordError').style.color = 'red';
+    document.getElementById('passwordError').innerHTML = 'Passwords do <b>not</b> match!';
+  }
 }
