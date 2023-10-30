@@ -59,7 +59,7 @@ function renderContacts(contacts) {
  */
 function innerContacts(contact) {
   return `
-      <div class="sidebar-contacts" onclick="openContact(${contact.id})">
+      <div class="sidebar-contacts" onclick="openContact(${contact.id})" id="contact${contact.id}">
         <div>
           <div class="contacts-small-profile" style="background-color: ${
             contact.color
@@ -77,6 +77,7 @@ function innerContacts(contact) {
  * @param {String} id - The ID of the Contact
  */
 async function openContact(id) {
+  removeClassHovered()
   const showcon = document.getElementById("contact-show-container");
   showcon.style.display = "none";
   const contact = await getContactInfo(id);
@@ -84,6 +85,16 @@ async function openContact(id) {
   showcon.innerHTML = showContactHTML(contact);
   mobileOpenContact();
   currentID = id;
+  const contactcon = document.getElementById(`contact${id}`);
+  contactcon.classList.add('sidebar-contacts-script');
+}
+function removeClassHovered(){
+  if(currentID){
+    const contactcon = document.getElementById(`contact${currentID}`);
+    if(contactcon){
+      contactcon.classList.remove('sidebar-contacts-script');
+    }
+  }
 }
 
 function mobileOpenContact() {
@@ -102,6 +113,7 @@ function mobileOpenContact() {
 }
 
 function closeContactMobile() {
+  removeClassHovered();
   closeMobileMenu();
   const containerInfo = document.getElementById(
     "contact-details-container-mobile"
@@ -217,6 +229,7 @@ async function deleteContact(id) {
   if ($(window).width() < 781) {
     closeContactMobile();
   }
+  closeWindow();
 }
 
 /**

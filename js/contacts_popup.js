@@ -174,7 +174,7 @@ function innerEditContactPopUp(id) {
   id.titlecon.style.marginTop = "0px";
   id.btncancel.innerHTML = "Delete";
   id.btncancel.onclick = function () {
-    deleteContact();
+    deleteContact(currentID);
   };
   id.btncreate.innerHTML = `Save <img src="./assets/img/check.png" alt="check" />`;
   id.btncreate.onclick = function () {
