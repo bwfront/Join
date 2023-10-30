@@ -247,7 +247,6 @@ function innerEditValues(elementid, selectTask) {
 function editSubtasksStore(elementid, selectTask) {
   elementid.subtasks.innerHTML = ``;
   if (selectTask.subtask != 0) {
-    console.log(subtaskEdit);
     subtaskEdit = [...selectTask.subtask];
     renderEditSubtasks();
   } else {
@@ -375,6 +374,7 @@ function closeTaskPopUpRemove() {
   document.getElementById("prio-urgent").classList.remove("selected");
   document.getElementById("prio-medium").classList.remove("selected");
   document.getElementById("prio-low").classList.remove("selected");
+  document.getElementById("task-profile").innerHTML = "";
   elementid = {};
   subtaskEdit = [];
 }
@@ -417,7 +417,7 @@ async function setContactNameInPopUp(id) {
 
 /**
  * Set the Checked Status to the Checkboxes if the Contact is Assgined
- * @param {Object} selectTask 
+ * @param {Object} selectTask
  */
 function setContactCheckbox(selectTask) {
   const checkboxes = document.querySelectorAll(
@@ -436,9 +436,9 @@ function setContactCheckbox(selectTask) {
 
 /**
  * Clear the Checkboxes
- * @param {Element} checkboxes 
+ * @param {Element} checkboxes
  */
-function clearCheckboxes(checkboxes){
+function clearCheckboxes(checkboxes) {
   checkboxes.forEach((checkbox) => {
     if (checkbox.value == currentcontact) {
       checkbox.checked = false;

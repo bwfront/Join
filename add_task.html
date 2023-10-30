@@ -1,145 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" rel="stylesheet" />
-    <link rel="icon" href="assets/img/join-logo.png" />
-    <script src="script_include_html.js"></script>
-    <link rel="stylesheet" href="template.css" />
-    <link rel="stylesheet" href="./styles/addtask.css" />
-    <script src="script.js"></script>
-    <script src="js/addtask_date.js"></script>
-    <script src="./js/board_addtask_eventlistener_contact.js"></script>
-    <title>Join | Add Task</title>
-  </head>
 
-  <body onload="init('addtask'), setContactsToAssign()">
-    <div w3-include-html="./assets/templates/desktop_template.html"></div>
-    <div w3-include-html="./assets/templates/mobile_template.html"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+    rel="stylesheet" />
+  <link rel="icon" href="assets/img/join-logo.png" />
+  <script src="script_include_html.js"></script>
+  <link rel="stylesheet" href="template.css" />
+  <link rel="stylesheet" href="./styles/addtask.css" />
+  <script src="script.js"></script>
+  <script src="./js/board_addtask.js"></script>
+  <title>Join | Add Task</title>
+</head>
 
-    <!-- Main content goes here -->
-    <div class="add-task-title main-content-animation">
-      <h1>Add Task</h1>
+<body onload="init('addtask'), setContactsToAssign()">
+  <div w3-include-html="./assets/templates/desktop_template.html"></div>
+  <div w3-include-html="./assets/templates/mobile_template.html"></div>
 
-      <form id="task-form" class="add-task-main-content main-content-animation" onsubmit="createTask(); return false">
-        <!-- LEFT SIDE -->
+  <!-- Main content goes here -->
+  <div class="add-task-title main-content-animation">
+    <h1>Add Task</h1>
 
-        <div class="add-task-left-side">
-          <div class="add-task-card">
-            <div class="form-group">
-              <label for="title" style="display: flex; align-items: center">
-                Title
-                <span class="required-field"></span>
-              </label>
-              <input id="task-title-input" class="form-control" type="text" placeholder="Enter a title" required />
-            </div>
-            <div class="form-group">
-              <label for="description">Description</label>
-              <textarea
-                id="task-description-input"
-                class="form-control"
-                cols="30"
-                rows="10"
-                placeholder="Enter a Description"
-                style="width: 440px; height: 120px"
-              ></textarea>
-            </div>
-            <div class="form-group">
-              <label for="contacts">Assigned to wijnepf
-                <span class="required-field"></span>
-              </label>
-              <select class="form-control add-task-inputs" style="color: black; font-weight: 400" id="task-contact-input">
-                <option value="" disabled selected class="form-control option d-none">Select Contacts</option>
-              </select>
-              <div class="dropdown-contacts" id="assigned_contact">
-              </div>
+    <form id="task-form" class="add-task-main-content main-content-animation" onsubmit="createTask(); return false">
+      <!-- LEFT SIDE -->
+
+      <div class="add-task-left-side">
+        <div class="add-task-card">
+          <div class="form-group">
+            <label for="title" style="display: flex; align-items: center">
+              Title
+              <span class="required-field"></span>
+            </label>
+            <input id="task-title-input" class="form-control" type="text" placeholder="Enter a title" required />
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="task-description-input" class="form-control" cols="30" rows="10"
+              placeholder="Enter a Description" style="width: 440px; height: 120px"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="contacts">Assigned to wijnepf
+              <span class="required-field"></span>
+            </label>
+            <select class="form-control add-task-inputs" style="color: black; font-weight: 400" id="task-contact-input">
+              <option value="" disabled selected class="form-control option d-none">Select Contacts</option>
+            </select>
+            <div class="dropdown-contacts" id="assigned_contact">
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="middle-border"></div>
+      <div class="middle-border"></div>
 
-        <!-- RIGHT SIDE -->
-        <div class="add-task-right-side">
-          <div class="add-task-card">
-            <div class="form-group">
-              <label for="bootstrap-datepicker"
-                >Due date
-                <span class="required-field"></span>
-              </label>
-              <input
-                class="form-control add-task-inputs"
-                type="date"
-                id="task-date-input"
-                placeholder="dd/mm/yyyy"
-                max="2025-12-31"
-                required
-              />
+      <!-- RIGHT SIDE -->
+      <div class="add-task-right-side">
+        <div class="add-task-card">
+          <div class="form-group">
+            <label for="bootstrap-datepicker">Due date
+              <span class="required-field"></span>
+            </label>
+            <input class="form-control add-task-inputs" type="date" id="task-date-input" placeholder="dd/mm/yyyy"
+              max="2025-12-31" required />
+          </div>
+          <div class="form-group">
+            <label for="prio">Prio</label>
+            <div class="prio-button-con">
+              <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('urgent', this)">
+                Urgent
+                <img src="./assets/img/priourgent.png" />
+              </button>
+              <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('medium', this)">
+                Medium
+                <img src="./assets/img/priomedium.png" />
+              </button>
+              <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('low', this)">
+                Low
+                <img src="./assets/img/priolow.png" />
+              </button>
             </div>
-            <div class="form-group">
-              <label for="prio">Prio</label>
-              <div class="prio-button-con">
-                <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('urgent', this)">
-                  Urgent
-                  <img src="./assets/img/priourgent.png" />
-                </button>
-                <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('medium', this)">
-                  Medium
-                  <img src="./assets/img/priomedium.png" />
-                </button>
-                <button type="button" class="btn btn-secondary btn-prio" onclick="getPrio('low', this)">
-                  Low
-                  <img src="./assets/img/priolow.png" />
-                </button>
-              </div>
+          </div>
+          <div class="form-group">
+            <label for="category">Category
+              <span class="required-field"></span>
+            </label>
+            <select required class="form-control add-task-inputs" style="color: black; font-weight: 400"
+              id="task-category-input">
+              <option value="" disabled selected class="form-control option d-none add-task-inputs">Select task category
+              </option>
+              <option value="Sales">Sales</option>
+              <option value="Media">Media</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Design">Design</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="subtask">Subtasks</label>
+            <div class="subtask-container-input">
+              <input class="form-control" type="text" placeholder="Add a new subtask" id="subtask-title-input" />
+              <img id="subtask-icon" onclick="addSubTask()" style="cursor: pointer"
+                src="./assets/img/Subtasks icons11.png" />
             </div>
-            <div class="form-group">
-              <label for="category"
-                >Category
-                <span class="required-field"></span>
-              </label>
-              <select required class="form-control add-task-inputs" style="color: black; font-weight: 400" id="task-category-input">
-                <option value="" disabled selected class="form-control option d-none add-task-inputs">Select task category</option>
-                <option value="Sales">Sales</option>
-                <option value="Media">Media</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Design">Design</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="subtask">Subtasks</label>
-              <div class="subtask-container-input">
-                <input class="form-control" type="text" placeholder="Add a new subtask" id="subtask-title-input" />
-                <img id="subtask-icon" onclick="addSubTask()" style="cursor: pointer" src="./assets/img/Subtasks icons11.png" />
-              </div>
-              <div id="subtask-container"></div>
-            </div>
+            <div id="subtask-container"></div>
           </div>
         </div>
+      </div>
 
-        <div class="btn-bottom">
-          <div class="add-task-reqired-field">
-            <span class="required-field"></span>
-            <span>This field is required</span>
-          </div>
-          <div>
-            <button onclick="clearTask()" class="btn btn-secondary btn-clear" style="width: 110px" type="button">
-              Clear
-              <img src="./assets/img/iconoir_cancel.png" />
-            </button>
-            <button class="btn btn-primary btn-create" style="background-color: #2a3647; color: white; width: 153px" type="submit">
-              Create Task
-              <img src="./assets/img/check.png" />
-            </button>
-          </div>
+      <div class="btn-bottom">
+        <div class="add-task-reqired-field">
+          <span class="required-field"></span>
+          <span>This field is required</span>
         </div>
-      </form>
-    </div>>
-  </body>
+        <div>
+          <button onclick="clearTask()" class="btn btn-secondary btn-clear" style="width: 110px" type="button">
+            Clear
+            <img src="./assets/img/iconoir_cancel.png" />
+          </button>
+          <button class="btn btn-primary btn-create" style="background-color: #2a3647; color: white; width: 153px"
+            type="submit">
+            Create Task
+            <img src="./assets/img/check.png" />
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>>
+</body>
+
 </html>

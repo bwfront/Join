@@ -172,11 +172,11 @@
 .task:hover {
   transform: scale(1.05);
 }
-.task-heading-con{
+.task-heading-con {
   display: flex;
   justify-content: space-between;
 }
-.task-heading-con img{
+.task-heading-con img {
   width: 20px;
 }
 .category {
@@ -214,6 +214,8 @@
   color: #ffffff;
   background-color: #0a9d00;
   border-radius: 16px;
+  border: solid #ffffff;
+  margin-left: -12px;
 }
 .subtasks-progress-container {
   width: 60%;
@@ -344,7 +346,7 @@
   margin-bottom: 10px;
   margin-left: 20px;
 }
-.popup-contact-container{
+.popup-contact-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -567,7 +569,7 @@
   border: 1px dashed #6a6a6a84;
 }
 /* DropDown Task Mobile*/
-.dropdown-task{
+.dropdown-task {
   display: none;
   text-decoration: none;
   color: #2a3647;
@@ -576,11 +578,11 @@
   border-radius: 20px;
   transform: rotate(270deg);
 }
-.dropdown-task:hover{
+.dropdown-task:hover {
   transition: 0.3s;
   transform: rotate(90deg);
 }
-.mobile-droptaskcon{
+.mobile-droptaskcon {
   margin-left: 95px;
   position: fixed;
   font-size: 15px;
@@ -595,15 +597,36 @@
   transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
   pointer-events: none;
 }
-.mobile-droptaskcon-text{
+.mobile-droptaskcon-text {
   margin: 5px 0;
 }
-.mobile-droptaskcon-text:hover{
+.mobile-droptaskcon-text:hover {
   color: #28abe2;
 }
+.task-profile {
+  display: flex;
+  margin-left: 12px;
+}
+
+.dropdown-contacts {
+  flex-direction: column;
+  background-color: #ffffff;
+  border: solid #d1d1d1;
+  padding: 10px 0 0 20px;
+  display: none;
+  z-index: 100;
+  position: absolute;
+  width: calc(100% - 80px) !important;
+  margin-top: 75px;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0px 0px 5px 4px rgba(157, 157, 157, 0.1);
+  flex-direction: center;
+  font-size: 20px;
+}
+
 /* Responsive */
 @media (max-width: 1030px) {
-  .dropdown-task{
+  .dropdown-task {
     display: unset;
   }
   .desktop-board-heading-right {
@@ -766,21 +789,8 @@
   .save-edit-task {
     font-size: 18px;
   }
-}
-
-
-.dropdown-contacts{
-  flex-direction: column;
-  background-color: #ffffff;
-  border: solid #d1d1d1;
-  padding: 10px 0 0 20px;
-  display: none;
-  z-index: 100;
-  position: absolute;
-  width: 84.8%;
-  margin-top: 75px;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0px 0px 5px 4px rgba(157, 157, 157, 0.1);
-  flex-direction: center;
-  font-size: 20px;
+  .dropdown-contacts {
+    margin-top: 60px !important;
+    font-size: 16px !important;
+  }
 }

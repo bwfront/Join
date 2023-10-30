@@ -509,17 +509,28 @@ async function innerPopUpContact(id) {
   });
 }
 
+/**
+ * Get the Background Color from the Contact Name
+ * @param {Object} currentcontact
+ * @returns
+ */
 async function contactBackgroundColor(currentcontact) {
   const contacts = await getContacts();
-  const foundContact = contacts.find(contact => contact.name === currentcontact);
+  const foundContact = contacts.find(
+    (contact) => contact.name === currentcontact
+  );
   if (foundContact) {
     return foundContact.color;
   }
 }
 
+/**
+ * Splice the Initials
+ * @param {String} contact
+ * @returns The Initial
+ */
 function setContactInitial(contact) {
   let initials = contact.slice(0, 2);
   let uppercaseInitials = initials.toUpperCase();
   return uppercaseInitials;
 }
-

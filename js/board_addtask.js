@@ -32,14 +32,28 @@ function getCheckedContacts() {
   return checkedContacts;
 }
 
+/**
+ * Inner the Contacts in the PopUp
+ * @param {Array} contacts
+ * @param {String} id
+ */
 async function innerPopUpContactHTML(contacts, id) {
   const container = document.getElementById(`task-profile-${id}`);
   for (let contact of contacts) {
     const bgColor = await contactBackgroundColor(contact);
     container.innerHTML += `
         <div class="profile" id="profile" style="background-color: ${bgColor}">${setContactInitial(
-        contact)}
+          contact)}
         </div>
       `;
   }
 }
+
+/**
+ * Give the Date Picker the min Value
+ */
+document.addEventListener("DOMContentLoaded", function () {
+  const today = new Date();
+  const formattedDate = today.toISOString().split("T")[0];
+  document.getElementById("task-date-input").min = formattedDate;
+});
