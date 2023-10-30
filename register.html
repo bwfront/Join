@@ -19,27 +19,6 @@
 
 <body onload="init()">
 
-  <script>
-
-    /*check if passwords match*/
-
-    document.addEventListener("DOMContentLoaded", function () {
-      const passwordField = document.getElementById("password");
-      const confirmPasswordField = document.getElementById("confirmPassword");
-      const passwordError = document.getElementById("passwordError");
-
-      passwordField.addEventListener("input", function () {
-        if (passwordField.value !== confirmPasswordField.value) {
-          passwordError.textContent = "Password do NOT match";
-        } else {
-          passwordError.textContent = "";
-        }
-      });
-    })
-
-
-  </script>
-
   <a href="index.html">
     <img class="join-logo" src="assets/img/join-logo.png" alt="">
   </a>
@@ -63,12 +42,13 @@
       <img src="./assets/img/mail.png" />
     </div>
     <div class="input-container">
-      <input id="password" class="form-control login-form-radius" required type="password" placeholder="Password" />
+      <input onkeyup="checkPasswordValidation()" id="password" class="form-control login-form-radius" required
+        type="password" placeholder="Password" />
       <img src="./assets/img/login-password.png" />
     </div>
     <div class="input-container">
       <input class="form-control login-form-radius" required type="password" placeholder="Confirm Password"
-        id="confirmPassword" />
+        id="confirmPassword" onkeyup="checkPasswordValidation()" />
       <img src="./assets/img/login-password.png" />
     </div>
     <div id="passwordError" style="color: red;"></div>
