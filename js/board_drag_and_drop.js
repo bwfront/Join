@@ -92,7 +92,3 @@ function dragDropFun(dragTasks, containers) {
     });
   });
 }
-
-
-
-

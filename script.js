@@ -328,16 +328,39 @@ function addSubTask() {
     const subTaskList = document.getElementById("subtask-container");
 
     const subTaskItemHTML = `
-      <div class="subtask-list">
-        <input type="checkbox" />
-        <span>${subTaskInput}</span>
+    <div class="subtask-list" id="subtask-${subTaskInput}">
+      <div class="subtask-list-hover">
+        <div>- ${subTaskInput}</div>
+        <div class="subtask-buttons">
+            <img onclick="removeSubtaskAddTask('${subTaskInput}')" src="./assets/img/deletepopup.png" alt="delete">
+            <img onclick="editSubtaskAddTask('${subTaskInput}')" src="./assets/img/editpopup.png" alt="edit">
+        </div>
       </div>
-    `;
-
+  </div>`;
     subTaskList.innerHTML += subTaskItemHTML;
-
     document.getElementById("subtask-title-input").value = "";
   }
+}
+
+/**
+ * Removes the Subtaks
+ * @param {String} subTaskInput - Value of Subtask
+ */
+function removeSubtaskAddTask(subTaskInput) {
+  const subtaskItem = document.getElementById(`subtask-${subTaskInput}`);
+  if (subtaskItem) {
+    subtask = subtask.filter((task) => task !== subTaskInput);
+    subtaskItem.remove();
+  }
+}
+
+/**
+ * Edit the Subtask and put in Input
+ * @param {String} subTaskInput - Value of Subtask
+ */
+function editSubtaskAddTask(subTaskInput) {
+  document.getElementById("subtask-title-input").value = subTaskInput;
+  removeSubtaskAddTask(subTaskInput);
 }
 
 /*
@@ -359,6 +382,16 @@ function clearTask() {
   categoryInput.selectedIndex = 0;
   subtaskTitleInput.value = "";
   subtaskContainer.innerHTML = "";
+  clearCheckBox();
+}
+
+function clearCheckBox() {
+  const checkboxes = document.querySelectorAll(
+    "#assigned_contact input[type='checkbox']"
+  );
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = false;
+  });
 }
 
 /**

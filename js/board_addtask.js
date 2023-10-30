@@ -11,7 +11,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
   document.addEventListener("click", function (event) {
-    if (!assignedContact.contains(event.target) && event.target !== inputElement) {
+    if (
+      !assignedContact.contains(event.target) &&
+      event.target !== inputElement
+    ) {
       assignedContact.style.display = "none";
     }
   });
@@ -47,7 +50,8 @@ async function innerPopUpContactHTML(contacts, id) {
     const bgColor = await contactBackgroundColor(contact);
     container.innerHTML += `
         <div class="profile" id="profile" style="background-color: ${bgColor}">${setContactInitial(
-          contact)}
+      contact
+    )}
         </div>
       `;
   }

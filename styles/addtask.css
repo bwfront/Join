@@ -124,13 +124,36 @@ body {
   margin-top: 10px;
   text-transform: capitalize;
 }
-
-.subtask-list input[type="checkbox"] {
-  margin-right: 5px;
+.subtask-list span{
+  font-size: 16 !important;
+  margin-left: 10px;
 }
-
-.subtask-list span {
-  font-size: 18px;
+.subtask-list-hover{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 4px 8px;
+  border-radius: 8px;
+  align-items: center;
+}
+.subtask-list-hover:hover{
+  background-color: #d1d1d1;
+}
+.subtask-list-hover:hover .subtask-buttons img{
+  opacity: 1;
+}
+.subtask-buttons img{
+  opacity: 0;
+  transition: opacity 0.4s;
+  padding: 2px;
+  cursor: pointer;
+}
+.subtask-buttons img:hover{
+  color: #1e2f44;
+  font-weight: 700;
+  padding: 1.4px;
+  filter: contrast(100%) invert(1) hue-rotate(185deg) saturate(10)
+    brightness(90%);
 }
 .mobile-req {
   display: none !important;
