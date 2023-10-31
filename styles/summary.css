@@ -353,7 +353,9 @@ html a {
     margin-left: 0 !important;
   }
 
-  .
+  .summary-headline-container {
+    margin-top: 12px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -463,8 +465,11 @@ html a {
 }
 
 @media (max-width: 400px) {
+  body {
+    overflow-x: hidden !important;
+  }
   .summary-task-bottom-container {
-    padding-bottom: 15vh;
+    padding-bottom: 0vh;
     height: auto;
   }
 }
