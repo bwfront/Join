@@ -30,7 +30,7 @@ body {
 .desktop-join-logo {
   width: 100px;
   height: 122px;
-  margin-top: 64px;
+  margin: 64px 0;
 }
 
 /* Desktop-Side-Bar Navigation*/
