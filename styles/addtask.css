@@ -16,7 +16,7 @@
 
 body {
   background-color: #f6f7f8;
-  font-family: 'Inter', sans-serif !important;
+  font-family: "Inter", sans-serif !important;
   overflow-x: hidden;
 }
 .add-task-main-content {
@@ -91,17 +91,16 @@ body {
   width: 24px;
   height: 24px;
 }
-#subtask-container{
+#subtask-container {
   display: none;
   height: 80px;
   overflow-y: scroll;
   background-color: #ffffff;
   border-radius: 0 0 10px 10px;
   border: solid #d1d1d1;
-  
 }
 .required-field::before {
-  content: '*';
+  content: "*";
   color: red;
 }
 .form-control option.d-none {
@@ -132,11 +131,11 @@ body {
   margin-top: 10px;
   text-transform: capitalize;
 }
-.subtask-list span{
+.subtask-list span {
   font-size: 16 !important;
   margin-left: 10px;
 }
-.subtask-list-hover{
+.subtask-list-hover {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -145,19 +144,19 @@ body {
   align-items: center;
   margin: -7px 0;
 }
-.subtask-list-hover:hover{
+.subtask-list-hover:hover {
   background-color: #d1d1d1;
 }
-.subtask-list-hover:hover .subtask-buttons img{
+.subtask-list-hover:hover .subtask-buttons img {
   opacity: 1;
 }
-.subtask-buttons img{
+.subtask-buttons img {
   opacity: 0;
   transition: opacity 0.4s;
   padding: 2px;
   cursor: pointer;
 }
-.subtask-buttons img:hover{
+.subtask-buttons img:hover {
   color: #1e2f44;
   font-weight: 700;
   padding: 1.4px;
@@ -170,6 +169,9 @@ body {
   margin-left: 5px;
   border-radius: 8px;
   height: 10px;
+}
+.btn-create {
+  border: solid #1e2f44;
 }
 /* ADD TASK DESKTOP ENDS*/
 
@@ -209,18 +211,28 @@ body {
     margin-top: 34px;
   }
   .add-task-main-content {
-    margin-bottom: 250px;
+    margin-bottom: 300px;
+  }
+  .add-task-left-side {
+    margin-top: -50px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 660px) {
   .btn-bottom {
-    height: 85px !important;
+    height: 120px !important;
   }
-
+  .add-task-main-content {
+    margin-bottom: 300px;
+  }
+  .add-task-left-side {
+    margin-top: 0;
+  }
   .button-box {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
   }
 
   .add-task-left-side {
@@ -242,7 +254,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 200px;
+    margin-bottom: 70px;
     width: 100%;
     margin-left: 49px;
   }
@@ -272,16 +284,9 @@ body {
   .prio-button-con {
     display: flex;
   }
-
-  .button-box {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
   .btn-bottom {
     height: 85px;
   }
-
   .btn-clear {
     margin-top: 2px;
   }

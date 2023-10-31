@@ -113,7 +113,7 @@ async function checkContactExist() {
     });
     task.contact = newContact;
   });
-  await setItem('tasks', tasks);
+  await setItem("tasks", tasks);
   setBoards();
 }
 
@@ -329,25 +329,71 @@ function editSubtaskAddTask(subTaskInput) {
   removeSubtaskAddTask(subTaskInput);
 }
 
-/*
- * this function clears the inputs
+/**
+ * Retrieves an element by its ID.
+ * @param {string} elementId - The ID of the desired DOM element.
+ * @returns {HTMLElement|null} - The DOM element, or null if not found.
+ */
+function getElementById(elementId) {
+  return document.getElementById(elementId);
+}
+
+/**
+ * Clears the value or selection of an input or select element.
+ * @param {HTMLElement} element - The input or select DOM element.
+ */
+function clearElementValue(element) {
+  if (element) {
+    if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+      element.value = "";
+    } else if (element.tagName === "SELECT") {
+      element.selectedIndex = 0;
+    }
+  }
+}
+
+/**
+ * Clears all task-related input fields and other UI elements.
  */
 function clearTask() {
-  const titleInput = document.getElementById("task-title-input");
-  const descriptionInput = document.getElementById("task-description-input");
-  const dateInput = document.getElementById("task-date-input");
-  const assignedContact = document.getElementById("assigned_contact");
-  const categoryInput = document.getElementById("task-category-input");
-  const subtaskTitleInput = document.getElementById("subtask-title-input");
-  const subtaskContainer = document.getElementById("subtask-container");
-  titleInput.value = "";
-  descriptionInput.value = "";
-  dateInput.value = "";
-  assignedContact.selectedIndex = 0;
-  categoryInput.selectedIndex = 0;
-  subtaskTitleInput.value = "";
-  subtaskContainer.innerHTML = "";
+  clearElementValue(getElementById("task-title-input"));
+  clearElementValue(getElementById("task-description-input"));
+  clearElementValue(getElementById("task-date-input"));
+  clearElementValue(getElementById("assigned_contact"));
+  clearElementValue(getElementById("task-category-input"));
+  clearElementValue(getElementById("subtask-title-input"));
+  const subtaskContainer = getElementById("subtask-container");
+  if (subtaskContainer) {
+    subtaskContainer.innerHTML = "";
+  }
   clearCheckBox();
+  scrollToTop();
+  removePrioSelect();
+  const clearbutton = getElementById("clear-button");
+  if (clearbutton) {
+    clearbutton.blur();
+  }
+}
+
+/**
+ * Remove the Selected Class from the Prio Button
+ */
+function removePrioSelect(){
+  const buttons = document.getElementsByClassName('btn-prio');
+  const buttonArray = Array.from(buttons);
+  buttonArray.forEach(button => {
+    button.classList.remove('selected')
+});
+}
+
+/**
+ * Scrolls the window to the top.
+ */
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 }
 
 /**
