@@ -8,9 +8,9 @@
  * @param {number} id - Task ID.
  */
 async function setBoardHTML(category, title, description, prio, idcon, id) {
-    const todo = document.getElementById(idcon);
-    if (todo) {
-      todo.innerHTML += `
+  const todo = document.getElementById(idcon);
+  if (todo) {
+    todo.innerHTML += `
     <div class="task" id="task" draggable="true" ondragstart="startDragging(${id})">
     <div class="task-heading-con">
         <span class="category" id="category" style="background-color: ${categoryColor(
@@ -45,16 +45,16 @@ async function setBoardHTML(category, title, description, prio, idcon, id) {
     </div>
   </div>
   `;
-    }
-    innerPopUpContact(id);
   }
+  innerPopUpContact(id);
+}
 
-  /**
+/**
  * Add Subtask HTML
  */
-function addSubtaskHTML(subTaskInput){
-    const subTaskList = document.getElementById("subtask-container");
-    const subTaskItemHTML = `
+function addSubtaskHTML(subTaskInput) {
+  const subTaskList = document.getElementById("subtask-container");
+  const subTaskItemHTML = `
     <div class="subtask-list" id="subtask-${subTaskInput}">
       <div class="subtask-list-hover">
         <div>- ${subTaskInput}</div>
@@ -64,6 +64,6 @@ function addSubtaskHTML(subTaskInput){
         </div>
       </div>
   </div>`;
-    subTaskList.innerHTML += subTaskItemHTML;
-    document.getElementById("subtask-title-input").value = "";
-  }
+  subTaskList.innerHTML += subTaskItemHTML;
+  document.getElementById("subtask-title-input").value = "";
+}

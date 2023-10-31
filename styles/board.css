@@ -129,7 +129,10 @@
   color: #28abe2;
   border: solid 2px #28abe2;
 }
-
+.board-task-plus{
+  margin-left: 10px;
+  font-weight: 400;
+}
 .desktop-board-done,
 .desktop-board-awaitfeedback,
 .desktop-board-inprogress,
@@ -492,9 +495,12 @@
   margin-left: -38px;
 }
 #edit-subtask-container {
-  margin-left: 25px;
-  margin-top: 10px;
   font-size: 18px;
+  max-height: 100px;
+  background-color: #ffffff;
+  border-radius: 0 0 8px 8px;
+  border: solid #d1d1d1;
+  overflow-y: auto;
 }
 .edit-subtask-con {
   display: flex;
@@ -622,6 +628,8 @@
   box-shadow: 0px 0px 5px 4px rgba(157, 157, 157, 0.1);
   flex-direction: center;
   font-size: 20px;
+  max-height: 150px;
+  overflow-y: scroll;
 }
 
 /* Responsive */

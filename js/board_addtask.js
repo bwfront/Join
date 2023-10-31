@@ -41,22 +41,34 @@ function getCheckedContacts() {
 
 /**
  * Inner the Contacts in the PopUp
- * @param {Array} contacts
- * @param {String} id
+ * @param {Array} contacts - The Array of the Contacts
+ * @param {String} id  - The ID o the Container that inner the Profiles
  */
 async function innerPopUpContactHTML(contacts, id) {
   const container = document.getElementById(`task-profile-${id}`);
   if (container) {
+    let count = 0;
     for (let contact of contacts) {
+      if(count >= 5){
+        const rest = contacts.length - count;
+        innerPopUpContactPlus(rest, container);
+        break;
+      }
       const bgColor = await contactBackgroundColor(contact);
       container.innerHTML += `
-        <div class="profile" id="profile" style="background-color: ${bgColor}">${setContactInitial(
-        contact
-      )}
-        </div>
-      `;
+        <div class="profile" id="profile" style="background-color: ${bgColor}">${setContactInitial(contact)}</div>`;
+      count++;
     }
   }
+}
+
+/**
+ * 
+ * @param {String} rest - The Value of the Contacts - 5
+ * @param {*} container - The ID o the Container that inner the Profiles
+ */
+function innerPopUpContactPlus(rest, container){
+  container.innerHTML += `<div class="board-task-plus">+${rest}</div>`
 }
 
 /**

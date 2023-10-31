@@ -402,21 +402,30 @@ async function setContactNameInPopUp(id) {
       const container = document.getElementById("task-profile");
       if (contacts.length > 0) {
         for (currentcontact of contacts) {
-          const bgColor = await contactBackgroundColor(currentcontact);
-          container.innerHTML += `
-          <div class="popup-contact-container">
-            <div id="open-card-contact-initials" class="profile" id="popup-profile"style="background-color: ${bgColor}">${setContactInitial(
-            currentcontact
-          )}
-            </div>
-            <div id="open-card-contact" class="popup-contact-name">${currentcontact}</div>
-          </div>`;
+          await innerContactNameIPopUpHTML(container, currentcontact);
         }
       } else {
         container.innerHTML = "No contacts Assigned";
       }
     }
   }
+}
+
+/**
+ * Inner the Values in the Document
+ * @param {htmlid} container - ID of the HTML Container
+ * @param {String} currentcontact - Current Contect
+ */
+async function innerContactNameIPopUpHTML(container, currentcontact) {
+  const bgColor = await contactBackgroundColor(currentcontact);
+  container.innerHTML += `
+  <div class="popup-contact-container">
+    <div id="open-card-contact-initials" class="profile" id="popup-profile"style="background-color: ${bgColor}">${setContactInitial(
+    currentcontact
+  )}
+    </div>
+    <div id="open-card-contact" class="popup-contact-name">${currentcontact}</div>
+  </div>`;
 }
 
 /**
