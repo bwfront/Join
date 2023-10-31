@@ -17,7 +17,7 @@
 
 body {
   background-color: rgba(246, 247, 248, 1) !important;
-  font-family: 'Inter', sans-serif !important;
+  font-family: "Inter", sans-serif !important;
 }
 
 .number {
@@ -67,7 +67,7 @@ body {
   justify-content: start;
   align-items: start;
   flex-direction: column;
-  margin-top: 150px; /**BEISPIEL**/
+  margin-top: 80px; /**BEISPIEL**/
 }
 
 .summary-headline {
@@ -268,6 +268,10 @@ body {
   align-items: center;
 }
 
+html a {
+  text-decoration: none;
+}
+
 /**ANIMATION-BUTTON**/
 
 /**TODO + DONE CARD START**/
@@ -344,6 +348,10 @@ body {
     align-items: center;
     margin-top: 100px;
   }
+
+  .margin-left {
+    margin-left: 0 !important;
+  }
 }
 
 @media (max-width: 700px) {
@@ -369,6 +377,34 @@ body {
   .ms-5 {
     margin-left: 0 !important;
   }
+
+  .margin-left {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 590px) {
+  .summary-todo-done-container,
+  .summary-todo-done-card-layout,
+  .summary-task-bottom-container {
+    flex-direction: column;
+    margin-top: 8px;
+  }
+  .summary-bottom-card {
+    margin-top: 10px;
+  }
+
+  .last-card {
+    margin-bottom: 60%;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /*.greeting-user-container {
+    display: none;
+  }*/
 }
 
 @media (max-width: 450px) {
@@ -429,5 +465,18 @@ body {
   .summary-task-bottom-container {
     padding-bottom: 15vh;
     height: auto;
+  }
+}
+
+@media (max-width: 320px) {
+  body {
+    overflow-x: hidden;
+  }
+  .summary-headline {
+    margin-top: 8px;
+  }
+
+  .summary-headline-2 {
+    font-size: 24px;
   }
 }

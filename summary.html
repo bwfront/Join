@@ -1,106 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="template.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="styles/summary.css">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="template.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="styles/summary.css" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="icon" href="assets/img/join-logo.png">
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="assets/img/join-logo.png" />
     <script src="script_include_html.js"></script>
     <script src="js/summary.js"></script>
     <title>Join | Summary</title>
-</head>
+  </head>
 
-<body onload="init('summary'), initSummary()">
+  <body onload="init('summary'), initSummary()">
     <div w3-include-html="./assets/templates/desktop_template.html"></div>
     <div w3-include-html="./assets/templates/mobile_template.html"></div>
 
     <div class="main-content">
-        <!-- Main content goes here -->
-        <!-- Because the Fixed Side Bar -->
-        <div>
-            <div class="summary-main-container margin-left">
-                <div class="summary-headline-container mb-5">
-                    <div class="summary-headline">Join 360</div>
-                    <div class="summary-headline-right-border"></div>
-                    <div class="summary-headline-2">Keys Metrics at a Glance</div>
+      <!-- Main content goes here -->
+      <!-- Because the Fixed Side Bar -->
+      <div>
+        <div class="summary-main-container margin-left">
+          <div class="summary-headline-container mb-5">
+            <div class="summary-headline">Join 360</div>
+            <div class="summary-headline-right-border"></div>
+            <div class="summary-headline-2">Keys Metrics at a Glance</div>
+          </div>
+          <div class="summary-icon-container">
+            <div class="summary-todo-done-container mb-4">
+              <a href="board.html">
+                <div class="card summary-todo-done-card-layout">
+                  <div class="dot-number-container">
+                    <div class="dot-todo"><img src="./assets/img/pencil.png" alt="" /></div>
+                    <div class="top-number-container">
+                      <div id="tasks-todo" class="number">1</div>
+                      <!--Todo Task Counter-->
+                      <div class="text-style1">To-do</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="summary-icon-container">
-                    <div class="summary-todo-done-container mb-4">
-                        <div class="card summary-todo-done-card-layout">
-                            <div class="dot-number-container">
-                                <div class="dot-todo"><img src="./assets/img/pencil.png" alt="">
-                                </div>
-                                <div class="top-number-container">
-                                    <div id="tasks-todo" class="number ">1</div><!--Todo Task Counter-->
-                                    <div class="text-style1">To-do</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card summary-todo-done-card-layout">
-                            <div class="dot-number-container">
-                                <div class="dot-done"><img src="./assets/img/done.png" alt="">
-                                </div>
-                                <div class="top-number-container">
-                                    <div id="done-task-counter" class="number">0</div><!--Done Task Counter-->
-                                    <div class="text-style1">Done</div>
-                                </div>
-                            </div>
-                        </div>
+              </a>
+              <a href="board.html">
+                <div class="card summary-todo-done-card-layout">
+                  <div class="dot-number-container">
+                    <div class="dot-done"><img src="./assets/img/done.png" alt="" /></div>
+                    <div class="top-number-container">
+                      <div id="done-task-counter" class="number">0</div>
+                      <!--Done Task Counter-->
+                      <div class="text-style1">Done</div>
                     </div>
-                    <div class="urgency-greeting-container">
-                        <div class="card urgency-card-layout mb-4">
-
-                            <div class="dot-number-container width">
-                                <div class="dot-urgent"><img src="./assets/img/urgent.png" alt="urgent"></div>
-                                <div class="top-number-container">
-                                    <div id="urgent-task-counter" class="number">0
-                                    </div><!--Urgent Task Counter-->
-                                    <div class="text-style1">Urgent</div>
-                                </div>
-                            </div>
-                            <div class="border-ugency-container"></div>
-                            <div class="string-container">
-                                <div id="urgent-date-container" class="today-container date-style">
-                                </div>
-                                <span class="upcoming-deadline">Upcoming Deadline</span>
-                            </div>
-                        </div>
-                        <div class="greeting-user-container">
-                            <p id="greeting-formula" class="goodmorning-style"></p>
-                            <p id="greeting-name" class="user-greeting-name">Guest</p>
-                            <!--add Username if no guest-login-->
-                        </div>
-                    </div>
-                    <div class="summary-task-bottom-container">
-                        <div class="card summary-bottom-card">
-                            <div id="tasks-in-board" class="number">0</div>
-                            <div class="text-style1">Tasks In<br>Board</div>
-                        </div>
-                        <div class="card summary-bottom-card">
-                            <div id="tasks-in-progress" class="number">0</div>
-                            <div class="text-style1">Tasks In<br>Progress</div>
-                        </div>
-                        <div class="card summary-bottom-card">
-                            <div id="tasks-await-feedback" class="number">0</div>
-                            <div class="text-style1">Awaiting Feedback</div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+              </a>
             </div>
-
+            <div class="urgency-greeting-container">
+              <a href="board.html">
+                <div class="card urgency-card-layout mb-4">
+                  <div class="dot-number-container width">
+                    <div class="dot-urgent"><img src="./assets/img/urgent.png" alt="urgent" /></div>
+                    <div class="top-number-container">
+                      <div id="urgent-task-counter" class="number">0</div>
+                      <!--Urgent Task Counter-->
+                      <div class="text-style1">Urgent</div>
+                    </div>
+                  </div>
+                  <div class="border-ugency-container"></div>
+                  <div class="string-container">
+                    <div id="urgent-date-container" class="today-container date-style"></div>
+                    <span class="upcoming-deadline">Upcoming Deadline</span>
+                  </div>
+                </div>
+              </a>
+              <div class="greeting-user-container">
+                <p id="greeting-formula" class="goodmorning-style"></p>
+                <p id="greeting-name" class="user-greeting-name">Guest</p>
+                <!--add Username if no guest-login-->
+              </div>
+            </div>
+            <div class="summary-task-bottom-container">
+              <a href="board.html">
+                <div class="card summary-bottom-card">
+                  <div id="tasks-in-board" class="number">0</div>
+                  <div class="text-style1">Tasks In<br />Board</div>
+                </div>
+              </a>
+              <a href="board.html">
+                <div class="card summary-bottom-card">
+                  <div id="tasks-in-progress" class="number">0</div>
+                  <div class="text-style1">Tasks In<br />Progress</div>
+                </div>
+              </a>
+              <a href="board.html">
+                <div class="card summary-bottom-card last-card">
+                  <div id="tasks-await-feedback" class="number">0</div>
+                  <div class="text-style1">Awaiting Feedback</div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
-
-
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
