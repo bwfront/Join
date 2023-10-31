@@ -259,11 +259,19 @@ function editSubtasksStore(elementid, selectTask) {
  */
 function addEditSubtask() {
   const subtaskValue = document.getElementById("subtask-title-input");
-  subtaskEdit.push(subtaskValue.value);
-  subtaskValue.value = "";
-  elementid.subtasks.innerHTML = "";
-  renderEditSubtasks();
+  const trimmedValue = subtaskValue.value.trim();
+  if (trimmedValue !== "") {
+    if (!subtaskEdit.includes(trimmedValue)) {
+      subtaskEdit.push(trimmedValue);
+      subtaskValue.value = "";
+      elementid.subtasks.innerHTML = "";
+      renderEditSubtasks();
+    } else {
+      showValidationMessage(subtaskValue, "This subtask is already added!", 2000);
+    }
+  }
 }
+
 /**
  * Delete the Subtask with the Index
  * @param {Number} id - The Index from the delete Subtask
@@ -283,6 +291,9 @@ function renderEditSubtasks() {
   }
 }
 
+/**
+ * Set the Values in the Edit PopUp
+ */
 async function setEditValue() {
   let selecttasks = await getItem("tasks");
   let title = elementid.title.value;
@@ -377,6 +388,7 @@ function closeTaskPopUpRemove() {
   document.getElementById("task-profile").innerHTML = "";
   elementid = {};
   subtaskEdit = [];
+  document.getElementById("subtask-title-input").value = "";
 }
 
 /**

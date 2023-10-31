@@ -115,6 +115,7 @@ body {
   justify-content: space-around;
   top: 582px;
   gap: 475px;
+  padding-bottom: 20px;
 }
 
 .btn {

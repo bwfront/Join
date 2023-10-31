@@ -292,17 +292,39 @@ function categoryColor(category) {
 }
 
 /**
- * this function adds a subtask
+ * Add a subtask
  */
 function addSubTask() {
-  document.getElementById("subtask-container").style.display = "block";
-  let subTaskInput = document.getElementById("subtask-title-input").value;
+  let subTaskInputElem = document.getElementById("subtask-title-input");
+  let subTaskInput = subTaskInputElem.value.trim();
   if (subTaskInput !== "") {
-    subtask.push(subTaskInput);
+    if (!subtask.includes(subTaskInput)) {
+      document.getElementById("subtask-container").style.display = "block";
+      subtask.push(subTaskInput);
+      addSubtaskHTML(subTaskInput);
+    } else {
+      showValidationMessage(
+        subTaskInputElem,
+        "This subtask is already added!",
+        2000
+      );
+    }
   }
-  if (subTaskInput.trim() !== "") {
-    addSubtaskHTML(subTaskInput);
-  }
+}
+/**
+ * Show a validation message for a specified duration
+ * @param {HTMLInputElement} inputElem - The input element to set the validation message on
+ * @param {string} message - The validation message to display
+ * @param {number} duration - Duration to show the validation message in milliseconds
+ */
+function showValidationMessage(inputElem, message, duration = 2000) {
+  inputElem.setCustomValidity(message);
+  inputElem.reportValidity();
+
+  setTimeout(() => {
+    inputElem.setCustomValidity("");
+    inputElem.reportValidity();
+  }, duration);
 }
 
 /**
@@ -378,12 +400,12 @@ function clearTask() {
 /**
  * Remove the Selected Class from the Prio Button
  */
-function removePrioSelect(){
-  const buttons = document.getElementsByClassName('btn-prio');
+function removePrioSelect() {
+  const buttons = document.getElementsByClassName("btn-prio");
   const buttonArray = Array.from(buttons);
-  buttonArray.forEach(button => {
-    button.classList.remove('selected')
-});
+  buttonArray.forEach((button) => {
+    button.classList.remove("selected");
+  });
 }
 
 /**

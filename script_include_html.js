@@ -1,3 +1,7 @@
+/**
+ * Include and Check wich page is open
+ * @param {String} site - The String of the Open Page
+ */
 async function init(site) {
   await includeHTML(site);
   desktopAttachSubheaderEvents(); // Attach the event after the HTML is loaded
@@ -25,6 +29,9 @@ async function includeHTML(site) {
   setUserInitials();
 }
 
+/**
+ * Set the User Initiles
+ */
 function setUserInitials() {
   let name = localStorage.getItem('name');
   if(name){
@@ -33,7 +40,6 @@ function setUserInitials() {
     document.querySelector("[id='initials-user']").innerHTML = `${uppercaseInitials}`; // Dekstop Navbar
     document.querySelector("[id='initial-user-mobile']").innerHTML = `${uppercaseInitials}`; // Mobile Navbar
   }
-  //document.getElementById('initials-user').innerHTML = `${uppercaseInitials}`;
 }
 
 /**
