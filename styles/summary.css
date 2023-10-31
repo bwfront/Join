@@ -416,7 +416,6 @@ html a {
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
-    overflow: scroll !important;
   }
 
   .summary-main-container {
@@ -457,7 +456,7 @@ html a {
   }
 
   .summary-bottom-card {
-    margin: 8px 0 8px;
+    margin-top: 8px;
   }
 }
 
