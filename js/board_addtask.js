@@ -46,14 +46,16 @@ function getCheckedContacts() {
  */
 async function innerPopUpContactHTML(contacts, id) {
   const container = document.getElementById(`task-profile-${id}`);
-  for (let contact of contacts) {
-    const bgColor = await contactBackgroundColor(contact);
-    container.innerHTML += `
+  if (container) {
+    for (let contact of contacts) {
+      const bgColor = await contactBackgroundColor(contact);
+      container.innerHTML += `
         <div class="profile" id="profile" style="background-color: ${bgColor}">${setContactInitial(
-      contact
-    )}
+        contact
+      )}
         </div>
       `;
+    }
   }
 }
 

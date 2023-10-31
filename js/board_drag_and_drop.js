@@ -43,52 +43,112 @@ function dragLoader() {
 }
 
 /**
- * Sets up drag-and-drop behavior for tasks and their containers.
- * @param {NodeList} dragTasks - List of draggable tasks.
- * @param {Array} containers - Array of task board containers.
+ * Adds a background style to an array of container elements.
+ * @param {Array<HTMLElement>} containers - The list of container elements.
+ */
+function addBgToContainers(containers) {
+  containers.forEach((container) => container.classList.add("container-bg"));
+}
+
+/**
+ * Removes the background style from an array of container elements.
+ * @param {Array<HTMLElement>} containers - The list of container elements.
+ */
+function removeBgFromContainers(containers) {
+  containers.forEach((container) => container.classList.remove("container-bg"));
+}
+
+/**
+ * Handles the drag end event for a task.
+ * @param {HTMLElement} dragTask - The task element that ended the drag.
+ * @param {Array<HTMLElement>} containers - The list of container elements.
+ */
+function handleDragStart(dragTask, containers) {
+  dragTask.classList.add("dragging");
+  addBgToContainers(containers);
+}
+
+/**
+ * Handles the drag over event for a container.
+ * Prevents default behavior to allow the drop operation.
+ * @param {DragEvent} event - The drag event.
+ */
+function handleDragEnd(dragTask, containers) {
+  dragTask.classList.remove("dragging");
+  removeBgFromContainers(containers);
+}
+
+/**
+ * Handles the drop event for a container.
+ * @param {HTMLElement} container - The container where the task was dropped.
+ * @param {DragEvent} event - The drop event.
+ * @param {Array<HTMLElement>} containers - The list of container elements.
+ */
+function handleDragOver(event) {
+  event.preventDefault();
+}
+
+/**
+ * Handles the drop event for a container.
+ * @param {HTMLElement} container - The container where the task was dropped.
+ * @param {DragEvent} event - The drop event.
+ * @param {Array<HTMLElement>} containers - The list of container elements.
+ */
+function handleDrop(container, event, containers) {
+  event.preventDefault();
+  const draggingTask = document.querySelector(".dragging");
+  if (draggingTask) {
+    container.appendChild(draggingTask);
+  }
+  removeBgFromContainers(containers);
+}
+
+/**
+ * Sets up drag event listeners for the given tasks.
+ * @param {NodeList|Array<Element>} dragTasks - The list of draggable task elements.
+ * @param {NodeList|Array<Element>} containers - The list of container elements.
+ */
+function setupDragEventListenersForTasks(dragTasks, containers) {
+  dragTasks.forEach((dragTask) => {
+    dragTask.addEventListener("dragstart", () =>
+      handleDragStart(dragTask, containers)
+    );
+    dragTask.addEventListener("dragend", () =>
+      handleDragEnd(dragTask, containers)
+    );
+  });
+}
+
+/**
+ * Sets up drop event listeners for the given containers.
+ * @param {NodeList|Array<Element>} containers - The list of container elements.
+ */
+function setupDropEventListenersForContainers(containers) {
+  containers.forEach((container) => {
+    container.addEventListener("dragover", handleDragOver);
+    container.addEventListener("drop", (e) =>
+      handleDrop(container, e, containers)
+    );
+  });
+}
+
+/**
+ * Sets up a drag end event listener for the document which removes backgrounds from containers.
+ * @param {NodeList|Array<Element>} containers - The list of container elements.
+ */
+function setupDragEndListenerForDocument(containers) {
+  document.addEventListener("dragend", () =>
+    removeBgFromContainers(containers)
+  );
+}
+
+/**
+ * Initializes all drag and drop event listeners for tasks and containers.
+ * @param {NodeList|Array<Element>} dragTasks - The list of draggable task elements.
+ * @param {NodeList|Array<Element>} containers - The list of container elements.
  */
 function dragDropFun(dragTasks, containers) {
-  dragTasks.forEach((dragTask) => {
-    dragTask.addEventListener("dragstart", () => {
-      dragTask.classList.add("dragging");
-      containers.forEach((container) => {
-        container.classList.add("container-bg");
-      });
-    });
-    dragTask.addEventListener("dragend", () => {
-      dragTask.classList.remove("dragging");
-      containers.forEach((container) => {
-        container.classList.remove("container-bg");
-      });
-    });
-  });
-  containers.forEach((container) => {
-    container.addEventListener("dragover", (e) => {
-      e.preventDefault();
-    });
-    container.addEventListener("dragleave", (e) => {
-      e.preventDefault();
-      container.classList.remove("container-bg");
-    });
-    container.addEventListener("drop", (e) => {
-      e.preventDefault();
-      const dragTask = document.querySelector(".dragging");
-      if (dragTask) {
-        container.appendChild(dragTask);
-      }
-      containers.forEach((cleanContainer) => {
-        cleanContainer.classList.remove("container-bg");
-      });
-    });
-  });
-  document.addEventListener("dragexit", () => {
-    containers.forEach((container) => {
-      container.classList.remove("container-bg");
-    });
-  });
-  document.addEventListener("dragend", () => {
-    containers.forEach((container) => {
-      container.classList.remove("container-bg");
-    });
-  });
+  setupDragEventListenersForTasks(dragTasks, containers);
+  setupDropEventListenersForContainers(containers);
+  setupDragEndListenerForDocument(containers);
 }

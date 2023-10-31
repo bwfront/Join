@@ -413,7 +413,6 @@ async function setContactNameInPopUp(id) {
           </div>`;
         }
       } else {
-        console.log("assd");
         container.innerHTML = "No contacts Assigned";
       }
     }

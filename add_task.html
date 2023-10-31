@@ -17,20 +17,16 @@
   <link rel="stylesheet" href="./styles/addtask.css" />
   <script src="script.js"></script>
   <script src="./js/board_addtask.js"></script>
+  <script src="./js/board_addtask_html.js"></script>
   <title>Join | Add Task</title>
 </head>
 
 <body onload="init('addtask'), setContactsToAssign()">
   <div w3-include-html="./assets/templates/desktop_template.html"></div>
   <div w3-include-html="./assets/templates/mobile_template.html"></div>
-
-  <!-- Main content goes here -->
   <div class="add-task-title main-content-animation">
     <h1>Add Task</h1>
-
     <form id="task-form" class="add-task-main-content main-content-animation" onsubmit="createTask(); return false">
-      <!-- LEFT SIDE -->
-
       <div class="add-task-left-side">
         <div class="add-task-card">
           <div class="form-group">
@@ -57,10 +53,7 @@
           </div>
         </div>
       </div>
-
       <div class="middle-border"></div>
-
-      <!-- RIGHT SIDE -->
       <div class="add-task-right-side">
         <div class="add-task-card">
           <div class="form-group">
@@ -112,7 +105,6 @@
           </div>
         </div>
       </div>
-
       <div class="btn-bottom">
         <div class="add-task-reqired-field">
           <span class="required-field"></span>

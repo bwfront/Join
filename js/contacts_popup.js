@@ -4,9 +4,9 @@ let currentContactId;
  * @param {String} value - The Value of the PopUp that should be open
  */
 function openPopUpContact(value) {
-  if (value == 'edit') {
+  if (value == "edit") {
     innerEditContactPopUp(getPopUpId());
-  } else if (value == 'add') {
+  } else if (value == "add") {
     innerAddContactPopUp(getPopUpId());
   }
 }
@@ -16,13 +16,13 @@ function openPopUpContact(value) {
  * @returns - Return the ID of the HTML
  */
 function getPopUpId() {
-  const popup = document.getElementById('contactPopUp');
-  const title = document.getElementById('popup-title-span');
-  const titleunder = document.getElementById('popup-title-span-underline');
-  const btncancel = document.getElementById('contact-delete-btn');
-  const btncreate = document.getElementById('contact-save-btn');
-  const titlecon = document.getElementById('contact-popup-title-logo');
-  const background = document.getElementById('contact_modal_background');
+  const popup = document.getElementById("contactPopUp");
+  const title = document.getElementById("popup-title-span");
+  const titleunder = document.getElementById("popup-title-span-underline");
+  const btncancel = document.getElementById("contact-delete-btn");
+  const btncreate = document.getElementById("contact-save-btn");
+  const titlecon = document.getElementById("contact-popup-title-logo");
+  const background = document.getElementById("contact_modal_background");
   const contactconid = {
     popup,
     title,
@@ -40,16 +40,16 @@ function getPopUpId() {
  * Close the PopUp
  */
 function closeWindow() {
-  const popup = document.getElementById('contactPopUp');
-  popup.style.animation = 'slideInFromCenter 0.4s forwards';
+  const popup = document.getElementById("contactPopUp");
+  popup.style.animation = "slideInFromCenter 0.4s forwards";
   setTimeout(() => {
-    popup.style.display = 'none';
+    popup.style.display = "none";
     initContacts();
-    const background = document.getElementById('contact_modal_background');
-    background.style.display = 'none';
-    const profile = document.getElementById('contact-profile-container');
+    const background = document.getElementById("contact_modal_background");
+    background.style.display = "none";
+    const profile = document.getElementById("contact-profile-container");
     profile.innerHTML = `<img src="./assets/img/profile.png" alt="profile"></img>`;
-    popup.style.animation = 'slideInFromRight 0.4s forwards';
+    popup.style.animation = "slideInFromRight 0.4s forwards";
   }, 400);
 }
 
@@ -59,21 +59,25 @@ function closeWindow() {
  * @returns
  */
 function contactCheck(con) {
-  const nameInput = document.getElementById('contact-input-name');
-  const emailInput = document.getElementById('contact-input-email');
+  const nameInput = document.getElementById("contact-input-name");
+  const emailInput = document.getElementById("contact-input-email");
   const trimmedName = nameInput.value.trim();
   if (!trimmedName || !/^[A-Za-z\s]+$/.test(trimmedName)) {
-    nameInput.setCustomValidity('Please enter a valid name.');
+    nameInput.setCustomValidity("Please enter a valid name.");
     return false;
   }
   const email = emailInput.value.trim();
-  if (!email || !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
-    //emailInput.setCustomValidity("Please enter a valid email address.");
+  if (
+    !email ||
+    !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+      email
+    )
+  ) {
     return false;
   }
-  if (con === 'addContact') {
+  if (con === "addContact") {
     addContact();
-  } else if (con === 'editContact') {
+  } else if (con === "editContact") {
     saveEditContact();
   }
   return true;
@@ -84,9 +88,9 @@ function contactCheck(con) {
  * @returns - The Contact Input ID HTML
  */
 function getContactInputs() {
-  const name = document.getElementById('contact-input-name');
-  const email = document.getElementById('contact-input-email');
-  const number = document.getElementById('contact-input-number');
+  const name = document.getElementById("contact-input-name");
+  const email = document.getElementById("contact-input-email");
+  const number = document.getElementById("contact-input-number");
   return { name, email, number };
 }
 
@@ -95,9 +99,9 @@ function getContactInputs() {
  */
 function clearInputs() {
   const inputs = getContactInputs();
-  inputs.name.value = '';
-  inputs.email.value = '';
-  inputs.number.value = '';
+  inputs.name.value = "";
+  inputs.email.value = "";
+  inputs.number.value = "";
 }
 
 /**
@@ -122,19 +126,19 @@ function getValuesInputContact() {
  */
 function innerAddContactPopUp(id) {
   clearInputs();
-  id.popup.style.display = 'flex';
-  id.titlecon.style.marginTop = '-30px';
-  id.btncancel.innerHTML = 'Cancel';
+  id.popup.style.display = "flex";
+  id.titlecon.style.marginTop = "-30px";
+  id.btncancel.innerHTML = "Cancel";
   id.btncancel.onclick = function () {
     closeWindow();
   };
   id.btncreate.innerHTML = `Create Contact <img src="./assets/img/check.png" alt="check" />`;
   id.btncreate.onclick = function () {
-    contactCheck('addContact');
+    contactCheck("addContact");
   };
-  id.title.innerHTML = 'Add contact';
-  id.titleunder.style.display = 'unset';
-  id.background.style.display = 'unset';
+  id.title.innerHTML = "Add contact";
+  id.titleunder.style.display = "unset";
+  id.background.style.display = "unset";
 }
 
 /**
@@ -144,9 +148,9 @@ function innerAddContactPopUp(id) {
  */
 async function addContact() {
   const newcontact = getValuesInputContact();
-  const contacts = await getItem('contacts');
+  const contacts = await getItem("contacts");
   contacts.push(newcontact);
-  await setItem('contacts', contacts);
+  await setItem("contacts", contacts);
   closeWindow();
 }
 
@@ -157,7 +161,7 @@ async function addContact() {
  */
 async function editContact(id) {
   const contact = await getContactInfo(id);
-  openPopUpContact('edit');
+  openPopUpContact("edit");
   innerEditContactValues(contact);
   currentContactId = id;
 }
@@ -168,19 +172,19 @@ async function editContact(id) {
  */
 function innerEditContactPopUp(id) {
   clearInputs();
-  id.popup.style.display = 'flex';
-  id.titlecon.style.marginTop = '0px';
-  id.btncancel.innerHTML = 'Delete';
+  id.popup.style.display = "flex";
+  id.titlecon.style.marginTop = "0px";
+  id.btncancel.innerHTML = "Delete";
   id.btncancel.onclick = function () {
     deleteContact(currentID);
   };
   id.btncreate.innerHTML = `Save <img src="./assets/img/check.png" alt="check" />`;
   id.btncreate.onclick = function () {
-    contactCheck('editContact');
+    contactCheck("editContact");
   };
-  id.title.innerHTML = 'Edit contact';
-  id.titleunder.style.display = 'none';
-  id.background.style.display = 'unset';
+  id.title.innerHTML = "Edit contact";
+  id.titleunder.style.display = "none";
+  id.background.style.display = "unset";
 }
 
 /**
@@ -188,8 +192,10 @@ function innerEditContactPopUp(id) {
  * @param {Object} contact
  */
 function innerEditContactValues(contact) {
-  const profile = document.getElementById('contact-profile-container');
-  profile.innerHTML = `<div class="contact-profile-container" style="background-color: ${contact.color}">${getInitials(contact.name)}</div>`;
+  const profile = document.getElementById("contact-profile-container");
+  profile.innerHTML = `<div class="contact-profile-container" style="background-color: ${
+    contact.color
+  }">${getInitials(contact.name)}</div>`;
   const inputs = getContactInputs();
   inputs.name.value = contact.name;
   inputs.email.value = contact.email;
@@ -201,7 +207,7 @@ function innerEditContactValues(contact) {
  */
 async function saveEditContact() {
   const inputs = getContactInputs();
-  const contacts = await getItem('contacts');
+  const contacts = await getItem("contacts");
   const updatedcontacts = contacts.map((contact) => {
     if (contact.id == currentContactId) {
       contact.name = inputs.name.value;
@@ -210,7 +216,7 @@ async function saveEditContact() {
     }
     return contact;
   });
-  await setItem('contacts', updatedcontacts);
+  await setItem("contacts", updatedcontacts);
   closeWindow();
   openContact(currentContactId);
   currentContactId;

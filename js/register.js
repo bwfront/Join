@@ -2,35 +2,17 @@
  * The token used for accessing the remote storage.
  * @constant {string}
  */
-const STORAGE_TOKEN = '0BPXH9KOB3KK14LPEUWH02NBW7QT7YIO3LQDS7R4';
+const STORAGE_TOKEN = "0BPXH9KOB3KK14LPEUWH02NBW7QT7YIO3LQDS7R4";
 /**
  * The URL used for accessing the remote storage API
  * @constant {String}
  */
-const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
+const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
 /**
  * global array where the fetched userdata loaded in.
  */
 let users = [];
-
-/**
- * inits the register page and fetch userdata.
- */
-
-/*document.addEventListener('DOMContentLoaded', function () {
-  const passwordField = document.getElementById('password');
-  const confirmPasswordField = document.getElementById('confirmPassword');
-  const passwordError = document.getElementById('passwordError');
-
-  passwordField.addEventListener('input', function () {
-    if (passwordField.value !== confirmPasswordField.value) {
-      passwordError.textContent = 'Password do NOT match';
-    } else {
-      passwordError.textContent = '';
-    }
-  });
-});*/
 
 async function init() {
   await loadUsers();
@@ -44,7 +26,10 @@ async function init() {
  */
 async function setItem(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
-  return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) }).then((res) => res.json());
+  return fetch(STORAGE_URL, {
+    method: "POST",
+    body: JSON.stringify(payload),
+  }).then((res) => res.json());
 }
 
 /**
@@ -68,12 +53,11 @@ async function getItem(key) {
 /**
  * Sets all users to the users array
  */
-
 async function loadUsers() {
   try {
-    users = await JSON.parse(await getItem('users'));
+    users = await JSON.parse(await getItem("users"));
   } catch (e) {
-    console.error('Loading error:', e);
+    console.error("Loading error:", e);
   }
 }
 
@@ -83,34 +67,39 @@ async function loadUsers() {
 
 async function register() {
   users.push({
-    name: document.getElementById('name').value,
+    name: document.getElementById("name").value,
     email: email.value,
     password: password.value,
   });
-  await setItem('users', JSON.stringify(users));
+  await setItem("users", JSON.stringify(users));
   resetForm();
 }
 
 /**
  * Resets the input forms.
  */
-
 function resetForm() {
-  document.getElementById('name').value = '';
-  email.value = '';
-  password.value = '';
-  document.getElementById('confirmPassword').value = '';
-  location.href = 'index.html';
+  document.getElementById("name").value = "";
+  email.value = "";
+  password.value = "";
+  document.getElementById("confirmPassword").value = "";
+  location.href = "index.html";
   //registerBtn.disabled = false;
 }
 
+/**
+ * Checks the Passoword
+ */
 function checkPasswordValidation() {
-  let errorContainer = document.getElementById('passwordError');
-  if (document.getElementById('password').value == document.getElementById('confirmPassword').value) {
-    errorContainer.style.color = 'green';
-    errorContainer.innerHTML = 'Password matching';
+  let errorContainer = document.getElementById("passwordError");
+  if (
+    document.getElementById("password").value ==
+    document.getElementById("confirmPassword").value
+  ) {
+    errorContainer.style.color = "green";
+    errorContainer.innerHTML = "Password matching";
   } else {
-    errorContainer.style.color = 'red';
-    errorContainer.innerHTML = 'Passwords do <b>not</b> match!';
+    errorContainer.style.color = "red";
+    errorContainer.innerHTML = "Passwords do <b>not</b> match!";
   }
 }

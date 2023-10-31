@@ -97,6 +97,9 @@ function removeClassHovered(){
   }
 }
 
+/**
+ * Open the Contact in Mobile Screen
+ */
 function mobileOpenContact() {
   const containerInfo = document.getElementById(
     "contact-details-container-mobile"
@@ -112,6 +115,9 @@ function mobileOpenContact() {
   }
 }
 
+/**
+ * CloseContact in Mobile Screen
+ */
 function closeContactMobile() {
   removeClassHovered();
   closeMobileMenu();
@@ -127,6 +133,9 @@ function closeContactMobile() {
   `;
 }
 
+/**
+ * Open Contact Mobile Screen Menu
+ */
 function openMobileMenu() {
   const mobilecon = document.getElementById("mobile-container");
   mobilecon.innerHTML = `
