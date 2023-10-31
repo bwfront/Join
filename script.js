@@ -95,12 +95,40 @@ function setBoards() {
   setBoard("inprogress");
   setBoard("done");
 }
+
 /**
- * Retrieves and displays tasks from remote storage.
- * @async
- * @param {string} id - Identifier for the task board section (e.g. 'todo', 'inprogress').
- * @returns {Promise<void>}
+ * Check if the Contacts Exist
+ * and Update the Task Contacts
  */
+async function checkContactExist() {
+  const tasks = await getItem("tasks");
+  const contacts = await getItem("contacts");
+  const contactname = pushContactInArray(contacts);
+  tasks.forEach((task) => {
+    let newContact = [];
+    task.contact.forEach((currencontact) => {
+      if (contactname.includes(currencontact)) {
+        newContact.push(currencontact);
+      }
+    });
+    task.contact = newContact;
+  });
+  await setItem('tasks', tasks);
+  setBoards();
+}
+
+/**
+ * Put all Contact Names in Array
+ * @param {Object} contacts - The Contacts
+ * @returns - The Array with the Contacts Name
+ */
+function pushContactInArray(contacts) {
+  const array = [];
+  for (selectcontact of contacts) {
+    array.push(selectcontact.name);
+  }
+  return array;
+}
 
 async function setBoard(id) {
   const tasks = await getItem("tasks");
@@ -267,14 +295,14 @@ function categoryColor(category) {
  * this function adds a subtask
  */
 function addSubTask() {
-  document.getElementById('subtask-container').style.display = 'block';
+  document.getElementById("subtask-container").style.display = "block";
   let subTaskInput = document.getElementById("subtask-title-input").value;
   if (subTaskInput !== "") {
     subtask.push(subTaskInput);
   }
   if (subTaskInput.trim() !== "") {
     addSubtaskHTML(subTaskInput);
-}
+  }
 }
 
 /**
@@ -287,8 +315,8 @@ function removeSubtaskAddTask(subTaskInput) {
     subtask = subtask.filter((task) => task !== subTaskInput);
     subtaskItem.remove();
   }
-  if(subtask.length == 0){
-    document.getElementById('subtask-container').style.display = 'none';
+  if (subtask.length == 0) {
+    document.getElementById("subtask-container").style.display = "none";
   }
 }
 
