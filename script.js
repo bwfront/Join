@@ -3,7 +3,7 @@
  * The token used for accessing the remote storage.
  * @constant {string}
  */
-const STORAGE_TOKEN = "0BPXH9KOB3KK14LPEUWH02NBW7QT7YIO3LQDS7R4";
+const STORAGE_TOKEN = "NQLX2MG4FBWCAU5TJ0U1IBY5YYSHNRXWPTWRDE2N";
 /**
  * The URL used for accessing the remote storage API
  * @constant {String}

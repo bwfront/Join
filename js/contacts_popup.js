@@ -54,33 +54,47 @@ function closeWindow() {
 }
 
 /**
- * Check the From Validation
- * @param {String} con - Current PopUp
- * @returns
+ * Validates the contact form.
+ * @returns {boolean} - Returns true if the form is valid, false otherwise.
  */
-function contactCheck(con) {
-  const nameInput = document.getElementById("contact-input-name");
-  const emailInput = document.getElementById("contact-input-email");
+function validateContactForm(nameInput, emailInput) {
   const trimmedName = nameInput.value.trim();
+  const email = emailInput.value.trim();
   if (!trimmedName || !/^[A-Za-z\s]+$/.test(trimmedName)) {
     nameInput.setCustomValidity("Please enter a valid name.");
     return false;
+  } else {
+    nameInput.setCustomValidity("");
   }
-  const email = emailInput.value.trim();
   if (
     !email ||
     !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
       email
     )
   ) {
+    emailInput.setCustomValidity("Please enter a valid email.");
     return false;
+  } else {
+    emailInput.setCustomValidity("");
+  }
+  return true;
+}
+
+/**
+ * Checks the contact form and handles the action based on the context.
+ * @param {String} con - Current PopUp (either "addContact" or "editContact").
+ */
+function contactCheck(con) {
+  const nameInput = document.getElementById("contact-input-name");
+  const emailInput = document.getElementById("contact-input-email");
+  if (!validateContactForm(nameInput, emailInput)) {
+    return;
   }
   if (con === "addContact") {
     addContact();
   } else if (con === "editContact") {
     saveEditContact();
   }
-  return true;
 }
 
 /**

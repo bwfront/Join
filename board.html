@@ -85,8 +85,8 @@
             </div>
         </div>
     </div>
-    <div id="desktop-task-popup-container" class="desktop-task-popup-container">
-        <div id="desktop-task-popup" class="desktop-task-popup">
+    <div id="desktop-task-popup-container" class="desktop-task-popup-container" onclick="closeTaskPopUp()">
+        <div id="desktop-task-popup" class="desktop-task-popup" onclick="event.stopPropagation();">
             <div class="task-popup" id="task-popup">
                 <div class="task-popup-head">
                     <div class="task-popup-head-category" id="popup-category"></div>

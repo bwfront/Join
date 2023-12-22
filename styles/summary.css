@@ -2,6 +2,7 @@
 .main-content {
   animation: fadein 225ms;
   animation-fill-mode: forwards;
+  overflow-x: hidden;
 }
 @keyframes fadein {
   from {
@@ -24,8 +25,6 @@ body {
   font-size: 64px;
   font-weight: 600;
   line-height: 76.8px;
-  /*width: 31px;
-  height: 77px;*/
 }
 
 /**STYLE FOR TEXT: TODO, DONE, TASKS IN BOARD, TASKS IN PROGRESS, AWAITING FEEDBACK**/
